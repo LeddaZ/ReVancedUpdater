@@ -1,0 +1,20 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.ReVancedUpdater" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/accent_color_dark</item>
+        <item name="colorPrimaryVariant">@color/accent_color_dark</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/dark_background</item>
+        <!-- Customize your theme here. -->
+        <item name="android:navigationBarColor">@color/dark_background</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="button_content_color">@color/white</item>
+        <item name="rounded_corner_view">@drawable/rounded_corner_view_dark</item>
+    </style>
+</resources>

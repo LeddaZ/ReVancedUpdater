@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="button_content_color" format="reference" />
+    <attr name="rounded_corner_view" format="reference" />
+
+</resources>

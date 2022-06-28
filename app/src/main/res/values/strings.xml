@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name" translatable="false">ReVanced Updater</string>
+    <string name="revanced_info_title">ReVanced info</string>
+    <string name="installed_app_version">Installed version: %1$s</string>
+    <string name="latest_app_version">Latest version: %1$s</string>
+    <string name="update_status">Checking for updates…</string>
+    <string name="update_available">Update available!</string>
+    <string name="no_update_available">No update available.</string>
+    <string name="update_button">UPDATE</string>
+    <string name="microg_info_title">Vanced microG Info</string>
+    <string name="install">INSTALL</string>
+    <string name="download_started">Download started. Check the notifications for details.</string>
+    <string name="app_not_installed">App not installed.</string>
+    <string name="refresh_button_description">Refresh</string>
+    <string name="download_error">An error occurred while downloading. Check logs for more details.</string>
+</resources>
