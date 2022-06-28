@@ -25,7 +25,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.File
 
-
+const val APP_VERSION = BuildConfig.VERSION_NAME
 const val LOG_TAG = "ReVanced Updater"
 var installedReVancedVersion = Version("99.99")
 var latestReVancedVersion = Version("0.0")
@@ -42,6 +42,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        Log.i(LOG_TAG, "ReVanced Updater $APP_VERSION is here UwU")
+        val appVersionTextView: TextView = findViewById(R.id.appVersion)
+        appVersionTextView.text = getString(R.string.app_version, APP_VERSION)
         refresh()
         }
 

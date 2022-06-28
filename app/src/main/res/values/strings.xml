@@ -13,4 +13,5 @@
     <string name="app_not_installed">App not installed.</string>
     <string name="refresh_button_description">Refresh</string>
     <string name="download_error">An error occurred while downloading. Check logs for more details.</string>
+    <string name="app_version">App version: %1$s</string>
 </resources>

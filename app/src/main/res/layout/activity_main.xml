@@ -228,4 +228,16 @@
         app:layout_constraintTop_toBottomOf="@+id/reVancedInfoSection"
         app:srcCompat="@drawable/refresh_button_icon" />
 
+    <TextView
+        android:id="@+id/appVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_regular"
+        android:text="@string/app_version"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/reVancedInfoSection"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleBar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
