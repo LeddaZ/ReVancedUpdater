@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:background="?attr/rounded_corner_view"
-        android:backgroundTint="@null"
         android:enabled="false"
         android:fontFamily="@font/inter_bold"
         android:onClick="downloadMicroG"

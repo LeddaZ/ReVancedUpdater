@@ -71,6 +71,7 @@ class MainActivity : AppCompatActivity() {
             installedMicroGTextView.text = getString(R.string.installed_app_version, installedMicroGVersion)
         } catch(e: NameNotFoundException) {
             installedMicroGTextView.text = getString(R.string.installed_app_version, "none")
+            installedMicroGVersion = Version("99.99")
             setButtonProperties(getButtons()[1], true, R.string.install)
         }
 
@@ -111,7 +112,7 @@ class MainActivity : AppCompatActivity() {
         if (installedMicroGVersion.compareTo(latestMicroGVersion) == -1) {
             microGUpdateStatusTextView.text = getString(R.string.update_available)
             setButtonProperties(getButtons()[1], true, R.string.update_button)
-        } else if (installedMicroGVersion.compareTo(installedMicroGVersion) == 0) {
+        } else if (installedMicroGVersion.compareTo(latestMicroGVersion) == 0) {
             microGUpdateStatusTextView.text = getString(R.string.no_update_available)
             setButtonProperties(getButtons()[1], false, R.string.update_button)
         } else {
