@@ -17,6 +17,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import com.airbnb.paris.extensions.style
 import com.android.volley.Request.Method.GET
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         } catch(e: NameNotFoundException) {
             installedReVancedTextView.text = getString(R.string.installed_app_version, "none")
             installedReVancedVersion = Version("99.99")
-            setButtonProperties(getButtons()[0], true, R.string.install, R.attr.button_content_color)
+            setButtonProperties(getButtons()[0], true, R.string.install)
         }
 
         val installedMicroGTextView: TextView = findViewById(R.id.installedMicroGVersion)
@@ -67,7 +68,7 @@ class MainActivity : AppCompatActivity() {
             installedMicroGTextView.text = getString(R.string.installed_app_version, installedMicroGVersion)
         } catch(e: NameNotFoundException) {
             installedMicroGTextView.text = getString(R.string.installed_app_version, "none")
-            setButtonProperties(getButtons()[1], true, R.string.install, R.attr.button_content_color)
+            setButtonProperties(getButtons()[1], true, R.string.install)
         }
 
         // Latest versions
@@ -94,25 +95,25 @@ class MainActivity : AppCompatActivity() {
         val reVancedUpdateStatusTextView: TextView = findViewById(R.id.reVancedUpdateStatus)
         if (installedReVancedVersion.compareTo(latestReVancedVersion) == -1) {
             reVancedUpdateStatusTextView.text = getString(R.string.update_available)
-            setButtonProperties(getButtons()[0], true, R.string.update_button, R.attr.button_content_color)
+            setButtonProperties(getButtons()[0], true, R.string.update_button)
         } else if (installedReVancedVersion.compareTo(latestReVancedVersion) == 0) {
             reVancedUpdateStatusTextView.text = getString(R.string.no_update_available)
-            setButtonProperties(getButtons()[0], false, R.string.update_button, R.color.dark_gray)
+            setButtonProperties(getButtons()[0], false, R.string.update_button)
         } else {
             reVancedUpdateStatusTextView.text = getString(R.string.app_not_installed)
-            setButtonProperties(getButtons()[0], true, R.string.install, R.attr.button_content_color)
+            setButtonProperties(getButtons()[0], true, R.string.install)
         }
 
         val microGUpdateStatusTextView: TextView = findViewById(R.id.microGUpdateStatus)
         if (installedMicroGVersion.compareTo(latestMicroGVersion) == -1) {
             microGUpdateStatusTextView.text = getString(R.string.update_available)
-            setButtonProperties(getButtons()[1], true, R.string.update_button, R.attr.button_content_color)
+            setButtonProperties(getButtons()[1], true, R.string.update_button)
         } else if (installedMicroGVersion.compareTo(installedMicroGVersion) == 0) {
             microGUpdateStatusTextView.text = getString(R.string.no_update_available)
-            setButtonProperties(getButtons()[1], false, R.string.update_button, R.color.dark_gray)
+            setButtonProperties(getButtons()[1], false, R.string.update_button)
         } else {
             microGUpdateStatusTextView.text = getString(R.string.app_not_installed)
-            setButtonProperties(getButtons()[1], true, R.string.install, R.attr.button_content_color)
+            setButtonProperties(getButtons()[1], true, R.string.install)
         }
     }
 
@@ -160,8 +161,8 @@ class MainActivity : AppCompatActivity() {
         showInstallOption()
     }
 
-    private fun getButtons(): Array<Button> {
-        return arrayOf(findViewById(R.id.reVancedButton), findViewById(R.id.microGButton))
+    private fun getButtons(): Array<Int> {
+        return arrayOf(R.id.reVancedButton, R.id.microGButton)
     }
 
     private fun showInstallOption() {
@@ -205,10 +206,14 @@ class MainActivity : AppCompatActivity() {
         this.registerReceiver(test, IntentFilter(Intent.ACTION_PACKAGE_ADDED))
     }
 
-    private fun setButtonProperties(button: Button, isEnabled: Boolean, text: Int, textColor: Int) {
-        button.isEnabled = isEnabled
-        button.text = getString(text)
-        button.setTextColor(textColor)
+    private fun setButtonProperties(button: Int, isEnabled: Boolean, text: Int) {
+        val buttonView: Button = findViewById(button)
+        buttonView.isEnabled = isEnabled
+        buttonView.text = getString(text)
+        if (isEnabled)
+            buttonView.style(R.style.button_enabled)
+        else
+            buttonView.style(R.style.button_disabled)
     }
 
     private fun refresh() {

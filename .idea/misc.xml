@@ -4,6 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/leona/repos/ReVancedUpdater/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.121" />
+        <entry key="..\:/Users/leona/repos/ReVancedUpdater/app/src/main/res/drawable/button_disabled.xml" value="0.12" />
+        <entry key="..\:/Users/leona/repos/ReVancedUpdater/app/src/main/res/drawable/button_drawable.xml" value="0.12" />
+        <entry key="..\:/Users/leona/repos/ReVancedUpdater/app/src/main/res/drawable/button_enabled.xml" value="0.121" />
+        <entry key="..\:/Users/leona/repos/ReVancedUpdater/app/src/main/res/drawable/button_focused.xml" value="0.121" />
+        <entry key="..\:/Users/leona/repos/ReVancedUpdater/app/src/main/res/drawable/button_pressed.xml" value="0.121" />
         <entry key="..\:/Users/leona/repos/ReVancedUpdater/app/src/main/res/drawable/button_rounded_corner_view.xml" value="0.2545" />
         <entry key="..\:/Users/leona/repos/ReVancedUpdater/app/src/main/res/drawable/button_view_light.xml" value="0.2555" />
         <entry key="..\:/Users/leona/repos/ReVancedUpdater/app/src/main/res/drawable/ic_launcher_background.xml" value="0.121" />

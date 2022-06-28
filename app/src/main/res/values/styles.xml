@@ -4,4 +4,22 @@
     <attr name="button_content_color" format="reference" />
     <attr name="rounded_corner_view" format="reference" />
 
+    <style name="button_disabled" parent="@android:style/Widget.Button">
+        <item name="android:background">?attr/rounded_corner_view</item>
+        <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="button_enabled" parent="@android:style/Widget.Button">
+        <item name="android:background">?attr/rounded_corner_view</item>
+        <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textColor">?attr/button_content_color</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+    </style>
+
 </resources>
