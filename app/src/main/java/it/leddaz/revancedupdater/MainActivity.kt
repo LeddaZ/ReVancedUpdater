@@ -139,6 +139,13 @@ class MainActivity : AppCompatActivity() {
             destination += fileName
             request.setDestinationInExternalFilesDir(this, "/apks/", fileName)
 
+            // Delete the APK before downloading if it already exists
+            val apkFile = File(destination)
+            if(apkFile.exists()) {
+                apkFile.delete()
+                Log.i(LOG_TAG, "Existing APK deleted.")
+            }
+
             //Enqueue download and save the referenceId
             downloadReference = downloadManager.enqueue(request)
             Toast.makeText(this, R.string.download_started, Toast.LENGTH_LONG).show()
