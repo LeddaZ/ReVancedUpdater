@@ -24,8 +24,7 @@
         <activity
             android:name=".AppInfoActivity"
             android:parentActivityName=".MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.ReVancedUpdater.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
