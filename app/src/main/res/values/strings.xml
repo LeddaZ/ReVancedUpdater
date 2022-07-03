@@ -1,17 +1,23 @@
 <resources>
     <string name="app_name" translatable="false">ReVanced Updater</string>
-    <string name="revanced_info_title">ReVanced info</string>
+    <string name="revanced_info_title" translatable="false">YouTube ReVanced</string>
     <string name="installed_app_version">Installed version: %1$s</string>
     <string name="latest_app_version">Latest version: %1$s</string>
     <string name="update_status">Checking for updates…</string>
     <string name="update_available">Update available!</string>
     <string name="no_update_available">No update available.</string>
     <string name="update_button">UPDATE</string>
-    <string name="microg_info_title">Vanced microG Info</string>
+    <string name="microg_info_title" translatable="false">Vanced microG</string>
     <string name="install">INSTALL</string>
     <string name="download_started">Download started. Check the notifications for details.</string>
     <string name="app_not_installed">App not installed.</string>
     <string name="refresh_button_description">Refresh</string>
     <string name="download_error">An error occurred while downloading. Check logs for more details.</string>
     <string name="app_version">App version: %1$s</string>
+    <string name="app_info_title" translatable="false">ReVanced Updater</string>
+    <string name="source_code">Source code</string>
+    <string name="about_app_title">About app</string>
+    <string name="about_app_text">ReVanced Updater is an app made to update my ReVanced builds. I\'ve created it mainly for my brother so he can update it more easily, but I guess it might be useful to others ¯\\_(ツ)_/¯.</string>
+    <string name="app_info_button_description">App info</string>
+    <string name="back_button_description">Back</string>
 </resources>

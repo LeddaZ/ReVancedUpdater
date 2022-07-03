@@ -2,9 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+    <queries>
+        <package android:name="app.revanced.android.youtube" />
+        <package android:name="com.mgoogle.android.gms" />
+    </queries>
 
     <application
         android:allowBackup="true"
@@ -17,6 +22,11 @@
         android:theme="@style/Theme.ReVancedUpdater"
         tools:targetApi="31">
         <activity
+            android:name=".AppInfoActivity"
+            android:parentActivityName=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.ReVancedUpdater.NoActionBar" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -25,6 +35,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -35,10 +46,5 @@
                 android:resource="@xml/provider_paths" />
         </provider>
     </application>
-
-    <queries>
-        <package android:name="app.revanced.android.youtube" />
-        <package android:name="com.mgoogle.android.gms" />
-    </queries>
 
 </manifest>

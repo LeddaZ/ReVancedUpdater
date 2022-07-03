@@ -4,67 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".AppInfoActivity">
 
     <Button
-        android:id="@+id/microGButton"
+        android:id="@+id/sourceButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:background="?attr/rounded_corner_view"
-        android:enabled="false"
         android:fontFamily="@font/inter_bold"
-        android:onClick="downloadMicroG"
-        android:text="@string/update_button"
-        android:textColor="@color/dark_gray"
+        android:onClick="openSource"
+        android:text="@string/source_code"
+        android:textColor="?attr/button_content_color"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/microGInfoSection" />
-
-    <TextView
-        android:id="@+id/microGUpdateStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="21dp"
-        android:fontFamily="@font/inter_regular"
-        android:text="@string/update_status"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/microGInfoSection"
-        app:layout_constraintEnd_toEndOf="@+id/microGInfoSection"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/latestMicroGVersion" />
-
-    <TextView
-        android:id="@+id/latestMicroGVersion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        android:elevation="21dp"
-        android:fontFamily="@font/inter_regular"
-        android:text="@string/latest_app_version"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/microGInfoSection"
-        app:layout_constraintTop_toBottomOf="@+id/installedMicroGVersion" />
-
-    <TextView
-        android:id="@+id/installedMicroGVersion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="24dp"
-        android:elevation="21dp"
-        android:fontFamily="@font/inter_regular"
-        android:text="@string/installed_app_version"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/microGInfoSection"
-        app:layout_constraintTop_toBottomOf="@+id/microGInfoSectionTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/aboutAppSection" />
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/microGInfoSection"
+        android:id="@+id/aboutAppSection"
         android:layout_width="0dp"
         android:layout_height="180dp"
         android:layout_marginStart="8dp"
@@ -77,7 +36,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reVancedButton" />
+        app:layout_constraintTop_toBottomOf="@+id/appButton" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/titleBar"
@@ -109,7 +68,7 @@
         app:layout_constraintTop_toTopOf="@+id/titleBar" />
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/reVancedInfoSection"
+        android:id="@+id/appInfoSection"
         android:layout_width="0dp"
         android:layout_height="180dp"
         android:layout_marginStart="8dp"
@@ -125,7 +84,7 @@
         app:layout_constraintTop_toBottomOf="@+id/titleBar" />
 
     <TextView
-        android:id="@+id/reVancedInfoSectionTitle"
+        android:id="@+id/appInfoSectionTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -133,15 +92,15 @@
         android:layout_marginEnd="8dp"
         android:elevation="21dp"
         android:fontFamily="@font/inter_bold"
-        android:text="@string/revanced_info_title"
+        android:text="@string/app_info_title"
         android:textAlignment="center"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="@+id/reVancedInfoSection"
-        app:layout_constraintStart_toStartOf="@+id/reVancedInfoSection"
-        app:layout_constraintTop_toTopOf="@+id/reVancedInfoSection" />
+        app:layout_constraintEnd_toEndOf="@+id/appInfoSection"
+        app:layout_constraintStart_toStartOf="@+id/appInfoSection"
+        app:layout_constraintTop_toTopOf="@+id/appInfoSection" />
 
     <TextView
-        android:id="@+id/installedReVancedVersion"
+        android:id="@+id/installedAppVersion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -150,11 +109,11 @@
         android:fontFamily="@font/inter_regular"
         android:text="@string/installed_app_version"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/reVancedInfoSection"
-        app:layout_constraintTop_toBottomOf="@+id/reVancedInfoSectionTitle" />
+        app:layout_constraintStart_toStartOf="@+id/appInfoSection"
+        app:layout_constraintTop_toBottomOf="@+id/appInfoSectionTitle" />
 
     <TextView
-        android:id="@+id/latestReVancedVersion"
+        android:id="@+id/latestAppVersion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -163,11 +122,11 @@
         android:text="@string/latest_app_version"
         android:textSize="16sp"
         android:elevation="21dp"
-        app:layout_constraintStart_toStartOf="@+id/reVancedInfoSection"
-        app:layout_constraintTop_toBottomOf="@+id/installedReVancedVersion" />
+        app:layout_constraintStart_toStartOf="@+id/appInfoSection"
+        app:layout_constraintTop_toBottomOf="@+id/installedAppVersion" />
 
     <TextView
-        android:id="@+id/reVancedUpdateStatus"
+        android:id="@+id/appUpdateStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="21dp"
@@ -175,43 +134,27 @@
         android:text="@string/update_status"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/reVancedInfoSection"
-        app:layout_constraintEnd_toEndOf="@+id/reVancedInfoSection"
-        app:layout_constraintStart_toStartOf="@+id/reVancedInfoSection"
-        app:layout_constraintTop_toBottomOf="@+id/latestReVancedVersion" />
+        app:layout_constraintBottom_toBottomOf="@+id/appInfoSection"
+        app:layout_constraintEnd_toEndOf="@+id/appInfoSection"
+        app:layout_constraintStart_toStartOf="@+id/appInfoSection"
+        app:layout_constraintTop_toBottomOf="@+id/latestAppVersion" />
 
     <Button
-        android:id="@+id/reVancedButton"
+        android:id="@+id/appButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:background="?attr/rounded_corner_view"
         android:enabled="false"
         android:fontFamily="@font/inter_bold"
-        android:onClick="downloadReVanced"
+        android:onClick="downloadApp"
         android:text="@string/update_button"
         android:textColor="@color/dark_gray"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reVancedInfoSection" />
-
-    <TextView
-        android:id="@+id/microGInfoSectionTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="@font/inter_bold"
-        android:text="@string/microg_info_title"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:elevation="21dp"
-        app:layout_constraintEnd_toEndOf="@+id/microGInfoSection"
-        app:layout_constraintStart_toStartOf="@+id/microGInfoSection"
-        app:layout_constraintTop_toTopOf="@+id/microGInfoSection" />
+        app:layout_constraintTop_toBottomOf="@+id/appInfoSection" />
 
     <ImageButton
         android:id="@+id/refreshButton"
@@ -221,36 +164,57 @@
         android:contentDescription="@string/refresh_button_description"
         android:onClick="refreshButton"
         android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/microGInfoSection"
+        app:layout_constraintBottom_toTopOf="@+id/aboutAppSection"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/reVancedButton"
-        app:layout_constraintTop_toBottomOf="@+id/reVancedInfoSection"
+        app:layout_constraintStart_toEndOf="@+id/appButton"
+        app:layout_constraintTop_toBottomOf="@+id/appInfoSection"
         app:srcCompat="@drawable/refresh_button_icon" />
 
     <ImageButton
-        android:id="@+id/appInfoButton"
+        android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="?attr/rounded_corner_view"
-        android:contentDescription="@string/app_info_button_description"
-        android:onClick="appInfo"
-        android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@id/microGInfoSection"
-        app:layout_constraintEnd_toStartOf="@+id/reVancedButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/reVancedInfoSection"
-        app:srcCompat="@drawable/info_button_icon" />
+        android:background="@color/transparent"
+        android:contentDescription="@string/back_button_description"
+        android:elevation="21dp"
+        android:onClick="goBack"
+        android:padding="9dp"
+        app:layout_constraintBottom_toBottomOf="@+id/titleBar"
+        app:layout_constraintEnd_toStartOf="@+id/appTitle"
+        app:layout_constraintStart_toStartOf="@+id/titleBar"
+        app:layout_constraintTop_toTopOf="@+id/titleBar"
+        app:srcCompat="@drawable/back_arrow_icon" />
 
     <TextView
-        android:id="@+id/appVersion"
+        android:id="@+id/aboutAppTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:elevation="21dp"
+        android:fontFamily="@font/inter_bold"
+        android:text="@string/about_app_title"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/aboutAppSection"
+        app:layout_constraintStart_toStartOf="@+id/aboutAppSection"
+        app:layout_constraintTop_toTopOf="@+id/aboutAppSection" />
+
+    <TextView
+        android:id="@+id/appInfoText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:elevation="21dp"
         android:fontFamily="@font/inter_regular"
-        android:text="@string/app_version"
+        android:text="@string/about_app_text"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/reVancedInfoSection"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleBar" />
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/aboutAppSection"
+        app:layout_constraintEnd_toEndOf="@+id/aboutAppSection"
+        app:layout_constraintStart_toStartOf="@+id/aboutAppSection"
+        app:layout_constraintTop_toBottomOf="@+id/aboutAppTitle"
+        app:layout_constraintVertical_bias="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

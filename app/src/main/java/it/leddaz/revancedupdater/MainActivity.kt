@@ -1,43 +1,47 @@
 package it.leddaz.revancedupdater
 
 import android.app.DownloadManager
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.content.pm.PackageInfo
-import android.content.pm.PackageManager.NameNotFoundException
+import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.FileProvider
 import com.airbnb.paris.extensions.style
 import com.android.volley.Request.Method.GET
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.io.File
+import it.leddaz.revancedupdater.utils.AppInstaller
+import it.leddaz.revancedupdater.utils.Downloader
+import it.leddaz.revancedupdater.utils.Version
+import it.leddaz.revancedupdater.utils.VolleyCallBack
+import it.leddaz.revancedupdater.utils.jsonobjects.ReVancedJSONObject
 
 const val APP_VERSION = BuildConfig.VERSION_NAME
 const val LOG_TAG = "ReVanced Updater"
-var installedReVancedVersion = Version("99.99")
-var latestReVancedVersion = Version("0.0")
-var installedMicroGVersion = Version("99.99")
-var latestMicroGVersion = Version("0.0")
-var downloadUrl = ""
-var microGDownloadUrl = ""
+private var installedReVancedVersion = Version("99.99")
+private var latestReVancedVersion = Version("0.0")
+private var installedMicroGVersion = Version("99.99")
+private var latestMicroGVersion = Version("0.0")
+private var downloadUrl = ""
+private var microGDownloadUrl = ""
 
+/**
+ * The app's main activity, started at launch.
+ * @return The activity
+ */
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var destination: String
-
+    /**
+     * Actions executed when the activity is created at runtime.
+     * @property savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -46,18 +50,22 @@ class MainActivity : AppCompatActivity() {
         val appVersionTextView: TextView = findViewById(R.id.appVersion)
         appVersionTextView.text = getString(R.string.app_version, APP_VERSION)
         refresh()
-        }
+    }
 
-    /** Gets the installed and latest versions of YouTube Revanced and Vanced microG. **/
+    /**
+     * Gets the installed and latest versions of YouTube Revanced
+     * and Vanced microG.
+     * @property callback callback used to detect if the download was
+     *                    successful
+     */
     private fun getVersions(callback: VolleyCallBack) {
         // Installed versions
         val installedReVancedTextView: TextView = findViewById(R.id.installedReVancedVersion)
         try {
-            val pInfo: PackageInfo =
-                this.packageManager.getPackageInfo("app.revanced.android.youtube", 0)
+            val pInfo: PackageInfo = this.packageManager.getPackageInfo("app.revanced.android.youtube", 0)
             installedReVancedVersion = Version(pInfo.versionName)
             installedReVancedTextView.text = getString(R.string.installed_app_version, installedReVancedVersion)
-        } catch(e: NameNotFoundException) {
+        } catch(e: PackageManager.NameNotFoundException) {
             installedReVancedTextView.text = getString(R.string.installed_app_version, "none")
             installedReVancedVersion = Version("99.99")
             setButtonProperties(getButtons()[0], true, R.string.install)
@@ -65,11 +73,10 @@ class MainActivity : AppCompatActivity() {
 
         val installedMicroGTextView: TextView = findViewById(R.id.installedMicroGVersion)
         try {
-            val pInfo: PackageInfo =
-                this.packageManager.getPackageInfo("com.mgoogle.android.gms", 0)
+            val pInfo: PackageInfo = this.packageManager.getPackageInfo("com.mgoogle.android.gms", 0)
             installedMicroGVersion = Version(pInfo.versionName)
             installedMicroGTextView.text = getString(R.string.installed_app_version, installedMicroGVersion)
-        } catch(e: NameNotFoundException) {
+        } catch(e: PackageManager.NameNotFoundException) {
             installedMicroGTextView.text = getString(R.string.installed_app_version, "none")
             installedMicroGVersion = Version("99.99")
             setButtonProperties(getButtons()[1], true, R.string.install)
@@ -94,7 +101,9 @@ class MainActivity : AppCompatActivity() {
         queue.add(stringRequest)
     }
 
-    /** Compares versions. **/
+    /**
+     * Compares versions.
+     */
     private fun compareVersions() {
         val reVancedUpdateStatusTextView: TextView = findViewById(R.id.reVancedUpdateStatus)
         if (installedReVancedVersion.compareTo(latestReVancedVersion) == -1) {
@@ -121,102 +130,48 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /** Downloads a file. **/
-    private fun downloadFile(uri: Uri, fileName: String): Long {
-        var downloadReference: Long = 0
-        val downloadManager: DownloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
-        try {
-            val request = DownloadManager.Request(uri)
-
-            // Set title of request
-            request.setTitle(fileName)
-
-            // Set notification when download completed
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-
-            // Set the local destination for the downloaded file to a path within the application's external files directory
-            destination = this.getExternalFilesDir("/apks/").toString() + "/"
-            destination += fileName
-            request.setDestinationInExternalFilesDir(this, "/apks/", fileName)
-
-            // Delete the APK before downloading if it already exists
-            val apkFile = File(destination)
-            if(apkFile.exists()) {
-                apkFile.delete()
-                Log.i(LOG_TAG, "Existing APK deleted.")
-            }
-
-            //Enqueue download and save the referenceId
-            downloadReference = downloadManager.enqueue(request)
-            Toast.makeText(this, R.string.download_started, Toast.LENGTH_LONG).show()
-        } catch (e: IllegalArgumentException) {
-            Toast.makeText(this, R.string.download_error, Toast.LENGTH_LONG).show()
-            Log.e(LOG_TAG, e.printStackTrace().toString())
-        }
-        return downloadReference
-    }
-
-    /** Download YouTube ReVanced when the button is clicked. **/
+    /**
+     * Download YouTube ReVanced when the button is clicked.
+     * @property view the view which contains the button.
+     */
     fun downloadReVanced(view: View) {
-        downloadFile(
+        val fileName = "revanced-nonroot-signed.apk"
+        Downloader(
+            getSystemService(DOWNLOAD_SERVICE) as DownloadManager,
+            this,
             Uri.parse(downloadUrl),
-            "revanced-nonroot-signed.apk")
-        showInstallOption()
+            fileName)
+        AppInstaller(fileName, this)
     }
 
-    /** Download Vanced microG when the button is clicked. **/
+    /**
+     * Download Vanced microG when the button is clicked.
+     * @property view the view which contains the button.
+     */
     fun downloadMicroG(view: View) {
-        downloadFile(
-            Uri.parse(microGDownloadUrl),
-            "vanced-microG.apk")
-        showInstallOption()
+        val fileName = "vanced-microG.apk"
+        Downloader(
+            getSystemService(DOWNLOAD_SERVICE) as DownloadManager,
+            this,
+            Uri.parse(downloadUrl),
+            fileName)
+        AppInstaller(fileName, this)
     }
 
+    /**
+     * Returns all buttons in the view.
+     * @return Array of buttons
+     */
     private fun getButtons(): Array<Int> {
         return arrayOf(R.id.reVancedButton, R.id.microGButton)
     }
 
-    private fun showInstallOption() {
-        // Set BroadcastReceiver to install app when .apk is downloaded
-        val onComplete = object : BroadcastReceiver() {
-            override fun onReceive(context: Context, intent: Intent) {
-                val contentUri = FileProvider.getUriForFile(
-                    context,
-                    BuildConfig.APPLICATION_ID + ".provider",
-                    File(destination)
-                )
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    val install = Intent(Intent.ACTION_VIEW)
-                    install.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                    install.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    install.putExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, true)
-                    install.data = contentUri
-                    context.startActivity(install)
-                    context.unregisterReceiver(this)
-                    // finish()
-                } else {
-                    val install = Intent(Intent.ACTION_VIEW)
-                    install.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    install.setDataAndType(
-                        contentUri,
-                        "\"application/vnd.android.package-archive\""
-                    )
-                    context.startActivity(install)
-                    context.unregisterReceiver(this)
-                    refresh()
-                }
-            }
-        }
-        this.registerReceiver(onComplete, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
-        val test = object : BroadcastReceiver() {
-            override fun onReceive(context: Context, intent: Intent) {
-                refresh()
-            }
-        }
-
-        this.registerReceiver(test, IntentFilter(Intent.ACTION_PACKAGE_ADDED))
-    }
-
+    /**
+     * Sets button properties.
+     * @property button the button to set the properties for
+     * @property isEnabled button enabled state
+     * @property text button text
+     */
     private fun setButtonProperties(button: Int, isEnabled: Boolean, text: Int) {
         val buttonView: Button = findViewById(button)
         buttonView.isEnabled = isEnabled
@@ -227,6 +182,9 @@ class MainActivity : AppCompatActivity() {
             buttonView.style(R.style.button_disabled)
     }
 
+    /**
+     * Refreshes the versions.
+     */
     private fun refresh() {
         getVersions(object : VolleyCallBack {
             override fun onSuccess() {
@@ -240,9 +198,21 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    /** Called when the user presses the Refresh button. **/
+    /**
+     * Called when the user presses the Refresh button.
+     * @property view the view which contains the button
+     */
     fun refreshButton (view: View) {
         refresh()
+    }
+
+    /**
+     * Called when the user presses the App info button.
+     * @property view the view which contains the button
+     */
+    fun appInfo(view: View) {
+        val intent = Intent(this, AppInfoActivity::class.java).apply {}
+        startActivity(intent)
     }
 
 }
