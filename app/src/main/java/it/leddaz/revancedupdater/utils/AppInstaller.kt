@@ -10,6 +10,9 @@ import androidx.core.content.FileProvider
 import it.leddaz.revancedupdater.BuildConfig
 import java.io.File
 
+/**
+ * Installs an APK.
+ */
 class AppInstaller() {
 
     constructor(fileName: String, context: Context): this() {

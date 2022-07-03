@@ -2,14 +2,25 @@ package it.leddaz.revancedupdater.utils;
 
 import androidx.annotation.NonNull;
 
+/**
+ * Class that represents a version.
+ */
 public class Version implements Comparable<Version> {
 
     private final String version;
 
+    /**
+     * Returns the version
+     * @return Version
+     */
     public final String get() {
         return this.version;
     }
 
+    /**
+     * Constructor method.
+     * @param version version string
+     */
     public Version(String version) {
         if(version == null)
             throw new IllegalArgumentException("Version can not be null");
@@ -18,6 +29,12 @@ public class Version implements Comparable<Version> {
         this.version = version;
     }
 
+    /**
+     * Compare two versions.
+     * @param that the other version
+     * @return 0 if the versions are equal, 1 if the first version is newer,
+     *         -1 if the second one is newer
+     */
     @Override
     public int compareTo(Version that) {
         if(that == null)
@@ -38,6 +55,11 @@ public class Version implements Comparable<Version> {
         return 0;
     }
 
+    /**
+     * Declares if two versions are equal
+     * @param that other version
+     * @return true if the versions are equal, false otherwise
+     */
     @Override
     public boolean equals(Object that) {
         if(this == that)
@@ -49,6 +71,9 @@ public class Version implements Comparable<Version> {
         return this.compareTo((Version) that) == 0;
     }
 
+    /**
+     * @return A string representation of the version
+     */
     @NonNull
     public String toString() {
         return version;

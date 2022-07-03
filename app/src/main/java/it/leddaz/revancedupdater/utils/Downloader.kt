@@ -9,13 +9,15 @@ import it.leddaz.revancedupdater.LOG_TAG
 import it.leddaz.revancedupdater.R
 import java.io.File
 
+/**
+ * Downloads a file.
+ */
 class Downloader() {
 
     constructor(dlm: DownloadManager, context: Context, uri: Uri, fileName: String) : this() {
         downloadFile(dlm, context, uri, fileName)
     }
 
-    /** Downloads a file. **/
     private fun downloadFile(dlm: DownloadManager, context: Context, uri: Uri, fileName: String): Long {
         var downloadReference: Long = 0
         try {
