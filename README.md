@@ -8,3 +8,4 @@ Updater for my ReVanced builds, you can find more info [here](https://github.com
 - [Stack Overflow](https://stackoverflow.com/) for all the code I've stolen from it
 - [n0k0m3](https://github.com/n0k0m3) for the original [ReVanced build template](https://github.com/n0k0m3/revanced-build-template)
 - [Icons8](https://icons8.it/) and [SVG Repo](https://www.svgrepo.com/) for the button icons
+- [Lacia~chan](https://github.com/Lyceris-chan) for the app icon
