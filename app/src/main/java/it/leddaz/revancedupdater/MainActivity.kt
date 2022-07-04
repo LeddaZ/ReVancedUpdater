@@ -153,7 +153,7 @@ class MainActivity : AppCompatActivity() {
         Downloader(
             getSystemService(DOWNLOAD_SERVICE) as DownloadManager,
             this,
-            Uri.parse(downloadUrl),
+            Uri.parse(microGDownloadUrl),
             fileName)
         AppInstaller(fileName, this)
     }
