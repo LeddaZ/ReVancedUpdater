@@ -1,0 +1,44 @@
+name: Build
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Clone repository
+      uses: actions/checkout@v2
+
+    - name: Build
+      run: export GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} && chmod +x gradlew && ./gradlew assembleRelease
+
+    - name: Set current date as env variable
+      run: echo "date_now=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+    - uses: r0adkll/sign-android-release@v1
+      name: Sign APK's
+      with:
+          releaseDirectory: app/build/outputs/apk/release/
+          signingKeyBase64: '${{ secrets.SIGNING_KEY }}'
+          output: app/build/outputs/apk/release/signed
+          alias: '${{ secrets.ALIAS }}'
+          keyStorePassword: '${{ secrets.KEY_STORE_PASSWORD }}'
+          keyPassword: '${{ secrets.KEY_PASSWORD }}'
+      env:
+          BUILD_TOOLS_VERSION: "30.0.2"
+    
+    - name: Rename apk file
+      run: ./rename-updater.sh
+
+    - name: Generate SHA256 checksums for the signed APK files
+      run: ./generate-SHA256sum.sh
+
+    - uses: marvinpinto/action-automatic-releases@latest
+      with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "1.1.1"
+          title: "1.1.1"
+          files: |
+            app/build/outputs/apk/release/app-release-signed.apk
+            build/updater-SHA-256.txt
