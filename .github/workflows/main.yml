@@ -29,10 +29,10 @@ jobs:
           BUILD_TOOLS_VERSION: "30.0.2"
     
     - name: Rename APK file
-      run: ./.github/workflows/scripts/rename-updater.sh
+      run: ./rename-updater.sh
 
     - name: Generate SHA256 checksums for the signed APK files
-      run: ./.github/workflows/scripts/generate-SHA256sum.sh
+      run: ./generate-SHA256sum.sh
 
     - uses: marvinpinto/action-automatic-releases@latest
       with:
