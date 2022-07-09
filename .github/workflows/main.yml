@@ -38,7 +38,7 @@ jobs:
       with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "1.1.3"
-          prerelase: false
+          prerelease: false
           title: "1.1.3"
           files: |
             app/build/outputs/apk/release/app-release.apk
