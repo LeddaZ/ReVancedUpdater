@@ -22,11 +22,17 @@ import it.leddaz.revancedupdater.utils.Downloader
 import it.leddaz.revancedupdater.utils.Version
 import it.leddaz.revancedupdater.utils.VolleyCallBack
 import it.leddaz.revancedupdater.utils.jsonobjects.ReVancedJSONObject
+import org.apache.commons.codec.binary.Hex
+import org.apache.commons.codec.digest.DigestUtils
+import java.io.File
+import java.io.FileInputStream
+
 
 const val APP_VERSION = BuildConfig.VERSION_NAME
 const val LOG_TAG = "ReVanced Updater"
 private var installedReVancedVersion = Version("99.99")
 private var latestReVancedVersion = Version("0.0")
+private var latestReVancedHash = ""
 private var installedMicroGVersion = Version("99.99")
 private var latestMicroGVersion = Version("0.0")
 private var downloadUrl = ""
@@ -35,6 +41,7 @@ private var microGDownloadUrl = ""
 /**
  * The app's main activity, started at launch.
  * @return The activity
+ * @author Leonardo Ledda (LeddaZ)
  */
 class MainActivity : AppCompatActivity() {
 
@@ -82,7 +89,7 @@ class MainActivity : AppCompatActivity() {
             setButtonProperties(getButtons()[1], true, R.string.install)
         }
 
-        // Latest versions
+        // Latest versions and ReVanced hash
         val queue = Volley.newRequestQueue(this)
         val url = "https://raw.githubusercontent.com/LeddaZ/revanced-repo/main/updater.json"
         var reply: ReVancedJSONObject
@@ -91,6 +98,7 @@ class MainActivity : AppCompatActivity() {
         val stringRequest = StringRequest(GET, url, { response ->
             reply = Gson().fromJson(response, object : TypeToken<ReVancedJSONObject>() {}.type)
             latestReVancedVersion = Version(reply.latestReVancedVersion)
+            latestReVancedHash = reply.latestReVancedHash
             latestMicroGVersion = Version(reply.latestMicroGVersion)
             downloadUrl = reply.downloadUrl
             microGDownloadUrl = reply.microGDownloadUrl
@@ -110,8 +118,7 @@ class MainActivity : AppCompatActivity() {
             reVancedUpdateStatusTextView.text = getString(R.string.update_available)
             setButtonProperties(getButtons()[0], true, R.string.update_button)
         } else if (installedReVancedVersion.compareTo(latestReVancedVersion) == 0) {
-            reVancedUpdateStatusTextView.text = getString(R.string.no_update_available)
-            setButtonProperties(getButtons()[0], false, R.string.update_button)
+            compareHashes(reVancedUpdateStatusTextView)
         } else {
             reVancedUpdateStatusTextView.text = getString(R.string.app_not_installed)
             setButtonProperties(getButtons()[0], true, R.string.install)
@@ -127,6 +134,22 @@ class MainActivity : AppCompatActivity() {
         } else {
             microGUpdateStatusTextView.text = getString(R.string.app_not_installed)
             setButtonProperties(getButtons()[1], true, R.string.install)
+        }
+    }
+
+    /**
+     * Compares hashes.
+     */
+    private fun compareHashes(reVancedUpdateStatusTextView: TextView) {
+        val pInfo: PackageInfo = this.packageManager.getPackageInfo("app.revanced.android.youtube", 0)
+        val file = File(pInfo.applicationInfo.sourceDir)
+        val installedReVancedHash = String(Hex.encodeHex(DigestUtils.sha256(FileInputStream(file))))
+        if (installedReVancedHash.equals(latestReVancedHash)) {
+            reVancedUpdateStatusTextView.text = getString(R.string.no_update_available)
+            setButtonProperties(getButtons()[0], false, R.string.update_button)
+        } else {
+            reVancedUpdateStatusTextView.text = getString(R.string.update_available)
+            setButtonProperties(getButtons()[0], true, R.string.update_button)
         }
     }
 

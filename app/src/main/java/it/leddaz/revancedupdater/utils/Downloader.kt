@@ -11,6 +11,7 @@ import java.io.File
 
 /**
  * Downloads a file.
+ * @author Leonardo Ledda (LeddaZ)
  */
 class Downloader() {
 

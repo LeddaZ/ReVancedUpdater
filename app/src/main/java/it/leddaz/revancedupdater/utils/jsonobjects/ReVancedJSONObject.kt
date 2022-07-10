@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName
 data class ReVancedJSONObject(
     @SerializedName("latestReVancedVersion")
     val latestReVancedVersion: String,
+    @SerializedName("latestReVancedHash")
+    val latestReVancedHash: String,
     @SerializedName("latestMicroGVersion")
     val latestMicroGVersion: String,
     @SerializedName("downloadUrl")

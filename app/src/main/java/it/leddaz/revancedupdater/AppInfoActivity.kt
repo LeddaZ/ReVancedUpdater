@@ -26,6 +26,7 @@ private var appDownloadUrl = ""
  * The App info activity, started when the App info button is
  * pressed.
  * @return The activity
+ * @author Leonardo Ledda (LeddaZ)
  */
 class AppInfoActivity : AppCompatActivity() {
 

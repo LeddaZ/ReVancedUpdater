@@ -12,6 +12,7 @@ import java.io.File
 
 /**
  * Installs an APK.
+ * @author Leonardo Ledda (LeddaZ)
  */
 class AppInstaller() {
 
