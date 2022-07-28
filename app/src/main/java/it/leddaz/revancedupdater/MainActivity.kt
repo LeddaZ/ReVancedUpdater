@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
 
         val installedReVancedMusicTextView: TextView = findViewById(R.id.installedReVancedMusicVersion)
         try {
-            val pInfo: PackageInfo = this.packageManager.getPackageInfo("app.revanced.android.youtube", 0)
+            val pInfo: PackageInfo = this.packageManager.getPackageInfo("app.revanced.android.apps.youtube.music", 0)
             installedReVancedMusicVersion = Version(pInfo.versionName)
             installedReVancedMusicTextView.text = getString(R.string.installed_app_version, installedReVancedMusicVersion)
         } catch(e: PackageManager.NameNotFoundException) {
@@ -146,7 +146,7 @@ class MainActivity : AppCompatActivity() {
         if (installedReVancedMusicVersion.compareTo(latestReVancedMusicVersion) == -1) {
             reVancedMusicUpdateStatusTextView.text = getString(R.string.update_available)
             setButtonProperties(getButtons()[1], true, R.string.update_button)
-        } else if (installedReVancedMusicVersion.compareTo(installedReVancedMusicVersion) == 0) {
+        } else if (installedReVancedMusicVersion.compareTo(latestReVancedMusicVersion) == 0) {
             compareHashes(reVancedMusicUpdateStatusTextView, "app.revanced.android.apps.youtube.music")
         } else {
             reVancedMusicUpdateStatusTextView.text = getString(R.string.app_not_installed)
