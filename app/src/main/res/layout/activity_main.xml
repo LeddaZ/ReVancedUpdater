@@ -18,6 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="35dp"
+            android:layout_marginBottom="12dp"
             android:background="?attr/rounded_corner_view"
             android:enabled="false"
             android:fontFamily="@font/inter_bold"
@@ -25,6 +26,7 @@
             android:text="@string/update_button"
             android:textColor="@color/dark_gray"
             android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +88,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reVancedButton" />
+            app:layout_constraintTop_toBottomOf="@+id/reVancedMusicButton" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/titleBar"
@@ -133,6 +135,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleBar" />
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/reVancedMusicInfoSection"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="8dp"
+            android:background="?attr/rounded_corner_view"
+            android:elevation="1dp"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reVancedButton" />
+
         <TextView
             android:id="@+id/reVancedInfoSectionTitle"
             android:layout_width="wrap_content"
@@ -150,6 +168,20 @@
             app:layout_constraintTop_toTopOf="@+id/reVancedInfoSection" />
 
         <TextView
+            android:id="@+id/reVancedMusicInfoSectionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:elevation="21dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="@string/music_info_title"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="@+id/reVancedMusicInfoSection"
+            app:layout_constraintStart_toStartOf="@+id/reVancedMusicInfoSection"
+            app:layout_constraintTop_toTopOf="@+id/reVancedMusicInfoSection" />
+
+        <TextView
             android:id="@+id/installedReVancedVersion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -162,6 +194,20 @@
             app:layout_constraintEnd_toEndOf="@+id/reVancedInfoSection"
             app:layout_constraintStart_toStartOf="@+id/reVancedInfoSection"
             app:layout_constraintTop_toBottomOf="@+id/reVancedInfoSectionTitle" />
+
+        <TextView
+            android:id="@+id/installedReVancedMusicVersion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:elevation="21dp"
+            android:fontFamily="@font/inter_regular"
+            android:text="@string/installed_app_version"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/reVancedMusicInfoSection"
+            app:layout_constraintStart_toStartOf="@+id/reVancedMusicInfoSection"
+            app:layout_constraintTop_toBottomOf="@+id/reVancedMusicInfoSectionTitle" />
 
         <TextView
             android:id="@+id/latestReVancedVersion"
@@ -178,6 +224,20 @@
             app:layout_constraintTop_toBottomOf="@+id/installedReVancedVersion" />
 
         <TextView
+            android:id="@+id/latestReVancedMusicVersion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:elevation="21dp"
+            android:fontFamily="@font/inter_regular"
+            android:text="@string/latest_app_version"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/reVancedMusicInfoSection"
+            app:layout_constraintStart_toStartOf="@+id/reVancedMusicInfoSection"
+            app:layout_constraintTop_toBottomOf="@+id/installedReVancedMusicVersion" />
+
+        <TextView
             android:id="@+id/reVancedUpdateStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -191,6 +251,21 @@
             app:layout_constraintEnd_toEndOf="@+id/reVancedInfoSection"
             app:layout_constraintStart_toStartOf="@+id/reVancedInfoSection"
             app:layout_constraintTop_toBottomOf="@+id/latestReVancedVersion" />
+
+        <TextView
+            android:id="@+id/reVancedMusicUpdateStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:elevation="21dp"
+            android:fontFamily="@font/inter_regular"
+            android:text="@string/update_status"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/reVancedMusicInfoSection"
+            app:layout_constraintEnd_toEndOf="@+id/reVancedMusicInfoSection"
+            app:layout_constraintStart_toStartOf="@+id/reVancedMusicInfoSection"
+            app:layout_constraintTop_toBottomOf="@+id/latestReVancedMusicVersion" />
 
         <Button
             android:id="@+id/reVancedButton"
@@ -208,6 +283,22 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/reVancedInfoSection" />
+
+        <Button
+            android:id="@+id/reVancedMusicButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:background="?attr/rounded_corner_view"
+            android:enabled="false"
+            android:fontFamily="@font/inter_bold"
+            android:onClick="downloadReVancedMusic"
+            android:text="@string/update_button"
+            android:textColor="@color/dark_gray"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reVancedMusicInfoSection" />
 
         <TextView
             android:id="@+id/microGInfoSectionTitle"
@@ -233,7 +324,7 @@
             android:contentDescription="@string/refresh_button_description"
             android:onClick="refreshButton"
             android:padding="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/microGInfoSection"
+            app:layout_constraintBottom_toTopOf="@+id/reVancedMusicInfoSection"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/reVancedButton"
             app:layout_constraintTop_toBottomOf="@+id/reVancedInfoSection"
@@ -247,7 +338,7 @@
             android:contentDescription="@string/app_info_button_description"
             android:onClick="appInfo"
             android:padding="5dp"
-            app:layout_constraintBottom_toTopOf="@id/microGInfoSection"
+            app:layout_constraintBottom_toTopOf="@+id/reVancedMusicInfoSection"
             app:layout_constraintEnd_toStartOf="@+id/reVancedButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/reVancedInfoSection"
