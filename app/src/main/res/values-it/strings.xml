@@ -14,7 +14,7 @@
     <string name="app_version">Versione app: %1$s</string>
     <string name="source_code">Codice sorgente</string>
     <string name="about_app_title">Info sull\'app</string>
-    <string name="about_app_text">ReVanced Updater è un\'app fatta per aggiornare le mie build di ReVanced. L\'ho creata principalmente per mio fratello così lo può aggiornare più facilmente, ma suppongo che potrebbe essere utile ad altri ¯\\_(ツ)_/¯.</string>
+    <string name="about_app_text">ReVanced Updater è un\'app fatta per aggiornare le mie build di ReVanced.</string>
     <string name="app_info_button_description">Info sull\'app</string>
     <string name="back_button_description">Indietro</string>
 </resources>

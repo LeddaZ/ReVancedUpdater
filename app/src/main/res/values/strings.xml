@@ -17,7 +17,7 @@
     <string name="app_info_title" translatable="false">ReVanced Updater</string>
     <string name="source_code">Source code</string>
     <string name="about_app_title">About app</string>
-    <string name="about_app_text">ReVanced Updater is an app made to update my ReVanced builds. I\'ve created it mainly for my brother so he can update it more easily, but I guess it might be useful to others ¯\\_(ツ)_/¯.</string>
+    <string name="about_app_text">ReVanced Updater is an app made to update my ReVanced builds.</string>
     <string name="app_info_button_description">App info</string>
     <string name="back_button_description">Back</string>
     <string name="face" translatable="false">ಠ_ಠ</string>

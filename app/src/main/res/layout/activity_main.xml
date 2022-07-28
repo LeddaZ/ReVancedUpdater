@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="5dp"
     android:fillViewport="false">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".MainActivity">
@@ -33,6 +34,7 @@
             android:id="@+id/microGUpdateStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:elevation="21dp"
             android:fontFamily="@font/inter_regular"
             android:text="@string/update_status"
@@ -47,12 +49,13 @@
             android:id="@+id/latestMicroGVersion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:elevation="21dp"
             android:fontFamily="@font/inter_regular"
             android:text="@string/latest_app_version"
+            android:textAlignment="center"
             android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/microGInfoSection"
             app:layout_constraintStart_toStartOf="@+id/microGInfoSection"
             app:layout_constraintTop_toBottomOf="@+id/installedMicroGVersion" />
 
@@ -60,19 +63,19 @@
             android:id="@+id/installedMicroGVersion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:elevation="21dp"
             android:fontFamily="@font/inter_regular"
             android:text="@string/installed_app_version"
             android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/microGInfoSection"
             app:layout_constraintStart_toStartOf="@+id/microGInfoSection"
             app:layout_constraintTop_toBottomOf="@+id/microGInfoSectionTitle" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/microGInfoSection"
             android:layout_width="0dp"
-            android:layout_height="180dp"
+            android:layout_height="150dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="35dp"
             android:layout_marginEnd="8dp"
@@ -117,7 +120,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/reVancedInfoSection"
             android:layout_width="0dp"
-            android:layout_height="180dp"
+            android:layout_height="150dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="50dp"
             android:layout_marginEnd="8dp"
@@ -150,12 +153,13 @@
             android:id="@+id/installedReVancedVersion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:elevation="21dp"
             android:fontFamily="@font/inter_regular"
             android:text="@string/installed_app_version"
+            android:textAlignment="center"
             android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/reVancedInfoSection"
             app:layout_constraintStart_toStartOf="@+id/reVancedInfoSection"
             app:layout_constraintTop_toBottomOf="@+id/reVancedInfoSectionTitle" />
 
@@ -163,12 +167,13 @@
             android:id="@+id/latestReVancedVersion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
+            android:elevation="21dp"
             android:fontFamily="@font/inter_regular"
             android:text="@string/latest_app_version"
+            android:textAlignment="center"
             android:textSize="16sp"
-            android:elevation="21dp"
+            app:layout_constraintEnd_toEndOf="@+id/reVancedInfoSection"
             app:layout_constraintStart_toStartOf="@+id/reVancedInfoSection"
             app:layout_constraintTop_toBottomOf="@+id/installedReVancedVersion" />
 
@@ -176,6 +181,7 @@
             android:id="@+id/reVancedUpdateStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:elevation="21dp"
             android:fontFamily="@font/inter_regular"
             android:text="@string/update_status"
