@@ -64,6 +64,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
+     * Returns the device's CPU architecture.
+     * @return CPU architecture
+     */
+    private fun getDeviceArchitecture(): String? {
+        return System.getProperty("os.arch")
+    }
+
+    /**
      * Gets the installed and latest versions of YouTube Revanced,
      * ReVanced Music and Vanced microG.
      * @property callback callback used to detect if the download was
@@ -115,11 +123,28 @@ class MainActivity : AppCompatActivity() {
             latestReVancedVersion = Version(reply.latestReVancedVersion)
             latestReVancedHash = reply.latestReVancedHash
             latestReVancedMusicVersion = Version(reply.latestReVancedMusicVersion)
-            latestReVancedMusicHash = reply.latestReVancedMusicHash
             latestMicroGVersion = Version(reply.latestMicroGVersion)
             downloadUrl = reply.downloadUrl
-            musicDownloadUrl = reply.musicDownloadUrl
             microGDownloadUrl = reply.microGDownloadUrl
+            when (getDeviceArchitecture()) {
+                "armv7l" -> {
+                    latestReVancedMusicHash = reply.latestReVancedMusicHashArm
+                    musicDownloadUrl = reply.musicDownloadUrlArm
+                }
+                "aarch64" -> {
+                    latestReVancedMusicHash = reply.latestReVancedMusicHashArm64
+                    musicDownloadUrl = reply.musicDownloadUrlArm64
+                }
+                "x86" -> {
+                    latestReVancedMusicHash = reply.latestReVancedMusicHashX86
+                    musicDownloadUrl = reply.musicDownloadUrlX86
+                }
+                "x86_64" -> {
+                    latestReVancedMusicHash = reply.latestReVancedMusicHashX86_64
+                    musicDownloadUrl = reply.musicDownloadUrlX86_64
+                }
+                else -> Log.e(LOG_TAG, "ERROR: CPU architecture not supported (your device is goofy)!")
+            }
             callback.onSuccess()
         }, {})
 
