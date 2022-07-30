@@ -19,16 +19,6 @@ data class ReVancedJSONObject(
     val latestReVancedMusicHashX86_64: String,
     @SerializedName("latestMicroGVersion")
     val latestMicroGVersion: String,
-    @SerializedName("downloadUrl")
-    val downloadUrl: String,
-    @SerializedName("musicDownloadUrlArm")
-    val musicDownloadUrlArm: String,
-    @SerializedName("musicDownloadUrlArm64")
-    val musicDownloadUrlArm64: String,
-    @SerializedName("musicDownloadUrlX86")
-    val musicDownloadUrlX86: String,
-    @SerializedName("musicDownloadUrlX86_64")
-    val musicDownloadUrlX86_64: String,
-    @SerializedName("microGDownloadUrl")
-    val microGDownloadUrl: String
+    @SerializedName("latestDate")
+    val latestDate: String
 )

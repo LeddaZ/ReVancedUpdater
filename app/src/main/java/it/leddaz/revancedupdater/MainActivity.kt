@@ -117,6 +117,8 @@ class MainActivity : AppCompatActivity() {
         val url = "https://raw.githubusercontent.com/LeddaZ/revanced-repo/main/updater.json"
         var reply: ReVancedJSONObject
 
+        val urlPrefix = "https://github.com/LeddaZ/revanced-repo/releases/download/"
+
         // Request a string response from the provided URL.
         val stringRequest = StringRequest(GET, url, { response ->
             reply = Gson().fromJson(response, object : TypeToken<ReVancedJSONObject>() {}.type)
@@ -124,24 +126,24 @@ class MainActivity : AppCompatActivity() {
             latestReVancedHash = reply.latestReVancedHash
             latestReVancedMusicVersion = Version(reply.latestReVancedMusicVersion)
             latestMicroGVersion = Version(reply.latestMicroGVersion)
-            downloadUrl = reply.downloadUrl
-            microGDownloadUrl = reply.microGDownloadUrl
+            downloadUrl = urlPrefix + reply.latestDate + "/revanced-nonroot-signed.apk"
+            microGDownloadUrl = urlPrefix + reply.latestDate + "/vanced-microG.apk"
             when (getDeviceArchitecture()) {
                 "armv7l" -> {
                     latestReVancedMusicHash = reply.latestReVancedMusicHashArm
-                    musicDownloadUrl = reply.musicDownloadUrlArm
+                    musicDownloadUrl = urlPrefix + reply.latestDate + "/revanced-music-nonroot-arm-signed.apk"
                 }
                 "aarch64" -> {
                     latestReVancedMusicHash = reply.latestReVancedMusicHashArm64
-                    musicDownloadUrl = reply.musicDownloadUrlArm64
+                    musicDownloadUrl = urlPrefix + reply.latestDate + "/revanced-music-nonroot-arm64-signed.apk"
                 }
                 "x86" -> {
                     latestReVancedMusicHash = reply.latestReVancedMusicHashX86
-                    musicDownloadUrl = reply.musicDownloadUrlX86
+                    musicDownloadUrl = urlPrefix + reply.latestDate + "/revanced-music-nonroot-x86-signed.apk"
                 }
                 "x86_64" -> {
                     latestReVancedMusicHash = reply.latestReVancedMusicHashX86_64
-                    musicDownloadUrl = reply.musicDownloadUrlX86_64
+                    musicDownloadUrl = urlPrefix + reply.latestDate + "/revanced-music-nonroot-x86_64-signed.apk"
                 }
                 else -> Log.e(LOG_TAG, "ERROR: CPU architecture not supported (your device is goofy)!")
             }
