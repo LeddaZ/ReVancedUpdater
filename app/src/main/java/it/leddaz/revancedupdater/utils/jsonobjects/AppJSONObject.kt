@@ -4,7 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class AppJSONObject(
     @SerializedName("latestAppVersion")
-    val latestAppVersion: String,
-    @SerializedName("appDownloadUrl")
-    val appDownloadUrl: String
+    val latestAppVersion: String
 )

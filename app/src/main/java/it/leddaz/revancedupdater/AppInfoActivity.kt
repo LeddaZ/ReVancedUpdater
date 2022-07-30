@@ -61,7 +61,7 @@ class AppInfoActivity : AppCompatActivity() {
         val stringRequest = StringRequest(Request.Method.GET, url, { response ->
             reply = Gson().fromJson(response, object : TypeToken<AppJSONObject>() {}.type)
             latestAppVersion = Version(reply.latestAppVersion)
-            appDownloadUrl = reply.appDownloadUrl
+            appDownloadUrl = "https://github.com/LeddaZ/ReVancedUpdater/releases/download/" + reply.latestAppVersion + "/app-release.apk"
             callback.onSuccess()
         }, {})
 
