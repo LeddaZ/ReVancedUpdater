@@ -9,7 +9,7 @@
     <string name="update_button">UPDATE</string>
     <string name="microg_info_title" translatable="false">Vanced microG</string>
     <string name="install">INSTALL</string>
-    <string name="download_started">Download started, it\'s recommended to stay in this screen. Check the notifications for details.</string>
+    <string name="download_started">Download started. Check the notifications for details.</string>
     <string name="app_not_installed">App not installed.</string>
     <string name="refresh_button_description">Refresh</string>
     <string name="download_error">An error occurred while downloading. Check logs for more details.</string>
