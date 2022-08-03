@@ -22,4 +22,5 @@
     <string name="back_button_description">Back</string>
     <string name="face" translatable="false">ಠ_ಠ</string>
     <string name="music_info_title" translatable="false">ReVanced Music</string>
+    <string name="no_microg">Vanced microG is not installed.</string>
 </resources>

@@ -17,4 +17,5 @@
     <string name="about_app_text">ReVanced Updater è un\'app fatta per aggiornare le mie build di ReVanced.</string>
     <string name="app_info_button_description">Info sull\'app</string>
     <string name="back_button_description">Indietro</string>
+    <string name="no_microg">Vanced microG non è installato.</string>
 </resources>
