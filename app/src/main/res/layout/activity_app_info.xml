@@ -176,7 +176,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/appButton"
             app:layout_constraintTop_toBottomOf="@+id/appInfoSection"
-            app:srcCompat="@drawable/refresh_button_icon" />
+            app:srcCompat="@drawable/ic_refresh" />
 
         <ImageButton
             android:id="@+id/backButton"
@@ -192,7 +192,7 @@
             app:layout_constraintHorizontal_bias="0.101"
             app:layout_constraintStart_toStartOf="@+id/titleBar"
             app:layout_constraintTop_toTopOf="@+id/titleBar"
-            app:srcCompat="@drawable/back_arrow_icon" />
+            app:srcCompat="@drawable/ic_back" />
 
         <TextView
             android:id="@+id/aboutAppTitle"
