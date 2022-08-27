@@ -11,7 +11,7 @@
     <string name="install">INSTALL</string>
     <string name="download_started">Download started. Check the notifications for details.</string>
     <string name="app_not_installed">App not installed.</string>
-    <string name="refresh_button_description">Refresh</string>
+    <string name="refresh_button_description">Check for updates</string>
     <string name="download_error">An error occurred while downloading. Check logs for more details.</string>
     <string name="app_version">App version: %1$s</string>
     <string name="app_info_title" translatable="false">ReVanced Updater</string>
@@ -23,4 +23,7 @@
     <string name="face" translatable="false">ಠ_ಠ</string>
     <string name="music_info_title" translatable="false">ReVanced Music</string>
     <string name="no_microg">Vanced microG is not installed.</string>
+    <string name="revanced_changelog_description">ReVanced changelog</string>
+    <string name="music_changelog_description">ReVanced Music changelog</string>
+    <string name="app_changelog_description">App changelog</string>
 </resources>

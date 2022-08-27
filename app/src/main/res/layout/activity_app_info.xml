@@ -179,6 +179,20 @@
             app:srcCompat="@drawable/ic_refresh" />
 
         <ImageButton
+            android:id="@+id/appChangelogButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/rounded_corner_view"
+            android:contentDescription="@string/app_changelog_description"
+            android:onClick="openAppChangelog"
+            android:padding="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/aboutAppSection"
+            app:layout_constraintEnd_toStartOf="@+id/appButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appInfoSection"
+            app:srcCompat="@drawable/ic_changelog" />
+
+        <ImageButton
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
