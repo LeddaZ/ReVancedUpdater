@@ -177,26 +177,30 @@ class MainActivity : AppCompatActivity() {
             latestReVancedHash = reply.latestReVancedHash
             latestReVancedMusicVersion = Version(reply.latestReVancedMusicVersion)
             latestMicroGVersion = Version(reply.latestMicroGVersion)
-            downloadUrl = urlPrefix + reply.latestDate + "/revanced-nonroot-signed.apk"
-            microGDownloadUrl = urlPrefix + reply.latestDate + "/vanced-microG.apk"
+            downloadUrl = urlPrefix + reply.latestReVancedDate + "-yt/revanced-nonroot-signed.apk"
+            microGDownloadUrl = urlPrefix + reply.latestReVancedDate + "-yt/vanced-microG.apk"
             when (getDeviceArchitecture()) {
                 "armv7l" -> {
                     latestReVancedMusicHash = reply.latestReVancedMusicHashArm
-                    musicDownloadUrl = urlPrefix + reply.latestDate + "/revanced-music-nonroot-arm-signed.apk"
+                    musicDownloadUrl = urlPrefix + reply.latestReVancedMusicDate +
+                            "-ytm/revanced-music-nonroot-arm-signed.apk"
                 }
                 "aarch64" -> {
                     latestReVancedMusicHash = reply.latestReVancedMusicHashArm64
-                    musicDownloadUrl = urlPrefix + reply.latestDate + "/revanced-music-nonroot-arm64-signed.apk"
+                    musicDownloadUrl = urlPrefix + reply.latestReVancedMusicDate +
+                            "-ytm/revanced-music-nonroot-arm64-signed.apk"
                 }
                 "x86" -> {
                     latestReVancedMusicHash = reply.latestReVancedMusicHashX86
-                    musicDownloadUrl = urlPrefix + reply.latestDate + "/revanced-music-nonroot-x86-signed.apk"
+                    musicDownloadUrl = urlPrefix + reply.latestReVancedMusicDate +
+                            "-ytm/revanced-music-nonroot-x86-signed.apk"
                 }
                 "x86_64" -> {
                     latestReVancedMusicHash = reply.latestReVancedMusicHashX86_64
-                    musicDownloadUrl = urlPrefix + reply.latestDate + "/revanced-music-nonroot-x86_64-signed.apk"
+                    musicDownloadUrl = urlPrefix + reply.latestReVancedMusicDate +
+                            "-ytm/revanced-music-nonroot-x86_64-signed.apk"
                 }
-                else -> Log.e(LOG_TAG, "ERROR: CPU architecture not supported (your device is goofy)!")
+                else -> Log.e(LOG_TAG, "ERROR: CPU architecture not supported! (goofy ahh phone)")
             }
             callback.onSuccess()
         }, {})
