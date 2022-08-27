@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -77,7 +78,20 @@ class MainActivity : AppCompatActivity() {
      */
     private fun isMicroGInstalled(): Boolean {
         try {
-            this.packageManager.getPackageInfo("com.mgoogle.android.gms", 0)
+            /**
+             * "bro that method is deprecated in A13"
+             * ok I'll update
+             * "bro you can't because the new method only works on A13 and your app runs on A6+"
+             * ok I'll do both with a check
+             * "bro that method is deprecated in A13"
+             * Thanks Google
+             */
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                this.packageManager.getPackageInfo("com.mgoogle.android.gms",
+                    PackageManager.PackageInfoFlags.of(0))
+            } else {
+                this.packageManager.getPackageInfo("com.mgoogle.android.gms", 0)
+            }
         } catch(e: PackageManager.NameNotFoundException) {
             Log.i(LOG_TAG, "Vanced microG is not installed, blocking ReVanced YT/YTM installation.")
             return false
@@ -96,7 +110,12 @@ class MainActivity : AppCompatActivity() {
         if(isMicroGInstalled()) {
             val installedReVancedTextView: TextView = findViewById(R.id.installedReVancedVersion)
             try {
-                val pInfo: PackageInfo = this.packageManager.getPackageInfo("app.revanced.android.youtube", 0)
+                val pInfo: PackageInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    this.packageManager.getPackageInfo("app.revanced.android.youtube",
+                        PackageManager.PackageInfoFlags.of(0))
+                } else {
+                    this.packageManager.getPackageInfo("app.revanced.android.youtube", 0)
+                }
                 installedReVancedVersion = Version(pInfo.versionName)
                 installedReVancedTextView.text = getString(R.string.installed_app_version, installedReVancedVersion)
             } catch(e: PackageManager.NameNotFoundException) {
@@ -107,7 +126,12 @@ class MainActivity : AppCompatActivity() {
 
             val installedReVancedMusicTextView: TextView = findViewById(R.id.installedReVancedMusicVersion)
             try {
-                val pInfo: PackageInfo = this.packageManager.getPackageInfo("app.revanced.android.apps.youtube.music", 0)
+                val pInfo: PackageInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    this.packageManager.getPackageInfo("app.revanced.android.apps.youtube.music",
+                        PackageManager.PackageInfoFlags.of(0))
+                } else {
+                    this.packageManager.getPackageInfo("app.revanced.android.apps.youtube.music", 0)
+                }
                 installedReVancedMusicVersion = Version(pInfo.versionName)
                 installedReVancedMusicTextView.text = getString(R.string.installed_app_version, installedReVancedMusicVersion)
             } catch(e: PackageManager.NameNotFoundException) {
@@ -125,7 +149,12 @@ class MainActivity : AppCompatActivity() {
 
         val installedMicroGTextView: TextView = findViewById(R.id.installedMicroGVersion)
         try {
-            val pInfo: PackageInfo = this.packageManager.getPackageInfo("com.mgoogle.android.gms", 0)
+            val pInfo: PackageInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                this.packageManager.getPackageInfo("com.mgoogle.android.gms",
+                    PackageManager.PackageInfoFlags.of(0))
+            } else {
+                this.packageManager.getPackageInfo("com.mgoogle.android.gms", 0)
+            }
             installedMicroGVersion = Version(pInfo.versionName)
             installedMicroGTextView.text = getString(R.string.installed_app_version, installedMicroGVersion)
         } catch(e: PackageManager.NameNotFoundException) {
@@ -223,14 +252,19 @@ class MainActivity : AppCompatActivity() {
     private fun compareHashes(updateStatusTextView: TextView, packageName: String) {
         var latestAppHash = latestReVancedHash
         var buttonIndex = 0
-        if(packageName.equals("app.revanced.android.apps.youtube.music")) {
+        if(packageName == "app.revanced.android.apps.youtube.music") {
             latestAppHash = latestReVancedMusicHash
             buttonIndex = 1
         }
-        val pInfo: PackageInfo = this.packageManager.getPackageInfo(packageName, 0)
+        val pInfo: PackageInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            this.packageManager.getPackageInfo(packageName,
+                PackageManager.PackageInfoFlags.of(0))
+        } else {
+            this.packageManager.getPackageInfo(packageName, 0)
+        }
         val file = File(pInfo.applicationInfo.sourceDir)
         val installedAppHash = String(Hex.encodeHex(DigestUtils.sha256(FileInputStream(file))))
-        if (installedAppHash.equals(latestAppHash)) {
+        if (installedAppHash == latestAppHash) {
             updateStatusTextView.text = getString(R.string.no_update_available)
             setButtonProperties(getButtons()[buttonIndex], false, R.string.update_button)
         } else {
@@ -310,7 +344,8 @@ class MainActivity : AppCompatActivity() {
      * @property view the view which contains the button
      */
     fun openReVancedChangelog(view: View) {
-        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/LeddaZ/revanced-repo/blob/main/changelogs/revanced.md"))
+        val browserIntent = Intent(Intent.ACTION_VIEW,
+            Uri.parse("https://github.com/LeddaZ/revanced-repo/blob/main/changelogs/revanced.md"))
         startActivity(browserIntent)
     }
 
@@ -319,7 +354,8 @@ class MainActivity : AppCompatActivity() {
      * @property view the view which contains the button
      */
     fun openReVancedMusicChangelog(view: View) {
-        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/LeddaZ/revanced-repo/blob/main/changelogs/music.md"))
+        val browserIntent = Intent(Intent.ACTION_VIEW,
+            Uri.parse("https://github.com/LeddaZ/revanced-repo/blob/main/changelogs/music.md"))
         startActivity(browserIntent)
     }
 
