@@ -160,7 +160,7 @@ class AppInfoActivity : AppCompatActivity() {
      */
     fun openAppChangelog(view: View) {
         val browserIntent = Intent(Intent.ACTION_VIEW,
-            Uri.parse("https://github.com/LeddaZ/releases/tag/$APP_VERSION"))
+            Uri.parse("https://github.com/LeddaZ/ReVancedUpdater/releases/tag/$APP_VERSION"))
         startActivity(browserIntent)
     }
 
