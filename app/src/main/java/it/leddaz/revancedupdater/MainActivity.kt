@@ -306,6 +306,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
+     * Called when the user presses the ReVanced changelog button.
+     * @property view the view which contains the button
+     */
+    fun openReVancedChangelog(view: View) {
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/LeddaZ/revanced-repo/blob/main/changelogs/revanced.md"))
+        startActivity(browserIntent)
+    }
+
+    /**
+     * Called when the user presses the ReVanced Music changelog button.
+     * @property view the view which contains the button
+     */
+    fun openReVancedMusicChangelog(view: View) {
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/LeddaZ/revanced-repo/blob/main/changelogs/music.md"))
+        startActivity(browserIntent)
+    }
+
+    /**
      * Refreshes the versions.
      */
     private fun refresh() {

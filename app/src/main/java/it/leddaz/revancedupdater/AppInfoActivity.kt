@@ -146,6 +146,15 @@ class AppInfoActivity : AppCompatActivity() {
     }
 
     /**
+     * Called when the user presses the app changelog button.
+     * @property view the view which contains the button
+     */
+    fun openAppChangelog(view: View) {
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/LeddaZ/releases/tag/$APP_VERSION"))
+        startActivity(browserIntent)
+    }
+
+    /**
      * Called when the user presses the Back button.
      * @property view the view which contains the button
      */

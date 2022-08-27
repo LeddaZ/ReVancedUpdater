@@ -331,6 +331,34 @@
             app:srcCompat="@drawable/ic_refresh" />
 
         <ImageButton
+            android:id="@+id/reVancedChangelog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/rounded_corner_view"
+            android:contentDescription="@string/refresh_button_description"
+            android:onClick="openReVancedChangelog"
+            android:padding="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/reVancedMusicInfoSection"
+            app:layout_constraintEnd_toStartOf="@+id/reVancedButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reVancedInfoSection"
+            app:srcCompat="@drawable/ic_changelog" />
+
+        <ImageButton
+            android:id="@+id/reVancedMusicChangelog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/rounded_corner_view"
+            android:contentDescription="@string/refresh_button_description"
+            android:onClick="openReVancedMusicChangelog"
+            android:padding="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/microGInfoSection"
+            app:layout_constraintEnd_toStartOf="@+id/reVancedMusicButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reVancedMusicInfoSection"
+            app:srcCompat="@drawable/ic_changelog" />
+
+        <ImageButton
             android:id="@+id/appInfoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -338,10 +366,10 @@
             android:contentDescription="@string/app_info_button_description"
             android:onClick="appInfo"
             android:padding="5dp"
-            app:layout_constraintBottom_toTopOf="@+id/reVancedMusicInfoSection"
-            app:layout_constraintEnd_toStartOf="@+id/reVancedButton"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/reVancedInfoSection"
+            app:layout_constraintBottom_toTopOf="@+id/microGInfoSection"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/reVancedMusicButton"
+            app:layout_constraintTop_toBottomOf="@+id/reVancedMusicInfoSection"
             app:srcCompat="@drawable/ic_info" />
 
         <TextView
