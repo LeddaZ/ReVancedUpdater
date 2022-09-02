@@ -18,11 +18,11 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import it.leddaz.revancedupdater.utils.ArchDetector
-import it.leddaz.revancedupdater.utils.AppInstaller
-import it.leddaz.revancedupdater.utils.Downloader
-import it.leddaz.revancedupdater.utils.Version
-import it.leddaz.revancedupdater.utils.VolleyCallBack
+import it.leddaz.revancedupdater.utils.other.ArchDetector
+import it.leddaz.revancedupdater.utils.apputils.AppInstaller
+import it.leddaz.revancedupdater.utils.apputils.Downloader
+import it.leddaz.revancedupdater.utils.other.Version
+import it.leddaz.revancedupdater.utils.other.VolleyCallBack
 import it.leddaz.revancedupdater.utils.jsonobjects.ReVancedJSONObject
 import org.apache.commons.codec.binary.Hex
 import org.apache.commons.codec.digest.DigestUtils
@@ -137,7 +137,6 @@ class MainActivity : AppCompatActivity() {
             val reVancedMusicUpdateStatusTextView: TextView = findViewById(R.id.reVancedMusicUpdateStatus)
             reVancedUpdateStatusTextView.text = getString(R.string.no_microg)
             reVancedMusicUpdateStatusTextView.text = getString(R.string.no_microg)
-
         }
 
         val installedMicroGTextView: TextView = findViewById(R.id.installedMicroGVersion)

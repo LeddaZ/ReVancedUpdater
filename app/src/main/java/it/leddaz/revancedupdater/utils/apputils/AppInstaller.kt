@@ -1,4 +1,4 @@
-package it.leddaz.revancedupdater.utils
+package it.leddaz.revancedupdater.utils.apputils
 
 import android.app.DownloadManager
 import android.content.BroadcastReceiver

@@ -1,4 +1,4 @@
-package it.leddaz.revancedupdater.utils;
+package it.leddaz.revancedupdater.utils.other;
 
 import androidx.annotation.NonNull;
 

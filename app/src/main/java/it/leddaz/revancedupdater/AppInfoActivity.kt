@@ -17,8 +17,11 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import it.leddaz.revancedupdater.utils.*
+import it.leddaz.revancedupdater.utils.apputils.AppInstaller
+import it.leddaz.revancedupdater.utils.apputils.Downloader
 import it.leddaz.revancedupdater.utils.jsonobjects.AppJSONObject
+import it.leddaz.revancedupdater.utils.other.Version
+import it.leddaz.revancedupdater.utils.other.VolleyCallBack
 
 private var installedAppVersion = Version("99.99")
 private var latestAppVersion = Version("0.0")
