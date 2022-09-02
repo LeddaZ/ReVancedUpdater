@@ -18,6 +18,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import it.leddaz.revancedupdater.utils.ArchDetector
 import it.leddaz.revancedupdater.utils.AppInstaller
 import it.leddaz.revancedupdater.utils.Downloader
 import it.leddaz.revancedupdater.utils.Version
@@ -62,14 +63,6 @@ class MainActivity : AppCompatActivity() {
         val appVersionTextView: TextView = findViewById(R.id.appVersion)
         appVersionTextView.text = getString(R.string.app_version, APP_VERSION)
         refresh()
-    }
-
-    /**
-     * Returns the device's CPU architecture.
-     * @return CPU architecture
-     */
-    private fun getDeviceArchitecture(): String? {
-        return System.getProperty("os.arch")
     }
 
     /**
@@ -179,29 +172,15 @@ class MainActivity : AppCompatActivity() {
             latestMicroGVersion = Version(reply.latestMicroGVersion)
             downloadUrl = urlPrefix + reply.latestReVancedDate + "-yt/revanced-nonroot-signed.apk"
             microGDownloadUrl = urlPrefix + reply.latestReVancedDate + "-yt/vanced-microG.apk"
-            when (getDeviceArchitecture()) {
-                "armv7l" -> {
-                    latestReVancedMusicHash = reply.latestReVancedMusicHashArm
-                    musicDownloadUrl = urlPrefix + reply.latestReVancedMusicDate +
-                            "-ytm/revanced-music-nonroot-arm-signed.apk"
-                }
-                "aarch64" -> {
-                    latestReVancedMusicHash = reply.latestReVancedMusicHashArm64
-                    musicDownloadUrl = urlPrefix + reply.latestReVancedMusicDate +
-                            "-ytm/revanced-music-nonroot-arm64-signed.apk"
-                }
-                "x86" -> {
-                    latestReVancedMusicHash = reply.latestReVancedMusicHashX86
-                    musicDownloadUrl = urlPrefix + reply.latestReVancedMusicDate +
-                            "-ytm/revanced-music-nonroot-x86-signed.apk"
-                }
-                "x86_64" -> {
-                    latestReVancedMusicHash = reply.latestReVancedMusicHashX86_64
-                    musicDownloadUrl = urlPrefix + reply.latestReVancedMusicDate +
-                            "-ytm/revanced-music-nonroot-x86_64-signed.apk"
-                }
-                else -> Log.e(LOG_TAG, "ERROR: CPU architecture not supported! (goofy ahh phone)")
+            val arch: String = ArchDetector.getArch()
+            when (arch) {
+                "arm" -> latestReVancedMusicHash = reply.latestReVancedMusicHashArm
+                "arm64" -> latestReVancedMusicHash = reply.latestReVancedMusicHashArm64
+                "x86" -> latestReVancedMusicHash = reply.latestReVancedMusicHashX86
+                "x86_64" -> latestReVancedMusicHash = reply.latestReVancedMusicHashX86_64
             }
+            musicDownloadUrl = urlPrefix + reply.latestReVancedMusicDate +
+                    "-ytm/revanced-music-nonroot-$arch-signed.apk"
             callback.onSuccess()
         }, {})
 
