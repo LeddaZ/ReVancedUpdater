@@ -172,6 +172,7 @@ class MainActivity : AppCompatActivity() {
             downloadUrl = urlPrefix + reply.latestReVancedDate + "-yt/revanced-nonroot-signed.apk"
             microGDownloadUrl = urlPrefix + reply.latestReVancedDate + "-yt/vanced-microG.apk"
             val arch: String = ArchDetector.getArch()
+            Log.i(LOG_TAG, "OS architecture: $arch")
             when (arch) {
                 "arm" -> latestReVancedMusicHash = reply.latestReVancedMusicHashArm
                 "arm64" -> latestReVancedMusicHash = reply.latestReVancedMusicHashArm64
