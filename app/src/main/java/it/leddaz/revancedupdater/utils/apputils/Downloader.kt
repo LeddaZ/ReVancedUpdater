@@ -19,7 +19,12 @@ class Downloader() {
         downloadFile(dlm, context, uri, fileName)
     }
 
-    private fun downloadFile(dlm: DownloadManager, context: Context, uri: Uri, fileName: String): Long {
+    private fun downloadFile(
+        dlm: DownloadManager,
+        context: Context,
+        uri: Uri,
+        fileName: String
+    ): Long {
         var downloadReference: Long = 0
         try {
             val request = DownloadManager.Request(uri)
@@ -37,7 +42,7 @@ class Downloader() {
 
             // Delete the APK before downloading if it already exists
             val apkFile = File(destination)
-            if(apkFile.exists()) {
+            if (apkFile.exists()) {
                 apkFile.delete()
                 Log.i(LOG_TAG, "Existing APK deleted.")
             }

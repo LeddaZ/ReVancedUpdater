@@ -16,7 +16,7 @@ import java.io.File
  */
 class AppInstaller() {
 
-    constructor(fileName: String, context: Context): this() {
+    constructor(fileName: String, context: Context) : this() {
         // Set BroadcastReceiver to install app when .apk is downloaded
         val onComplete = object : BroadcastReceiver() {
             override fun onReceive(context: Context, intent: Intent) {

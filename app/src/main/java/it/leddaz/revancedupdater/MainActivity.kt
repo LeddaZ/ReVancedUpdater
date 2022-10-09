@@ -18,12 +18,12 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import it.leddaz.revancedupdater.utils.other.ArchDetector
 import it.leddaz.revancedupdater.utils.apputils.AppInstaller
 import it.leddaz.revancedupdater.utils.apputils.Downloader
+import it.leddaz.revancedupdater.utils.jsonobjects.ReVancedJSONObject
+import it.leddaz.revancedupdater.utils.other.ArchDetector
 import it.leddaz.revancedupdater.utils.other.Version
 import it.leddaz.revancedupdater.utils.other.VolleyCallBack
-import it.leddaz.revancedupdater.utils.jsonobjects.ReVancedJSONObject
 import org.apache.commons.codec.binary.Hex
 import org.apache.commons.codec.digest.DigestUtils
 import java.io.File
@@ -80,12 +80,14 @@ class MainActivity : AppCompatActivity() {
              * Thanks Google
              */
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                this.packageManager.getPackageInfo("com.mgoogle.android.gms",
-                    PackageManager.PackageInfoFlags.of(0))
+                this.packageManager.getPackageInfo(
+                    "com.mgoogle.android.gms",
+                    PackageManager.PackageInfoFlags.of(0)
+                )
             } else {
                 this.packageManager.getPackageInfo("com.mgoogle.android.gms", 0)
             }
-        } catch(e: PackageManager.NameNotFoundException) {
+        } catch (e: PackageManager.NameNotFoundException) {
             Log.i(LOG_TAG, "Vanced microG is not installed, blocking ReVanced YT/YTM installation.")
             return false
         }
@@ -100,41 +102,63 @@ class MainActivity : AppCompatActivity() {
      */
     private fun getVersions(callback: VolleyCallBack) {
         // Installed versions
-        if(isMicroGInstalled()) {
+        if (isMicroGInstalled()) {
             val installedReVancedTextView: TextView = findViewById(R.id.installedReVancedVersion)
             try {
-                val pInfo: PackageInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    this.packageManager.getPackageInfo("app.revanced.android.youtube",
-                        PackageManager.PackageInfoFlags.of(0))
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    val pInfo: PackageInfo =
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                            this.packageManager.getPackageInfo(
+                                "app.revanced.android.youtube",
+                                PackageManager.PackageInfoFlags.of(0)
+                            )
+                        } else {
+                            this.packageManager.getPackageInfo("app.revanced.android.youtube", 0)
+                        }
+                    installedReVancedVersion = Version(pInfo.versionName)
+                    installedReVancedTextView.text =
+                        getString(R.string.installed_app_version, installedReVancedVersion)
                 } else {
-                    this.packageManager.getPackageInfo("app.revanced.android.youtube", 0)
+                    val reVancedUpdateStatusTextView: TextView =
+                        findViewById(R.id.reVancedUpdateStatus)
+                    reVancedUpdateStatusTextView.text =
+                        getString(R.string.incompatible_android_version)
+                    setButtonProperties(getButtons()[0], false, R.string.install)
                 }
-                installedReVancedVersion = Version(pInfo.versionName)
-                installedReVancedTextView.text = getString(R.string.installed_app_version, installedReVancedVersion)
-            } catch(e: PackageManager.NameNotFoundException) {
+            } catch (e: PackageManager.NameNotFoundException) {
                 installedReVancedTextView.text = getString(R.string.installed_app_version, "none")
                 installedReVancedVersion = Version("99.99")
                 setButtonProperties(getButtons()[0], true, R.string.install)
             }
 
-            val installedReVancedMusicTextView: TextView = findViewById(R.id.installedReVancedMusicVersion)
+            val installedReVancedMusicTextView: TextView =
+                findViewById(R.id.installedReVancedMusicVersion)
             try {
-                val pInfo: PackageInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    this.packageManager.getPackageInfo("app.revanced.android.apps.youtube.music",
-                        PackageManager.PackageInfoFlags.of(0))
-                } else {
-                    this.packageManager.getPackageInfo("app.revanced.android.apps.youtube.music", 0)
-                }
+                val pInfo: PackageInfo =
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        this.packageManager.getPackageInfo(
+                            "app.revanced.android.apps.youtube.music",
+                            PackageManager.PackageInfoFlags.of(0)
+                        )
+                    } else {
+                        this.packageManager.getPackageInfo(
+                            "app.revanced.android.apps.youtube.music",
+                            0
+                        )
+                    }
                 installedReVancedMusicVersion = Version(pInfo.versionName)
-                installedReVancedMusicTextView.text = getString(R.string.installed_app_version, installedReVancedMusicVersion)
-            } catch(e: PackageManager.NameNotFoundException) {
-                installedReVancedMusicTextView.text = getString(R.string.installed_app_version, "none")
+                installedReVancedMusicTextView.text =
+                    getString(R.string.installed_app_version, installedReVancedMusicVersion)
+            } catch (e: PackageManager.NameNotFoundException) {
+                installedReVancedMusicTextView.text =
+                    getString(R.string.installed_app_version, "none")
                 installedReVancedMusicVersion = Version("99.99")
                 setButtonProperties(getButtons()[1], true, R.string.install)
             }
         } else {
             val reVancedUpdateStatusTextView: TextView = findViewById(R.id.reVancedUpdateStatus)
-            val reVancedMusicUpdateStatusTextView: TextView = findViewById(R.id.reVancedMusicUpdateStatus)
+            val reVancedMusicUpdateStatusTextView: TextView =
+                findViewById(R.id.reVancedMusicUpdateStatus)
             reVancedUpdateStatusTextView.text = getString(R.string.no_microg)
             reVancedMusicUpdateStatusTextView.text = getString(R.string.no_microg)
         }
@@ -142,14 +166,17 @@ class MainActivity : AppCompatActivity() {
         val installedMicroGTextView: TextView = findViewById(R.id.installedMicroGVersion)
         try {
             val pInfo: PackageInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                this.packageManager.getPackageInfo("com.mgoogle.android.gms",
-                    PackageManager.PackageInfoFlags.of(0))
+                this.packageManager.getPackageInfo(
+                    "com.mgoogle.android.gms",
+                    PackageManager.PackageInfoFlags.of(0)
+                )
             } else {
                 this.packageManager.getPackageInfo("com.mgoogle.android.gms", 0)
             }
             installedMicroGVersion = Version(pInfo.versionName)
-            installedMicroGTextView.text = getString(R.string.installed_app_version, installedMicroGVersion)
-        } catch(e: PackageManager.NameNotFoundException) {
+            installedMicroGTextView.text =
+                getString(R.string.installed_app_version, installedMicroGVersion)
+        } catch (e: PackageManager.NameNotFoundException) {
             installedMicroGTextView.text = getString(R.string.installed_app_version, "none")
             installedMicroGVersion = Version("99.99")
             setButtonProperties(getButtons()[2], true, R.string.install)
@@ -192,24 +219,30 @@ class MainActivity : AppCompatActivity() {
      * Compares versions.
      */
     private fun compareVersions() {
-        if(isMicroGInstalled()) {
-            val reVancedUpdateStatusTextView: TextView = findViewById(R.id.reVancedUpdateStatus)
-            if (installedReVancedVersion.compareTo(latestReVancedVersion) == -1) {
-                reVancedUpdateStatusTextView.text = getString(R.string.update_available)
-                setButtonProperties(getButtons()[0], true, R.string.update_button)
-            } else if (installedReVancedVersion.compareTo(latestReVancedVersion) == 0) {
-                compareHashes(reVancedUpdateStatusTextView, "app.revanced.android.youtube")
-            } else {
-                reVancedUpdateStatusTextView.text = getString(R.string.app_not_installed)
-                setButtonProperties(getButtons()[0], true, R.string.install)
+        if (isMicroGInstalled()) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val reVancedUpdateStatusTextView: TextView = findViewById(R.id.reVancedUpdateStatus)
+                if (installedReVancedVersion.compareTo(latestReVancedVersion) == -1) {
+                    reVancedUpdateStatusTextView.text = getString(R.string.update_available)
+                    setButtonProperties(getButtons()[0], true, R.string.update_button)
+                } else if (installedReVancedVersion.compareTo(latestReVancedVersion) == 0) {
+                    compareHashes(reVancedUpdateStatusTextView, "app.revanced.android.youtube")
+                } else {
+                    reVancedUpdateStatusTextView.text = getString(R.string.app_not_installed)
+                    setButtonProperties(getButtons()[0], true, R.string.install)
+                }
             }
 
-            val reVancedMusicUpdateStatusTextView: TextView = findViewById(R.id.reVancedMusicUpdateStatus)
+            val reVancedMusicUpdateStatusTextView: TextView =
+                findViewById(R.id.reVancedMusicUpdateStatus)
             if (installedReVancedMusicVersion.compareTo(latestReVancedMusicVersion) == -1) {
                 reVancedMusicUpdateStatusTextView.text = getString(R.string.update_available)
                 setButtonProperties(getButtons()[1], true, R.string.update_button)
             } else if (installedReVancedMusicVersion.compareTo(latestReVancedMusicVersion) == 0) {
-                compareHashes(reVancedMusicUpdateStatusTextView, "app.revanced.android.apps.youtube.music")
+                compareHashes(
+                    reVancedMusicUpdateStatusTextView,
+                    "app.revanced.android.apps.youtube.music"
+                )
             } else {
                 reVancedMusicUpdateStatusTextView.text = getString(R.string.app_not_installed)
                 setButtonProperties(getButtons()[1], true, R.string.install)
@@ -235,13 +268,15 @@ class MainActivity : AppCompatActivity() {
     private fun compareHashes(updateStatusTextView: TextView, packageName: String) {
         var latestAppHash = latestReVancedHash
         var buttonIndex = 0
-        if(packageName == "app.revanced.android.apps.youtube.music") {
+        if (packageName == "app.revanced.android.apps.youtube.music") {
             latestAppHash = latestReVancedMusicHash
             buttonIndex = 1
         }
         val pInfo: PackageInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            this.packageManager.getPackageInfo(packageName,
-                PackageManager.PackageInfoFlags.of(0))
+            this.packageManager.getPackageInfo(
+                packageName,
+                PackageManager.PackageInfoFlags.of(0)
+            )
         } else {
             this.packageManager.getPackageInfo(packageName, 0)
         }
@@ -266,7 +301,8 @@ class MainActivity : AppCompatActivity() {
             getSystemService(DOWNLOAD_SERVICE) as DownloadManager,
             this,
             Uri.parse(downloadUrl),
-            fileName)
+            fileName
+        )
         AppInstaller(fileName, this)
     }
 
@@ -280,7 +316,8 @@ class MainActivity : AppCompatActivity() {
             getSystemService(DOWNLOAD_SERVICE) as DownloadManager,
             this,
             Uri.parse(musicDownloadUrl),
-            fileName)
+            fileName
+        )
         AppInstaller(fileName, this)
     }
 
@@ -294,7 +331,8 @@ class MainActivity : AppCompatActivity() {
             getSystemService(DOWNLOAD_SERVICE) as DownloadManager,
             this,
             Uri.parse(microGDownloadUrl),
-            fileName)
+            fileName
+        )
         AppInstaller(fileName, this)
     }
 
@@ -327,8 +365,10 @@ class MainActivity : AppCompatActivity() {
      * @property view the view which contains the button
      */
     fun openReVancedChangelog(view: View) {
-        val browserIntent = Intent(Intent.ACTION_VIEW,
-            Uri.parse("https://github.com/LeddaZ/revanced-repo/blob/main/changelogs/revanced.md"))
+        val browserIntent = Intent(
+            Intent.ACTION_VIEW,
+            Uri.parse("https://github.com/LeddaZ/revanced-repo/blob/main/changelogs/revanced.md")
+        )
         startActivity(browserIntent)
     }
 
@@ -337,8 +377,10 @@ class MainActivity : AppCompatActivity() {
      * @property view the view which contains the button
      */
     fun openReVancedMusicChangelog(view: View) {
-        val browserIntent = Intent(Intent.ACTION_VIEW,
-            Uri.parse("https://github.com/LeddaZ/revanced-repo/blob/main/changelogs/music.md"))
+        val browserIntent = Intent(
+            Intent.ACTION_VIEW,
+            Uri.parse("https://github.com/LeddaZ/revanced-repo/blob/main/changelogs/music.md")
+        )
         startActivity(browserIntent)
     }
 
@@ -349,13 +391,17 @@ class MainActivity : AppCompatActivity() {
         getVersions(object : VolleyCallBack {
             override fun onSuccess() {
                 val latestReVancedTextView: TextView = findViewById(R.id.latestReVancedVersion)
-                latestReVancedTextView.text = getString(R.string.latest_app_version, latestReVancedVersion)
+                latestReVancedTextView.text =
+                    getString(R.string.latest_app_version, latestReVancedVersion)
 
-                val latestReVancedMusicTextView: TextView = findViewById(R.id.latestReVancedMusicVersion)
-                latestReVancedMusicTextView.text = getString(R.string.latest_app_version, latestReVancedMusicVersion)
+                val latestReVancedMusicTextView: TextView =
+                    findViewById(R.id.latestReVancedMusicVersion)
+                latestReVancedMusicTextView.text =
+                    getString(R.string.latest_app_version, latestReVancedMusicVersion)
 
                 val latestMicroGTextView: TextView = findViewById(R.id.latestMicroGVersion)
-                latestMicroGTextView.text = getString(R.string.latest_app_version, latestMicroGVersion)
+                latestMicroGTextView.text =
+                    getString(R.string.latest_app_version, latestMicroGVersion)
                 compareVersions()
             }
         })
@@ -365,7 +411,7 @@ class MainActivity : AppCompatActivity() {
      * Called when the user presses the Refresh button.
      * @property view the view which contains the button
      */
-    fun refreshButton (view: View) {
+    fun refreshButton(view: View) {
         refresh()
     }
 

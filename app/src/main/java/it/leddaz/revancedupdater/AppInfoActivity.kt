@@ -54,8 +54,10 @@ class AppInfoActivity : AppCompatActivity() {
         // Installed version
         val installedAppTextView: TextView = findViewById(R.id.installedAppVersion)
         val pInfo: PackageInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            this.packageManager.getPackageInfo("it.leddaz.revancedupdater",
-                PackageManager.PackageInfoFlags.of(0))
+            this.packageManager.getPackageInfo(
+                "it.leddaz.revancedupdater",
+                PackageManager.PackageInfoFlags.of(0)
+            )
         } else {
             this.packageManager.getPackageInfo("it.leddaz.revancedupdater", 0)
         }
@@ -107,7 +109,8 @@ class AppInfoActivity : AppCompatActivity() {
             getSystemService(DOWNLOAD_SERVICE) as DownloadManager,
             this,
             Uri.parse(appDownloadUrl),
-            fileName)
+            fileName
+        )
         AppInstaller(fileName, this)
     }
 
@@ -123,7 +126,7 @@ class AppInfoActivity : AppCompatActivity() {
         if (isEnabled)
             buttonView.style(R.style.button_enabled)
         else
-           buttonView.style(R.style.button_disabled)
+            buttonView.style(R.style.button_disabled)
     }
 
     /**
@@ -143,7 +146,7 @@ class AppInfoActivity : AppCompatActivity() {
      * Called when the user presses the Refresh button.
      * @property view the view which contains the button
      */
-    fun refreshButton (view: View) {
+    fun refreshButton(view: View) {
         refresh()
     }
 
@@ -152,8 +155,10 @@ class AppInfoActivity : AppCompatActivity() {
      * @property view the view which contains the button
      */
     fun openSource(view: View) {
-        val browserIntent = Intent(Intent.ACTION_VIEW,
-            Uri.parse("https://github.com/LeddaZ/ReVancedUpdater"))
+        val browserIntent = Intent(
+            Intent.ACTION_VIEW,
+            Uri.parse("https://github.com/LeddaZ/ReVancedUpdater")
+        )
         startActivity(browserIntent)
     }
 
@@ -162,8 +167,10 @@ class AppInfoActivity : AppCompatActivity() {
      * @property view the view which contains the button
      */
     fun openAppChangelog(view: View) {
-        val browserIntent = Intent(Intent.ACTION_VIEW,
-            Uri.parse("https://github.com/LeddaZ/ReVancedUpdater/releases/tag/$APP_VERSION"))
+        val browserIntent = Intent(
+            Intent.ACTION_VIEW,
+            Uri.parse("https://github.com/LeddaZ/ReVancedUpdater/releases/tag/$APP_VERSION")
+        )
         startActivity(browserIntent)
     }
 
