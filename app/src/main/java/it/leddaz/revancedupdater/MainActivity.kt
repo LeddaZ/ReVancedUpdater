@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.paris.extensions.style
 import com.android.volley.Request.Method.GET
@@ -62,6 +63,7 @@ class MainActivity : AppCompatActivity() {
         Log.i(LOG_TAG, "ReVanced Updater $APP_VERSION is here!")
         val appVersionTextView: TextView = findViewById(R.id.appVersion)
         appVersionTextView.text = getString(R.string.app_version, APP_VERSION)
+        Toast.makeText(this, R.string.download_warning, Toast.LENGTH_LONG).show()
         refresh()
     }
 
