@@ -1,4 +1,4 @@
-package it.leddaz.revancedupdater.utils.other;
+package it.leddaz.revancedupdater.utils.misc;
 
 import androidx.annotation.NonNull;
 
@@ -61,7 +61,7 @@ public class Version implements Comparable<Version> {
     /**
      * Declares if two versions are equal
      *
-     * @param that other version
+     * @param that misc version
      * @return true if the versions are equal, false otherwise
      */
     @Override

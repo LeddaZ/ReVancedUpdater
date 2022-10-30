@@ -1,4 +1,4 @@
-package it.leddaz.revancedupdater.utils.other
+package it.leddaz.revancedupdater.utils.misc
 
 interface VolleyCallBack {
     fun onSuccess()

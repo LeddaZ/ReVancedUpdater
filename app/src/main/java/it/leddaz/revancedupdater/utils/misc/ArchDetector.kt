@@ -1,4 +1,4 @@
-package it.leddaz.revancedupdater.utils.other
+package it.leddaz.revancedupdater.utils.misc
 
 import android.util.Log
 import java.io.BufferedReader

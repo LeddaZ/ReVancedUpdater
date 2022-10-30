@@ -22,9 +22,9 @@ import com.google.gson.reflect.TypeToken
 import it.leddaz.revancedupdater.utils.apputils.AppInstaller
 import it.leddaz.revancedupdater.utils.apputils.Downloader
 import it.leddaz.revancedupdater.utils.jsonobjects.ReVancedJSONObject
-import it.leddaz.revancedupdater.utils.other.ArchDetector
-import it.leddaz.revancedupdater.utils.other.Version
-import it.leddaz.revancedupdater.utils.other.VolleyCallBack
+import it.leddaz.revancedupdater.utils.misc.ArchDetector
+import it.leddaz.revancedupdater.utils.misc.Version
+import it.leddaz.revancedupdater.utils.misc.VolleyCallBack
 import org.apache.commons.codec.binary.Hex
 import org.apache.commons.codec.digest.DigestUtils
 import java.io.File
