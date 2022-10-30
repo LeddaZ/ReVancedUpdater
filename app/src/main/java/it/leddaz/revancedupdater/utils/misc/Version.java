@@ -34,16 +34,16 @@ public class Version implements Comparable<Version> {
     /**
      * Compare two versions.
      *
-     * @param that the other version
+     * @param other the other version
      * @return 0 if the versions are equal, 1 if the first version is newer,
      * -1 if the second one is newer
      */
     @Override
-    public int compareTo(Version that) {
-        if (that == null)
+    public int compareTo(Version other) {
+        if (other == null)
             return 1;
         String[] thisParts = this.get().split("\\.");
-        String[] thatParts = that.get().split("\\.");
+        String[] thatParts = other.get().split("\\.");
         int length = Math.max(thisParts.length, thatParts.length);
         for (int i = 0; i < length; i++) {
             int thisPart = i < thisParts.length ?
@@ -61,18 +61,18 @@ public class Version implements Comparable<Version> {
     /**
      * Declares if two versions are equal
      *
-     * @param that misc version
+     * @param other the other version
      * @return true if the versions are equal, false otherwise
      */
     @Override
-    public boolean equals(Object that) {
-        if (this == that)
+    public boolean equals(Object other) {
+        if (this == other)
             return true;
-        if (that == null)
+        if (other == null)
             return false;
-        if (this.getClass() != that.getClass())
+        if (this.getClass() != other.getClass())
             return false;
-        return this.compareTo((Version) that) == 0;
+        return this.compareTo((Version) other) == 0;
     }
 
     /**
