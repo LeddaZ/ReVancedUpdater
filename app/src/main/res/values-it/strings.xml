@@ -21,6 +21,6 @@
     <string name="revanced_changelog_description">Cronologia modifiche ReVanced</string>
     <string name="music_changelog_description">Cronologia modifiche ReVanced Music</string>
     <string name="app_changelog_description">Cronologia modifiche dell\'app</string>
-    <string name="incompatible_android_version">YouTube richiede Android 8.0+.</string>
+    <string name="old_android_version">L\'app richiede Android %1$s+.</string>
     <string name="download_warning">Resta nell\'app durante il download</string>
 </resources>

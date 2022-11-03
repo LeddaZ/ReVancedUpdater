@@ -7,16 +7,7 @@ import androidx.annotation.NonNull;
  */
 public class Version implements Comparable<Version> {
 
-    private final String version;
-
-    /**
-     * Returns the version
-     *
-     * @return Version
-     */
-    public final String get() {
-        return this.version;
-    }
+    private String version;
 
     /**
      * Constructor method.
@@ -24,6 +15,24 @@ public class Version implements Comparable<Version> {
      * @param version version string
      */
     public Version(String version) {
+        setVersion(version);
+    }
+
+    /**
+     * Returns the version
+     *
+     * @return Version
+     */
+    public String getVersion() {
+        return version;
+    }
+
+    /**
+     * Sets the version.
+     *
+     * @param version version string
+     */
+    public void setVersion(String version) {
         if (version == null)
             throw new IllegalArgumentException("Version can not be null");
         if (!version.matches("\\d+(\\.\\d+)*"))
@@ -42,8 +51,8 @@ public class Version implements Comparable<Version> {
     public int compareTo(Version other) {
         if (other == null)
             return 1;
-        String[] thisParts = this.get().split("\\.");
-        String[] thatParts = other.get().split("\\.");
+        String[] thisParts = this.getVersion().split("\\.");
+        String[] thatParts = other.getVersion().split("\\.");
         int length = Math.max(thisParts.length, thatParts.length);
         for (int i = 0; i < length; i++) {
             int thisPart = i < thisParts.length ?

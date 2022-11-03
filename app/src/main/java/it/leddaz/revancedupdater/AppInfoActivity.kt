@@ -1,25 +1,20 @@
 package it.leddaz.revancedupdater
 
-import android.app.DownloadManager
-import android.content.Intent
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
-import android.net.Uri
-import android.os.Build
+import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.airbnb.paris.extensions.style
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import it.leddaz.revancedupdater.utils.apputils.AppInstaller
-import it.leddaz.revancedupdater.utils.apputils.Downloader
 import it.leddaz.revancedupdater.utils.jsonobjects.AppJSONObject
+import it.leddaz.revancedupdater.utils.misc.CommonMethods.compareAppVersion
+import it.leddaz.revancedupdater.utils.misc.CommonMethods.dlAndInstall
+import it.leddaz.revancedupdater.utils.misc.CommonMethods.getAppVersion
+import it.leddaz.revancedupdater.utils.misc.CommonMethods.openLink
 import it.leddaz.revancedupdater.utils.misc.Version
 import it.leddaz.revancedupdater.utils.misc.VolleyCallBack
 
@@ -42,7 +37,7 @@ class AppInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_app_info)
-        refresh()
+        refresh(this)
     }
 
     /**
@@ -52,17 +47,17 @@ class AppInfoActivity : AppCompatActivity() {
      */
     private fun getVersion(callback: VolleyCallBack) {
         // Installed version
-        val installedAppTextView: TextView = findViewById(R.id.installedAppVersion)
-        val pInfo: PackageInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            this.packageManager.getPackageInfo(
-                "it.leddaz.revancedupdater",
-                PackageManager.PackageInfoFlags.of(0)
-            )
-        } else {
-            this.packageManager.getPackageInfo("it.leddaz.revancedupdater", 0)
-        }
-        installedAppVersion = Version(pInfo.versionName)
-        installedAppTextView.text = getString(R.string.installed_app_version, installedAppVersion)
+        getAppVersion(
+            21,
+            "5.0",
+            "it.leddaz.revancedupdater",
+            this,
+            this.window.decorView,
+            findViewById(R.id.installedAppVersion),
+            installedAppVersion,
+            findViewById(R.id.appUpdateStatus),
+            findViewById(R.id.appButton)
+        )
 
         // Latest version
         val queue = Volley.newRequestQueue(this)
@@ -83,61 +78,26 @@ class AppInfoActivity : AppCompatActivity() {
     }
 
     /**
-     * Compares versions.
-     */
-    private fun compareVersions() {
-        val appUpdateStatusTextView: TextView = findViewById(R.id.appUpdateStatus)
-        if (installedAppVersion.compareTo(latestAppVersion) == -1) {
-            appUpdateStatusTextView.text = getString(R.string.update_available)
-            setButtonProperties(true, R.string.update_button)
-        } else if (installedAppVersion.compareTo(latestAppVersion) == 0) {
-            appUpdateStatusTextView.text = getString(R.string.no_update_available)
-            setButtonProperties(false, R.string.update_button)
-        } else {
-            appUpdateStatusTextView.text = getString(R.string.app_not_installed)
-            setButtonProperties(true, R.string.install)
-        }
-    }
-
-    /**
      * Download ReVanced Updater when the button is clicked.
      * @property view the view which contains the button.
      */
     fun downloadApp(view: View) {
-        val fileName = "app-release.apk"
-        Downloader(
-            getSystemService(DOWNLOAD_SERVICE) as DownloadManager,
-            this,
-            Uri.parse(appDownloadUrl),
-            fileName
-        )
-        AppInstaller(fileName, this)
-    }
-
-    /**
-     * Sets button properties.
-     * @property isEnabled button enabled state
-     * @property text button text
-     */
-    private fun setButtonProperties(isEnabled: Boolean, text: Int) {
-        val buttonView: Button = findViewById(R.id.appButton)
-        buttonView.isEnabled = isEnabled
-        buttonView.text = getString(text)
-        if (isEnabled)
-            buttonView.style(R.style.button_enabled)
-        else
-            buttonView.style(R.style.button_disabled)
+        dlAndInstall("app-release.apk", appDownloadUrl, this)
     }
 
     /**
      * Refreshes the versions.
      */
-    private fun refresh() {
+    private fun refresh(context: Context) {
         getVersion(object : VolleyCallBack {
             override fun onSuccess() {
                 val latestAppTextView: TextView = findViewById(R.id.latestAppVersion)
                 latestAppTextView.text = getString(R.string.latest_app_version, latestAppVersion)
-                compareVersions()
+                compareAppVersion(
+                    false, "it.leddaz.revancedupdater", installedAppVersion,
+                    latestAppVersion, findViewById(R.id.appUpdateStatus),
+                    findViewById(R.id.appButton), context
+                )
             }
         })
     }
@@ -147,7 +107,7 @@ class AppInfoActivity : AppCompatActivity() {
      * @property view the view which contains the button
      */
     fun refreshButton(view: View) {
-        refresh()
+        refresh(this)
     }
 
     /**
@@ -155,11 +115,7 @@ class AppInfoActivity : AppCompatActivity() {
      * @property view the view which contains the button
      */
     fun openSource(view: View) {
-        val browserIntent = Intent(
-            Intent.ACTION_VIEW,
-            Uri.parse("https://github.com/LeddaZ/ReVancedUpdater")
-        )
-        startActivity(browserIntent)
+        openLink("https://github.com/LeddaZ/ReVancedUpdater", this)
     }
 
     /**
@@ -167,11 +123,7 @@ class AppInfoActivity : AppCompatActivity() {
      * @property view the view which contains the button
      */
     fun openAppChangelog(view: View) {
-        val browserIntent = Intent(
-            Intent.ACTION_VIEW,
-            Uri.parse("https://github.com/LeddaZ/ReVancedUpdater/releases/tag/$APP_VERSION")
-        )
-        startActivity(browserIntent)
+        openLink("https://github.com/LeddaZ/ReVancedUpdater/releases/tag/$APP_VERSION", this)
     }
 
     /**
