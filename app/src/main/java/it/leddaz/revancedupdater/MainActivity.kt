@@ -73,14 +73,6 @@ class MainActivity : AppCompatActivity() {
      */
     private fun isMicroGInstalled(): Boolean {
         try {
-            /**
-             * "bro that method is deprecated in A13"
-             * ok I'll update
-             * "bro you can't because the new method only works on A13 and your app runs on A6+"
-             * ok I'll do both with a check
-             * "bro that method is deprecated in A13"
-             * Thanks Google
-             */
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 this.packageManager.getPackageInfo(
                     "com.mgoogle.android.gms",
