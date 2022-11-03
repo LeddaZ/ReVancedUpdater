@@ -331,7 +331,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Returns all buttons in the view.
+     * Returns all download buttons in the view.
      * @return Array of buttons
      */
     private fun getButtons(): Array<Int> {
