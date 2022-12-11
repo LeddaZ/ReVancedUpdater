@@ -9,3 +9,4 @@ Updater for my ReVanced builds, you can find more info [here](https://github.com
 - [n0k0m3](https://github.com/n0k0m3) for the original [ReVanced build template](https://github.com/n0k0m3/revanced-build-template)
 - [Icons8](https://icons8.it/) and [SVG Repo](https://www.svgrepo.com/) for the button icons
 - [Donokami](https://github.com/Donokami) for the app icon
+- [Kieron Quinn](https://github.com/KieronQuinn) for [MonetCompat](https://github.com/KieronQuinn/MonetCompat)
