@@ -113,6 +113,13 @@ object CommonMethods {
 
     /**
      * Compares versions.
+     * @property hashCheck true if the hash should be checked
+     * @property packageName package name
+     * @property installedVersion the installed app's version
+     * @property latestVersion the app's latest version
+     * @property updateStatusTextView the TextView with the app update status
+     * @property button the app's install/update button
+     * @property context the activity's context
      */
     fun compareAppVersion(
         hashCheck: Boolean, packageName: String, installedVersion: Version,
@@ -139,6 +146,11 @@ object CommonMethods {
 
     /**
      * Compares hashes.
+     * @property latestHash the latest app version's hash
+     * @property updateStatusTextView the TextView with the app update status
+     * @property packageName package name
+     * @property context the activity's context
+     * @property button the app's install/update button
      */
     private fun compareHashes(
         latestHash: String, updateStatusTextView: TextView, packageName: String,
