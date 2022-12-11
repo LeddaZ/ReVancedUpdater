@@ -45,7 +45,7 @@ object CommonMethods {
      * @property text button text
      * @property context the activity's context
      */
-    fun setButtonProperties(button: Button, isEnabled: Boolean, text: Int, context: Context) {
+    private fun setButtonProperties(button: Button, isEnabled: Boolean, text: Int, context: Context) {
         button.isEnabled = isEnabled
         button.text = context.getString(text)
         if (isEnabled)
@@ -61,11 +61,11 @@ object CommonMethods {
      * @property context the activity's context
      */
     fun dlAndInstall(fileName: String, url: String, context: Context) {
-        Downloader(
-            context.getSystemService(AppCompatActivity.DOWNLOAD_SERVICE) as DownloadManager,
-            context, Uri.parse(url), fileName
-        )
-        AppInstaller(fileName, context)
+            Downloader(
+                context.getSystemService(AppCompatActivity.DOWNLOAD_SERVICE) as DownloadManager,
+                context, Uri.parse(url), fileName
+            )
+            AppInstaller(fileName, context)
     }
 
     /**
