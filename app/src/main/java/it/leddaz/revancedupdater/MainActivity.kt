@@ -213,6 +213,7 @@ class MainActivity : MonetCompatActivity() {
      * Downloads YouTube ReVanced when the button is clicked.
      * @property view the view which contains the button.
      */
+    @Suppress("UNUSED_PARAMETER")
     fun downloadReVanced(view: View) {
         dlAndInstall("revanced-nonroot-signed.apk", downloadUrl, this)
     }
@@ -221,6 +222,7 @@ class MainActivity : MonetCompatActivity() {
      * Downloads ReVanced Music when the button is clicked.
      * @property view the view which contains the button.
      */
+    @Suppress("UNUSED_PARAMETER")
     fun downloadReVancedMusic(view: View) {
         dlAndInstall("revanced-music-nonroot-signed.apk", musicDownloadUrl, this)
     }
@@ -229,6 +231,7 @@ class MainActivity : MonetCompatActivity() {
      * Downloads Vanced microG when the button is clicked.
      * @property view the view which contains the button.
      */
+    @Suppress("UNUSED_PARAMETER")
     fun downloadMicroG(view: View) {
         dlAndInstall("vanced-microG.apk", microGDownloadUrl, this)
     }
@@ -237,6 +240,7 @@ class MainActivity : MonetCompatActivity() {
      * Called when the user presses the ReVanced changelog button.
      * @property view the view which contains the button
      */
+    @Suppress("UNUSED_PARAMETER")
     fun openReVancedChangelog(view: View) {
         openLink("https://github.com/LeddaZ/revanced-repo/blob/main/changelogs/revanced.md", this)
     }
@@ -245,6 +249,7 @@ class MainActivity : MonetCompatActivity() {
      * Called when the user presses the ReVanced Music changelog button.
      * @property view the view which contains the button
      */
+    @Suppress("UNUSED_PARAMETER")
     fun openReVancedMusicChangelog(view: View) {
         openLink("https://github.com/LeddaZ/revanced-repo/blob/main/changelogs/music.md", this)
     }
@@ -276,6 +281,7 @@ class MainActivity : MonetCompatActivity() {
      * Called when the user presses the Refresh button.
      * @property view the view which contains the button
      */
+    @Suppress("UNUSED_PARAMETER")
     fun refreshButton(view: View) {
         refresh()
     }
@@ -284,6 +290,7 @@ class MainActivity : MonetCompatActivity() {
      * Called when the user presses the App info button.
      * @property view the view which contains the button
      */
+    @Suppress("UNUSED_PARAMETER")
     fun appInfo(view: View) {
         val intent = Intent(this, AppInfoActivity::class.java).apply {}
         startActivity(intent)

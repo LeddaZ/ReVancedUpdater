@@ -114,6 +114,7 @@ class AppInfoActivity : AppCompatActivity() {
      * Download ReVanced Updater when the button is clicked.
      * @property view the view which contains the button.
      */
+    @Suppress("UNUSED_PARAMETER")
     fun downloadApp(view: View) {
         dlAndInstall("app-release.apk", appDownloadUrl, this)
     }
@@ -139,6 +140,7 @@ class AppInfoActivity : AppCompatActivity() {
      * Called when the user presses the Refresh button.
      * @property view the view which contains the button
      */
+    @Suppress("UNUSED_PARAMETER")
     fun refreshButton(view: View) {
         refresh(this)
     }
@@ -147,6 +149,7 @@ class AppInfoActivity : AppCompatActivity() {
      * Called when the user presses the Source code button.
      * @property view the view which contains the button
      */
+    @Suppress("UNUSED_PARAMETER")
     fun openSource(view: View) {
         openLink("https://github.com/LeddaZ/ReVancedUpdater", this)
     }
@@ -155,6 +158,7 @@ class AppInfoActivity : AppCompatActivity() {
      * Called when the user presses the app changelog button.
      * @property view the view which contains the button
      */
+    @Suppress("UNUSED_PARAMETER")
     fun openAppChangelog(view: View) {
         openLink("https://github.com/LeddaZ/ReVancedUpdater/releases/tag/$APP_VERSION", this)
     }
@@ -163,6 +167,7 @@ class AppInfoActivity : AppCompatActivity() {
      * Called when the user presses the Back button.
      * @property view the view which contains the button
      */
+    @Suppress("UNUSED_PARAMETER")
     fun goBack(view: View) {
         this.finish()
     }
