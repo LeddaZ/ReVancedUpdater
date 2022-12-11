@@ -35,7 +35,6 @@ class AppInstaller() {
                     install.data = contentUri
                     context.startActivity(install)
                     context.unregisterReceiver(this)
-                    // finish()
                 } else {
                     val install = Intent(Intent.ACTION_VIEW)
                     install.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
