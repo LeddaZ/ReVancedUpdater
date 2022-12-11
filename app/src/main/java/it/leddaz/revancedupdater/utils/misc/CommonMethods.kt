@@ -83,14 +83,13 @@ object CommonMethods {
      * @property minVer lowest supported Android version
      * @property packageName package name
      * @property context the activity's context
-     * @property view the activity's view
      * @property installedTextView the TextView with the currently installed version
      * @property installedVersion the installed app's version
      * @property updateStatusTextView the TextView with the app update status
      * @property button the app's install/update button
      */
     fun getAppVersion(
-        minSdk: Int, minVer: String, packageName: String, context: Context, view: View,
+        minSdk: Int, minVer: String, packageName: String, context: Context,
         installedTextView: TextView, installedVersion: Version, updateStatusTextView: TextView,
         button: Button
     ) {

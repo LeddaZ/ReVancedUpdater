@@ -85,7 +85,6 @@ class AppInfoActivity : AppCompatActivity() {
             "5.0",
             "it.leddaz.revancedupdater",
             this,
-            this.window.decorView,
             findViewById(R.id.installedAppVersion),
             installedAppVersion,
             findViewById(R.id.appUpdateStatus),

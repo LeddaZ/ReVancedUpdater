@@ -130,14 +130,14 @@ class MainActivity : MonetCompatActivity() {
         if (isMicroGInstalled()) {
             getAppVersion(
                 26, "8.0", "app.revanced.android.youtube", this,
-                this.window.decorView, findViewById(R.id.installedReVancedVersion),
+                findViewById(R.id.installedReVancedVersion),
                 installedReVancedVersion, findViewById(R.id.reVancedUpdateStatus),
                 findViewById(R.id.reVancedButton)
             )
 
             getAppVersion(
                 21, "5.0", "app.revanced.android.apps.youtube.music", this,
-                this.window.decorView, findViewById(R.id.installedReVancedMusicVersion),
+                findViewById(R.id.installedReVancedMusicVersion),
                 installedReVancedMusicVersion, findViewById(R.id.reVancedMusicUpdateStatus),
                 findViewById(R.id.reVancedMusicButton)
             )
@@ -145,7 +145,7 @@ class MainActivity : MonetCompatActivity() {
 
         getAppVersion(
             23, "6.0", "com.mgoogle.android.gms", this,
-            this.window.decorView, findViewById(R.id.installedMicroGVersion),
+            findViewById(R.id.installedMicroGVersion),
             installedMicroGVersion, findViewById(R.id.microGUpdateStatus),
             findViewById(R.id.microGButton)
         )
