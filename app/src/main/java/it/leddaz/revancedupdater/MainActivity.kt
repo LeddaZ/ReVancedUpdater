@@ -2,18 +2,24 @@ package it.leddaz.revancedupdater
 
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.lifecycleScope
 import com.android.volley.Request.Method.GET
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.kieronquinn.monetcompat.app.MonetCompatActivity
+import com.kieronquinn.monetcompat.core.MonetCompat
 import it.leddaz.revancedupdater.utils.jsonobjects.ReVancedJSONObject
 import it.leddaz.revancedupdater.utils.misc.ArchDetector
 import it.leddaz.revancedupdater.utils.misc.CommonMethods.compareAppVersion
@@ -43,7 +49,7 @@ private var microGDownloadUrl = ""
  * @return The activity
  * @author Leonardo Ledda (LeddaZ)
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : MonetCompatActivity() {
 
     /**
      * Actions executed when the activity is created at runtime.
@@ -51,13 +57,45 @@ class MainActivity : AppCompatActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        lifecycleScope.launchWhenCreated {
+            monet.awaitMonetReady()
+            val layout = View.inflate(this@MainActivity, R.layout.activity_main, null)
+            setContentView(layout)
+            MonetCompat.enablePaletteCompat()
 
+            val backgroundColor: Int =
+                MonetCompat.getInstance().getBackgroundColor(this@MainActivity)
+            window.statusBarColor = backgroundColor
+            window.navigationBarColor = backgroundColor
+            layout.setBackgroundColor(backgroundColor)
+
+            val primaryColor: Int = MonetCompat.getInstance().getPrimaryColor(this@MainActivity)
+            val r: Int = primaryColor shr 16 and 0xFF
+            val g: Int = primaryColor shr 8 and 0xFF
+            val b: Int = primaryColor shr 0 and 0xFF
+            for (item: Drawable in getThemeableElements()) {
+                item.setTint(Color.rgb(r, g, b))
+            }
+
+            val appVersionTextView: TextView = findViewById(R.id.appVersion)
+            appVersionTextView.text = getString(R.string.app_version, APP_VERSION)
+            refresh()
+        }
         Log.i(LOG_TAG, "ReVanced Updater $APP_VERSION is here!")
-        val appVersionTextView: TextView = findViewById(R.id.appVersion)
-        appVersionTextView.text = getString(R.string.app_version, APP_VERSION)
         Toast.makeText(this, R.string.download_warning, Toast.LENGTH_LONG).show()
-        refresh()
+    }
+
+    private fun getThemeableElements(): ArrayList<Drawable> {
+        val elements: ArrayList<Drawable> = ArrayList()
+        elements.add(findViewById<Toolbar>(R.id.titleBar).background)
+        elements.add(findViewById<Toolbar>(R.id.reVancedInfoSection).background)
+        elements.add(findViewById<Toolbar>(R.id.reVancedMusicInfoSection).background)
+        elements.add(findViewById<Toolbar>(R.id.microGInfoSection).background)
+        elements.add(findViewById<ImageButton>(R.id.reVancedChangelog).background)
+        elements.add(findViewById<ImageButton>(R.id.reVancedMusicChangelog).background)
+        elements.add(findViewById<ImageButton>(R.id.refreshButton).background)
+        elements.add(findViewById<ImageButton>(R.id.appInfoButton).background)
+        return elements
     }
 
     /**

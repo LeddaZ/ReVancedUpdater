@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.view.View
@@ -13,6 +14,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
 import com.airbnb.paris.extensions.style
+import com.kieronquinn.monetcompat.core.MonetCompat
+import com.kieronquinn.monetcompat.extensions.views.setTint
 import it.leddaz.revancedupdater.MainActivity
 import it.leddaz.revancedupdater.R
 import it.leddaz.revancedupdater.utils.apputils.AppInstaller
@@ -45,12 +48,17 @@ object CommonMethods {
      * @property text button text
      * @property context the activity's context
      */
-    private fun setButtonProperties(button: Button, isEnabled: Boolean, text: Int, context: Context) {
+    fun setButtonProperties(button: Button, isEnabled: Boolean, text: Int, context: Context) {
         button.isEnabled = isEnabled
         button.text = context.getString(text)
-        if (isEnabled)
+        if (isEnabled) {
             button.style(R.style.button_enabled)
-        else
+            val primaryColor: Int = MonetCompat.getInstance().getPrimaryColor(context)
+            val r: Int = primaryColor shr 16 and 0xFF
+            val g: Int = primaryColor shr 8 and 0xFF
+            val b: Int = primaryColor shr 0 and 0xFF
+            button.setTint(Color.rgb(r, g, b))
+        } else
             button.style(R.style.button_disabled)
     }
 
@@ -61,11 +69,11 @@ object CommonMethods {
      * @property context the activity's context
      */
     fun dlAndInstall(fileName: String, url: String, context: Context) {
-            Downloader(
-                context.getSystemService(AppCompatActivity.DOWNLOAD_SERVICE) as DownloadManager,
-                context, Uri.parse(url), fileName
-            )
-            AppInstaller(fileName, context)
+        Downloader(
+            context.getSystemService(AppCompatActivity.DOWNLOAD_SERVICE) as DownloadManager,
+            context, Uri.parse(url), fileName
+        )
+        AppInstaller(fileName, context)
     }
 
     /**
