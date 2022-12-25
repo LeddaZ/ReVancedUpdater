@@ -1,7 +1,9 @@
 # ReVanced Updater
 Updater for my ReVanced builds, you can find more info [here](https://github.com/LeddaZ/revanced-repo).
 
-### [Download](https://github.com/LeddaZ/ReVancedUpdater/releases/latest) ![downloadCount](https://img.shields.io/github/downloads/LeddaZ/ReVancedUpdater/total?label=Downloads)
+### [Download](https://github.com/LeddaZ/ReVancedUpdater/releases/latest)
+
+![downloadCount](https://img.shields.io/github/downloads/LeddaZ/ReVancedUpdater/total?color=blue&label=Downloads)
 
 ### Credits
 - Rasmus Andersson for the [Inter](https://fonts.google.com/specimen/Inter) font
