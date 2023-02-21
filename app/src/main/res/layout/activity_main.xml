@@ -1,389 +1,241 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="5dp"
-    android:fillViewport="false">
+    android:theme="@style/AppTheme_Blue"
+    tools:context=".MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/app_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".MainActivity">
+        android:layout_marginTop="15sp"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textSize="40sp"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/microGButton"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/revanced_info_card"
+        android:layout_width="350sp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="8dp"
+        android:backgroundTint="?attr/red_card_background_color"
+        android:checkable="false"
+        android:clickable="true"
+        android:focusable="true"
+        android:theme="@style/AppTheme_Red"
+        app:layout_constraintBottom_toTopOf="@id/music_info_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_title"
+        tools:ignore="TextSizeCheck">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15sp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/revanced_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="40sp"
+                android:text="@string/revanced_info_title"
+                android:textSize="28sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/installed_revanced_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/installed_app_version"
+                android:textSize="16sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/latest_revanced_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5sp"
+                android:text="@string/latest_app_version"
+                android:textSize="16sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/revanced_update_status"
+                android:layout_width="250sp"
+                android:layout_height="wrap_content"
+                android:text="@string/update_status"
+                android:textSize="20sp"
+                tools:ignore="TextSizeCheck" />
+
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/revanced_download_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:layout_marginBottom="12dp"
-            android:background="?attr/rounded_corner_view"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/revanced_download_button_description"
             android:enabled="false"
-            android:fontFamily="@font/inter_bold"
-            android:onClick="downloadMicroG"
-            android:text="@string/update_button"
-            android:textColor="@color/dark_gray"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/microGInfoSection" />
-
-        <TextView
-            android:id="@+id/microGUpdateStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:elevation="21dp"
-            android:fontFamily="@font/inter_regular"
-            android:text="@string/update_status"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/microGInfoSection"
-            app:layout_constraintEnd_toEndOf="@+id/microGInfoSection"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/latestMicroGVersion" />
-
-        <TextView
-            android:id="@+id/latestMicroGVersion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:elevation="21dp"
-            android:fontFamily="@font/inter_regular"
-            android:text="@string/latest_app_version"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/microGInfoSection"
-            app:layout_constraintStart_toStartOf="@+id/microGInfoSection"
-            app:layout_constraintTop_toBottomOf="@+id/installedMicroGVersion" />
-
-        <TextView
-            android:id="@+id/installedMicroGVersion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:elevation="21dp"
-            android:fontFamily="@font/inter_regular"
-            android:text="@string/installed_app_version"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/microGInfoSection"
-            app:layout_constraintStart_toStartOf="@+id/microGInfoSection"
-            app:layout_constraintTop_toBottomOf="@+id/microGInfoSectionTitle" />
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/microGInfoSection"
-            android:layout_width="0dp"
-            android:layout_height="150dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginEnd="8dp"
-            android:background="?attr/rounded_corner_view"
-            android:elevation="1dp"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reVancedMusicButton" />
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/titleBar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="8dp"
-            android:background="?attr/rounded_corner_view"
-            android:elevation="5dp"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/appTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="21dp"
-            android:fontFamily="@font/inter_bold"
-            android:text="@string/app_name"
-            android:textAlignment="center"
-            android:textSize="34sp"
-            app:layout_constraintBottom_toBottomOf="@+id/titleBar"
-            app:layout_constraintEnd_toEndOf="@+id/titleBar"
-            app:layout_constraintStart_toStartOf="@+id/titleBar"
-            app:layout_constraintTop_toTopOf="@+id/titleBar" />
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/reVancedInfoSection"
-            android:layout_width="0dp"
-            android:layout_height="150dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="8dp"
-            android:background="?attr/rounded_corner_view"
-            android:elevation="1dp"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleBar" />
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/reVancedMusicInfoSection"
-            android:layout_width="0dp"
-            android:layout_height="150dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginEnd="8dp"
-            android:background="?attr/rounded_corner_view"
-            android:elevation="1dp"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reVancedButton" />
-
-        <TextView
-            android:id="@+id/reVancedInfoSectionTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:elevation="21dp"
-            android:fontFamily="@font/inter_bold"
-            android:text="@string/revanced_info_title"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="@+id/reVancedInfoSection"
-            app:layout_constraintStart_toStartOf="@+id/reVancedInfoSection"
-            app:layout_constraintTop_toTopOf="@+id/reVancedInfoSection" />
-
-        <TextView
-            android:id="@+id/reVancedMusicInfoSectionTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:elevation="21dp"
-            android:fontFamily="@font/inter_bold"
-            android:text="@string/music_info_title"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="@+id/reVancedMusicInfoSection"
-            app:layout_constraintStart_toStartOf="@+id/reVancedMusicInfoSection"
-            app:layout_constraintTop_toTopOf="@+id/reVancedMusicInfoSection" />
-
-        <TextView
-            android:id="@+id/installedReVancedVersion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:elevation="21dp"
-            android:fontFamily="@font/inter_regular"
-            android:text="@string/installed_app_version"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/reVancedInfoSection"
-            app:layout_constraintStart_toStartOf="@+id/reVancedInfoSection"
-            app:layout_constraintTop_toBottomOf="@+id/reVancedInfoSectionTitle" />
-
-        <TextView
-            android:id="@+id/installedReVancedMusicVersion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:elevation="21dp"
-            android:fontFamily="@font/inter_regular"
-            android:text="@string/installed_app_version"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/reVancedMusicInfoSection"
-            app:layout_constraintStart_toStartOf="@+id/reVancedMusicInfoSection"
-            app:layout_constraintTop_toBottomOf="@+id/reVancedMusicInfoSectionTitle" />
-
-        <TextView
-            android:id="@+id/latestReVancedVersion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:elevation="21dp"
-            android:fontFamily="@font/inter_regular"
-            android:text="@string/latest_app_version"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/reVancedInfoSection"
-            app:layout_constraintStart_toStartOf="@+id/reVancedInfoSection"
-            app:layout_constraintTop_toBottomOf="@+id/installedReVancedVersion" />
-
-        <TextView
-            android:id="@+id/latestReVancedMusicVersion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:elevation="21dp"
-            android:fontFamily="@font/inter_regular"
-            android:text="@string/latest_app_version"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/reVancedMusicInfoSection"
-            app:layout_constraintStart_toStartOf="@+id/reVancedMusicInfoSection"
-            app:layout_constraintTop_toBottomOf="@+id/installedReVancedMusicVersion" />
-
-        <TextView
-            android:id="@+id/reVancedUpdateStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:elevation="21dp"
-            android:fontFamily="@font/inter_regular"
-            android:text="@string/update_status"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/reVancedInfoSection"
-            app:layout_constraintEnd_toEndOf="@+id/reVancedInfoSection"
-            app:layout_constraintStart_toStartOf="@+id/reVancedInfoSection"
-            app:layout_constraintTop_toBottomOf="@+id/latestReVancedVersion" />
-
-        <TextView
-            android:id="@+id/reVancedMusicUpdateStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:elevation="21dp"
-            android:fontFamily="@font/inter_regular"
-            android:text="@string/update_status"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/reVancedMusicInfoSection"
-            app:layout_constraintEnd_toEndOf="@+id/reVancedMusicInfoSection"
-            app:layout_constraintStart_toStartOf="@+id/reVancedMusicInfoSection"
-            app:layout_constraintTop_toBottomOf="@+id/latestReVancedMusicVersion" />
-
-        <Button
-            android:id="@+id/reVancedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:background="?attr/rounded_corner_view"
-            android:enabled="false"
-            android:fontFamily="@font/inter_bold"
             android:onClick="downloadReVanced"
-            android:text="@string/update_button"
-            android:textColor="@color/dark_gray"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reVancedInfoSection" />
+            app:srcCompat="@android:drawable/stat_sys_download_done" />
 
-        <Button
-            android:id="@+id/reVancedMusicButton"
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/music_info_card"
+        android:layout_width="350sp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="?attr/green_card_background_color"
+        android:checkable="false"
+        android:clickable="true"
+        android:focusable="true"
+        android:theme="@style/AppTheme_Green"
+        app:layout_constraintBottom_toTopOf="@id/microg_info_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/revanced_info_card"
+        tools:ignore="TextSizeCheck">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15sp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/music_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="40sp"
+                android:text="@string/music_info_title"
+                android:textSize="28sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/installed_music_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/installed_app_version"
+                android:textSize="16sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/latest_music_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5sp"
+                android:text="@string/latest_app_version"
+                android:textSize="16sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/music_update_status"
+                android:layout_width="250sp"
+                android:layout_height="wrap_content"
+                android:text="@string/update_status"
+                android:textSize="20sp"
+                tools:ignore="TextSizeCheck" />
+
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/music_download_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:background="?attr/rounded_corner_view"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
             android:enabled="false"
-            android:fontFamily="@font/inter_bold"
             android:onClick="downloadReVancedMusic"
-            android:text="@string/update_button"
-            android:textColor="@color/dark_gray"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reVancedMusicInfoSection" />
+            android:contentDescription="@string/music_download_button_description"
+            app:srcCompat="@android:drawable/stat_sys_download_done" />
 
-        <TextView
-            android:id="@+id/microGInfoSectionTitle"
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/microg_info_card"
+        android:layout_width="350sp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="8dp"
+        android:backgroundTint="?attr/yellow_card_background_color"
+        android:checkable="false"
+        android:clickable="false"
+        android:focusable="false"
+        android:theme="@style/AppTheme_Yellow"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/music_info_card"
+        tools:ignore="TextSizeCheck">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15sp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/microg_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="40sp"
+                android:text="@string/microg_info_title"
+                android:textSize="28sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/installed_microg_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/installed_app_version"
+                android:textSize="16sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/latest_microg_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5sp"
+                android:text="@string/latest_app_version"
+                android:textSize="16sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/microg_update_status"
+                android:layout_width="250sp"
+                android:layout_height="wrap_content"
+                android:text="@string/update_status"
+                android:textSize="20sp"
+                tools:ignore="TextSizeCheck" />
+
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/microg_download_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="@font/inter_bold"
-            android:text="@string/microg_info_title"
-            android:textAlignment="center"
-            android:textSize="24sp"
-            android:elevation="21dp"
-            app:layout_constraintEnd_toEndOf="@+id/microGInfoSection"
-            app:layout_constraintStart_toStartOf="@+id/microGInfoSection"
-            app:layout_constraintTop_toTopOf="@+id/microGInfoSection" />
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:contentDescription="@string/microg_download_button_description"
+            android:enabled="false"
+            android:onClick="downloadMicroG"
+            app:srcCompat="@android:drawable/stat_sys_download_done" />
 
-        <ImageButton
-            android:id="@+id/refreshButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?attr/rounded_corner_view"
-            android:contentDescription="@string/refresh_button_description"
-            android:onClick="refreshButton"
-            android:padding="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/reVancedMusicInfoSection"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/reVancedButton"
-            app:layout_constraintTop_toBottomOf="@+id/reVancedInfoSection"
-            app:srcCompat="@drawable/ic_refresh" />
+    </com.google.android.material.card.MaterialCardView>
 
-        <ImageButton
-            android:id="@+id/reVancedChangelog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?attr/rounded_corner_view"
-            android:contentDescription="@string/revanced_changelog_description"
-            android:onClick="openReVancedChangelog"
-            android:padding="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/reVancedMusicInfoSection"
-            app:layout_constraintEnd_toStartOf="@+id/reVancedButton"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reVancedInfoSection"
-            app:srcCompat="@drawable/ic_changelog" />
 
-        <ImageButton
-            android:id="@+id/reVancedMusicChangelog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?attr/rounded_corner_view"
-            android:contentDescription="@string/music_changelog_description"
-            android:onClick="openReVancedMusicChangelog"
-            android:padding="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/microGInfoSection"
-            app:layout_constraintEnd_toStartOf="@+id/reVancedMusicButton"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reVancedMusicInfoSection"
-            app:srcCompat="@drawable/ic_changelog" />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigation_menu"
+        tools:ignore="VisualLintBottomNav" />
 
-        <ImageButton
-            android:id="@+id/appInfoButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?attr/rounded_corner_view"
-            android:contentDescription="@string/app_info_button_description"
-            android:onClick="appInfo"
-            android:padding="5dp"
-            app:layout_constraintBottom_toTopOf="@+id/microGInfoSection"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/reVancedMusicButton"
-            app:layout_constraintTop_toBottomOf="@+id/reVancedMusicInfoSection"
-            app:srcCompat="@drawable/ic_info" />
-
-        <TextView
-            android:id="@+id/appVersion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/inter_regular"
-            android:text="@string/app_version"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toTopOf="@+id/reVancedInfoSection"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleBar" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,31 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">ReVanced Updater</string>
     <string name="revanced_info_title" translatable="false">YouTube ReVanced</string>
-    <string name="installed_app_version">Installed version: %1$s</string>
-    <string name="latest_app_version">Latest version: %1$s</string>
+    <string name="installed_app_version">Installed: %1$s</string>
+    <string name="latest_app_version">Latest: %1$s</string>
     <string name="update_status">Checking for updates…</string>
     <string name="update_available">Update available!</string>
     <string name="no_update_available">No update available.</string>
-    <string name="update_button">UPDATE</string>
     <string name="microg_info_title" translatable="false">Vanced microG</string>
-    <string name="install">INSTALL</string>
     <string name="download_started">Download started. Check the notifications for details.</string>
     <string name="app_not_installed">App not installed.</string>
-    <string name="refresh_button_description">Check for updates</string>
     <string name="download_error">An error occurred while downloading. Check logs for more details.</string>
-    <string name="app_version">App version: %1$s</string>
-    <string name="app_info_title" translatable="false">ReVanced Updater</string>
-    <string name="source_code">Source code</string>
+    <string name="updater_info_title" translatable="false">ReVanced Updater</string>
+    <string name="open_github">See on GitHub</string>
     <string name="about_app_title">About app</string>
     <string name="about_app_text">ReVanced Updater is an app made to update my ReVanced builds.</string>
-    <string name="app_info_button_description">App info</string>
-    <string name="back_button_description">Back</string>
-    <string name="face" translatable="false">ಠ_ಠ</string>
     <string name="music_info_title" translatable="false">ReVanced Music</string>
     <string name="no_microg">Vanced microG is not installed.</string>
-    <string name="revanced_changelog_description">ReVanced changelog</string>
-    <string name="music_changelog_description">ReVanced Music changelog</string>
-    <string name="app_changelog_description">App changelog</string>
     <string name="old_android_version">The app requires Android %1$s+.</string>
-    <string name="download_warning">Stay in the app while downloading</string>
+    <string name="bottom_bar_revanced" translatable="false">ReVanced</string>
+    <string name="bottom_bar_updater" translatable="false">Updater</string>
+    <string name="revanced_download_button_description">Download ReVanced</string>
+    <string name="bottom_bar_refresh">Refresh</string>
+    <string name="none">none</string>
+    <string name="music_download_button_description">Download ReVanced Music</string>
+    <string name="microg_download_button_description">Download microG</string>
+    <string name="updater_download_button_description">Download ReVanced Updater</string>
 </resources>

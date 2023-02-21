@@ -5,17 +5,13 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.net.Uri
 import android.os.Build
-import android.view.View
-import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
-import com.airbnb.paris.extensions.style
-import com.kieronquinn.monetcompat.core.MonetCompat
-import com.kieronquinn.monetcompat.extensions.views.setTint
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import it.leddaz.revancedupdater.BuildConfig
 import it.leddaz.revancedupdater.MainActivity
 import it.leddaz.revancedupdater.R
 import it.leddaz.revancedupdater.utils.apputils.AppInstaller
@@ -26,10 +22,14 @@ import java.io.File
 import java.io.FileInputStream
 
 /**
- * Common methods used in multiple activities.
+ * Common methods used in multiple occasions.
  * @author Leonardo Ledda (LeddaZ)
  */
-object CommonMethods {
+object Utils {
+
+    // Constants
+    const val APP_VERSION = BuildConfig.VERSION_NAME
+    const val LOG_TAG = "ReVanced Updater"
 
     /**
      * Opens a link using the default browser.
@@ -39,27 +39,6 @@ object CommonMethods {
     fun openLink(url: String, context: Context) {
         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(context, browserIntent, null)
-    }
-
-    /**
-     * Sets button properties.
-     * @property button the button to set the properties for
-     * @property isEnabled button enabled state
-     * @property text button text
-     * @property context the activity's context
-     */
-    fun setButtonProperties(button: Button, isEnabled: Boolean, text: Int, context: Context) {
-        button.isEnabled = isEnabled
-        button.text = context.getString(text)
-        if (isEnabled) {
-            button.style(R.style.button_enabled)
-            val primaryColor: Int = MonetCompat.getInstance().getPrimaryColor(context)
-            val r: Int = primaryColor shr 16 and 0xFF
-            val g: Int = primaryColor shr 8 and 0xFF
-            val b: Int = primaryColor shr 0 and 0xFF
-            button.setTint(Color.rgb(r, g, b))
-        } else
-            button.style(R.style.button_disabled)
     }
 
     /**
@@ -79,8 +58,6 @@ object CommonMethods {
     /**
      * Gets the installed and latest versions of YouTube Revanced,
      * ReVanced Music and Vanced microG.
-     * @property minSdk lowest supported SDK version
-     * @property minVer lowest supported Android version
      * @property packageName package name
      * @property context the activity's context
      * @property installedTextView the TextView with the currently installed version
@@ -88,33 +65,47 @@ object CommonMethods {
      * @property updateStatusTextView the TextView with the app update status
      * @property button the app's install/update button
      */
+    @Suppress("DEPRECATION")
     fun getAppVersion(
-        minSdk: Int, minVer: String, packageName: String, context: Context,
-        installedTextView: TextView, installedVersion: Version, updateStatusTextView: TextView,
-        button: Button
+        packageName: String, context: Context, installedTextView: TextView,
+        installedVersion: Version, updateStatusTextView: TextView,
+        button: FloatingActionButton
     ) {
+        val minSdk: Int
+        val minVer: String
+        when (packageName) {
+            "com.mgoogle.android.gms" -> {
+                minSdk = 23
+                minVer = "6.0"
+            }
+
+            "app.revanced.android.youtube" -> {
+                minSdk = 26
+                minVer = "8.0"
+            }
+
+            else -> {
+                minSdk = 21
+                minVer = "5.0"
+            }
+        }
         try {
             if (Build.VERSION.SDK_INT >= minSdk) {
                 val pInfo: PackageInfo =
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                        context.packageManager.getPackageInfo(
-                            packageName, PackageManager.PackageInfoFlags.of(0)
-                        )
-                    } else {
-                        context.packageManager.getPackageInfo(packageName, 0)
-                    }
+                    context.packageManager.getPackageInfo(packageName, 0)
                 installedVersion.version = pInfo.versionName
                 installedTextView.text =
                     context.getString(R.string.installed_app_version, installedVersion.version)
             } else {
                 updateStatusTextView.text =
                     context.getString(R.string.old_android_version, minVer)
-                setButtonProperties(button, false, R.string.install, context)
+                button.isEnabled = false
             }
         } catch (e: PackageManager.NameNotFoundException) {
-            installedTextView.text = context.getString(R.string.installed_app_version, "none")
+            installedTextView.text =
+                context.getString(R.string.installed_app_version, context.getString(R.string.none))
             installedVersion.version = "99.99"
-            setButtonProperties(button, true, R.string.install, context)
+            button.isEnabled = true
         }
     }
 
@@ -130,24 +121,25 @@ object CommonMethods {
      */
     fun compareAppVersion(
         hashCheck: Boolean, packageName: String, installedVersion: Version,
-        latestVersion: Version, updateStatusTextView: TextView, button: Button, context: Context
+        latestVersion: Version, updateStatusTextView: TextView,
+        button: FloatingActionButton, context: Context
     ) {
         if (installedVersion.compareTo(latestVersion) == -1) {
             updateStatusTextView.text = context.getString(R.string.update_available)
-            setButtonProperties(button, true, R.string.update_button, context)
+            button.isEnabled = true
         } else if (installedVersion.compareTo(latestVersion) == 0) {
             if (hashCheck) {
                 var latestHash = MainActivity.getLatestReVancedHash()
-                if (packageName.equals("app.revanced.android.apps.youtube.music"))
+                if (packageName == "app.revanced.android.apps.youtube.music")
                     latestHash = MainActivity.getLatestReVancedMusicHash()
                 compareHashes(latestHash, updateStatusTextView, packageName, context, button)
             } else {
                 updateStatusTextView.text = context.getString(R.string.no_update_available)
-                setButtonProperties(button, false, R.string.update_button, context)
+                button.isEnabled = false
             }
         } else {
             updateStatusTextView.text = context.getString(R.string.app_not_installed)
-            setButtonProperties(button, true, R.string.install, context)
+            button.isEnabled = true
         }
     }
 
@@ -159,26 +151,20 @@ object CommonMethods {
      * @property context the activity's context
      * @property button the app's install/update button
      */
+    @Suppress("DEPRECATION")
     private fun compareHashes(
         latestHash: String, updateStatusTextView: TextView, packageName: String,
-        context: Context, button: Button
+        context: Context, button: FloatingActionButton
     ) {
-        val pInfo: PackageInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            context.packageManager.getPackageInfo(
-                packageName,
-                PackageManager.PackageInfoFlags.of(0)
-            )
-        } else {
-            context.packageManager.getPackageInfo(packageName, 0)
-        }
+        val pInfo: PackageInfo = context.packageManager.getPackageInfo(packageName, 0)
         val file = File(pInfo.applicationInfo.sourceDir)
         val installedAppHash = String(Hex.encodeHex(DigestUtils.sha256(FileInputStream(file))))
         if (installedAppHash == latestHash) {
             updateStatusTextView.text = context.getString(R.string.no_update_available)
-            setButtonProperties(button, false, R.string.update_button, context)
+            button.isEnabled = false
         } else {
             updateStatusTextView.text = context.getString(R.string.update_available)
-            setButtonProperties(button, true, R.string.update_button, context)
+            button.isEnabled = true
         }
     }
 

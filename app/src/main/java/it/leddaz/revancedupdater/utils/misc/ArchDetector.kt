@@ -1,6 +1,7 @@
 package it.leddaz.revancedupdater.utils.misc
 
 import android.util.Log
+import it.leddaz.revancedupdater.utils.misc.Utils.LOG_TAG
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
@@ -11,8 +12,6 @@ import java.io.InputStreamReader
  * @author Leonardo Ledda (LeddaZ)
  */
 object ArchDetector {
-
-    private const val LOG_TAG = "ReVanced Updater"
 
     /**
      * Reads the property.
@@ -51,17 +50,17 @@ object ArchDetector {
     fun getArch(): String {
         val abilist: String = readABIList()
         Log.i(LOG_TAG, "Supported ABIs: $abilist")
-        if (abilist.contains("x86_64"))
-            return "x86_64"
+        return if (abilist.contains("x86_64"))
+            "x86_64"
         else if (abilist.contains("x86"))
-            return "x86"
+            "x86"
         else if (abilist.contains("arm64-v8a"))
-            return "arm64"
+            "arm64"
         else if (abilist.contains("armeabi-v7a"))
-            return "arm"
+            "arm"
         else {
             Log.e(LOG_TAG, "Unsupported architecture! (goofy ahh device)")
-            return ""
+            ""
         }
     }
 

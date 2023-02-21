@@ -31,5 +31,5 @@ data class ReVancedJSONObject(
     val latestReVancedMusicHashX86: String,
 
     @SerializedName("latestReVancedMusicHashX86_64")
-    val latestReVancedMusicHashX86_64: String
+    val latestReVancedMusicHashX64: String
 )

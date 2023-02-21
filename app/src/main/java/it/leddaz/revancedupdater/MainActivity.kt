@@ -2,36 +2,32 @@ package it.leddaz.revancedupdater
 
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.lifecycleScope
+import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request.Method.GET
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.card.MaterialCardView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.kieronquinn.monetcompat.app.MonetCompatActivity
-import com.kieronquinn.monetcompat.core.MonetCompat
 import it.leddaz.revancedupdater.utils.jsonobjects.ReVancedJSONObject
 import it.leddaz.revancedupdater.utils.misc.ArchDetector
-import it.leddaz.revancedupdater.utils.misc.CommonMethods.compareAppVersion
-import it.leddaz.revancedupdater.utils.misc.CommonMethods.dlAndInstall
-import it.leddaz.revancedupdater.utils.misc.CommonMethods.getAppVersion
-import it.leddaz.revancedupdater.utils.misc.CommonMethods.openLink
+import it.leddaz.revancedupdater.utils.misc.Utils.APP_VERSION
+import it.leddaz.revancedupdater.utils.misc.Utils.LOG_TAG
+import it.leddaz.revancedupdater.utils.misc.Utils.compareAppVersion
+import it.leddaz.revancedupdater.utils.misc.Utils.dlAndInstall
+import it.leddaz.revancedupdater.utils.misc.Utils.getAppVersion
+import it.leddaz.revancedupdater.utils.misc.Utils.openLink
 import it.leddaz.revancedupdater.utils.misc.Version
 import it.leddaz.revancedupdater.utils.misc.VolleyCallBack
 
 
-const val APP_VERSION = BuildConfig.VERSION_NAME
-const val LOG_TAG = "ReVanced Updater"
 private var installedReVancedVersion = Version("99.99")
 private var latestReVancedVersion = Version("0.0")
 private var latestReVancedHash = ""
@@ -49,7 +45,7 @@ private var microGDownloadUrl = ""
  * @return The activity
  * @author Leonardo Ledda (LeddaZ)
  */
-class MainActivity : MonetCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     /**
      * Actions executed when the activity is created at runtime.
@@ -57,63 +53,70 @@ class MainActivity : MonetCompatActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        lifecycleScope.launchWhenCreated {
-            monet.awaitMonetReady()
-            val layout = View.inflate(this@MainActivity, R.layout.activity_main, null)
-            setContentView(layout)
-            MonetCompat.enablePaletteCompat()
+        setContentView(R.layout.activity_main)
+        refresh()
 
-            val backgroundColor: Int =
-                MonetCompat.getInstance().getBackgroundColor(this@MainActivity)
-            window.statusBarColor = backgroundColor
-            window.navigationBarColor = backgroundColor
-            layout.setBackgroundColor(backgroundColor)
-
-            val primaryColor: Int = MonetCompat.getInstance().getPrimaryColor(this@MainActivity)
-            val r: Int = primaryColor shr 16 and 0xFF
-            val g: Int = primaryColor shr 8 and 0xFF
-            val b: Int = primaryColor shr 0 and 0xFF
-            for (item: Drawable in getThemeableElements()) {
-                item.setTint(Color.rgb(r, g, b))
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    finishAffinity()
+                    finish()
+                }
             }
+        )
 
-            val appVersionTextView: TextView = findViewById(R.id.appVersion)
-            appVersionTextView.text = getString(R.string.app_version, APP_VERSION)
-            refresh()
+        val reVancedCard = findViewById<MaterialCardView>(R.id.revanced_info_card)
+        reVancedCard.setOnLongClickListener {
+            openLink(
+                "https://github.com/LeddaZ/revanced-repo/blob/main/changelogs/revanced.md",
+                this
+            )
+            true
         }
-        Log.i(LOG_TAG, "ReVanced Updater $APP_VERSION is here!")
-        Toast.makeText(this, R.string.download_warning, Toast.LENGTH_LONG).show()
-    }
 
-    private fun getThemeableElements(): ArrayList<Drawable> {
-        val elements: ArrayList<Drawable> = ArrayList()
-        elements.add(findViewById<Toolbar>(R.id.titleBar).background)
-        elements.add(findViewById<Toolbar>(R.id.reVancedInfoSection).background)
-        elements.add(findViewById<Toolbar>(R.id.reVancedMusicInfoSection).background)
-        elements.add(findViewById<Toolbar>(R.id.microGInfoSection).background)
-        elements.add(findViewById<ImageButton>(R.id.reVancedChangelog).background)
-        elements.add(findViewById<ImageButton>(R.id.reVancedMusicChangelog).background)
-        elements.add(findViewById<ImageButton>(R.id.refreshButton).background)
-        elements.add(findViewById<ImageButton>(R.id.appInfoButton).background)
-        return elements
+        val reVancedMusicCard = findViewById<MaterialCardView>(R.id.music_info_card)
+        reVancedMusicCard.setOnLongClickListener {
+            openLink(
+                "https://github.com/LeddaZ/revanced-repo/blob/main/changelogs/music.md",
+                this
+            )
+            true
+        }
+
+        bottomNavigationView.selectedItemId = R.id.revanced
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.revanced -> {
+                    startActivity(Intent(applicationContext, MainActivity::class.java))
+                    return@setOnItemSelectedListener true
+                }
+
+                R.id.updater -> {
+                    startActivity(Intent(applicationContext, UpdaterActivity::class.java))
+                    return@setOnItemSelectedListener true
+                }
+
+                R.id.refresh -> {
+                    refresh()
+                }
+            }
+            false
+        }
+
+        Log.i(LOG_TAG, "ReVanced Updater $APP_VERSION is here!")
     }
 
     /**
      * Detects if Vanced microG is installed.
      * @return Vanced microG installation status
      */
+    @Suppress("DEPRECATION")
     private fun isMicroGInstalled(): Boolean {
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                this.packageManager.getPackageInfo(
-                    "com.mgoogle.android.gms",
-                    PackageManager.PackageInfoFlags.of(0)
-                )
-            } else {
-                this.packageManager.getPackageInfo("com.mgoogle.android.gms", 0)
-            }
+            this.packageManager.getPackageInfo("com.mgoogle.android.gms", 0)
         } catch (e: PackageManager.NameNotFoundException) {
-            Log.i(LOG_TAG, "Vanced microG is not installed, blocking ReVanced YT/YTM installation.")
             return false
         }
         return true
@@ -129,25 +132,25 @@ class MainActivity : MonetCompatActivity() {
         // Installed versions
         if (isMicroGInstalled()) {
             getAppVersion(
-                26, "8.0", "app.revanced.android.youtube", this,
-                findViewById(R.id.installedReVancedVersion),
-                installedReVancedVersion, findViewById(R.id.reVancedUpdateStatus),
-                findViewById(R.id.reVancedButton)
+                "app.revanced.android.youtube", this,
+                findViewById(R.id.installed_revanced_version),
+                installedReVancedVersion, findViewById(R.id.revanced_update_status),
+                findViewById(R.id.revanced_download_button)
             )
 
             getAppVersion(
-                21, "5.0", "app.revanced.android.apps.youtube.music", this,
-                findViewById(R.id.installedReVancedMusicVersion),
-                installedReVancedMusicVersion, findViewById(R.id.reVancedMusicUpdateStatus),
-                findViewById(R.id.reVancedMusicButton)
+                "app.revanced.android.apps.youtube.music", this,
+                findViewById(R.id.installed_music_version),
+                installedReVancedMusicVersion, findViewById(R.id.music_update_status),
+                findViewById(R.id.music_download_button)
             )
         }
 
         getAppVersion(
-            23, "6.0", "com.mgoogle.android.gms", this,
-            findViewById(R.id.installedMicroGVersion),
-            installedMicroGVersion, findViewById(R.id.microGUpdateStatus),
-            findViewById(R.id.microGButton)
+            "com.mgoogle.android.gms", this,
+            findViewById(R.id.installed_microg_version),
+            installedMicroGVersion, findViewById(R.id.microg_update_status),
+            findViewById(R.id.microg_download_button)
         )
 
         // Latest versions and ReVanced hashes
@@ -172,7 +175,7 @@ class MainActivity : MonetCompatActivity() {
                 "arm" -> latestReVancedMusicHash = reply.latestReVancedMusicHashArm
                 "arm64" -> latestReVancedMusicHash = reply.latestReVancedMusicHashArm64
                 "x86" -> latestReVancedMusicHash = reply.latestReVancedMusicHashX86
-                "x86_64" -> latestReVancedMusicHash = reply.latestReVancedMusicHashX86_64
+                "x86_64" -> latestReVancedMusicHash = reply.latestReVancedMusicHashX64
             }
             musicDownloadUrl = urlPrefix + reply.latestReVancedMusicDate +
                     "-ytm/revanced-music-nonroot-$arch-signed.apk"
@@ -183,6 +186,7 @@ class MainActivity : MonetCompatActivity() {
         queue.add(stringRequest)
     }
 
+
     /**
      * Compares versions.
      */
@@ -191,21 +195,22 @@ class MainActivity : MonetCompatActivity() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 compareAppVersion(
                     true, "app.revanced.android.youtube", installedReVancedVersion,
-                    latestReVancedVersion, findViewById(R.id.reVancedUpdateStatus),
-                    findViewById(R.id.reVancedButton), this
+                    latestReVancedVersion, findViewById(R.id.revanced_update_status),
+                    findViewById(R.id.revanced_download_button), this
                 )
             }
 
             compareAppVersion(
                 true, "app.revanced.android.apps.youtube.music", installedReVancedMusicVersion,
-                latestReVancedMusicVersion, findViewById(R.id.reVancedMusicUpdateStatus),
-                findViewById(R.id.reVancedMusicButton), this
+                latestReVancedMusicVersion, findViewById(R.id.music_update_status),
+                findViewById(R.id.music_download_button), this
             )
         }
 
+
         compareAppVersion(
             false, "com.mgoogle.android.gms", installedMicroGVersion, latestMicroGVersion,
-            findViewById(R.id.microGUpdateStatus), findViewById(R.id.microGButton), this
+            findViewById(R.id.microg_update_status), findViewById(R.id.microg_download_button), this
         )
     }
 
@@ -237,63 +242,26 @@ class MainActivity : MonetCompatActivity() {
     }
 
     /**
-     * Called when the user presses the ReVanced changelog button.
-     * @property view the view which contains the button
-     */
-    @Suppress("UNUSED_PARAMETER")
-    fun openReVancedChangelog(view: View) {
-        openLink("https://github.com/LeddaZ/revanced-repo/blob/main/changelogs/revanced.md", this)
-    }
-
-    /**
-     * Called when the user presses the ReVanced Music changelog button.
-     * @property view the view which contains the button
-     */
-    @Suppress("UNUSED_PARAMETER")
-    fun openReVancedMusicChangelog(view: View) {
-        openLink("https://github.com/LeddaZ/revanced-repo/blob/main/changelogs/music.md", this)
-    }
-
-    /**
      * Refreshes the versions.
      */
     private fun refresh() {
         getVersions(object : VolleyCallBack {
             override fun onSuccess() {
-                val latestReVancedTextView: TextView = findViewById(R.id.latestReVancedVersion)
+                val latestReVancedTextView: TextView = findViewById(R.id.latest_revanced_version)
                 latestReVancedTextView.text =
                     getString(R.string.latest_app_version, latestReVancedVersion)
 
                 val latestReVancedMusicTextView: TextView =
-                    findViewById(R.id.latestReVancedMusicVersion)
+                    findViewById(R.id.latest_music_version)
                 latestReVancedMusicTextView.text =
                     getString(R.string.latest_app_version, latestReVancedMusicVersion)
 
-                val latestMicroGTextView: TextView = findViewById(R.id.latestMicroGVersion)
+                val latestMicroGTextView: TextView = findViewById(R.id.latest_microg_version)
                 latestMicroGTextView.text =
                     getString(R.string.latest_app_version, latestMicroGVersion)
                 compareVersions()
             }
         })
-    }
-
-    /**
-     * Called when the user presses the Refresh button.
-     * @property view the view which contains the button
-     */
-    @Suppress("UNUSED_PARAMETER")
-    fun refreshButton(view: View) {
-        refresh()
-    }
-
-    /**
-     * Called when the user presses the App info button.
-     * @property view the view which contains the button
-     */
-    @Suppress("UNUSED_PARAMETER")
-    fun appInfo(view: View) {
-        val intent = Intent(this, AppInfoActivity::class.java).apply {}
-        startActivity(intent)
     }
 
     /**

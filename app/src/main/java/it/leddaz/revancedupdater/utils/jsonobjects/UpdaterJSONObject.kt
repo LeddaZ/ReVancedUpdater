@@ -2,7 +2,7 @@ package it.leddaz.revancedupdater.utils.jsonobjects
 
 import com.google.gson.annotations.SerializedName
 
-data class AppJSONObject(
+data class UpdaterJSONObject(
     @SerializedName("latestAppVersion")
-    val latestAppVersion: String
+    val latestUpdaterVersion: String
 )

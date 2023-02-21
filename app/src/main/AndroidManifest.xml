@@ -19,12 +19,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ReVancedUpdater"
+        android:theme="@style/AppTheme_Blue"
         tools:targetApi="31">
-        <activity
-            android:name=".AppInfoActivity"
-            android:parentActivityName=".MainActivity"
-            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -34,6 +30,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".UpdaterActivity"
+            android:exported="true" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

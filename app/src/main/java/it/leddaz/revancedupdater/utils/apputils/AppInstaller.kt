@@ -1,5 +1,6 @@
 package it.leddaz.revancedupdater.utils.apputils
 
+import android.annotation.SuppressLint
 import android.app.DownloadManager
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -16,8 +17,8 @@ import java.io.File
  */
 class AppInstaller() {
 
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     constructor(fileName: String, context: Context) : this() {
-        // Set BroadcastReceiver to install app when .apk is downloaded
         val onComplete = object : BroadcastReceiver() {
             override fun onReceive(context: Context, intent: Intent) {
                 var destination = context.getExternalFilesDir("/apks/").toString() + "/"

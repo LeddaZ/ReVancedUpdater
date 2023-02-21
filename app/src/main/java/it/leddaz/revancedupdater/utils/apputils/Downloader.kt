@@ -5,8 +5,8 @@ import android.content.Context
 import android.net.Uri
 import android.util.Log
 import android.widget.Toast
-import it.leddaz.revancedupdater.LOG_TAG
 import it.leddaz.revancedupdater.R
+import it.leddaz.revancedupdater.utils.misc.Utils.LOG_TAG
 import java.io.File
 
 /**
@@ -20,10 +20,7 @@ class Downloader() {
     }
 
     private fun downloadFile(
-        dlm: DownloadManager,
-        context: Context,
-        uri: Uri,
-        fileName: String
+        dlm: DownloadManager, context: Context, uri: Uri, fileName: String
     ): Long {
         var downloadReference: Long = 0
         try {
