@@ -22,7 +22,7 @@ android {
         targetSdk = 33
         versionCode = getCommitCount()
         versionName = "2.0.0"
-
+        resourceConfigurations += listOf("en", "it")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
