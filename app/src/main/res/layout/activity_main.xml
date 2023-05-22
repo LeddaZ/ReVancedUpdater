@@ -16,10 +16,11 @@
         android:gravity="center"
         android:text="@string/app_name"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="80dp"
@@ -240,11 +241,10 @@
                     app:srcCompat="@android:drawable/stat_sys_download_done" />
 
             </com.google.android.material.card.MaterialCardView>
+
         </LinearLayout>
+
     </ScrollView>
-
-
-
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
