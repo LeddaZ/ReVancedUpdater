@@ -53,6 +53,6 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
+    implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
     implementation("commons-codec:commons-codec:1.15")
 }
