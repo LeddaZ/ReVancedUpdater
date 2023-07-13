@@ -1,5 +1,6 @@
 package it.leddaz.revancedupdater
 
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -26,6 +27,7 @@ import it.leddaz.revancedupdater.utils.misc.Utils.getAppVersion
 import it.leddaz.revancedupdater.utils.misc.Utils.openLink
 import it.leddaz.revancedupdater.utils.misc.Version
 import it.leddaz.revancedupdater.utils.misc.VolleyCallBack
+import java.io.File
 
 
 private var installedReVancedVersion = Version("99.99")
@@ -54,7 +56,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        refresh()
+        refresh(this)
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         onBackPressedDispatcher.addCallback(
@@ -99,7 +101,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.refresh -> {
-                    refresh()
+                    refresh(this)
                 }
             }
             false
@@ -242,9 +244,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Refreshes the versions.
+     * Refreshes the versions and deletes existing APKs.
+     * @param context the app's context.
      */
-    private fun refresh() {
+    private fun refresh(context: Context) {
+        val filenames = arrayOf(
+            "revanced-music-nonroot-arm-signed.apk",
+            "revanced-music-nonroot-arm64-signed.apk",
+            "revanced-music-nonroot-x86-signed.apk",
+            "revanced-music-nonroot-x86_64-signed.apk",
+            "revanced-nonroot-signed.apk",
+            "app-release.apk"
+        )
+        val appDataDir = context.getExternalFilesDir("/apks/").toString() + "/"
+        for (apk in filenames) {
+            val path = File(appDataDir + apk)
+            if (path.exists()) {
+                path.delete()
+            }
+        }
         getVersions(object : VolleyCallBack {
             override fun onSuccess() {
                 val latestReVancedTextView: TextView = findViewById(R.id.latest_revanced_version)
