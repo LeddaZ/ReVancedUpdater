@@ -19,7 +19,6 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import it.leddaz.revancedupdater.utils.jsonobjects.ReVancedJSONObject
 import it.leddaz.revancedupdater.utils.misc.ArchDetector
-import it.leddaz.revancedupdater.utils.misc.Utils.APP_VERSION
 import it.leddaz.revancedupdater.utils.misc.Utils.LOG_TAG
 import it.leddaz.revancedupdater.utils.misc.Utils.compareAppVersion
 import it.leddaz.revancedupdater.utils.misc.Utils.dlAndInstall
@@ -106,8 +105,6 @@ class MainActivity : AppCompatActivity() {
             }
             false
         }
-
-        Log.i(LOG_TAG, "ReVanced Updater $APP_VERSION is here!")
     }
 
     /**

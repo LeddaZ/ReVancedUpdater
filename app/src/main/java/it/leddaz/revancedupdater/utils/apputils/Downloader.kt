@@ -41,7 +41,6 @@ class Downloader() {
             val apkFile = File(destination)
             if (apkFile.exists()) {
                 apkFile.delete()
-                Log.i(LOG_TAG, "Existing APK deleted.")
             }
 
             //Enqueue download and save the referenceId

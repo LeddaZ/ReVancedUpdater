@@ -59,7 +59,7 @@ object ArchDetector {
         else if (abilist.contains("armeabi-v7a"))
             "arm"
         else {
-            Log.e(LOG_TAG, "Unsupported architecture! (goofy ahh device)")
+            Log.e(LOG_TAG, "Unsupported architecture! (this should never appear)")
             ""
         }
     }
