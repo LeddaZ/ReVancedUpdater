@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "ReVanced Updater"
-include ':app'
+include(":app")
