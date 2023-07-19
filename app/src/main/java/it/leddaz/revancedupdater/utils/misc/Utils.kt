@@ -7,7 +7,9 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
+import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -106,6 +108,15 @@ object Utils {
                 context.getString(R.string.installed_app_version, context.getString(R.string.none))
             installedVersion.version = "99.99"
             button.isEnabled = true
+        } catch (e: IllegalArgumentException) {
+            installedTextView.text =
+                context.getString(
+                    R.string.installed_app_version,
+                    context.getString(R.string.invalid)
+                )
+            installedVersion.version = "99.99"
+            Toast.makeText(context, R.string.invalid_version_detected, Toast.LENGTH_LONG).show()
+            Log.e(LOG_TAG, e.printStackTrace().toString())
         }
     }
 

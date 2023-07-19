@@ -26,4 +26,6 @@
     <string name="music_download_button_description">Download ReVanced Music</string>
     <string name="microg_download_button_description">Download microG</string>
     <string name="updater_download_button_description">Download ReVanced Updater</string>
+    <string name="invalid">invalid</string>
+    <string name="invalid_version_detected">Invalid version detected. Uninstall existing apps.</string>
 </resources>

@@ -19,4 +19,6 @@
     <string name="music_download_button_description">Scarica ReVanced Music</string>
     <string name="microg_download_button_description">Scarica microG</string>
     <string name="updater_download_button_description">Scarica ReVanced Updater</string>
+    <string name="invalid">non valida</string>
+    <string name="invalid_version_detected">Versione non valida rilevata. Disinstalla le app già presenti.</string>
 </resources>
