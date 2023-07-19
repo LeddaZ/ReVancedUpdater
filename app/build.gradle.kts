@@ -14,12 +14,12 @@ fun getCommitCount(): Int {
 
 android {
     namespace = "it.leddaz.revancedupdater"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "it.leddaz.revancedupdater"
         minSdk = 23
-        targetSdk = 33
+        targetSdk = 34
         versionCode = getCommitCount()
         versionName = "2.1.3"
         resourceConfigurations += listOf("en", "it")
