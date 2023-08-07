@@ -20,7 +20,7 @@
 
     <ScrollView
         android:id="@+id/scrollView"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_width="match_parent"
         android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
