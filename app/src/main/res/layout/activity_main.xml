@@ -27,10 +27,9 @@
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintTop_toBottomOf="@id/app_title">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/revanced_info_card"
@@ -46,7 +45,7 @@
                 app:layout_constraintBottom_toTopOf="@id/music_info_card"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/app_title"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="TextSizeCheck">
 
                 <LinearLayout
@@ -183,7 +182,7 @@
                 android:clickable="false"
                 android:focusable="false"
                 android:theme="@style/AppTheme_Yellow"
-                app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/music_info_card"
@@ -242,7 +241,7 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
 
