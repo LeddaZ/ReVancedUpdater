@@ -111,7 +111,6 @@ class MainActivity : AppCompatActivity() {
      * Detects if Vanced microG is installed.
      * @return Vanced microG installation status
      */
-    @Suppress("DEPRECATION")
     private fun isMicroGInstalled(): Boolean {
         try {
             this.packageManager.getPackageInfo("com.mgoogle.android.gms", 0)
