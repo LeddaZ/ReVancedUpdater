@@ -61,7 +61,5 @@ dependencies {
     implementation("com.android.volley:volley:1.2.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation("com.google.code.gson:gson:2.10.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.2")
     implementation("commons-codec:commons-codec:1.16.0")
 }
