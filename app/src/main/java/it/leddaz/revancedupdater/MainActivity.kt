@@ -1,24 +1,27 @@
 package it.leddaz.revancedupdater
 
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request.Method.GET
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.card.MaterialCardView
+import com.google.android.material.color.DynamicColors
+import com.google.android.material.elevation.SurfaceColors
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import it.leddaz.revancedupdater.utils.jsonobjects.ReVancedJSONObject
+import it.leddaz.revancedupdater.dialogs.AboutDialog
+import it.leddaz.revancedupdater.dialogs.MicroGDialog
+import it.leddaz.revancedupdater.utils.ReVancedJSONObject
 import it.leddaz.revancedupdater.utils.misc.ArchDetector
+import it.leddaz.revancedupdater.utils.misc.Utils
 import it.leddaz.revancedupdater.utils.misc.Utils.LOG_TAG
 import it.leddaz.revancedupdater.utils.misc.Utils.compareAppVersion
 import it.leddaz.revancedupdater.utils.misc.Utils.dlAndInstall
@@ -35,11 +38,12 @@ private var latestReVancedHash = ""
 private var installedReVancedMusicVersion = Version("99.99")
 private var latestReVancedMusicVersion = Version("0.0")
 private var latestReVancedMusicHash = ""
-private var installedMicroGVersion = Version("99.99")
-private var latestMicroGVersion = Version("0.0")
+private var installedUpdaterVersion = Version("99.99")
+private var latestUpdaterVersion = Version("0.0")
+private var updaterDownloadUrl = ""
 private var downloadUrl = ""
+var microGDownloadUrl = ""
 private var musicDownloadUrl = ""
-private var microGDownloadUrl = ""
 
 /**
  * The app's main activity, started at launch.
@@ -54,19 +58,11 @@ class MainActivity : AppCompatActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        DynamicColors.applyToActivityIfAvailable(this)
+        window.navigationBarColor = SurfaceColors.SURFACE_0.getColor(this)
+        window.statusBarColor = SurfaceColors.SURFACE_0.getColor(this)
         setContentView(R.layout.activity_main)
         refresh(this)
-
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        onBackPressedDispatcher.addCallback(
-            this,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    finishAffinity()
-                    finish()
-                }
-            }
-        )
 
         val reVancedCard = findViewById<MaterialCardView>(R.id.revanced_info_card)
         reVancedCard.setOnLongClickListener {
@@ -86,17 +82,20 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        bottomNavigationView.selectedItemId = R.id.revanced
-        bottomNavigationView.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.revanced -> {
-                    startActivity(Intent(applicationContext, MainActivity::class.java))
-                    return@setOnItemSelectedListener true
-                }
+        val updaterCard = findViewById<MaterialCardView>(R.id.updater_info_card)
+        updaterCard.setOnLongClickListener {
+            openLink(
+                "https://github.com/LeddaZ/ReVancedUpdater/releases/tag/${Utils.APP_VERSION}", this
+            )
+            true
+        }
 
-                R.id.updater -> {
-                    startActivity(Intent(applicationContext, UpdaterActivity::class.java))
-                    return@setOnItemSelectedListener true
+        val topAppBar = findViewById<MaterialToolbar>(R.id.topAppBar)
+        topAppBar.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.about -> {
+                    val dialogFragment = AboutDialog()
+                    dialogFragment.show(supportFragmentManager, "AboutDialog")
                 }
 
                 R.id.refresh -> {
@@ -142,13 +141,17 @@ class MainActivity : AppCompatActivity() {
                 installedReVancedMusicVersion, findViewById(R.id.music_update_status),
                 findViewById(R.id.music_download_button)
             )
+        } else {
+            val dialogFragment = MicroGDialog()
+            dialogFragment.show(supportFragmentManager, "MicroGDialog")
         }
-
         getAppVersion(
-            "com.mgoogle.android.gms", this,
-            findViewById(R.id.installed_microg_version),
-            installedMicroGVersion, findViewById(R.id.microg_update_status),
-            findViewById(R.id.microg_download_button)
+            "it.leddaz.revancedupdater",
+            this,
+            findViewById(R.id.installed_updater_version),
+            installedUpdaterVersion,
+            findViewById(R.id.updater_update_status),
+            findViewById(R.id.updater_download_button)
         )
 
         // Latest versions and ReVanced hashes
@@ -164,9 +167,11 @@ class MainActivity : AppCompatActivity() {
             latestReVancedVersion = Version(reply.latestReVancedVersion)
             latestReVancedHash = reply.latestReVancedHash
             latestReVancedMusicVersion = Version(reply.latestReVancedMusicVersion)
-            latestMicroGVersion = Version(reply.latestMicroGVersion)
-            downloadUrl = urlPrefix + reply.latestReVancedDate + "-yt/revanced-nonroot-signed.apk"
+            latestUpdaterVersion = Version(reply.latestUpdaterVersion)
             microGDownloadUrl = urlPrefix + reply.latestReVancedDate + "-yt/vanced-microG.apk"
+            updaterDownloadUrl = "https://github.com/LeddaZ/ReVancedUpdater/releases/download/" +
+                    reply.latestUpdaterVersion + "/app-release.apk"
+            downloadUrl = urlPrefix + reply.latestReVancedDate + "-yt/revanced-nonroot-signed.apk"
             val arch: String = ArchDetector.getArch()
             Log.i(LOG_TAG, "OS architecture: $arch")
             when (arch) {
@@ -203,12 +208,16 @@ class MainActivity : AppCompatActivity() {
                 latestReVancedMusicVersion, findViewById(R.id.music_update_status),
                 findViewById(R.id.music_download_button), this
             )
+        } else {
+            val reVancedTextView = findViewById<TextView>(R.id.revanced_update_status)
+            reVancedTextView.text = getString(R.string.microg_dialog_title)
+            val reVancedMusicTextView = findViewById<TextView>(R.id.music_update_status)
+            reVancedMusicTextView.text = getString(R.string.microg_dialog_title)
         }
-
-
         compareAppVersion(
-            false, "com.mgoogle.android.gms", installedMicroGVersion, latestMicroGVersion,
-            findViewById(R.id.microg_update_status), findViewById(R.id.microg_download_button), this
+            false, "it.leddaz.revancedupdater", installedUpdaterVersion,
+            latestUpdaterVersion, findViewById(R.id.updater_update_status),
+            findViewById(R.id.updater_download_button), this
         )
     }
 
@@ -231,12 +240,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Downloads Vanced microG when the button is clicked.
+     * Download ReVanced Updater when the button is clicked.
      * @property view the view which contains the button.
      */
     @Suppress("UNUSED_PARAMETER")
-    fun downloadMicroG(view: View) {
-        dlAndInstall("vanced-microG.apk", microGDownloadUrl, this)
+    fun downloadUpdater(view: View) {
+        dlAndInstall("app-release.apk", updaterDownloadUrl, this)
     }
 
     /**
@@ -270,9 +279,9 @@ class MainActivity : AppCompatActivity() {
                 latestReVancedMusicTextView.text =
                     getString(R.string.latest_app_version, latestReVancedMusicVersion)
 
-                val latestMicroGTextView: TextView = findViewById(R.id.latest_microg_version)
-                latestMicroGTextView.text =
-                    getString(R.string.latest_app_version, latestMicroGVersion)
+                val latestAppTextView: TextView = findViewById(R.id.latest_updater_version)
+                latestAppTextView.text =
+                    getString(R.string.latest_app_version, latestUpdaterVersion)
                 compareVersions()
             }
         })

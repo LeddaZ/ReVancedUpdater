@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <attr name="blue_card_background_color" format="reference" />
-    <attr name="emerald_card_background_color" format="reference" />
-    <attr name="green_card_background_color" format="reference" />
-    <attr name="red_card_background_color" format="reference" />
-    <attr name="yellow_card_background_color" format="reference" />
-</resources>

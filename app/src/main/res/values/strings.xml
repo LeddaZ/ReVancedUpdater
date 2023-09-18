@@ -6,18 +6,15 @@
     <string name="latest_app_version">Latest: %1$s</string>
     <string name="update_status">Checking for updates…</string>
     <string name="update_available">Update available!</string>
-    <string name="no_update_available">No update available.</string>
-    <string name="microg_info_title" translatable="false">Vanced microG</string>
+    <string name="no_update_available">No update available</string>
     <string name="download_started">Download started. Check the notifications for details.</string>
-    <string name="app_not_installed">App not installed.</string>
+    <string name="app_not_installed">App not installed</string>
     <string name="download_error">An error occurred while downloading. Check logs for more details.</string>
     <string name="updater_info_title" translatable="false">ReVanced Updater</string>
     <string name="open_github">See on GitHub</string>
-    <string name="about_app_title">About app</string>
-    <string name="about_app_text">ReVanced Updater is an app made to update my ReVanced builds.</string>
+    <string name="about_dialog_text">ReVanced Updater is an app made by LeddaZ to update his ReVanced builds.</string>
     <string name="music_info_title" translatable="false">ReVanced Music</string>
-    <string name="no_microg">Vanced microG is not installed.</string>
-    <string name="old_android_version">The app requires Android %1$s+.</string>
+    <string name="old_android_version">The app requires Android %1$s+</string>
     <string name="bottom_bar_revanced" translatable="false">ReVanced</string>
     <string name="bottom_bar_updater" translatable="false">Updater</string>
     <string name="revanced_download_button_description">Download ReVanced</string>
@@ -28,4 +25,12 @@
     <string name="updater_download_button_description">Download ReVanced Updater</string>
     <string name="invalid">invalid</string>
     <string name="invalid_version_detected">Invalid version detected. Uninstall existing apps.</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="microg_dialog_title">Vanced microG not installed</string>
+    <string name="microg_dialog_text">Vanced microG is required to log in to your Google account on ReVanced apps. Do you want to install it now?</string>
+    <string name="bottom_bar_about">About</string>
+    <string name="about_dialog_title">About this app</string>
+    <string name="ok" translatable="false">OK</string>
+    <string name="download_button_text">Download</string>
 </resources>

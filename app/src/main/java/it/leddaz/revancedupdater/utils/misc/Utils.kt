@@ -8,11 +8,11 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import it.leddaz.revancedupdater.BuildConfig
 import it.leddaz.revancedupdater.MainActivity
 import it.leddaz.revancedupdater.R
@@ -67,20 +67,14 @@ object Utils {
      * @property updateStatusTextView the TextView with the app update status
      * @property button the app's install/update button
      */
-    @Suppress("DEPRECATION")
     fun getAppVersion(
         packageName: String, context: Context, installedTextView: TextView,
         installedVersion: Version, updateStatusTextView: TextView,
-        button: FloatingActionButton
+        button: Button
     ) {
         val minSdk: Int
         val minVer: String
         when (packageName) {
-            "com.mgoogle.android.gms" -> {
-                minSdk = 23
-                minVer = "6.0"
-            }
-
             "app.revanced.android.youtube" -> {
                 minSdk = 26
                 minVer = "8.0"
@@ -133,7 +127,7 @@ object Utils {
     fun compareAppVersion(
         hashCheck: Boolean, packageName: String, installedVersion: Version,
         latestVersion: Version, updateStatusTextView: TextView,
-        button: FloatingActionButton, context: Context
+        button: Button, context: Context
     ) {
         if (installedVersion.compareTo(latestVersion) == -1) {
             updateStatusTextView.text = context.getString(R.string.update_available)
@@ -162,10 +156,9 @@ object Utils {
      * @property context the activity's context
      * @property button the app's install/update button
      */
-    @Suppress("DEPRECATION")
     private fun compareHashes(
         latestHash: String, updateStatusTextView: TextView, packageName: String,
-        context: Context, button: FloatingActionButton
+        context: Context, button: Button
     ) {
         val pInfo: PackageInfo = context.packageManager.getPackageInfo(packageName, 0)
         val file = File(pInfo.applicationInfo.sourceDir)

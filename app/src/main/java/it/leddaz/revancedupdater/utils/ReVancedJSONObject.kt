@@ -1,4 +1,4 @@
-package it.leddaz.revancedupdater.utils.jsonobjects
+package it.leddaz.revancedupdater.utils
 
 import com.google.gson.annotations.SerializedName
 
@@ -12,8 +12,8 @@ data class ReVancedJSONObject(
     @SerializedName("latestReVancedHash")
     val latestReVancedHash: String,
 
-    @SerializedName("latestMicroGVersion")
-    val latestMicroGVersion: String,
+    @SerializedName("latestAppVersion")
+    val latestUpdaterVersion: String,
 
     @SerializedName("latestReVancedDate")
     val latestReVancedDate: String,
