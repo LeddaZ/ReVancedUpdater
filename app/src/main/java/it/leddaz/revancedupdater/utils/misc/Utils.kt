@@ -81,8 +81,8 @@ object Utils {
             }
 
             else -> {
-                minSdk = 21
-                minVer = "5.0"
+                minSdk = 24
+                minVer = "7.0"
             }
         }
         try {
