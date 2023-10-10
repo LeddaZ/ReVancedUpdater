@@ -1,7 +1,7 @@
 package it.leddaz.revancedupdater.utils.misc
 
 import android.util.Log
-import it.leddaz.revancedupdater.utils.misc.Utils.LOG_TAG
+import it.leddaz.revancedupdater.utils.misc.CommonMethods.LOG_TAG
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader

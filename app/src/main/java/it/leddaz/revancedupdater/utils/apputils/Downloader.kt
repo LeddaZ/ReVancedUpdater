@@ -6,7 +6,7 @@ import android.net.Uri
 import android.util.Log
 import android.widget.Toast
 import it.leddaz.revancedupdater.R
-import it.leddaz.revancedupdater.utils.misc.Utils.LOG_TAG
+import it.leddaz.revancedupdater.utils.misc.CommonMethods.LOG_TAG
 import java.io.File
 
 /**

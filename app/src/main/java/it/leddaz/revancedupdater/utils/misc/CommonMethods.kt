@@ -27,7 +27,7 @@ import java.io.FileInputStream
  * Common methods used in multiple occasions.
  * @author Leonardo Ledda (LeddaZ)
  */
-object Utils {
+object CommonMethods {
 
     // Constants
     const val APP_VERSION = BuildConfig.VERSION_NAME

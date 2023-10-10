@@ -21,12 +21,12 @@ import it.leddaz.revancedupdater.dialogs.AboutDialog
 import it.leddaz.revancedupdater.dialogs.MicroGDialog
 import it.leddaz.revancedupdater.utils.ReVancedJSONObject
 import it.leddaz.revancedupdater.utils.misc.ArchDetector
-import it.leddaz.revancedupdater.utils.misc.Utils
-import it.leddaz.revancedupdater.utils.misc.Utils.LOG_TAG
-import it.leddaz.revancedupdater.utils.misc.Utils.compareAppVersion
-import it.leddaz.revancedupdater.utils.misc.Utils.dlAndInstall
-import it.leddaz.revancedupdater.utils.misc.Utils.getAppVersion
-import it.leddaz.revancedupdater.utils.misc.Utils.openLink
+import it.leddaz.revancedupdater.utils.misc.CommonMethods
+import it.leddaz.revancedupdater.utils.misc.CommonMethods.LOG_TAG
+import it.leddaz.revancedupdater.utils.misc.CommonMethods.compareAppVersion
+import it.leddaz.revancedupdater.utils.misc.CommonMethods.dlAndInstall
+import it.leddaz.revancedupdater.utils.misc.CommonMethods.getAppVersion
+import it.leddaz.revancedupdater.utils.misc.CommonMethods.openLink
 import it.leddaz.revancedupdater.utils.misc.Version
 import it.leddaz.revancedupdater.utils.misc.VolleyCallBack
 import java.io.File
@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
         val updaterCard = findViewById<MaterialCardView>(R.id.updater_info_card)
         updaterCard.setOnLongClickListener {
             openLink(
-                "https://github.com/LeddaZ/ReVancedUpdater/releases/tag/${Utils.APP_VERSION}", this
+                "https://github.com/LeddaZ/ReVancedUpdater/releases/tag/${CommonMethods.APP_VERSION}", this
             )
             true
         }

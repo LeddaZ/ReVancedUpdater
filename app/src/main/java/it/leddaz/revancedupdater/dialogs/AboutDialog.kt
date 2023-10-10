@@ -6,7 +6,7 @@ import androidx.fragment.app.DialogFragment
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import it.leddaz.revancedupdater.R
-import it.leddaz.revancedupdater.utils.misc.Utils.openLink
+import it.leddaz.revancedupdater.utils.misc.CommonMethods.openLink
 
 /**
  * Dialog that shows when the About button is pressed.
