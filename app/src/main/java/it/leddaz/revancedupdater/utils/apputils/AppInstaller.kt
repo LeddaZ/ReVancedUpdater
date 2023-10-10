@@ -28,24 +28,13 @@ class AppInstaller() {
                     BuildConfig.APPLICATION_ID + ".provider",
                     File(destination)
                 )
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    val install = Intent(Intent.ACTION_VIEW)
-                    install.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                    install.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    install.putExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, true)
-                    install.data = contentUri
-                    context.startActivity(install)
-                    context.unregisterReceiver(this)
-                } else {
-                    val install = Intent(Intent.ACTION_VIEW)
-                    install.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    install.setDataAndType(
-                        contentUri,
-                        "\"application/vnd.android.package-archive\""
-                    )
-                    context.startActivity(install)
-                    context.unregisterReceiver(this)
-                }
+                val install = Intent(Intent.ACTION_VIEW)
+                install.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                install.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                install.putExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, true)
+                install.data = contentUri
+                context.startActivity(install)
+                context.unregisterReceiver(this)
             }
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
