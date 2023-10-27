@@ -259,19 +259,16 @@ class MainActivity : AppCompatActivity() {
         updateStatusTextView: TextView, button: Button
     ) {
         try {
-            if (packageName == "app.revanced.android.youtube") {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    updateStatusTextView.text =
-                        getString(R.string.old_android_version)
-                    button.isEnabled = false
-                }
-            } else {
-                val pInfo: PackageInfo =
-                    packageManager.getPackageInfo(packageName, 0)
-                installedVersion.version = pInfo.versionName
-                installedTextView.text =
-                    getString(R.string.installed_app_version, installedVersion.version)
+            if (packageName == "app.revanced.android.youtube" && Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                updateStatusTextView.text =
+                    getString(R.string.old_android_version)
+                button.isEnabled = false
             }
+            val pInfo: PackageInfo =
+                packageManager.getPackageInfo(packageName, 0)
+            installedVersion.version = pInfo.versionName
+            installedTextView.text =
+                getString(R.string.installed_app_version, installedVersion.version)
         } catch (e: PackageManager.NameNotFoundException) {
             installedTextView.text =
                 getString(R.string.installed_app_version, getString(R.string.none))
