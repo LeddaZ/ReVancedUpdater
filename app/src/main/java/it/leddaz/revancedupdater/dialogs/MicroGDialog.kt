@@ -7,7 +7,7 @@ import com.google.android.material.color.DynamicColors
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import it.leddaz.revancedupdater.R
 import it.leddaz.revancedupdater.microGDownloadUrl
-import it.leddaz.revancedupdater.utils.misc.CommonMethods.dlAndInstall
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.dlAndInstall
 
 
 /**

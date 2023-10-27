@@ -1,12 +1,15 @@
 package it.leddaz.revancedupdater
 
 import android.content.Context
+import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request.Method.GET
 import com.android.volley.toolbox.StringRequest
@@ -20,16 +23,16 @@ import com.google.gson.reflect.TypeToken
 import it.leddaz.revancedupdater.dialogs.AboutDialog
 import it.leddaz.revancedupdater.dialogs.MicroGDialog
 import it.leddaz.revancedupdater.utils.ReVancedJSONObject
-import it.leddaz.revancedupdater.utils.misc.ArchDetector
-import it.leddaz.revancedupdater.utils.misc.CommonMethods
-import it.leddaz.revancedupdater.utils.misc.CommonMethods.LOG_TAG
-import it.leddaz.revancedupdater.utils.misc.CommonMethods.compareAppVersion
-import it.leddaz.revancedupdater.utils.misc.CommonMethods.dlAndInstall
-import it.leddaz.revancedupdater.utils.misc.CommonMethods.getAppVersion
-import it.leddaz.revancedupdater.utils.misc.CommonMethods.openLink
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.APP_VERSION
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.LOG_TAG
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.dlAndInstall
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.openLink
 import it.leddaz.revancedupdater.utils.misc.Version
 import it.leddaz.revancedupdater.utils.misc.VolleyCallBack
+import org.apache.commons.codec.binary.Hex
+import org.apache.commons.codec.digest.DigestUtils
 import java.io.File
+import java.io.FileInputStream
 
 
 private var installedReVancedVersion = Version("99.99")
@@ -75,18 +78,13 @@ class MainActivity : AppCompatActivity() {
 
         val reVancedMusicCard = findViewById<MaterialCardView>(R.id.music_info_card)
         reVancedMusicCard.setOnLongClickListener {
-            openLink(
-                "https://github.com/LeddaZ/revanced-repo/blob/main/changelogs/music.md",
-                this
-            )
+            openLink("https://github.com/LeddaZ/revanced-repo/blob/main/changelogs/music.md", this)
             true
         }
 
         val updaterCard = findViewById<MaterialCardView>(R.id.updater_info_card)
         updaterCard.setOnLongClickListener {
-            openLink(
-                "https://github.com/LeddaZ/ReVancedUpdater/releases/tag/${CommonMethods.APP_VERSION}", this
-            )
+            openLink("https://github.com/LeddaZ/ReVancedUpdater/releases/tag/${APP_VERSION}", this)
             true
         }
 
@@ -129,14 +127,14 @@ class MainActivity : AppCompatActivity() {
         // Installed versions
         if (isMicroGInstalled()) {
             getAppVersion(
-                "app.revanced.android.youtube", this,
+                "app.revanced.android.youtube",
                 findViewById(R.id.installed_revanced_version),
                 installedReVancedVersion, findViewById(R.id.revanced_update_status),
                 findViewById(R.id.revanced_download_button)
             )
 
             getAppVersion(
-                "app.revanced.android.apps.youtube.music", this,
+                "app.revanced.android.apps.youtube.music",
                 findViewById(R.id.installed_music_version),
                 installedReVancedMusicVersion, findViewById(R.id.music_update_status),
                 findViewById(R.id.music_download_button)
@@ -147,7 +145,6 @@ class MainActivity : AppCompatActivity() {
         }
         getAppVersion(
             "it.leddaz.revancedupdater",
-            this,
             findViewById(R.id.installed_updater_version),
             installedUpdaterVersion,
             findViewById(R.id.updater_update_status),
@@ -172,16 +169,16 @@ class MainActivity : AppCompatActivity() {
             updaterDownloadUrl = "https://github.com/LeddaZ/ReVancedUpdater/releases/download/" +
                     reply.latestUpdaterVersion + "/app-release.apk"
             downloadUrl = urlPrefix + reply.latestReVancedDate + "-yt/revanced-nonroot-signed.apk"
-            val arch: String = ArchDetector.getArch()
-            Log.i(LOG_TAG, "OS architecture: $arch")
-            when (arch) {
-                "arm" -> latestReVancedMusicHash = reply.latestReVancedMusicHashArm
-                "arm64" -> latestReVancedMusicHash = reply.latestReVancedMusicHashArm64
+            val preferredABI: String = Build.SUPPORTED_ABIS[0]
+            Log.i(LOG_TAG, "Preferred ABI: $preferredABI")
+            when (preferredABI) {
+                "armeabi-v7a" -> latestReVancedMusicHash = reply.latestReVancedMusicHashArm
+                "arm64-v8a" -> latestReVancedMusicHash = reply.latestReVancedMusicHashArm64
                 "x86" -> latestReVancedMusicHash = reply.latestReVancedMusicHashX86
                 "x86_64" -> latestReVancedMusicHash = reply.latestReVancedMusicHashX64
             }
             musicDownloadUrl = urlPrefix + reply.latestReVancedMusicDate +
-                    "-ytm/revanced-music-nonroot-$arch-signed.apk"
+                    "-ytm/revanced-music-nonroot-$preferredABI-signed.apk"
             callback.onSuccess()
         }, {})
 
@@ -199,14 +196,14 @@ class MainActivity : AppCompatActivity() {
                 compareAppVersion(
                     true, "app.revanced.android.youtube", installedReVancedVersion,
                     latestReVancedVersion, findViewById(R.id.revanced_update_status),
-                    findViewById(R.id.revanced_download_button), this
+                    findViewById(R.id.revanced_download_button)
                 )
             }
 
             compareAppVersion(
                 true, "app.revanced.android.apps.youtube.music", installedReVancedMusicVersion,
                 latestReVancedMusicVersion, findViewById(R.id.music_update_status),
-                findViewById(R.id.music_download_button), this
+                findViewById(R.id.music_download_button)
             )
         } else {
             val reVancedTextView = findViewById<TextView>(R.id.revanced_update_status)
@@ -217,7 +214,7 @@ class MainActivity : AppCompatActivity() {
         compareAppVersion(
             false, "it.leddaz.revancedupdater", installedUpdaterVersion,
             latestUpdaterVersion, findViewById(R.id.updater_update_status),
-            findViewById(R.id.updater_download_button), this
+            findViewById(R.id.updater_download_button)
         )
     }
 
@@ -249,15 +246,109 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
+     * Gets the installed and latest versions of YouTube Revanced
+     * and ReVanced Music.
+     * @property packageName package name
+     * @property installedTextView the TextView with the currently installed version
+     * @property installedVersion the installed app's version
+     * @property updateStatusTextView the TextView with the app update status
+     * @property button the app's install/update button
+     */
+    private fun getAppVersion(
+        packageName: String, installedTextView: TextView, installedVersion: Version,
+        updateStatusTextView: TextView, button: Button
+    ) {
+        try {
+            if (packageName == "app.revanced.android.youtube") {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    updateStatusTextView.text =
+                        getString(R.string.old_android_version)
+                    button.isEnabled = false
+                }
+            } else {
+                val pInfo: PackageInfo =
+                    packageManager.getPackageInfo(packageName, 0)
+                installedVersion.version = pInfo.versionName
+                installedTextView.text =
+                    getString(R.string.installed_app_version, installedVersion.version)
+            }
+        } catch (e: PackageManager.NameNotFoundException) {
+            installedTextView.text =
+                getString(R.string.installed_app_version, getString(R.string.none))
+            installedVersion.version = "99.99"
+            button.isEnabled = true
+        } catch (e: IllegalArgumentException) {
+            installedTextView.text =
+                getString(R.string.installed_app_version, getString(R.string.invalid))
+            installedVersion.version = "99.99"
+            Toast.makeText(this, R.string.invalid_version_detected, Toast.LENGTH_LONG).show()
+            Log.e(LOG_TAG, e.printStackTrace().toString())
+        }
+    }
+
+    /**
+     * Compares versions.
+     * @property hashCheck true if the hash should be checked
+     * @property packageName package name
+     * @property installedVersion the installed app's version
+     * @property latestVersion the app's latest version
+     * @property updateStatusTextView the TextView with the app update status
+     * @property button the app's install/update button
+     */
+    private fun compareAppVersion(
+        hashCheck: Boolean, packageName: String, installedVersion: Version,
+        latestVersion: Version, updateStatusTextView: TextView,
+        button: Button
+    ) {
+        if (installedVersion.compareTo(latestVersion) == -1) {
+            updateStatusTextView.text = getString(R.string.update_available)
+            button.isEnabled = true
+        } else if (installedVersion.compareTo(latestVersion) == 0) {
+            if (hashCheck) {
+                var latestHash = getLatestReVancedHash()
+                if (packageName == "app.revanced.android.apps.youtube.music")
+                    latestHash = getLatestReVancedMusicHash()
+                compareHashes(latestHash, updateStatusTextView, packageName, button)
+            } else {
+                updateStatusTextView.text = getString(R.string.no_update_available)
+                button.isEnabled = false
+            }
+        } else {
+            updateStatusTextView.text = getString(R.string.app_not_installed)
+            button.isEnabled = true
+        }
+    }
+
+    /**
+     * Compares hashes.
+     * @property latestHash the latest app version's hash
+     * @property updateStatusTextView the TextView with the app update status
+     * @property packageName package name
+     * @property button the app's install/update button
+     */
+    private fun compareHashes(
+        latestHash: String, updateStatusTextView: TextView, packageName: String,
+        button: Button
+    ) {
+        val pInfo: PackageInfo = packageManager.getPackageInfo(packageName, 0)
+        val file = File(pInfo.applicationInfo.sourceDir)
+        val installedAppHash = String(Hex.encodeHex(DigestUtils.sha256(FileInputStream(file))))
+        if (installedAppHash == latestHash) {
+            updateStatusTextView.text = getString(R.string.no_update_available)
+            button.isEnabled = false
+        } else {
+            updateStatusTextView.text = getString(R.string.update_available)
+            button.isEnabled = true
+        }
+    }
+
+    /**
      * Refreshes the versions and deletes existing APKs.
      * @param context the app's context.
      */
     private fun refresh(context: Context) {
         val filenames = arrayOf(
-            "revanced-music-nonroot-arm-signed.apk",
-            "revanced-music-nonroot-arm64-signed.apk",
-            "revanced-music-nonroot-x86-signed.apk",
-            "revanced-music-nonroot-x86_64-signed.apk",
+            "revanced-music-nonroot-signed.apk",
             "revanced-nonroot-signed.apk",
             "app-release.apk"
         )
