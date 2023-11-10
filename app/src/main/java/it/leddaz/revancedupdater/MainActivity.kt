@@ -22,7 +22,8 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import it.leddaz.revancedupdater.dialogs.AboutDialog
 import it.leddaz.revancedupdater.dialogs.MicroGDialog
-import it.leddaz.revancedupdater.utils.ReVancedJSONObject
+import it.leddaz.revancedupdater.utils.json.ReVancedJSONObject
+import it.leddaz.revancedupdater.utils.json.UpdaterJSONObject
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.APP_VERSION
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.LOG_TAG
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.dlAndInstall
@@ -153,37 +154,48 @@ class MainActivity : AppCompatActivity() {
 
         // Latest versions and ReVanced hashes
         val queue = Volley.newRequestQueue(this)
-        val url = "https://raw.githubusercontent.com/LeddaZ/revanced-repo/main/updater.json"
-        var reply: ReVancedJSONObject
+        val reVancedJSONUrl =
+            "https://raw.githubusercontent.com/LeddaZ/revanced-repo/main/updater.json"
+        val updaterAPIUrl = "https://api.github.com/repos/LeddaZ/ReVancedUpdater/releases/latest"
+        var reVancedReply: ReVancedJSONObject
+        var updaterReply: UpdaterJSONObject
 
         val urlPrefix = "https://github.com/LeddaZ/revanced-repo/releases/download/"
 
-        // Request a string response from the provided URL.
-        val stringRequest = StringRequest(GET, url, { response ->
-            reply = Gson().fromJson(response, object : TypeToken<ReVancedJSONObject>() {}.type)
-            latestReVancedVersion = Version(reply.latestReVancedVersion)
-            latestReVancedHash = reply.latestReVancedHash
-            latestReVancedMusicVersion = Version(reply.latestReVancedMusicVersion)
-            latestUpdaterVersion = Version(reply.latestUpdaterVersion)
-            microGDownloadUrl = urlPrefix + reply.latestReVancedDate + "-yt/vanced-microG.apk"
-            updaterDownloadUrl = "https://github.com/LeddaZ/ReVancedUpdater/releases/download/" +
-                    reply.latestUpdaterVersion + "/app-release.apk"
-            downloadUrl = urlPrefix + reply.latestReVancedDate + "-yt/revanced-nonroot-signed.apk"
+        val reVancedRequest = StringRequest(GET, reVancedJSONUrl, { response ->
+            reVancedReply =
+                Gson().fromJson(response, object : TypeToken<ReVancedJSONObject>() {}.type)
+            latestReVancedVersion = Version(reVancedReply.latestReVancedVersion)
+            latestReVancedHash = reVancedReply.latestReVancedHash
+            latestReVancedMusicVersion = Version(reVancedReply.latestReVancedMusicVersion)
+            microGDownloadUrl =
+                urlPrefix + reVancedReply.latestReVancedDate + "-yt/vanced-microG.apk"
+            downloadUrl =
+                urlPrefix + reVancedReply.latestReVancedDate + "-yt/revanced-nonroot-signed.apk"
             val preferredABI: String = Build.SUPPORTED_ABIS[0]
             Log.i(LOG_TAG, "Preferred ABI: $preferredABI")
             when (preferredABI) {
-                "armeabi-v7a" -> latestReVancedMusicHash = reply.latestReVancedMusicHashArm
-                "arm64-v8a" -> latestReVancedMusicHash = reply.latestReVancedMusicHashArm64
-                "x86" -> latestReVancedMusicHash = reply.latestReVancedMusicHashX86
-                "x86_64" -> latestReVancedMusicHash = reply.latestReVancedMusicHashX64
+                "armeabi-v7a" -> latestReVancedMusicHash = reVancedReply.latestReVancedMusicHashArm
+                "arm64-v8a" -> latestReVancedMusicHash = reVancedReply.latestReVancedMusicHashArm64
+                "x86" -> latestReVancedMusicHash = reVancedReply.latestReVancedMusicHashX86
+                "x86_64" -> latestReVancedMusicHash = reVancedReply.latestReVancedMusicHashX64
             }
-            musicDownloadUrl = urlPrefix + reply.latestReVancedMusicDate +
+            musicDownloadUrl = urlPrefix + reVancedReply.latestReVancedMusicDate +
                     "-ytm/revanced-music-nonroot-$preferredABI-signed.apk"
             callback.onSuccess()
         }, {})
 
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest)
+        val updaterRequest = StringRequest(GET, updaterAPIUrl, { response ->
+            updaterReply =
+                Gson().fromJson(response, object : TypeToken<UpdaterJSONObject>() {}.type)
+            latestUpdaterVersion = Version(updaterReply.latestUpdaterVersion)
+            updaterDownloadUrl = "https://github.com/LeddaZ/ReVancedUpdater/releases/download/" +
+                    latestUpdaterVersion + "/app-release.apk"
+            callback.onSuccess()
+        }, {})
+
+        queue.add(reVancedRequest)
+        queue.add(updaterRequest)
     }
 
 
@@ -266,7 +278,11 @@ class MainActivity : AppCompatActivity() {
             }
             val pInfo: PackageInfo =
                 packageManager.getPackageInfo(packageName, 0)
-            installedVersion.version = pInfo.versionName
+            if (packageName == "it.leddaz.revancedupdater")
+                installedVersion.version =
+                    pInfo.versionName.substring(0, pInfo.versionName.indexOf(' '))
+            else
+                installedVersion.version = pInfo.versionName
             installedTextView.text =
                 getString(R.string.installed_app_version, installedVersion.version)
         } catch (e: PackageManager.NameNotFoundException) {
