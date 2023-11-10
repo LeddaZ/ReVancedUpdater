@@ -12,6 +12,15 @@ fun getCommitCount(): Int {
     return Integer.parseInt(String(stdout.toByteArray()).trim())
 }
 
+fun getCommitHash(): String {
+    val stdout = org.apache.commons.io.output.ByteArrayOutputStream()
+    project.exec {
+        commandLine = "git rev-parse --short HEAD".split(" ")
+        standardOutput = stdout
+    }
+    return String(stdout.toByteArray()).trim()
+}
+
 android {
     namespace = "it.leddaz.revancedupdater"
     compileSdk = 34
@@ -21,7 +30,7 @@ android {
         minSdk = 24
         targetSdk = 34
         versionCode = getCommitCount()
-        versionName = "3.1.0"
+        versionName = "3.1.0 (" + getCommitHash() + ")"
         resourceConfigurations += listOf("en", "it")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
