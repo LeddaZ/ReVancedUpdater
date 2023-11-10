@@ -30,7 +30,7 @@ android {
         minSdk = 24
         targetSdk = 34
         versionCode = getCommitCount()
-        versionName = "3.1.0 (" + getCommitHash() + ")"
+        versionName = "3.2.0 (" + getCommitHash() + ")"
         resourceConfigurations += listOf("en", "it")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
