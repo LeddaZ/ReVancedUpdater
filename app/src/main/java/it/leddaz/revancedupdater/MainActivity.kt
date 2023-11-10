@@ -207,14 +207,14 @@ class MainActivity : AppCompatActivity() {
         if (isMicroGInstalled()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 compareAppVersion(
-                    true, "app.revanced.android.youtube", installedReVancedVersion,
+                    "app.revanced.android.youtube", installedReVancedVersion,
                     latestReVancedVersion, findViewById(R.id.revanced_update_status),
                     findViewById(R.id.revanced_download_button)
                 )
             }
 
             compareAppVersion(
-                true, "app.revanced.android.apps.youtube.music", installedReVancedMusicVersion,
+                "app.revanced.android.apps.youtube.music", installedReVancedMusicVersion,
                 latestReVancedMusicVersion, findViewById(R.id.music_update_status),
                 findViewById(R.id.music_download_button)
             )
@@ -225,7 +225,7 @@ class MainActivity : AppCompatActivity() {
             reVancedMusicTextView.text = getString(R.string.microg_dialog_title)
         }
         compareAppVersion(
-            false, BuildConfig.APPLICATION_ID, installedUpdaterVersion,
+            BuildConfig.APPLICATION_ID, installedUpdaterVersion,
             latestUpdaterVersion, findViewById(R.id.updater_update_status),
             findViewById(R.id.updater_download_button)
         )
@@ -302,7 +302,6 @@ class MainActivity : AppCompatActivity() {
 
     /**
      * Compares versions.
-     * @property hashCheck true if the hash should be checked
      * @property packageName package name
      * @property installedVersion the installed app's version
      * @property latestVersion the app's latest version
@@ -310,7 +309,7 @@ class MainActivity : AppCompatActivity() {
      * @property button the app's install/update button
      */
     private fun compareAppVersion(
-        hashCheck: Boolean, packageName: String, installedVersion: Version,
+        packageName: String, installedVersion: Version,
         latestVersion: Version, updateStatusTextView: TextView,
         button: Button
     ) {
@@ -318,7 +317,7 @@ class MainActivity : AppCompatActivity() {
             updateStatusTextView.text = getString(R.string.update_available)
             button.isEnabled = true
         } else if (installedVersion.compareTo(latestVersion) == 0) {
-            if (hashCheck) {
+            if (!packageName.startsWith("it.leddaz.revancedupdater")) {
                 var latestHash = getLatestReVancedHash()
                 if (packageName == "app.revanced.android.apps.youtube.music")
                     latestHash = getLatestReVancedMusicHash()
