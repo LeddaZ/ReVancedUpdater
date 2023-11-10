@@ -25,6 +25,7 @@ import it.leddaz.revancedupdater.dialogs.MicroGDialog
 import it.leddaz.revancedupdater.utils.json.ReVancedJSONObject
 import it.leddaz.revancedupdater.utils.json.UpdaterJSONObject
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.APP_VERSION
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.IS_DEBUG
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.LOG_TAG
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.dlAndInstall
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.openLink
@@ -145,7 +146,7 @@ class MainActivity : AppCompatActivity() {
             dialogFragment.show(supportFragmentManager, "MicroGDialog")
         }
         getAppVersion(
-            "it.leddaz.revancedupdater",
+            BuildConfig.APPLICATION_ID,
             findViewById(R.id.installed_updater_version),
             installedUpdaterVersion,
             findViewById(R.id.updater_update_status),
@@ -224,7 +225,7 @@ class MainActivity : AppCompatActivity() {
             reVancedMusicTextView.text = getString(R.string.microg_dialog_title)
         }
         compareAppVersion(
-            false, "it.leddaz.revancedupdater", installedUpdaterVersion,
+            false, BuildConfig.APPLICATION_ID, installedUpdaterVersion,
             latestUpdaterVersion, findViewById(R.id.updater_update_status),
             findViewById(R.id.updater_download_button)
         )
@@ -278,7 +279,7 @@ class MainActivity : AppCompatActivity() {
             }
             val pInfo: PackageInfo =
                 packageManager.getPackageInfo(packageName, 0)
-            if (packageName == "it.leddaz.revancedupdater")
+            if (packageName.startsWith("it.leddaz.revancedupdater"))
                 installedVersion.version =
                     pInfo.versionName.substring(0, pInfo.versionName.indexOf(' '))
             else
@@ -323,8 +324,13 @@ class MainActivity : AppCompatActivity() {
                     latestHash = getLatestReVancedMusicHash()
                 compareHashes(latestHash, updateStatusTextView, packageName, button)
             } else {
-                updateStatusTextView.text = getString(R.string.no_update_available)
-                button.isEnabled = false
+                if (IS_DEBUG) {
+                    updateStatusTextView.text = getString(R.string.debug_build)
+                    button.isEnabled = false
+                } else {
+                    updateStatusTextView.text = getString(R.string.no_update_available)
+                    button.isEnabled = false
+                }
             }
         } else {
             updateStatusTextView.text = getString(R.string.app_not_installed)
