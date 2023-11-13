@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Gets the installed and latest versions of YouTube Revanced,
+     * Gets the installed and latest versions of YouTube ReVanced,
      * ReVanced Music and Vanced microG.
      * @property callback callback used to detect if the download was
      *                    successful
