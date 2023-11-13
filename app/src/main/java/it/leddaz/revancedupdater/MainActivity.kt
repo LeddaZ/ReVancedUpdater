@@ -17,7 +17,6 @@ import com.android.volley.toolbox.Volley
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.color.DynamicColors
-import com.google.android.material.elevation.SurfaceColors
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import it.leddaz.revancedupdater.dialogs.AboutDialog
@@ -64,8 +63,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DynamicColors.applyToActivityIfAvailable(this)
-        window.navigationBarColor = SurfaceColors.SURFACE_0.getColor(this)
-        window.statusBarColor = SurfaceColors.SURFACE_0.getColor(this)
         setContentView(R.layout.activity_main)
         refresh(this)
 
