@@ -19,7 +19,6 @@ object CommonStuff {
     // Common variables
     const val APP_VERSION = BuildConfig.VERSION_NAME
     const val LOG_TAG = "ReVanced Updater"
-    val IS_DEBUG = BuildConfig.DEBUG
 
     /**
      * Opens a link using the default browser.

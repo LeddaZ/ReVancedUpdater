@@ -24,7 +24,6 @@ import it.leddaz.revancedupdater.dialogs.MicroGDialog
 import it.leddaz.revancedupdater.utils.json.ReVancedJSONObject
 import it.leddaz.revancedupdater.utils.json.UpdaterJSONObject
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.APP_VERSION
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.IS_DEBUG
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.LOG_TAG
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.dlAndInstall
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.openLink
@@ -310,27 +309,22 @@ class MainActivity : AppCompatActivity() {
         latestVersion: Version, updateStatusTextView: TextView,
         button: Button
     ) {
-        if (installedVersion.compareTo(latestVersion) == -1) {
-            updateStatusTextView.text = getString(R.string.update_available)
-            button.isEnabled = true
-        } else if (installedVersion.compareTo(latestVersion) == 0) {
-            if (!packageName.startsWith("it.leddaz.revancedupdater")) {
+        if (packageName == "it.leddaz.revancedupdater.dev") {
+            updateStatusTextView.text = getString(R.string.debug_build)
+            button.isEnabled = false
+        } else {
+            if (installedVersion.compareTo(latestVersion) == -1) {
+                updateStatusTextView.text = getString(R.string.update_available)
+                button.isEnabled = true
+            } else if (installedVersion.compareTo(latestVersion) == 0) {
                 var latestHash = getLatestReVancedHash()
                 if (packageName == "app.revanced.android.apps.youtube.music")
                     latestHash = getLatestReVancedMusicHash()
                 compareHashes(latestHash, updateStatusTextView, packageName, button)
             } else {
-                if (IS_DEBUG) {
-                    updateStatusTextView.text = getString(R.string.debug_build)
-                    button.isEnabled = false
-                } else {
-                    updateStatusTextView.text = getString(R.string.no_update_available)
-                    button.isEnabled = false
-                }
+                updateStatusTextView.text = getString(R.string.app_not_installed)
+                button.isEnabled = true
             }
-        } else {
-            updateStatusTextView.text = getString(R.string.app_not_installed)
-            button.isEnabled = true
         }
     }
 
@@ -376,7 +370,8 @@ class MainActivity : AppCompatActivity() {
         }
         getVersions(object : VolleyCallBack {
             override fun onSuccess() {
-                val latestReVancedTextView: TextView = findViewById(R.id.latest_revanced_version)
+                val latestReVancedTextView: TextView =
+                    findViewById(R.id.latest_revanced_version)
                 latestReVancedTextView.text =
                     getString(R.string.latest_app_version, latestReVancedVersion)
 
