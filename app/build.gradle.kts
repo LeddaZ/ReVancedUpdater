@@ -31,7 +31,6 @@ android {
         targetSdk = 34
         versionCode = getCommitCount()
         versionName = "3.2.1 (" + getCommitHash() + ")"
-        resourceConfigurations += listOf("en", "it")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -58,9 +57,14 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
     buildFeatures {
         viewBinding = true
         buildConfig = true
+    }
+
+    androidResources {
+        generateLocaleConfig = true
     }
 }
 
