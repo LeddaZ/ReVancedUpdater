@@ -248,6 +248,7 @@
                 android:paddingRight="10sp"
                 android:paddingBottom="20dp"
                 android:text="@string/hold_app_card"
+                android:textAlignment="center"
                 android:textSize="18sp" />
 
         </LinearLayout>
