@@ -317,10 +317,15 @@ class MainActivity : AppCompatActivity() {
                 updateStatusTextView.text = getString(R.string.update_available)
                 button.isEnabled = true
             } else if (installedVersion.compareTo(latestVersion) == 0) {
-                var latestHash = getLatestReVancedHash()
-                if (packageName == "app.revanced.android.apps.youtube.music")
-                    latestHash = getLatestReVancedMusicHash()
-                compareHashes(latestHash, updateStatusTextView, packageName, button)
+                if (!packageName.startsWith("it.leddaz.revancedupdater")) {
+                    var latestHash = getLatestReVancedHash()
+                    if (packageName == "app.revanced.android.apps.youtube.music")
+                        latestHash = getLatestReVancedMusicHash()
+                    compareHashes(latestHash, updateStatusTextView, packageName, button)
+                } else {
+                    updateStatusTextView.text = getString(R.string.no_update_available)
+                    button.isEnabled = false
+                }
             } else {
                 updateStatusTextView.text = getString(R.string.app_not_installed)
                 button.isEnabled = true
