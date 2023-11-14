@@ -19,13 +19,13 @@ jobs:
           java-version: 17
 
       - name: Build with Gradle
-        run: ./gradlew assembleRelease
+        run: ./gradlew assembleDebug
 
       - uses: ilharp/sign-android-release@v1
         name: Sign APK
         id: sign_app
         with:
-          releaseDir: app/build/outputs/apk/release
+          releaseDir: app/build/outputs/apk/debug
           signingKey: '${{ secrets.SIGNING_KEY }}'
           keyAlias: '${{ secrets.ALIAS }}'
           keyStorePassword: '${{ secrets.KEY_STORE_PASSWORD }}'
@@ -34,7 +34,7 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: app-release.apk
+          name: app-debug-signed.apk
           path: ${{steps.sign_app.outputs.signedFile}}
 
       - uses: marvinpinto/action-automatic-releases@latest

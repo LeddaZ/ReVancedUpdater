@@ -213,7 +213,7 @@ class MainActivity : AppCompatActivity() {
                 Gson().fromJson(response, object : TypeToken<CommitJSONObject>() {}.type)
             latestUpdaterCommit = commitReply.latestUpdaterCommit.substring(0, 7)
             updaterDownloadUrl =
-                "https://github.com/LeddaZ/ReVancedUpdater/releases/download/dev/app-release.apk"
+                "https://github.com/LeddaZ/ReVancedUpdater/releases/download/dev/app-debug-signed.apk"
             callback.onSuccess()
         }, {})
 
