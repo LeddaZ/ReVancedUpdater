@@ -21,9 +21,11 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import it.leddaz.revancedupdater.dialogs.AboutDialog
 import it.leddaz.revancedupdater.dialogs.MicroGDialog
+import it.leddaz.revancedupdater.utils.json.CommitJSONObject
 import it.leddaz.revancedupdater.utils.json.ReVancedJSONObject
 import it.leddaz.revancedupdater.utils.json.UpdaterJSONObject
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.APP_VERSION
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.IS_DEBUG
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.LOG_TAG
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.dlAndInstall
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.openLink
@@ -43,6 +45,7 @@ private var latestReVancedMusicVersion = Version("0.0")
 private var latestReVancedMusicHash = ""
 private var installedUpdaterVersion = Version("99.99")
 private var latestUpdaterVersion = Version("0.0")
+private var latestUpdaterCommit = ""
 private var updaterDownloadUrl = ""
 private var downloadUrl = ""
 var microGDownloadUrl = ""
@@ -81,10 +84,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         val updaterCard = findViewById<MaterialCardView>(R.id.updater_info_card)
-        updaterCard.setOnLongClickListener {
-            openLink("https://github.com/LeddaZ/ReVancedUpdater/releases/tag/${APP_VERSION}", this)
-            true
-        }
+        if (!IS_DEBUG)
+            updaterCard.setOnLongClickListener {
+                openLink(
+                    "https://github.com/LeddaZ/ReVancedUpdater/releases/tag/${APP_VERSION}",
+                    this
+                )
+                true
+            }
+        else
+            updaterCard.setOnLongClickListener {
+                openLink(
+                    "https://github.com/LeddaZ/ReVancedUpdater/releases/tag/dev",
+                    this
+                )
+                true
+            }
 
         val topAppBar = findViewById<MaterialToolbar>(R.id.topAppBar)
         topAppBar.setOnMenuItemClickListener { item ->
@@ -154,8 +169,10 @@ class MainActivity : AppCompatActivity() {
         val reVancedJSONUrl =
             "https://raw.githubusercontent.com/LeddaZ/revanced-repo/main/updater.json"
         val updaterAPIUrl = "https://api.github.com/repos/LeddaZ/ReVancedUpdater/releases/latest"
+        val updaterCommitUrl = "https://api.github.com/repos/LeddaZ/ReVancedUpdater/commits/master"
         var reVancedReply: ReVancedJSONObject
         var updaterReply: UpdaterJSONObject
+        var commitReply: CommitJSONObject
 
         val urlPrefix = "https://github.com/LeddaZ/revanced-repo/releases/download/"
 
@@ -191,8 +208,20 @@ class MainActivity : AppCompatActivity() {
             callback.onSuccess()
         }, {})
 
+        val commitRequest = StringRequest(GET, updaterCommitUrl, { response ->
+            commitReply =
+                Gson().fromJson(response, object : TypeToken<CommitJSONObject>() {}.type)
+            latestUpdaterCommit = commitReply.latestUpdaterCommit.substring(0, 7)
+            updaterDownloadUrl =
+                "https://github.com/LeddaZ/ReVancedUpdater/releases/download/dev/app-debug.apk"
+            callback.onSuccess()
+        }, {})
+
         queue.add(reVancedRequest)
-        queue.add(updaterRequest)
+        if (IS_DEBUG)
+            queue.add(commitRequest)
+        else
+            queue.add(updaterRequest)
     }
 
 
@@ -275,13 +304,21 @@ class MainActivity : AppCompatActivity() {
             }
             val pInfo: PackageInfo =
                 packageManager.getPackageInfo(packageName, 0)
-            if (packageName.startsWith("it.leddaz.revancedupdater"))
-                installedVersion.version =
-                    pInfo.versionName.substring(0, pInfo.versionName.indexOf(' '))
-            else
+            if (packageName.startsWith("it.leddaz.revancedupdater")) {
+                if (!IS_DEBUG) {
+                    installedVersion.version =
+                        APP_VERSION.substring(0, APP_VERSION.indexOf(' '))
+                    installedTextView.text =
+                        getString(R.string.installed_app_version, installedVersion.version)
+                } else {
+                    installedTextView.text =
+                        getString(R.string.installed_app_version, APP_VERSION)
+                }
+            } else {
                 installedVersion.version = pInfo.versionName
-            installedTextView.text =
-                getString(R.string.installed_app_version, installedVersion.version)
+                installedTextView.text =
+                    getString(R.string.installed_app_version, installedVersion.version)
+            }
         } catch (e: PackageManager.NameNotFoundException) {
             installedTextView.text =
                 getString(R.string.installed_app_version, getString(R.string.none))
@@ -310,8 +347,14 @@ class MainActivity : AppCompatActivity() {
         button: Button
     ) {
         if (packageName == "it.leddaz.revancedupdater.dev") {
-            updateStatusTextView.text = getString(R.string.debug_build)
-            button.isEnabled = false
+            val currentCommit = APP_VERSION.substring(7, 14)
+            if (currentCommit == latestUpdaterCommit) {
+                updateStatusTextView.text = getString(R.string.no_update_available)
+                button.isEnabled = false
+            } else {
+                updateStatusTextView.text = getString(R.string.update_available)
+                button.isEnabled = true
+            }
         } else {
             if (installedVersion.compareTo(latestVersion) == -1) {
                 updateStatusTextView.text = getString(R.string.update_available)
@@ -386,8 +429,12 @@ class MainActivity : AppCompatActivity() {
                     getString(R.string.latest_app_version, latestReVancedMusicVersion)
 
                 val latestAppTextView: TextView = findViewById(R.id.latest_updater_version)
-                latestAppTextView.text =
-                    getString(R.string.latest_app_version, latestUpdaterVersion)
+                if (!IS_DEBUG)
+                    latestAppTextView.text =
+                        getString(R.string.latest_app_version, latestUpdaterVersion)
+                else
+                    latestAppTextView.text =
+                        getString(R.string.latest_app_version, latestUpdaterCommit)
                 compareVersions()
             }
         })
