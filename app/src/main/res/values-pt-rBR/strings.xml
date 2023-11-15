@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="installed_app_version">Instalado: %1$s</string>
+    <string name="latest_app_version">Mais recente: %1$s</string>
+    <string name="update_status">Verificando atualizações…</string>
+    <string name="update_available">Atualização disponível!</string>
+    <string name="no_update_available">Nenhuma atualização disponível</string>
+    <string name="download_started">O download começou. Verifique as notificações para mais detalhes.</string>
+    <string name="app_not_installed">App não instalado</string>
+    <string name="download_error">Ocorreu um erro ao baixar. Verifique os registros para mais detalhes.</string>
+    <string name="open_github">Veja no GitHub</string>
+    <string name="about_dialog_text">O ReVanced Updater é um aplicativo feito por LeddaZ para atualizar suas compilações ReVanced.</string>
+    <string name="old_android_version">O aplicativo requer Android 8.0+.</string>
+    <string name="revanced_download_button_description">Baixar ReVanced</string>
+    <string name="bottom_bar_refresh">Recarregar</string>
+    <string name="none">nenhum</string>
+    <string name="music_download_button_description">Baixar ReVanced Music</string>
+    <string name="microg_download_button_description">Baixar microG</string>
+    <string name="updater_download_button_description">Baixar ReVanced Updater</string>
+    <string name="invalid">inválido</string>
+    <string name="invalid_version_detected">Versão inválida detectada. Desinstale os aplicativos existentes.</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="microg_dialog_title">Vanced microG não instalado</string>
+    <string name="microg_dialog_text">É necessário Vanced microG para fazer login na sua conta Google em aplicativos ReVanced. Você deseja instalá-lo agora?</string>
+    <string name="bottom_bar_about">Sobre</string>
+    <string name="about_dialog_title">Sobre este aplicativo</string>
+    <string name="download_button_text">Baixar</string>
+    <string name="debug_build">Atualização desativada nas compilações de depuração.</string>
+    <string name="hold_app_card">Segure o cartão de um app para abrir seu registro de mudanças.</string>
+</resources>

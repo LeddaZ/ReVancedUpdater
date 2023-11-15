@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="installed_app_version">Yüklendi: %1$s</string>
+    <string name="latest_app_version">En son: %1$s</string>
+    <string name="update_status">Güncellemeler kontrol ediliyor…</string>
+    <string name="update_available">Güncelleme mevcut!</string>
+    <string name="no_update_available">Güncelleme mevcut değil</string>
+    <string name="download_started">İndirme başladı. Detaylar için bildirimleri kontrol edin.</string>
+    <string name="app_not_installed">Uygulama yüklü değil</string>
+    <string name="download_error">İndirirken bir hata oluştu. Detaylar için kayıtları kontrol edin.</string>
+    <string name="open_github">GitHub\'da görüntüle</string>
+    <string name="about_dialog_text">ReVanced Updater, LeddaZ tarafından ReVanced yapılarını güncellemek için yapılmış bir uygulamadır.</string>
+    <string name="old_android_version">Uygulama Android 8.0+ gerektirir.</string>
+    <string name="revanced_download_button_description">ReVanced\'ı İndir</string>
+    <string name="bottom_bar_refresh">Yenile</string>
+    <string name="none">hiçbiri</string>
+    <string name="music_download_button_description">ReVanced Music\'i İndir</string>
+    <string name="microg_download_button_description">microG\'yi İndir</string>
+    <string name="updater_download_button_description">ReVanced Updater\'ı İndir</string>
+    <string name="invalid">Geçersiz</string>
+    <string name="invalid_version_detected">Geçersiz sürüm tespit edildi. Yüklü olan uygulamaları kaldırın.</string>
+    <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
+    <string name="microg_dialog_title">Vanced microG yüklü değil</string>
+    <string name="microg_dialog_text">Vanced microG, ReVanced uygulamalarında Google hesabınıza giriş yapmak için gereklidir. Şimdi yüklemek istiyor musunuz?</string>
+    <string name="bottom_bar_about">Hakkında</string>
+    <string name="about_dialog_title">Uygulama hakkında</string>
+    <string name="download_button_text">İndir</string>
+    <string name="debug_build">Hata ayıklama yapılarında güncelleme devre dışı bırakıldı.</string>
+    <string name="hold_app_card">Değişiklik günlüğünü açmak için bir uygulamanın kartını basılı tutun.</string>
+</resources>
