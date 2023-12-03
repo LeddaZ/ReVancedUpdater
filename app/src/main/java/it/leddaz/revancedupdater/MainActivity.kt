@@ -48,8 +48,8 @@ private var latestUpdaterVersion = Version("0.0")
 private var latestUpdaterCommit = ""
 private var updaterDownloadUrl = ""
 private var downloadUrl = ""
-var microGDownloadUrl = ""
 private var musicDownloadUrl = ""
+var microGDownloadUrl = ""
 
 /**
  * The app's main activity, started at launch.
@@ -87,7 +87,12 @@ class MainActivity : AppCompatActivity() {
         if (!IS_DEBUG)
             updaterCard.setOnLongClickListener {
                 openLink(
-                    "https://github.com/LeddaZ/ReVancedUpdater/releases/tag/${APP_VERSION}",
+                    "https://github.com/LeddaZ/ReVancedUpdater/releases/tag/${
+                        APP_VERSION.substring(
+                            0,
+                            APP_VERSION.indexOf(' ')
+                        )
+                    }",
                     this
                 )
                 true
