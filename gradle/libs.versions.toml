@@ -6,7 +6,7 @@ appcompat = "1.6.1"
 core-ktx = "1.12.0"
 gson = "2.10.1"
 material = "1.10.0"
-kotlin = "1.9.20"
+kotlin = "1.9.21"
 
 [libraries]
 android-volley = { module = "com.android.volley:volley", version.ref = "android-volley" }
