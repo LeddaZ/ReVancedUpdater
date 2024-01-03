@@ -2,11 +2,11 @@
 <resources>
     <string name="installed_app_version">Installed: %1$s</string>
     <string name="latest_app_version">Latest: %1$s</string>
-    <string name="update_status">Checking for updates…</string>
-    <string name="update_available">Update available!</string>
+    <string name="update_status">מחפש עדכונים…</string>
+    <string name="update_available">עדכון זמין!</string>
     <string name="no_update_available">אין עדכונים זמינים</string>
-    <string name="download_started">Download started. Check the notifications for details.</string>
-    <string name="app_not_installed">App not installed</string>
+    <string name="download_started">ההורדה החלה. בדוק את ההתראות לפרטים.</string>
+    <string name="app_not_installed">היישום לא הותקן</string>
     <string name="download_error">An error occurred while downloading. Check logs for more details.</string>
     <string name="open_github">See on GitHub</string>
     <string name="about_dialog_text">ReVanced Updater is an app made by LeddaZ to update his ReVanced builds.</string>
