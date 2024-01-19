@@ -1,8 +1,10 @@
 package it.leddaz.revancedupdater
 
+import android.app.DownloadManager
 import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +22,8 @@ import com.google.android.material.color.DynamicColors
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import it.leddaz.revancedupdater.dialogs.AboutDialog
+import it.leddaz.revancedupdater.utils.apputils.AppInstaller
+import it.leddaz.revancedupdater.utils.apputils.Downloader
 import it.leddaz.revancedupdater.utils.json.CommitJSONObject
 import it.leddaz.revancedupdater.utils.json.MicroGJSONObject
 import it.leddaz.revancedupdater.utils.json.ReVancedJSONObject
@@ -27,7 +31,6 @@ import it.leddaz.revancedupdater.utils.json.UpdaterJSONObject
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.APP_VERSION
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.IS_DEBUG
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.LOG_TAG
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.dlAndInstall
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.openLink
 import it.leddaz.revancedupdater.utils.misc.Version
 import it.leddaz.revancedupdater.utils.misc.VolleyCallBack
@@ -327,6 +330,20 @@ class MainActivity : AppCompatActivity() {
     @Suppress("UNUSED_PARAMETER")
     fun downloadUpdater(view: View) {
         dlAndInstall("app-release.apk", updaterDownloadUrl, this)
+    }
+
+    /**
+     * Downloads and installs an app when the corresponding button is clicked.
+     * @property fileName the APK filename
+     * @property url link
+     * @property context the activity's context
+     */
+    fun dlAndInstall(fileName: String, url: String, context: Context) {
+        Downloader(
+            context.getSystemService(DOWNLOAD_SERVICE) as DownloadManager,
+            context, Uri.parse(url), fileName
+        )
+        AppInstaller(fileName, context)
     }
 
     /**
