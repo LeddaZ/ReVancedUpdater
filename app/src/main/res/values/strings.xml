@@ -35,4 +35,5 @@
     <string name="download_button_text">Download</string>
     <string name="debug_build">Update disabled on debug builds.</string>
     <string name="hold_app_card">Hold an app\'s card to open its changelog.</string>
+    <string name="microg_info_title" translatable="false">ReVanced MicroG</string>
 </resources>
