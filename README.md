@@ -3,7 +3,11 @@
 Updater for my ReVanced builds, you can find more
 info [here](https://github.com/LeddaZ/revanced-repo).
 
-### [Download](https://github.com/LeddaZ/ReVancedUpdater/releases/latest)
+## Download
+
+### [Latest release](https://github.com/LeddaZ/ReVancedUpdater/releases/latest)
+
+### [Latest development build](https://github.com/LeddaZ/ReVancedUpdater/releases/tag/dev)
 
 ![downloadCount](https://img.shields.io/github/downloads/LeddaZ/ReVancedUpdater/total?color=blue&label=Downloads)
 
