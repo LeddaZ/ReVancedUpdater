@@ -19,6 +19,7 @@ import com.android.volley.toolbox.Volley
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.color.DynamicColors
+import com.google.android.material.textview.MaterialTextView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import it.leddaz.revancedupdater.dialogs.AboutDialog
@@ -75,6 +76,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         DynamicColors.applyToActivityIfAvailable(this)
         setContentView(R.layout.activity_main)
+        val microGCardTitle = findViewById<MaterialTextView>(R.id.updater_title)
+        microGCardTitle.text = getString(R.string.app_name)
         refresh(this)
 
         val reVancedCard = findViewById<MaterialCardView>(R.id.revanced_info_card)

@@ -10,7 +10,7 @@
     <string name="download_started">Download started. Check the notifications for details.</string>
     <string name="app_not_installed">App not installed</string>
     <string name="download_error">An error occurred while downloading. Check logs for more details.</string>
-    <string name="updater_info_title" translatable="false">ReVanced Updater</string>
+    <string name="updater_info_title" translatable="false">%1s</string>
     <string name="open_github">See on GitHub</string>
     <string name="about_dialog_text">ReVanced Updater is an app made by LeddaZ to update his ReVanced builds.</string>
     <string name="music_info_title" translatable="false">ReVanced Music</string>
