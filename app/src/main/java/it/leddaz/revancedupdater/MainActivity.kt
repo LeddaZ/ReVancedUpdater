@@ -31,6 +31,10 @@ import it.leddaz.revancedupdater.utils.json.UpdaterJSONObject
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.APP_VERSION
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.IS_DEBUG
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.LOG_TAG
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.MICROG_PACKAGE
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.MUSIC_PACKAGE
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.REVANCED_PACKAGE
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.UPDATER_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.openLink
 import it.leddaz.revancedupdater.utils.misc.Version
 import it.leddaz.revancedupdater.utils.misc.VolleyCallBack
@@ -142,7 +146,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun isMicroGInstalled(): Boolean {
         try {
-            this.packageManager.getPackageInfo("com.mgoogle.android.gms", 0)
+            this.packageManager.getPackageInfo(MICROG_PACKAGE, 0)
         } catch (e: PackageManager.NameNotFoundException) {
             return false
         }
@@ -151,14 +155,14 @@ class MainActivity : AppCompatActivity() {
 
     /**
      * Gets the installed and latest versions of YouTube ReVanced,
-     * ReVanced Music and ReVanced MicroG.
+     * ReVanced Music, ReVanced MicroG and ReVanced Updater.
      * @property callback callback used to detect if the download was
      *                    successful
      */
     private fun getVersions(callback: VolleyCallBack) {
         // Installed versions
         getAppVersion(
-            "com.mgoogle.android.gms",
+            MICROG_PACKAGE,
             findViewById(R.id.installed_microg_version),
             installedMicroGVersion,
             findViewById(R.id.microg_update_status),
@@ -167,14 +171,14 @@ class MainActivity : AppCompatActivity() {
 
         if (isMicroGInstalled()) {
             getAppVersion(
-                "app.revanced.android.youtube",
+                REVANCED_PACKAGE,
                 findViewById(R.id.installed_revanced_version),
                 installedReVancedVersion, findViewById(R.id.revanced_update_status),
                 findViewById(R.id.revanced_download_button)
             )
 
             getAppVersion(
-                "app.revanced.android.apps.youtube.music",
+                MUSIC_PACKAGE,
                 findViewById(R.id.installed_music_version),
                 installedReVancedMusicVersion, findViewById(R.id.music_update_status),
                 findViewById(R.id.music_download_button)
@@ -265,21 +269,21 @@ class MainActivity : AppCompatActivity() {
      */
     private fun compareVersions() {
         compareAppVersion(
-            "com.mgoogle.android.gms", installedMicroGVersion,
+            MICROG_PACKAGE, installedMicroGVersion,
             latestMicroGVersion, findViewById(R.id.microg_update_status),
             findViewById(R.id.microg_download_button)
         )
         if (isMicroGInstalled()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 compareAppVersion(
-                    "app.revanced.android.youtube", installedReVancedVersion,
+                    REVANCED_PACKAGE, installedReVancedVersion,
                     latestReVancedVersion, findViewById(R.id.revanced_update_status),
                     findViewById(R.id.revanced_download_button)
                 )
             }
 
             compareAppVersion(
-                "app.revanced.android.apps.youtube.music", installedReVancedMusicVersion,
+                MUSIC_PACKAGE, installedReVancedMusicVersion,
                 latestReVancedMusicVersion, findViewById(R.id.music_update_status),
                 findViewById(R.id.music_download_button)
             )
@@ -338,7 +342,7 @@ class MainActivity : AppCompatActivity() {
      * @property url link
      * @property context the activity's context
      */
-    fun dlAndInstall(fileName: String, url: String, context: Context) {
+    private fun dlAndInstall(fileName: String, url: String, context: Context) {
         Downloader(
             context.getSystemService(DOWNLOAD_SERVICE) as DownloadManager,
             context, Uri.parse(url), fileName
@@ -347,8 +351,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Gets the installed and latest versions of YouTube Revanced
-     * and ReVanced Music.
+     * Gets an app's installed version.
      * @property packageName package name
      * @property installedTextView the TextView with the currently installed version
      * @property installedVersion the installed app's version
@@ -360,14 +363,14 @@ class MainActivity : AppCompatActivity() {
         updateStatusTextView: TextView, button: Button
     ) {
         try {
-            if (packageName == "app.revanced.android.youtube" && Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            if (packageName == REVANCED_PACKAGE && Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
                 updateStatusTextView.text =
                     getString(R.string.old_android_version)
                 button.isEnabled = false
             }
             val pInfo: PackageInfo =
                 packageManager.getPackageInfo(packageName, 0)
-            if (packageName.startsWith("it.leddaz.revancedupdater")) {
+            if (packageName.startsWith(UPDATER_PACKAGE)) {
                 if (!IS_DEBUG) {
                     installedVersion.version =
                         APP_VERSION.substring(0, APP_VERSION.indexOf(' '))
@@ -377,7 +380,7 @@ class MainActivity : AppCompatActivity() {
                     installedTextView.text =
                         getString(R.string.installed_app_version, APP_VERSION)
                 }
-            } else if (packageName == "com.mgoogle.android.gms") {
+            } else if (packageName == MICROG_PACKAGE) {
                 installedVersion.version = pInfo.versionName.substring(0, 3)
                 installedTextView.text =
                     getString(R.string.installed_app_version, installedVersion.version)
@@ -413,7 +416,7 @@ class MainActivity : AppCompatActivity() {
         latestVersion: Version, updateStatusTextView: TextView,
         button: Button
     ) {
-        if (packageName == "it.leddaz.revancedupdater.dev") {
+        if (packageName == "$UPDATER_PACKAGE.dev") {
             val currentCommit = APP_VERSION.substring(7, 14)
             if (currentCommit == latestUpdaterCommit) {
                 updateStatusTextView.text = getString(R.string.no_update_available)
@@ -429,7 +432,7 @@ class MainActivity : AppCompatActivity() {
             } else if (installedVersion.compareTo(latestVersion) == 0) {
                 if (packageName.startsWith("app.revanced")) {
                     var latestHash = getLatestReVancedHash()
-                    if (packageName == "app.revanced.android.apps.youtube.music")
+                    if (packageName == MUSIC_PACKAGE)
                         latestHash = getLatestReVancedMusicHash()
                     compareHashes(latestHash, updateStatusTextView, packageName, button)
                 } else {

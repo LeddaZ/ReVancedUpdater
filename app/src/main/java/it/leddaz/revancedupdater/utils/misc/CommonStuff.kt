@@ -17,6 +17,12 @@ object CommonStuff {
     const val LOG_TAG = "ReVanced Updater"
     val IS_DEBUG = BuildConfig.DEBUG
 
+    // Package names
+    const val REVANCED_PACKAGE = "app.revanced.android.youtube"
+    const val MUSIC_PACKAGE = "app.revanced.android.apps.youtube.music"
+    const val MICROG_PACKAGE = "com.mgoogle.android.gms"
+    const val UPDATER_PACKAGE = "it.leddaz.revancedupdater"
+
     /**
      * Opens a link using the default browser.
      * @property url link
