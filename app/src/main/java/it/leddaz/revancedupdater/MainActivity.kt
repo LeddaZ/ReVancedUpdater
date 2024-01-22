@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.HapticFeedbackConstants
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -307,8 +308,8 @@ class MainActivity : AppCompatActivity() {
      * Downloads YouTube ReVanced when the button is clicked.
      * @property view the view which contains the button.
      */
-    @Suppress("UNUSED_PARAMETER")
     fun downloadReVanced(view: View) {
+        view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
         dlAndInstall("revanced-nonroot-signed.apk", downloadUrl, this)
     }
 
@@ -316,8 +317,8 @@ class MainActivity : AppCompatActivity() {
      * Downloads ReVanced Music when the button is clicked.
      * @property view the view which contains the button.
      */
-    @Suppress("UNUSED_PARAMETER")
     fun downloadReVancedMusic(view: View) {
+        view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
         dlAndInstall("revanced-music-nonroot-signed.apk", musicDownloadUrl, this)
     }
 
@@ -325,8 +326,8 @@ class MainActivity : AppCompatActivity() {
      * Downloads ReVanced MicroG when the button is clicked.
      * @property view the view which contains the button.
      */
-    @Suppress("UNUSED_PARAMETER")
     fun downloadMicroG(view: View) {
+        view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
         dlAndInstall("microg.apk", microGDownloadUrl, this)
     }
 
@@ -334,8 +335,8 @@ class MainActivity : AppCompatActivity() {
      * Downloads ReVanced Updater when the button is clicked.
      * @property view the view which contains the button.
      */
-    @Suppress("UNUSED_PARAMETER")
     fun downloadUpdater(view: View) {
+        view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
         dlAndInstall("app-release.apk", updaterDownloadUrl, this)
     }
 
