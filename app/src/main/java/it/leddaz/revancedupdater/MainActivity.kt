@@ -26,10 +26,10 @@ import com.google.gson.reflect.TypeToken
 import it.leddaz.revancedupdater.dialogs.AboutDialog
 import it.leddaz.revancedupdater.utils.apputils.AppInstaller
 import it.leddaz.revancedupdater.utils.apputils.Downloader
-import it.leddaz.revancedupdater.utils.json.CommitJSONObject
 import it.leddaz.revancedupdater.utils.json.MicroGJSONObject
 import it.leddaz.revancedupdater.utils.json.ReVancedJSONObject
-import it.leddaz.revancedupdater.utils.json.UpdaterJSONObject
+import it.leddaz.revancedupdater.utils.json.UpdaterDebugJSONObject
+import it.leddaz.revancedupdater.utils.json.UpdaterReleaseJSONObject
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.APP_VERSION
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.IS_DEBUG
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.LOG_TAG
@@ -205,8 +205,8 @@ class MainActivity : AppCompatActivity() {
         val updaterCommitUrl = "https://api.github.com/repos/LeddaZ/ReVancedUpdater/commits/master"
         val microGAPIUrl = "https://api.github.com/repos/WSTxda/MicroG-RE/releases/latest"
         var reVancedReply: ReVancedJSONObject
-        var updaterReply: UpdaterJSONObject
-        var commitReply: CommitJSONObject
+        var updaterReleaseReply: UpdaterReleaseJSONObject
+        var updaterDebugReply: UpdaterDebugJSONObject
         var microGReply: MicroGJSONObject
 
         val urlPrefix = "https://github.com/LeddaZ/revanced-repo/releases/download/"
@@ -218,7 +218,7 @@ class MainActivity : AppCompatActivity() {
             latestReVancedHash = reVancedReply.latestReVancedHash
             latestReVancedMusicVersion = Version(reVancedReply.latestReVancedMusicVersion)
             downloadUrl =
-                urlPrefix + reVancedReply.latestReVancedDate + "-yt/revanced-nonroot-signed.apk"
+                urlPrefix + reVancedReply.latestReVancedDate + "-yt/yt-signed.apk"
             val preferredABI: String = Build.SUPPORTED_ABIS[0]
             Log.i(LOG_TAG, "Preferred ABI: $preferredABI")
             when (preferredABI) {
@@ -228,23 +228,23 @@ class MainActivity : AppCompatActivity() {
                 "x86_64" -> latestReVancedMusicHash = reVancedReply.latestReVancedMusicHashX64
             }
             musicDownloadUrl = urlPrefix + reVancedReply.latestReVancedMusicDate +
-                    "-ytm/revanced-music-nonroot-$preferredABI-signed.apk"
+                    "-ytm/ytm-$preferredABI-signed.apk"
             callback.onSuccess()
         }, {})
 
-        val updaterRequest = StringRequest(GET, updaterAPIUrl, { response ->
-            updaterReply =
-                Gson().fromJson(response, object : TypeToken<UpdaterJSONObject>() {}.type)
-            latestUpdaterVersion = Version(updaterReply.latestUpdaterVersion)
+        val updaterReleaseRequest = StringRequest(GET, updaterAPIUrl, { response ->
+            updaterReleaseReply =
+                Gson().fromJson(response, object : TypeToken<UpdaterReleaseJSONObject>() {}.type)
+            latestUpdaterVersion = Version(updaterReleaseReply.latestUpdaterVersion)
             updaterDownloadUrl = "https://github.com/LeddaZ/ReVancedUpdater/releases/download/" +
                     latestUpdaterVersion + "/app-release.apk"
             callback.onSuccess()
         }, {})
 
-        val commitRequest = StringRequest(GET, updaterCommitUrl, { response ->
-            commitReply =
-                Gson().fromJson(response, object : TypeToken<CommitJSONObject>() {}.type)
-            latestUpdaterCommit = commitReply.latestUpdaterCommit.substring(0, 7)
+        val updaterDevRequest = StringRequest(GET, updaterCommitUrl, { response ->
+            updaterDebugReply =
+                Gson().fromJson(response, object : TypeToken<UpdaterDebugJSONObject>() {}.type)
+            latestUpdaterCommit = updaterDebugReply.latestUpdaterCommit.substring(0, 7)
             updaterDownloadUrl =
                 "https://github.com/LeddaZ/ReVancedUpdater/releases/download/dev/app-debug-signed.apk"
             callback.onSuccess()
@@ -262,9 +262,9 @@ class MainActivity : AppCompatActivity() {
         queue.add(reVancedRequest)
         queue.add(microGRequest)
         if (IS_DEBUG)
-            queue.add(commitRequest)
+            queue.add(updaterDevRequest)
         else
-            queue.add(updaterRequest)
+            queue.add(updaterReleaseRequest)
     }
 
 
