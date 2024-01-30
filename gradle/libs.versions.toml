@@ -1,5 +1,5 @@
 [versions]
-agp = "8.2.1"
+agp = "8.2.2"
 android-volley = "1.2.1"
 commons-codec = "1.16.0"
 appcompat = "1.6.1"
