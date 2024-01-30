@@ -30,7 +30,7 @@ android {
         minSdk = 24
         targetSdk = 34
         versionCode = getCommitCount()
-        versionName = "3.3.1 (" + getCommitHash() + ")"
+        versionName = "3.3.2 (" + getCommitHash() + ")"
     }
 
     buildTypes {
