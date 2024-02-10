@@ -15,17 +15,17 @@
     <string name="bottom_bar_refresh">Aggiorna</string>
     <string name="none">nessuna</string>
     <string name="music_download_button_description">Scarica ReVanced Music</string>
-    <string name="microg_download_button_description">Scarica microG</string>
+    <string name="microg_download_button_description">Scarica MicroG RE</string>
     <string name="updater_download_button_description">Scarica ReVanced Updater</string>
     <string name="invalid">non valida</string>
     <string name="invalid_version_detected">Versione non valida rilevata. Disinstalla le app già presenti.</string>
     <string name="yes">Sì</string>
     <string name="no">No</string>
-    <string name="microg_dialog_title">Vanced microG non è installato</string>
-    <string name="microg_dialog_text">Vanced microG è necessario per accedere al tuo account Google nelle app ReVanced. Vuoi installarlo ora?</string>
+    <string name="microg_dialog_title">MicroG RE non è installato</string>
+    <string name="microg_dialog_text">MicroG RE è necessario per accedere al tuo account Google nelle app ReVanced. Vuoi installarlo ora?</string>
     <string name="bottom_bar_about">Informazioni</string>
     <string name="about_dialog_title">Informazioni sull\'app</string>
     <string name="download_button_text">Scarica</string>
-    <string name="debug_build">Aggiornamento disattivato nelle build debug.</string>
     <string name="hold_app_card">Tieni premuta la scheda di un\'app per aprire il suo changelog.</string>
+    <string name="microg_info_title">MicroG RE</string>
 </resources>
