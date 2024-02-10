@@ -28,4 +28,5 @@
     <string name="download_button_text">Скачать</string>
     <string name="debug_build">Обновление отключено при отладочных сборках.</string>
     <string name="hold_app_card">Удерживайте карту приложения, чтобы открыть список изменений.</string>
+    <string name="microg_info_title">MicroG RE</string>
 </resources>
