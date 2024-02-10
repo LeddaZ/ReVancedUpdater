@@ -28,4 +28,5 @@
     <string name="download_button_text">Tải xuống</string>
     <string name="debug_build">Cập nhật bị vô hiệu hóa trên các bản dựng gỡ lỗi.</string>
     <string name="hold_app_card">Giữ thẻ của ứng dụng để mở nhật ký thay đổi của ứng dụng đó.</string>
+    <string name="microg_info_title">MicroG RE</string>
 </resources>
