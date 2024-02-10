@@ -15,17 +15,18 @@
     <string name="bottom_bar_refresh">Yenile</string>
     <string name="none">hiçbiri</string>
     <string name="music_download_button_description">ReVanced Music\'i İndir</string>
-    <string name="microg_download_button_description">Download microG</string>
+    <string name="microg_download_button_description">Download MicroG RE</string>
     <string name="updater_download_button_description">ReVanced Updater\'ı İndir</string>
     <string name="invalid">Geçersiz</string>
     <string name="invalid_version_detected">Geçersiz sürüm tespit edildi. Yüklü olan uygulamaları kaldırın.</string>
     <string name="yes">Evet</string>
     <string name="no">Hayır</string>
-    <string name="microg_dialog_title">Vanced microG not installed</string>
-    <string name="microg_dialog_text">Vanced microG is required to log in to your Google account on ReVanced apps. Do you want to install it now?</string>
+    <string name="microg_dialog_title">MicroG RE not installed</string>
+    <string name="microg_dialog_text">MicroG RE is required to log in to your Google account on ReVanced apps. Do you want to install it now?</string>
     <string name="bottom_bar_about">Hakkında</string>
     <string name="about_dialog_title">Uygulama hakkında</string>
     <string name="download_button_text">İndir</string>
     <string name="debug_build">Hata ayıklama yapılarında güncelleme devre dışı bırakıldı.</string>
     <string name="hold_app_card">Değişiklik günlüğünü açmak için bir uygulamanın kartını basılı tutun.</string>
+    <string name="microg_info_title">MicroG RE</string>
 </resources>
