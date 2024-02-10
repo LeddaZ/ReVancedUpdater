@@ -28,4 +28,5 @@
     <string name="download_button_text">İndir</string>
     <string name="debug_build">Hata ayıklama yapılarında güncelleme devre dışı bırakıldı.</string>
     <string name="hold_app_card">Değişiklik günlüğünü açmak için bir uygulamanın kartını basılı tutun.</string>
+    <string name="microg_info_title">MicroG RE</string>
 </resources>
