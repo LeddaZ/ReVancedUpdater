@@ -44,6 +44,7 @@ import org.apache.commons.codec.binary.Hex
 import org.apache.commons.codec.digest.DigestUtils
 import java.io.File
 import java.io.FileInputStream
+import kotlin.concurrent.thread
 
 
 private var installedReVancedVersion = Version("99.99")
@@ -438,7 +439,9 @@ class MainActivity : AppCompatActivity() {
                     var latestHash = getLatestReVancedHash()
                     if (packageName == MUSIC_PACKAGE)
                         latestHash = getLatestReVancedMusicHash()
-                    compareHashes(latestHash, updateStatusTextView, packageName, button)
+                    thread {
+                        compareHashes(latestHash, updateStatusTextView, packageName, button)
+                    }
                 } else {
                     updateStatusTextView.text = getString(R.string.no_update_available)
                     button.isEnabled = false
@@ -463,12 +466,14 @@ class MainActivity : AppCompatActivity() {
     ) {
         val pInfo: PackageInfo = packageManager.getPackageInfo(packageName, 0)
         val file = File(pInfo.applicationInfo.sourceDir)
-        runOnUiThread {
-            val installedAppHash = String(Hex.encodeHex(DigestUtils.sha256(FileInputStream(file))))
-            if (installedAppHash == latestHash) {
+        val installedAppHash = String(Hex.encodeHex(DigestUtils.sha256(FileInputStream(file))))
+        if (installedAppHash == latestHash) {
+            runOnUiThread {
                 updateStatusTextView.text = getString(R.string.no_update_available)
                 button.isEnabled = false
-            } else {
+            }
+        } else {
+            runOnUiThread {
                 updateStatusTextView.text = getString(R.string.update_available)
                 button.isEnabled = true
             }
