@@ -23,8 +23,8 @@
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -34,6 +34,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/revanced_info_card"
+                style="?attr/materialCardViewFilledStyle"
                 android:layout_width="350sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -45,7 +46,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                style="?attr/materialCardViewFilledStyle"
                 tools:ignore="TextSizeCheck">
 
                 <LinearLayout
@@ -103,6 +103,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/music_info_card"
+                style="?attr/materialCardViewFilledStyle"
                 android:layout_width="350sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -110,11 +111,10 @@
                 android:checkable="false"
                 android:clickable="true"
                 android:focusable="true"
-                style="?attr/materialCardViewFilledStyle"
+                app:layout_constraintBottom_toTopOf="@id/microg_info_card"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/revanced_info_card"
-                app:layout_constraintBottom_toTopOf="@id/microg_info_card"
                 tools:ignore="TextSizeCheck">
 
                 <LinearLayout
@@ -241,18 +241,18 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/updater_info_card"
+                style="?attr/materialCardViewFilledStyle"
                 android:layout_width="350sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="8dp"
                 android:checkable="false"
-                style="?attr/materialCardViewFilledStyle"
                 android:clickable="true"
+                android:focusable="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/microg_info_card"
-                android:focusable="true"
                 tools:ignore="TextSizeCheck">
 
                 <LinearLayout

@@ -44,6 +44,7 @@ import org.apache.commons.codec.binary.Hex
 import org.apache.commons.codec.digest.DigestUtils
 import java.io.File
 import java.io.FileInputStream
+import kotlin.concurrent.thread
 
 
 private var installedReVancedVersion = Version("99.99")
@@ -463,13 +464,15 @@ class MainActivity : AppCompatActivity() {
     ) {
         val pInfo: PackageInfo = packageManager.getPackageInfo(packageName, 0)
         val file = File(pInfo.applicationInfo.sourceDir)
-        val installedAppHash = String(Hex.encodeHex(DigestUtils.sha256(FileInputStream(file))))
-        if (installedAppHash == latestHash) {
-            updateStatusTextView.text = getString(R.string.no_update_available)
-            button.isEnabled = false
-        } else {
-            updateStatusTextView.text = getString(R.string.update_available)
-            button.isEnabled = true
+        thread {
+            val installedAppHash = String(Hex.encodeHex(DigestUtils.sha256(FileInputStream(file))))
+            if (installedAppHash == latestHash) {
+                updateStatusTextView.text = getString(R.string.no_update_available)
+                button.isEnabled = false
+            } else {
+                updateStatusTextView.text = getString(R.string.update_available)
+                button.isEnabled = true
+            }
         }
     }
 
