@@ -26,6 +26,5 @@
     <string name="bottom_bar_about">About</string>
     <string name="about_dialog_title">About this app</string>
     <string name="download_button_text">Download</string>
-    <string name="debug_build">Update disabled on debug builds.</string>
     <string name="hold_app_card">Hold an app\'s card to open its changelog.</string>
 </resources>

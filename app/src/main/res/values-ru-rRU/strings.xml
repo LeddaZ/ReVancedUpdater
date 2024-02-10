@@ -27,5 +27,4 @@
     <string name="about_dialog_title">Об этом приложении</string>
     <string name="download_button_text">Скачать</string>
     <string name="hold_app_card">Удерживайте карту приложения, чтобы открыть список изменений.</string>
-    <string name="microg_info_title">MicroG RE</string>
 </resources>

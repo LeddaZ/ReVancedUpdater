@@ -27,5 +27,4 @@
     <string name="about_dialog_title">About this app</string>
     <string name="download_button_text">הורד</string>
     <string name="hold_app_card">Hold an app\'s card to open its changelog.</string>
-    <string name="microg_info_title">MicroG RE</string>
 </resources>
