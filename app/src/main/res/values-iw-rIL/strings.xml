@@ -15,17 +15,18 @@
     <string name="bottom_bar_refresh">רענן</string>
     <string name="none">ללא</string>
     <string name="music_download_button_description">Download ReVanced Music</string>
-    <string name="microg_download_button_description">Download microG</string>
+    <string name="microg_download_button_description">Download MicroG RE</string>
     <string name="updater_download_button_description">Download ReVanced Updater</string>
     <string name="invalid">invalid</string>
     <string name="invalid_version_detected">Invalid version detected. Uninstall existing apps.</string>
     <string name="yes">כן</string>
     <string name="no">לא</string>
-    <string name="microg_dialog_title">Vanced microG not installed</string>
-    <string name="microg_dialog_text">Vanced microG is required to log in to your Google account on ReVanced apps. Do you want to install it now?</string>
+    <string name="microg_dialog_title">MicroG RE not installed</string>
+    <string name="microg_dialog_text">MicroG RE is required to log in to your Google account on ReVanced apps. Do you want to install it now?</string>
     <string name="bottom_bar_about">אודות</string>
     <string name="about_dialog_title">About this app</string>
     <string name="download_button_text">הורד</string>
     <string name="debug_build">Update disabled on debug builds.</string>
     <string name="hold_app_card">Hold an app\'s card to open its changelog.</string>
+    <string name="microg_info_title">MicroG RE</string>
 </resources>
