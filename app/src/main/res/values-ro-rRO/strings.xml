@@ -14,19 +14,18 @@
     <string name="revanced_download_button_description">Descarcă ReVanced</string>
     <string name="bottom_bar_refresh">Reîncarcă</string>
     <string name="none">nimic</string>
-    <string name="music_download_button_description">Descarcă ReVanced music</string>
-    <string name="microg_download_button_description">Download MicroG RE</string>
+    <string name="music_download_button_description">Descarcă ReVanced Music</string>
+    <string name="microg_download_button_description">Descarcă MicroG RE</string>
     <string name="updater_download_button_description">Descarcă Updater-ul ReVanced</string>
     <string name="invalid">invalid</string>
     <string name="invalid_version_detected">Versiune nevalidă. Dezinstalați aplicațiile existente.</string>
     <string name="yes">Da</string>
     <string name="no">Nu</string>
-    <string name="microg_dialog_title">MicroG RE not installed</string>
-    <string name="microg_dialog_text">MicroG RE is required to log in to your Google account on ReVanced apps. Do you want to install it now?</string>
+    <string name="microg_dialog_title">MicroG RE nu este instalat</string>
+    <string name="microg_dialog_text">Este necesar să aveți MicroG RE ca să vă conectați în contul dvs. Google pe aplicațiile ReVanced. Dorești să îl instalezi acum?</string>
     <string name="bottom_bar_about">Despre</string>
     <string name="about_dialog_title">Despre această aplicaţie</string>
     <string name="download_button_text">Descărcare</string>
-    <string name="debug_build">Actualizarea este dezactivată pentru build-urile de depanare.</string>
     <string name="hold_app_card">Țineți apăsat pe cardul unei aplicații pentru a deschide modificările din actualizare.</string>
     <string name="microg_info_title">MicroG RE</string>
 </resources>
