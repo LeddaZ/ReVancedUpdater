@@ -145,8 +145,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Detects if Vanced microG is installed.
-     * @return Vanced microG installation status
+     * Detects if MicroG RE is installed.
+     * @return MicroG RE installation status
      */
     private fun isMicroGInstalled(): Boolean {
         try {
@@ -159,7 +159,7 @@ class MainActivity : AppCompatActivity() {
 
     /**
      * Gets the installed and latest versions of YouTube ReVanced,
-     * ReVanced Music, ReVanced MicroG and ReVanced Updater.
+     * ReVanced Music, MicroG RE and ReVanced Updater.
      * @property callback callback used to detect if the download was
      *                    successful
      */
@@ -323,7 +323,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Downloads ReVanced MicroG when the button is clicked.
+     * Downloads MicroG RE when the button is clicked.
      * @property view the view which contains the button.
      */
     fun downloadMicroG(view: View) {
