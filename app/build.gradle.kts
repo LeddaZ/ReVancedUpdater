@@ -69,8 +69,8 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.core.ktx)
     implementation(libs.android.volley)
     implementation(libs.material)
     implementation(libs.gson)

@@ -46,22 +46,8 @@ import java.io.File
 import java.io.FileInputStream
 import kotlin.concurrent.thread
 
-
-private var installedReVancedVersion = Version("99.99")
-private var latestReVancedVersion = Version("0.0")
 private var latestReVancedHash = ""
-private var installedReVancedMusicVersion = Version("99.99")
-private var latestReVancedMusicVersion = Version("0.0")
 private var latestReVancedMusicHash = ""
-private var installedUpdaterVersion = Version("99.99")
-private var installedMicroGVersion = Version("99.99")
-private var latestUpdaterVersion = Version("0.0")
-private var latestUpdaterCommit = ""
-private var latestMicroGVersion = Version("0.0")
-private var updaterDownloadUrl = ""
-private var downloadUrl = ""
-private var musicDownloadUrl = ""
-var microGDownloadUrl = ""
 
 /**
  * The app's main activity, started at launch.
@@ -69,6 +55,20 @@ var microGDownloadUrl = ""
  * @author Leonardo Ledda (LeddaZ)
  */
 class MainActivity : AppCompatActivity() {
+
+    private var installedReVancedVersion = Version("99.99")
+    private var latestReVancedVersion = Version("0.0")
+    private var reVancedDownloadUrl = ""
+    private var installedReVancedMusicVersion = Version("99.99")
+    private var latestReVancedMusicVersion = Version("0.0")
+    private var musicDownloadUrl = ""
+    private var installedUpdaterVersion = Version("99.99")
+    private var latestUpdaterVersion = Version("0.0")
+    private var latestUpdaterCommit = ""
+    private var updaterDownloadUrl = ""
+    private var installedMicroGVersion = Version("99.99")
+    private var latestMicroGVersion = Version("0.0")
+    private var microGDownloadUrl = ""
 
     /**
      * Actions executed when the activity is created at runtime.
@@ -218,7 +218,7 @@ class MainActivity : AppCompatActivity() {
             latestReVancedVersion = Version(reVancedReply.latestReVancedVersion)
             latestReVancedHash = reVancedReply.latestReVancedHash
             latestReVancedMusicVersion = Version(reVancedReply.latestReVancedMusicVersion)
-            downloadUrl =
+            reVancedDownloadUrl =
                 urlPrefix + reVancedReply.latestReVancedDate + "-yt/yt-signed.apk"
             val preferredABI: String = Build.SUPPORTED_ABIS[0]
             Log.i(LOG_TAG, "Preferred ABI: $preferredABI")
@@ -311,7 +311,7 @@ class MainActivity : AppCompatActivity() {
      */
     fun downloadReVanced(view: View) {
         view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
-        dlAndInstall("revanced-nonroot-signed.apk", downloadUrl, this)
+        dlAndInstall("revanced-nonroot-signed.apk", reVancedDownloadUrl, this)
     }
 
     /**
@@ -531,6 +531,7 @@ class MainActivity : AppCompatActivity() {
      * Companion object
      */
     companion object {
+
         /**
          * Returns the latest ReVanced hash.
          * @return Latest ReVanced hash.
