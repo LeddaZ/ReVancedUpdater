@@ -147,8 +147,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Detects if MicroG RE is installed.
-     * @return MicroG RE installation status
+     * Detects if ReVanced GmsCore is installed.
+     * @return ReVanced GmsCore installation status
      */
     private fun isMicroGInstalled(): Boolean {
         try {
@@ -161,7 +161,7 @@ class MainActivity : AppCompatActivity() {
 
     /**
      * Gets the installed and latest versions of YouTube ReVanced,
-     * ReVanced Music, MicroG RE and ReVanced Updater.
+     * ReVanced Music, ReVanced GmsCore and ReVanced Updater.
      * @property callback callback used to detect if the download was
      *                    successful
      */
@@ -203,7 +203,7 @@ class MainActivity : AppCompatActivity() {
             "https://raw.githubusercontent.com/LeddaZ/revanced-repo/main/updater.json"
         val updaterAPIUrl = "https://api.github.com/repos/LeddaZ/ReVancedUpdater/releases/latest"
         val updaterCommitUrl = "https://api.github.com/repos/LeddaZ/ReVancedUpdater/commits/master"
-        val microGAPIUrl = "https://api.github.com/repos/WSTxda/MicroG-RE/releases/latest"
+        val microGAPIUrl = "https://api.github.com/repos/ReVanced/GmsCore/releases/latest"
         var reVancedReply: ReVancedJSONObject
         var updaterReleaseReply: UpdaterReleaseJSONObject
         var updaterDebugReply: UpdaterDebugJSONObject
@@ -253,9 +253,8 @@ class MainActivity : AppCompatActivity() {
         val microGRequest = StringRequest(GET, microGAPIUrl, { response ->
             microGReply =
                 Gson().fromJson(response, object : TypeToken<MicroGJSONObject>() {}.type)
-            latestMicroGVersion = Version(microGReply.latestMicroGVersion)
-            microGDownloadUrl = "https://github.com/WSTxda/MicroG-RE/releases/download/" +
-                    latestMicroGVersion + "/MicroG_RE_" + latestMicroGVersion + ".apk"
+            latestMicroGVersion = Version(microGReply.latestMicroGVersion.substring(1))
+            microGDownloadUrl = microGReply.assets.firstOrNull()?.latestMicroGUrl.toString()
             callback.onSuccess()
         }, {})
 
@@ -321,7 +320,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Downloads MicroG RE when the button is clicked.
+     * Downloads ReVanced GmsCore when the button is clicked.
      * @property view the view which contains the button.
      */
     fun downloadMicroG(view: View) {
@@ -377,7 +376,7 @@ class MainActivity : AppCompatActivity() {
                         getString(R.string.installed_app_version, APP_VERSION)
                 }
             } else if (packageName == MICROG_PACKAGE) {
-                installedVersion.version = pInfo.versionName.substring(0, 3)
+                installedVersion.version = pInfo.versionName
                 installedTextView.text =
                     getString(R.string.installed_app_version, installedVersion.version)
             } else {
@@ -426,7 +425,7 @@ class MainActivity : AppCompatActivity() {
                 updateStatusTextView.text = getString(R.string.update_available)
                 button.isEnabled = true
             } else if (installedVersion.compareTo(latestVersion) == 0) {
-                if (packageName.startsWith("app.revanced")) {
+                if (packageName != MICROG_PACKAGE) {
                     var latestHash = getLatestReVancedHash()
                     if (packageName == MUSIC_PACKAGE)
                         latestHash = getLatestReVancedMusicHash()

@@ -14,14 +14,14 @@
     <string name="bottom_bar_refresh">Обновить</string>
     <string name="none">отсутствует</string>
     <string name="music_download_button_description">Скачать ReVanced Music</string>
-    <string name="microg_download_button_description">Скачать MicroG RE</string>
+    <string name="microg_download_button_description">Скачать ReVanced GmsCore</string>
     <string name="updater_download_button_description">Скачать ReVanced Updater</string>
     <string name="invalid">недействительно</string>
     <string name="invalid_version_detected">Обнаружена недействительная версия. Удалите существующие приложения.</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
-    <string name="microg_dialog_title">MicroG RE не установлен</string>
-    <string name="microg_dialog_text">MicroG RE требуется для входа в ваш аккаунт Google в ReVanced приложениях. Вы хотите установить его сейчас?</string>
+    <string name="microg_dialog_title">ReVanced GmsCore не установлен</string>
+    <string name="microg_dialog_text">ReVanced GmsCore требуется для входа в ваш аккаунт Google в ReVanced приложениях. Вы хотите установить его сейчас?</string>
     <string name="bottom_bar_about">Информация</string>
     <string name="about_dialog_title">Об этом приложении</string>
     <string name="download_button_text">Скачать</string>

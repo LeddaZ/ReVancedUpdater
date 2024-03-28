@@ -8,7 +8,7 @@
     <queries>
         <package android:name="app.revanced.android.youtube" />
         <package android:name="app.revanced.android.apps.youtube.music" />
-        <package android:name="com.mgoogle.android.gms" />
+        <package android:name="app.revanced.android.gms" />
     </queries>
 
     <application
