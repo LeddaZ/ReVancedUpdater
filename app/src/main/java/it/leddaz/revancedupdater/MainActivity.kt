@@ -171,7 +171,6 @@ class MainActivity : AppCompatActivity() {
             MICROG_PACKAGE,
             findViewById(R.id.installed_microg_version),
             installedMicroGVersion,
-            findViewById(R.id.microg_update_status),
             findViewById(R.id.microg_download_button)
         )
 
@@ -179,14 +178,14 @@ class MainActivity : AppCompatActivity() {
             getAppVersion(
                 REVANCED_PACKAGE,
                 findViewById(R.id.installed_revanced_version),
-                installedReVancedVersion, findViewById(R.id.revanced_update_status),
+                installedReVancedVersion,
                 findViewById(R.id.revanced_download_button)
             )
 
             getAppVersion(
                 MUSIC_PACKAGE,
                 findViewById(R.id.installed_music_version),
-                installedReVancedMusicVersion, findViewById(R.id.music_update_status),
+                installedReVancedMusicVersion,
                 findViewById(R.id.music_download_button)
             )
         }
@@ -195,7 +194,6 @@ class MainActivity : AppCompatActivity() {
             BuildConfig.APPLICATION_ID,
             findViewById(R.id.installed_updater_version),
             installedUpdaterVersion,
-            findViewById(R.id.updater_update_status),
             findViewById(R.id.updater_download_button)
         )
 
@@ -280,13 +278,11 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.microg_download_button)
         )
         if (isMicroGInstalled()) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                compareAppVersion(
-                    REVANCED_PACKAGE, installedReVancedVersion,
-                    latestReVancedVersion, findViewById(R.id.revanced_update_status),
-                    findViewById(R.id.revanced_download_button)
-                )
-            }
+            compareAppVersion(
+                REVANCED_PACKAGE, installedReVancedVersion,
+                latestReVancedVersion, findViewById(R.id.revanced_update_status),
+                findViewById(R.id.revanced_download_button)
+            )
 
             compareAppVersion(
                 MUSIC_PACKAGE, installedReVancedMusicVersion,
@@ -361,19 +357,13 @@ class MainActivity : AppCompatActivity() {
      * @property packageName package name
      * @property installedTextView the TextView with the currently installed version
      * @property installedVersion the installed app's version
-     * @property updateStatusTextView the TextView with the app update status
      * @property button the app's install/update button
      */
     private fun getAppVersion(
         packageName: String, installedTextView: TextView, installedVersion: Version,
-        updateStatusTextView: TextView, button: Button
+        button: Button
     ) {
         try {
-            if (packageName == REVANCED_PACKAGE && Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-                updateStatusTextView.text =
-                    getString(R.string.old_android_version)
-                button.isEnabled = false
-            }
             val pInfo: PackageInfo =
                 packageManager.getPackageInfo(packageName, 0)
             if (packageName.startsWith(UPDATER_PACKAGE)) {
