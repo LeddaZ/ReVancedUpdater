@@ -13,7 +13,6 @@
     <string name="open_github">See on GitHub</string>
     <string name="about_dialog_text">ReVanced Updater is an app made by LeddaZ to update his ReVanced builds.</string>
     <string name="music_info_title" translatable="false">ReVanced Music</string>
-    <string name="old_android_version">The app requires Android 8.0+.</string>
     <string name="bottom_bar_revanced" translatable="false">ReVanced</string>
     <string name="bottom_bar_updater" translatable="false">Updater</string>
     <string name="revanced_download_button_description">Download ReVanced</string>

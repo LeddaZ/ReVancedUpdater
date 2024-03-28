@@ -10,7 +10,6 @@
     <string name="download_error">Сталася помилка під час завантаження. Перегляньте журнали для більш детальної інформації.</string>
     <string name="open_github">Переглянути на GitHub</string>
     <string name="about_dialog_text">ReVanced Updater розроблений автором LeddaZ, для оновлення його ReVanced збірок.</string>
-    <string name="old_android_version">Додаток потребує Android 8.0+.</string>
     <string name="revanced_download_button_description">Завантажити ReVanced</string>
     <string name="bottom_bar_refresh">Оновити</string>
     <string name="none">нічого</string>

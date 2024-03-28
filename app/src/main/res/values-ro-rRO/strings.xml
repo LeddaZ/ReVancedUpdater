@@ -10,7 +10,6 @@
     <string name="download_error">A apărut o eroare în timpul descărcării. Verificați jurnalele pentru mai multe detalii.</string>
     <string name="open_github">Vezi pe GitHub</string>
     <string name="about_dialog_text">ReVanced Updater este o aplicație făcută de LeddaZ pentru a-și actualiza build-urile ReVanced.</string>
-    <string name="old_android_version">Aplicația necesită Android 8.0+.</string>
     <string name="revanced_download_button_description">Descarcă ReVanced</string>
     <string name="bottom_bar_refresh">Reîncarcă</string>
     <string name="none">nimic</string>

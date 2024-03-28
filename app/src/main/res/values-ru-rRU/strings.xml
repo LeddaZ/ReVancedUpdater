@@ -10,7 +10,6 @@
     <string name="download_error">Произошла ошибка при загрузке. Проверьте журналы для получения более подробной информации.</string>
     <string name="open_github">Посмотреть на GitHub</string>
     <string name="about_dialog_text">ReVanced Updater это приложение, созданное LeddaZ для обновления его ReVanced builds.</string>
-    <string name="old_android_version">Приложение требует Android 8.0+.</string>
     <string name="revanced_download_button_description">Скачать ReVanced</string>
     <string name="bottom_bar_refresh">Обновить</string>
     <string name="none">отсутствует</string>

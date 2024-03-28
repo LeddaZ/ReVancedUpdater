@@ -10,7 +10,6 @@
     <string name="download_error">An error occurred while downloading. Check logs for more details.</string>
     <string name="open_github">See on GitHub</string>
     <string name="about_dialog_text">ReVanced Updater is an app made by LeddaZ to update his ReVanced builds.</string>
-    <string name="old_android_version">The app requires Android 8.0+.</string>
     <string name="revanced_download_button_description">Download ReVanced</string>
     <string name="bottom_bar_refresh">רענן</string>
     <string name="none">ללא</string>
