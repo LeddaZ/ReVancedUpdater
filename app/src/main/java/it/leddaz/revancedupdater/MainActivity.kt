@@ -425,7 +425,7 @@ class MainActivity : AppCompatActivity() {
                 updateStatusTextView.text = getString(R.string.update_available)
                 button.isEnabled = true
             } else if (installedVersion.compareTo(latestVersion) == 0) {
-                if (packageName != MICROG_PACKAGE) {
+                if (packageName != MICROG_PACKAGE && packageName != UPDATER_PACKAGE) {
                     var latestHash = getLatestReVancedHash()
                     if (packageName == MUSIC_PACKAGE)
                         latestHash = getLatestReVancedMusicHash()
