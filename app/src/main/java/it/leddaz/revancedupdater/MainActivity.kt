@@ -80,6 +80,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val microGCardTitle = findViewById<MaterialTextView>(R.id.updater_title)
         microGCardTitle.text = getString(R.string.app_name)
+        Log.i(LOG_TAG, "Device fingerprint: ${Build.FINGERPRINT}")
         refresh(this)
 
         val reVancedCard = findViewById<MaterialCardView>(R.id.revanced_info_card)
