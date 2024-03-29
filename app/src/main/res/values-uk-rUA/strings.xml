@@ -14,14 +14,14 @@
     <string name="bottom_bar_refresh">Оновити</string>
     <string name="none">нічого</string>
     <string name="music_download_button_description">Завантажити ReVanced Music</string>
-    <string name="microg_download_button_description">Завантажити ReVanced GmsCore</string>
+    <string name="microg_download_button_description">Download ReVanced GmsCore</string>
     <string name="updater_download_button_description">Завантажити ReVanced Updater</string>
     <string name="invalid">недійсний</string>
     <string name="invalid_version_detected">Виявлено недійсну версію. Видаліть встановлені додатки.</string>
     <string name="yes">Так</string>
     <string name="no">Ні</string>
-    <string name="microg_dialog_title">ReVanced GmsCore не встановлено</string>
-    <string name="microg_dialog_text">ReVanced GmsCore необхідний для входу в обліковий запис Google на ReVanced додатках. Бажаєте встановити його зараз?</string>
+    <string name="microg_dialog_title">ReVanced GmsCore not installed</string>
+    <string name="microg_dialog_text">ReVanced GmsCore is required to log in to your Google account on ReVanced apps. Do you want to install it now?</string>
     <string name="bottom_bar_about">Інформація</string>
     <string name="about_dialog_title">Про додаток</string>
     <string name="download_button_text">Завантажити</string>
