@@ -14,14 +14,14 @@
     <string name="bottom_bar_refresh">Yenile</string>
     <string name="none">hiçbiri</string>
     <string name="music_download_button_description">ReVanced Music\'i İndir</string>
-    <string name="microg_download_button_description">ReVanced GmsCore\'yi İndir</string>
+    <string name="microg_download_button_description">Download ReVanced GmsCore</string>
     <string name="updater_download_button_description">ReVanced Updater\'ı İndir</string>
     <string name="invalid">Geçersiz</string>
     <string name="invalid_version_detected">Geçersiz sürüm tespit edildi. Yüklü olan uygulamaları kaldırın.</string>
     <string name="yes">Evet</string>
     <string name="no">Hayır</string>
-    <string name="microg_dialog_title">ReVanced GmsCore yüklü değil</string>
-    <string name="microg_dialog_text">ReVanced GmsCore, ReVanced uygulamalarında Google hesabınıza giriş yapmak için gereklidir. Şimdi yüklemek istiyor musunuz?</string>
+    <string name="microg_dialog_title">ReVanced GmsCore not installed</string>
+    <string name="microg_dialog_text">ReVanced GmsCore is required to log in to your Google account on ReVanced apps. Do you want to install it now?</string>
     <string name="bottom_bar_about">Hakkında</string>
     <string name="about_dialog_title">Uygulama hakkında</string>
     <string name="download_button_text">İndir</string>
