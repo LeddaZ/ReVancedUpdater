@@ -14,14 +14,14 @@
     <string name="bottom_bar_refresh">Actualiser</string>
     <string name="none">none</string>
     <string name="music_download_button_description">Télécharger ReVanced Music</string>
-    <string name="microg_download_button_description">Télécharger ReVanced GmsCore</string>
+    <string name="microg_download_button_description">Download ReVanced GmsCore</string>
     <string name="updater_download_button_description">Télécharger ReVanced Updater</string>
     <string name="invalid">invalid</string>
     <string name="invalid_version_detected">Version non valide détectée. Désinstaller les applications existantes.</string>
     <string name="yes">Oui</string>
     <string name="no">Non</string>
-    <string name="microg_dialog_title">ReVanced GmsCore non installé</string>
-    <string name="microg_dialog_text">ReVanced GmsCore est nécessaire pour se connecter à votre compte Google dans les applications ReVanced. Voulez-vous l\'installer maintenant ?</string>
+    <string name="microg_dialog_title">ReVanced GmsCore not installed</string>
+    <string name="microg_dialog_text">ReVanced GmsCore is required to log in to your Google account on ReVanced apps. Do you want to install it now?</string>
     <string name="bottom_bar_about">A propos</string>
     <string name="about_dialog_title">A propos de cette application</string>
     <string name="download_button_text">Télécharger</string>
