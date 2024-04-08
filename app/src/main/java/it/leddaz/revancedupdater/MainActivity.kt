@@ -26,7 +26,7 @@ import com.google.gson.reflect.TypeToken
 import it.leddaz.revancedupdater.dialogs.AboutDialog
 import it.leddaz.revancedupdater.utils.apputils.AppInstaller
 import it.leddaz.revancedupdater.utils.apputils.Downloader
-import it.leddaz.revancedupdater.utils.json.MicroGJSONObject
+import it.leddaz.revancedupdater.utils.json.GmsCoreJSONObject
 import it.leddaz.revancedupdater.utils.json.ReVancedJSONObject
 import it.leddaz.revancedupdater.utils.json.UpdaterDebugJSONObject
 import it.leddaz.revancedupdater.utils.json.UpdaterReleaseJSONObject
@@ -69,9 +69,9 @@ class MainActivity : AppCompatActivity() {
     private var latestUpdaterVersion = Version("0.0")
     private var latestUpdaterCommit = ""
     private var updaterDownloadUrl = ""
-    private var installedMicroGVersion = Version("99.99")
-    private var latestMicroGVersion = Version("0.0")
-    private var microGDownloadUrl = ""
+    private var installedGmsCoreVersion = Version("99.99")
+    private var latestGmsCoreVersion = Version("0.0")
+    private var gmsCoreDownloadUrl = ""
 
     /**
      * Actions executed when the activity is created at runtime.
@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
         val microGCard = findViewById<MaterialCardView>(R.id.microg_info_card)
         microGCard.setOnLongClickListener {
             openLink(
-                "https://github.com/WSTxda/MicroG-RE/releases/tag/${latestMicroGVersion}",
+                "https://github.com/WSTxda/MicroG-RE/releases/tag/${latestGmsCoreVersion}",
                 this
             )
             true
@@ -160,7 +160,7 @@ class MainActivity : AppCompatActivity() {
         getAppVersion(
             GMSCORE_PACKAGE,
             findViewById(R.id.installed_microg_version),
-            installedMicroGVersion,
+            installedGmsCoreVersion,
             findViewById(R.id.microg_download_button)
         )
 
@@ -193,11 +193,11 @@ class MainActivity : AppCompatActivity() {
             "https://raw.githubusercontent.com/LeddaZ/revanced-repo/main/updater.json"
         val updaterAPIUrl = "https://api.github.com/repos/LeddaZ/ReVancedUpdater/releases/latest"
         val updaterCommitUrl = "https://api.github.com/repos/LeddaZ/ReVancedUpdater/commits/master"
-        val microGAPIUrl = "https://api.github.com/repos/ReVanced/GmsCore/releases/latest"
+        val gmsCoreAPIUrl = "https://api.github.com/repos/ReVanced/GmsCore/releases/latest"
         var reVancedReply: ReVancedJSONObject
         var updaterReleaseReply: UpdaterReleaseJSONObject
         var updaterDebugReply: UpdaterDebugJSONObject
-        var microGReply: MicroGJSONObject
+        var gmsCoreReply: GmsCoreJSONObject
 
         val urlPrefix = "https://github.com/LeddaZ/revanced-repo/releases/download/"
 
@@ -240,19 +240,19 @@ class MainActivity : AppCompatActivity() {
             callback.onSuccess()
         }, {})
 
-        val microGRequest = StringRequest(GET, microGAPIUrl, { response ->
-            microGReply =
-                Gson().fromJson(response, object : TypeToken<MicroGJSONObject>() {}.type)
-            latestMicroGVersion = Version(microGReply.latestMicroGVersion.substring(1))
-            microGDownloadUrl = if (isHmsInstalled(this) && !isGmsInstalled(this))
-                microGReply.assets[0].latestMicroGUrl
+        val gmsCoreRequest = StringRequest(GET, gmsCoreAPIUrl, { response ->
+            gmsCoreReply =
+                Gson().fromJson(response, object : TypeToken<GmsCoreJSONObject>() {}.type)
+            latestGmsCoreVersion = Version(gmsCoreReply.latestMicroGVersion.substring(1))
+            gmsCoreDownloadUrl = if (isHmsInstalled(this) && !isGmsInstalled(this))
+                gmsCoreReply.assets[0].latestMicroGUrl
             else
-                microGReply.assets[1].latestMicroGUrl
+                gmsCoreReply.assets[1].latestMicroGUrl
             callback.onSuccess()
         }, {})
 
         queue.add(reVancedRequest)
-        queue.add(microGRequest)
+        queue.add(gmsCoreRequest)
         if (IS_DEBUG)
             queue.add(updaterDevRequest)
         else
@@ -265,8 +265,8 @@ class MainActivity : AppCompatActivity() {
      */
     private fun compareVersions() {
         compareAppVersion(
-            GMSCORE_PACKAGE, installedMicroGVersion,
-            latestMicroGVersion, findViewById(R.id.microg_update_status),
+            GMSCORE_PACKAGE, installedGmsCoreVersion,
+            latestGmsCoreVersion, findViewById(R.id.microg_update_status),
             findViewById(R.id.microg_download_button)
         )
         if (isGmsCoreInstalled(this)) {
@@ -318,7 +318,7 @@ class MainActivity : AppCompatActivity() {
      */
     fun downloadMicroG(view: View) {
         view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
-        dlAndInstall("microg.apk", microGDownloadUrl, this)
+        dlAndInstall("microg.apk", gmsCoreDownloadUrl, this)
     }
 
     /**
@@ -500,7 +500,7 @@ class MainActivity : AppCompatActivity() {
                 val latestMicroGTextView: TextView =
                     findViewById(R.id.latest_microg_version)
                 latestMicroGTextView.text =
-                    getString(R.string.latest_app_version, latestMicroGVersion)
+                    getString(R.string.latest_app_version, latestGmsCoreVersion)
 
                 val latestAppTextView: TextView = findViewById(R.id.latest_updater_version)
                 if (!IS_DEBUG)
