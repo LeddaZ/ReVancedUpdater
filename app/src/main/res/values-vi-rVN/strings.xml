@@ -14,14 +14,14 @@
     <string name="bottom_bar_refresh">Làm mới</string>
     <string name="none">không</string>
     <string name="music_download_button_description">Tải xuống ReVanced Music</string>
-    <string name="microg_download_button_description">Download ReVanced GmsCore</string>
+    <string name="microg_download_button_description">Tải xuống ReVanced GmsCore</string>
     <string name="updater_download_button_description">Tải xuống Cập nhật ReVanced</string>
     <string name="invalid">không hợp lệ</string>
     <string name="invalid_version_detected">Đã phát hiện phiên bản không hợp lệ. Gỡ cài đặt các ứng dụng hiện có.</string>
     <string name="yes">Đồng ý</string>
     <string name="no">Không</string>
-    <string name="microg_dialog_title">ReVanced GmsCore not installed</string>
-    <string name="microg_dialog_text">ReVanced GmsCore is required to log in to your Google account on ReVanced apps. Do you want to install it now?</string>
+    <string name="microg_dialog_title">Không thể cài đặt ReVanced GmsCore</string>
+    <string name="microg_dialog_text">Cần có ReVanced GmsCore để đăng nhập vào tài khoản Google của bạn trên các ứng dụng ReVanced. Bạn có muốn cài đặt nó ngay bây giờ không?</string>
     <string name="bottom_bar_about">Giới thiệu</string>
     <string name="about_dialog_title">Thông tin về ứng dụng</string>
     <string name="download_button_text">Tải xuống</string>
