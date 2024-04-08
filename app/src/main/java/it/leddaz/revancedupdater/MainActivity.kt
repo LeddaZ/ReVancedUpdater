@@ -37,6 +37,8 @@ import it.leddaz.revancedupdater.utils.misc.CommonStuff.MICROG_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.MUSIC_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.REVANCED_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.UPDATER_PACKAGE
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.isGmsInstalled
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.isHmsInstalled
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.openLink
 import it.leddaz.revancedupdater.utils.misc.Version
 import it.leddaz.revancedupdater.utils.misc.VolleyCallBack
@@ -254,7 +256,10 @@ class MainActivity : AppCompatActivity() {
             microGReply =
                 Gson().fromJson(response, object : TypeToken<MicroGJSONObject>() {}.type)
             latestMicroGVersion = Version(microGReply.latestMicroGVersion.substring(1))
-            microGDownloadUrl = microGReply.assets.firstOrNull()?.latestMicroGUrl.toString()
+            microGDownloadUrl = if (isHmsInstalled(this) && !isGmsInstalled(this))
+                microGReply.assets[0].latestMicroGUrl
+            else
+                microGReply.assets[1].latestMicroGUrl
             callback.onSuccess()
         }, {})
 

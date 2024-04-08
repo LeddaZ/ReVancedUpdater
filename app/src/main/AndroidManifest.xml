@@ -9,6 +9,8 @@
         <package android:name="app.revanced.android.youtube" />
         <package android:name="app.revanced.android.apps.youtube.music" />
         <package android:name="app.revanced.android.gms" />
+        <package android:name="com.huawei.hwid" />
+        <package android:name="com.google.android.gms" />
     </queries>
 
     <application

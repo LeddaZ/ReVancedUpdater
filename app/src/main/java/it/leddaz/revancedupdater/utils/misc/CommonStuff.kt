@@ -2,6 +2,7 @@ package it.leddaz.revancedupdater.utils.misc
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.core.content.ContextCompat.startActivity
 import it.leddaz.revancedupdater.BuildConfig
@@ -22,6 +23,8 @@ object CommonStuff {
     const val MUSIC_PACKAGE = "app.revanced.android.apps.youtube.music"
     const val MICROG_PACKAGE = "app.revanced.android.gms"
     const val UPDATER_PACKAGE = "it.leddaz.revancedupdater"
+    const val HMS_PACKAGE = "com.huawei.hwid"
+    const val GMS_PACKAGE = "com.google.android.gms"
 
     /**
      * Opens a link using the default browser.
@@ -31,6 +34,34 @@ object CommonStuff {
     fun openLink(url: String, context: Context) {
         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(context, browserIntent, null)
+    }
+
+    /**
+     * Detects if HMS Core is installed.
+     * @param context The activity's context
+     * @return HMS Core installation status
+     */
+    fun isHmsInstalled(context: Context): Boolean {
+        try {
+            context.packageManager.getPackageInfo(HMS_PACKAGE, 0)
+        } catch (e: PackageManager.NameNotFoundException) {
+            return false
+        }
+        return true
+    }
+
+    /**
+     * Detects if GMS is installed.
+     * @param context The activity's context
+     * @return GMS installation status
+     */
+    fun isGmsInstalled(context: Context): Boolean {
+        try {
+            context.packageManager.getPackageInfo(GMS_PACKAGE, 0)
+        } catch (e: PackageManager.NameNotFoundException) {
+            return false
+        }
+        return true
     }
 
 }
