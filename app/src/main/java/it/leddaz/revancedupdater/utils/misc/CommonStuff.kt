@@ -21,7 +21,7 @@ object CommonStuff {
     // Package names
     const val REVANCED_PACKAGE = "app.revanced.android.youtube"
     const val MUSIC_PACKAGE = "app.revanced.android.apps.youtube.music"
-    const val MICROG_PACKAGE = "app.revanced.android.gms"
+    const val GMSCORE_PACKAGE = "app.revanced.android.gms"
     const val UPDATER_PACKAGE = "it.leddaz.revancedupdater"
     const val HMS_PACKAGE = "com.huawei.hwid"
     const val GMS_PACKAGE = "com.google.android.gms"
@@ -58,6 +58,20 @@ object CommonStuff {
     fun isGmsInstalled(context: Context): Boolean {
         try {
             context.packageManager.getPackageInfo(GMS_PACKAGE, 0)
+        } catch (e: PackageManager.NameNotFoundException) {
+            return false
+        }
+        return true
+    }
+
+    /**
+     * Detects if ReVanced GmsCore is installed.
+     * @param context The activity's context
+     * @return ReVanced GmsCore installation status
+     */
+    fun isGmsCoreInstalled(context: Context): Boolean {
+        try {
+            context.packageManager.getPackageInfo(GMSCORE_PACKAGE, 0)
         } catch (e: PackageManager.NameNotFoundException) {
             return false
         }

@@ -31,12 +31,13 @@ import it.leddaz.revancedupdater.utils.json.ReVancedJSONObject
 import it.leddaz.revancedupdater.utils.json.UpdaterDebugJSONObject
 import it.leddaz.revancedupdater.utils.json.UpdaterReleaseJSONObject
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.APP_VERSION
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.GMSCORE_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.IS_DEBUG
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.LOG_TAG
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.MICROG_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.MUSIC_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.REVANCED_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.UPDATER_PACKAGE
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.isGmsCoreInstalled
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.isGmsInstalled
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.isHmsInstalled
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.openLink
@@ -149,19 +150,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Detects if ReVanced GmsCore is installed.
-     * @return ReVanced GmsCore installation status
-     */
-    private fun isMicroGInstalled(): Boolean {
-        try {
-            this.packageManager.getPackageInfo(MICROG_PACKAGE, 0)
-        } catch (e: PackageManager.NameNotFoundException) {
-            return false
-        }
-        return true
-    }
-
-    /**
      * Gets the installed and latest versions of YouTube ReVanced,
      * ReVanced Music, ReVanced GmsCore and ReVanced Updater.
      * @property callback callback used to detect if the download was
@@ -170,13 +158,13 @@ class MainActivity : AppCompatActivity() {
     private fun getVersions(callback: VolleyCallBack) {
         // Installed versions
         getAppVersion(
-            MICROG_PACKAGE,
+            GMSCORE_PACKAGE,
             findViewById(R.id.installed_microg_version),
             installedMicroGVersion,
             findViewById(R.id.microg_download_button)
         )
 
-        if (isMicroGInstalled()) {
+        if (isGmsCoreInstalled(this)) {
             getAppVersion(
                 REVANCED_PACKAGE,
                 findViewById(R.id.installed_revanced_version),
@@ -277,11 +265,11 @@ class MainActivity : AppCompatActivity() {
      */
     private fun compareVersions() {
         compareAppVersion(
-            MICROG_PACKAGE, installedMicroGVersion,
+            GMSCORE_PACKAGE, installedMicroGVersion,
             latestMicroGVersion, findViewById(R.id.microg_update_status),
             findViewById(R.id.microg_download_button)
         )
-        if (isMicroGInstalled()) {
+        if (isGmsCoreInstalled(this)) {
             compareAppVersion(
                 REVANCED_PACKAGE, installedReVancedVersion,
                 latestReVancedVersion, findViewById(R.id.revanced_update_status),
@@ -380,7 +368,7 @@ class MainActivity : AppCompatActivity() {
                     installedTextView.text =
                         getString(R.string.installed_app_version, APP_VERSION)
                 }
-            } else if (packageName == MICROG_PACKAGE) {
+            } else if (packageName == GMSCORE_PACKAGE) {
                 installedVersion.version = pInfo.versionName
                 installedTextView.text =
                     getString(R.string.installed_app_version, installedVersion.version)
@@ -430,7 +418,7 @@ class MainActivity : AppCompatActivity() {
                 updateStatusTextView.text = getString(R.string.update_available)
                 button.isEnabled = true
             } else if (installedVersion.compareTo(latestVersion) == 0) {
-                if (packageName != MICROG_PACKAGE && packageName != UPDATER_PACKAGE) {
+                if (packageName != GMSCORE_PACKAGE && packageName != UPDATER_PACKAGE) {
                     var latestHash = getLatestReVancedHash()
                     if (packageName == MUSIC_PACKAGE)
                         latestHash = getLatestReVancedMusicHash()
