@@ -14,7 +14,7 @@
     <string name="bottom_bar_refresh">Yenile</string>
     <string name="none">hiçbiri</string>
     <string name="music_download_button_description">ReVanced Music\'i İndir</string>
-    <string name="microg_download_button_description">ReVanced GmsCore\'yi İndir</string>
+    <string name="microg_download_button_description">ReVanced GmsCore\'i İndir</string>
     <string name="updater_download_button_description">ReVanced Updater\'ı İndir</string>
     <string name="invalid">Geçersiz</string>
     <string name="invalid_version_detected">Geçersiz sürüm tespit edildi. Yüklü olan uygulamaları kaldırın.</string>
