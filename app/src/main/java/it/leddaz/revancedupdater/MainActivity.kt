@@ -369,7 +369,11 @@ class MainActivity : AppCompatActivity() {
                         getString(R.string.installed_app_version, APP_VERSION)
                 }
             } else if (packageName == GMSCORE_PACKAGE) {
-                installedVersion.version = pInfo.versionName
+                if (isHmsInstalled(this) && !isGmsInstalled(this))
+                    installedVersion.version =
+                        pInfo.versionName.substring(0, pInfo.versionName.length - 3)
+                else
+                    installedVersion.version = pInfo.versionName
                 installedTextView.text =
                     getString(R.string.installed_app_version, installedVersion.version)
             } else {
