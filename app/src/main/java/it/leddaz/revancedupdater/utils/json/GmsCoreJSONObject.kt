@@ -7,7 +7,7 @@ data class GmsCoreJSONObject(
     val latestGmsCoreVersion: String,
 
     @SerializedName("assets")
-    val assets: List<Asset>,
+    val assets: List<Asset>
 )
 
 data class Asset(

@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class UpdaterDebugJSONObject(
     @SerializedName("sha")
-    val latestUpdaterCommit: String,
+    val latestUpdaterCommit: String
 )
