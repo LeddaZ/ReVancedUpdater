@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class GmsCoreJSONObject(
     @SerializedName("tag_name")
-    val latestMicroGVersion: String,
+    val latestGmsCoreVersion: String,
 
     @SerializedName("assets")
     val assets: List<Asset>,
@@ -12,5 +12,5 @@ data class GmsCoreJSONObject(
 
 data class Asset(
     @SerializedName("browser_download_url")
-    val latestMicroGUrl: String
+    val latestGmsCoreUrl: String
 )

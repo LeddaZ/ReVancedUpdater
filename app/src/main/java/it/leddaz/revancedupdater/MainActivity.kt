@@ -243,11 +243,11 @@ class MainActivity : AppCompatActivity() {
         val gmsCoreRequest = StringRequest(GET, gmsCoreAPIUrl, { response ->
             gmsCoreReply =
                 Gson().fromJson(response, object : TypeToken<GmsCoreJSONObject>() {}.type)
-            latestGmsCoreVersion = Version(gmsCoreReply.latestMicroGVersion.substring(1))
+            latestGmsCoreVersion = Version(gmsCoreReply.latestGmsCoreVersion.substring(1))
             gmsCoreDownloadUrl = if (isHmsInstalled(this) && !isGmsInstalled(this))
-                gmsCoreReply.assets[0].latestMicroGUrl
+                gmsCoreReply.assets[0].latestGmsCoreUrl
             else
-                gmsCoreReply.assets[1].latestMicroGUrl
+                gmsCoreReply.assets[1].latestGmsCoreUrl
             callback.onSuccess()
         }, {})
 
