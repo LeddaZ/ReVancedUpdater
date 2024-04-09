@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
         val microGCard = findViewById<MaterialCardView>(R.id.microg_info_card)
         microGCard.setOnLongClickListener {
             openLink(
-                "https://github.com/WSTxda/MicroG-RE/releases/tag/${latestGmsCoreVersion}",
+                "https://github.com/ReVanced/GmsCore/releases/tag/v${latestGmsCoreVersion}",
                 this
             )
             true
