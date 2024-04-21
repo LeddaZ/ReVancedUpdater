@@ -1,43 +1,18 @@
-package it.leddaz.revancedupdater.utils.misc;
+package it.leddaz.revancedupdater.utils.misc
 
-import androidx.annotation.NonNull;
+import kotlin.math.max
 
 /**
  * Class that represents a version.
  */
-public class Version implements Comparable<Version> {
-
-    private String version;
+class Version(version: String?) : Comparable<Version?> {
+    var version: String? = null
 
     /**
      * Constructor method.
-     *
-     * @param version version string
      */
-    public Version(String version) {
-        setVersion(version);
-    }
-
-    /**
-     * Returns the version
-     *
-     * @return Version
-     */
-    public String getVersion() {
-        return version;
-    }
-
-    /**
-     * Sets the version.
-     *
-     * @param version version string
-     */
-    public void setVersion(String version) {
-        if (version == null)
-            throw new IllegalArgumentException("Version can not be null");
-        if (!version.matches("\\d+(\\.\\d+)*"))
-            throw new IllegalArgumentException("Invalid version format");
-        this.version = version;
+    init {
+        setVersion(this, version)
     }
 
     /**
@@ -47,24 +22,20 @@ public class Version implements Comparable<Version> {
      * @return 0 if the versions are equal, 1 if the first version is newer,
      * -1 if the second one is newer
      */
-    @Override
-    public int compareTo(Version other) {
-        if (other == null)
-            return 1;
-        String[] thisParts = this.getVersion().split("\\.");
-        String[] thatParts = other.getVersion().split("\\.");
-        int length = Math.max(thisParts.length, thatParts.length);
-        for (int i = 0; i < length; i++) {
-            int thisPart = i < thisParts.length ?
-                    Integer.parseInt(thisParts[i]) : 0;
-            int thatPart = i < thatParts.length ?
-                    Integer.parseInt(thatParts[i]) : 0;
-            if (thisPart < thatPart)
-                return -1;
-            if (thisPart > thatPart)
-                return 1;
+    override fun compareTo(other: Version?): Int {
+        if (other == null) return 1
+        val thisParts =
+            version!!.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        val thatParts = other.version!!.split("\\.".toRegex()).dropLastWhile { it.isEmpty() }
+            .toTypedArray()
+        val length = max(thisParts.size, thatParts.size)
+        for (i in 0 until length) {
+            val thisPart = if (i < thisParts.size) thisParts[i].toInt() else 0
+            val thatPart = if (i < thatParts.size) thatParts[i].toInt() else 0
+            if (thisPart < thatPart) return -1
+            if (thisPart > thatPart) return 1
         }
-        return 0;
+        return 0
     }
 
     /**
@@ -73,23 +44,34 @@ public class Version implements Comparable<Version> {
      * @param other the other version
      * @return true if the versions are equal, false otherwise
      */
-    @Override
-    public boolean equals(Object other) {
-        if (this == other)
-            return true;
-        if (other == null)
-            return false;
-        if (this.getClass() != other.getClass())
-            return false;
-        return this.compareTo((Version) other) == 0;
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null) return false
+        return if (this.javaClass != other.javaClass) false else this.compareTo(other as Version?) == 0
     }
 
     /**
      * @return A string representation of the version
      */
-    @NonNull
-    public String toString() {
-        return version;
+    override fun toString(): String {
+        return version!!
     }
 
+    override fun hashCode(): Int {
+        return version?.hashCode() ?: 0
+    }
+
+    companion object {
+        /**
+         * Sets the version.
+         *
+         * @param obj Version instance to set the version on
+         * @param version version string
+         */
+        fun setVersion(obj: Version, version: String?) {
+            requireNotNull(version) { "Version can not be null" }
+            require(version.matches("\\d+(\\.\\d+)*".toRegex())) { "Invalid version format" }
+            obj.version = version
+        }
+    }
 }
