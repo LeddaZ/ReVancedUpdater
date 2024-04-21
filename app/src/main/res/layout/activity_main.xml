@@ -180,7 +180,7 @@
                 android:checkable="false"
                 android:clickable="true"
                 android:focusable="true"
-                app:layout_constraintBottom_toTopOf="@id/updater_info_card"
+                app:layout_constraintBottom_toTopOf="@id/x_info_card"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/music_info_card"
@@ -234,7 +234,76 @@
                     android:layout_margin="16dp"
                     android:contentDescription="@string/microg_download_button_description"
                     android:enabled="false"
-                    android:onClick="downloadMicroG"
+                    android:onClick="downloadGmsCore"
+                    android:text="@string/download_button_text" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/x_info_card"
+                style="?attr/materialCardViewFilledStyle"
+                android:layout_width="350sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="8dp"
+                android:checkable="false"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toTopOf="@id/updater_info_card"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/microg_info_card"
+                tools:ignore="TextSizeCheck">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="15sp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/x_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="20sp"
+                        android:text="@string/x_info_title"
+                        android:textSize="24sp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/installed_x_version"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/installed_app_version"
+                        android:textSize="16sp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/latest_x_version"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5sp"
+                        android:text="@string/latest_app_version"
+                        android:textSize="16sp" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/x_update_status"
+                        android:layout_width="225sp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/update_status"
+                        android:textSize="18sp"
+                        tools:ignore="TextSizeCheck" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/x_download_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="16dp"
+                    android:contentDescription="@string/x_download_button_description"
+                    android:enabled="false"
+                    android:onClick="downloadX"
                     android:text="@string/download_button_text" />
 
             </com.google.android.material.card.MaterialCardView>
@@ -252,7 +321,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/microg_info_card"
+                app:layout_constraintTop_toBottomOf="@id/x_info_card"
                 tools:ignore="TextSizeCheck">
 
                 <LinearLayout

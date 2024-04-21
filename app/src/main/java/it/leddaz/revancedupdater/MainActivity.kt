@@ -37,6 +37,7 @@ import it.leddaz.revancedupdater.utils.misc.CommonStuff.LOG_TAG
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.MUSIC_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.REVANCED_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.UPDATER_PACKAGE
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.X_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.isGmsCoreInstalled
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.isGmsInstalled
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.isHmsInstalled
@@ -72,6 +73,9 @@ class MainActivity : AppCompatActivity() {
     private var installedGmsCoreVersion = Version("99.99")
     private var latestGmsCoreVersion = Version("0.0")
     private var gmsCoreDownloadUrl = ""
+    private var installedXVersion = Version("99.99")
+    private var latestXVersion = Version("0.0")
+    private var xDownloadUrl = ""
 
     /**
      * Actions executed when the activity is created at runtime.
@@ -81,8 +85,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         DynamicColors.applyToActivityIfAvailable(this)
         setContentView(R.layout.activity_main)
-        val microGCardTitle = findViewById<MaterialTextView>(R.id.updater_title)
-        microGCardTitle.text = getString(R.string.app_name)
+        val updaterCardTitle = findViewById<MaterialTextView>(R.id.updater_title)
+        updaterCardTitle.text = getString(R.string.app_name)
         Log.i(LOG_TAG, "Device fingerprint: ${Build.FINGERPRINT}")
         refresh(this)
 
@@ -105,6 +109,15 @@ class MainActivity : AppCompatActivity() {
         microGCard.setOnLongClickListener {
             openLink(
                 "https://github.com/ReVanced/GmsCore/releases/tag/v${latestGmsCoreVersion}",
+                this
+            )
+            true
+        }
+
+        val xCard = findViewById<MaterialCardView>(R.id.x_info_card)
+        xCard.setOnLongClickListener {
+            openLink(
+                "https://github.com/LeddaZ/revanced-repo/blob/main/changelogs/x.md",
                 this
             )
             true
@@ -164,6 +177,13 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.microg_download_button)
         )
 
+        getAppVersion(
+            X_PACKAGE,
+            findViewById(R.id.installed_x_version),
+            installedXVersion,
+            findViewById(R.id.x_download_button)
+        )
+
         if (isGmsCoreInstalled(this)) {
             getAppVersion(
                 REVANCED_PACKAGE,
@@ -219,6 +239,8 @@ class MainActivity : AppCompatActivity() {
             }
             musicDownloadUrl = urlPrefix + reVancedReply.latestReVancedMusicDate +
                     "-ytm/ytm-$preferredABI-signed.apk"
+            latestXVersion = Version(reVancedReply.latestXVersion)
+            xDownloadUrl = urlPrefix + reVancedReply.latestXDate + "-x/x-signed.apk"
             callback.onSuccess()
         }, {})
 
@@ -269,6 +291,13 @@ class MainActivity : AppCompatActivity() {
             latestGmsCoreVersion, findViewById(R.id.microg_update_status),
             findViewById(R.id.microg_download_button)
         )
+
+        compareAppVersion(
+            X_PACKAGE, installedXVersion,
+            latestXVersion, findViewById(R.id.x_update_status),
+            findViewById(R.id.x_download_button)
+        )
+
         if (isGmsCoreInstalled(this)) {
             compareAppVersion(
                 REVANCED_PACKAGE, installedReVancedVersion,
@@ -316,9 +345,18 @@ class MainActivity : AppCompatActivity() {
      * Downloads ReVanced GmsCore when the button is clicked.
      * @property view the view which contains the button.
      */
-    fun downloadMicroG(view: View) {
+    fun downloadGmsCore(view: View) {
         view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
         dlAndInstall("microg.apk", gmsCoreDownloadUrl, this)
+    }
+
+    /**
+     * Downloads ReVanced GmsCore when the button is clicked.
+     * @property view the view which contains the button.
+     */
+    fun downloadX(view: View) {
+        view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
+        dlAndInstall("x.apk", xDownloadUrl, this)
     }
 
     /**
@@ -376,6 +414,8 @@ class MainActivity : AppCompatActivity() {
                     installedVersion.version = pInfo.versionName
                 installedTextView.text =
                     getString(R.string.installed_app_version, installedVersion.version)
+            } else if (packageName == X_PACKAGE) {
+                installedVersion.version = pInfo.versionName.substringBefore('-')
             } else {
                 installedVersion.version = pInfo.versionName
                 installedTextView.text =
@@ -476,7 +516,8 @@ class MainActivity : AppCompatActivity() {
             "revanced-music-nonroot-signed.apk",
             "revanced-nonroot-signed.apk",
             "app-release.apk",
-            "microg.apk"
+            "microg.apk",
+            "x.apk"
         )
         val appDataDir = context.getExternalFilesDir("/apks/").toString() + "/"
         for (apk in filenames) {
@@ -497,10 +538,15 @@ class MainActivity : AppCompatActivity() {
                 latestReVancedMusicTextView.text =
                     getString(R.string.latest_app_version, latestReVancedMusicVersion)
 
-                val latestMicroGTextView: TextView =
+                val latestGmsCoreTextView: TextView =
                     findViewById(R.id.latest_microg_version)
-                latestMicroGTextView.text =
+                latestGmsCoreTextView.text =
                     getString(R.string.latest_app_version, latestGmsCoreVersion)
+
+                val latestXTextView: TextView =
+                    findViewById(R.id.latest_x_version)
+                latestXTextView.text =
+                    getString(R.string.latest_app_version, latestXVersion)
 
                 val latestAppTextView: TextView = findViewById(R.id.latest_updater_version)
                 if (!IS_DEBUG)

@@ -25,6 +25,7 @@ object CommonStuff {
     const val UPDATER_PACKAGE = "it.leddaz.revancedupdater"
     const val HMS_PACKAGE = "com.huawei.hwid"
     const val GMS_PACKAGE = "com.google.android.gms"
+    const val X_PACKAGE = "com.twitter.android"
 
     /**
      * Opens a link using the default browser.
