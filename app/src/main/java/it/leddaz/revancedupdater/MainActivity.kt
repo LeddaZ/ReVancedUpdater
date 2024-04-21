@@ -416,6 +416,8 @@ class MainActivity : AppCompatActivity() {
                     getString(R.string.installed_app_version, installedVersion.version)
             } else if (packageName == X_PACKAGE) {
                 installedVersion.version = pInfo.versionName.substringBefore('-')
+                installedTextView.text =
+                    getString(R.string.installed_app_version, installedVersion.version)
             } else {
                 installedVersion.version = pInfo.versionName
                 installedTextView.text =
@@ -462,7 +464,7 @@ class MainActivity : AppCompatActivity() {
                 updateStatusTextView.text = getString(R.string.update_available)
                 button.isEnabled = true
             } else if (installedVersion.compareTo(latestVersion) == 0) {
-                if (packageName != GMSCORE_PACKAGE && packageName != UPDATER_PACKAGE) {
+                if (packageName != GMSCORE_PACKAGE && packageName != UPDATER_PACKAGE && packageName != X_PACKAGE) {
                     var latestHash = getLatestReVancedHash()
                     if (packageName == MUSIC_PACKAGE)
                         latestHash = getLatestReVancedMusicHash()
