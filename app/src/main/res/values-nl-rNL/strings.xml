@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="installed_app_version">Installed: %1$s</string>
+    <string name="installed_app_version">Identificatie (sleutel): geïnstalleerde_app_versie geïnstalleerde_app_versie</string>
     <string name="latest_app_version">Latest: %1$s</string>
     <string name="update_status">Checking for updates…</string>
     <string name="update_available">Update available!</string>
