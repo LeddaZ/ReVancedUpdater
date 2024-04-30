@@ -26,4 +26,5 @@
     <string name="about_dialog_title">Informazioni sull\'app</string>
     <string name="download_button_text">Scarica</string>
     <string name="hold_app_card">Tieni premuta la scheda di un\'app per aprire il suo changelog.</string>
+    <string name="x_download_button_description">Scarica X</string>
 </resources>

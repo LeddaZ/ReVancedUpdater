@@ -26,4 +26,5 @@
     <string name="about_dialog_title">Uygulama hakkında</string>
     <string name="download_button_text">İndir</string>
     <string name="hold_app_card">Değişiklik günlüğünü açmak için bir uygulamanın kartını basılı tutun.</string>
+    <string name="x_download_button_description">Download X</string>
 </resources>
