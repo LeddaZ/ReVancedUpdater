@@ -23,12 +23,12 @@ fun getCommitHash(): String {
 
 android {
     namespace = "it.leddaz.revancedupdater"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "it.leddaz.revancedupdater"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = getCommitCount()
         versionName = "3.4.0 (" + getCommitHash() + ")"
     }
