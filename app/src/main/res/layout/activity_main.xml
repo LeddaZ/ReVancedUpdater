@@ -389,6 +389,17 @@
                 android:textAlignment="center"
                 android:textSize="16sp" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="10sp"
+                android:paddingRight="10sp"
+                android:paddingBottom="20dp"
+                android:text="@string/disclaimer"
+                android:textAlignment="center"
+                android:textSize="16sp" />
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
