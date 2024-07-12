@@ -27,4 +27,5 @@
     <string name="download_button_text">Download</string>
     <string name="hold_app_card">Hold an app\'s card to open its changelog.</string>
     <string name="x_download_button_description">Download X</string>
+    <string name="disclaimer">LeddaZ is only responsible for ReVanced Updater. Report issues with the apps to the ReVanced team.</string>
 </resources>

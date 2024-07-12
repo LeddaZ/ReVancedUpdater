@@ -26,5 +26,6 @@
     <string name="about_dialog_title">Про додаток</string>
     <string name="download_button_text">Завантажити</string>
     <string name="hold_app_card">Утримуйте на картці додатку, щоб відкрити список змін.</string>
-    <string name="x_download_button_description">Download X</string>
+    <string name="x_download_button_description">Завантажити Х</string>
+    <string name="disclaimer">LeddaZ is only responsible for ReVanced Updater. Report issues with the apps to the ReVanced team.</string>
 </resources>
