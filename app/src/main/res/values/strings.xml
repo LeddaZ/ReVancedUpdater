@@ -35,4 +35,5 @@
     <string name="microg_info_title" translatable="false">ReVanced GmsCore</string>
     <string name="x_download_button_description">Download X</string>
     <string name="x_info_title" translatable="false">X</string>
+    <string name="disclaimer">LeddaZ is only responsible for ReVanced Updater. Report issues with the apps to the ReVanced team.</string>
 </resources>
