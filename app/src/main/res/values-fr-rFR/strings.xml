@@ -27,5 +27,5 @@
     <string name="download_button_text">Télécharger</string>
     <string name="hold_app_card">Tenez la carte d\'une application pour ouvrir son journal des modifications.</string>
     <string name="x_download_button_description">Télécharger X</string>
-    <string name="disclaimer">LeddaZ est responsable uniquement de ReVanced Updater. Veuillez signaler les problèmes des applications à l\'équipe ReVanced.</string>
+    <string name="disclaimer">LeddaZ is only responsible for ReVanced Updater, app issues are not under his control.</string>
 </resources>
