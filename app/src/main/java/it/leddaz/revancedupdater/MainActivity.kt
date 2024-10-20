@@ -13,6 +13,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request.Method.GET
 import com.android.volley.toolbox.StringRequest
@@ -82,6 +83,7 @@ class MainActivity : AppCompatActivity() {
      * @property savedInstanceState
      */
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         DynamicColors.applyToActivityIfAvailable(this)
         setContentView(R.layout.activity_main)
