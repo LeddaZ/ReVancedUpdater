@@ -22,21 +22,22 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew assembleDebug
 
-      - uses: ilharp/sign-android-release@v1
-        name: Sign APK
+      - uses: r0adkll/sign-android-release@v1
+        name: Sign app APK
         id: sign_app
         with:
-          releaseDir: app/build/outputs/apk/debug
-          signingKey: '${{ secrets.SIGNING_KEY }}'
-          keyAlias: '${{ secrets.ALIAS }}'
-          keyStorePassword: '${{ secrets.KEY_STORE_PASSWORD }}'
-          keyPassword: '${{ secrets.KEY_PASSWORD }}'
-          buildToolsVersion: 33.0.0
+          releaseDirectory: app/build/outputs/apk/debug
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+        env:
+          BUILD_TOOLS_VERSION: "34.0.0"
 
       - uses: actions/upload-artifact@v4
         with:
           name: app-debug-signed.apk
-          path: ${{steps.sign_app.outputs.signedFile}}
+          path: ${{steps.sign_app.outputs.signedReleaseFile}}
 
       - uses: marvinpinto/action-automatic-releases@latest
         with:
@@ -45,4 +46,4 @@ jobs:
           prerelease: true
           title: "Latest commit"
           files: |
-            ${{steps.sign_app.outputs.signedFile}}
+            ${{steps.sign_app.outputs.signedReleaseFile}}
