@@ -6,7 +6,7 @@ commons-codec = "1.17.1"
 core-ktx = "1.13.1"
 gson = "2.11.0"
 material = "1.12.0"
-kotlin = "2.0.0"
+kotlin = "2.0.21"
 
 [libraries]
 android-volley = { module = "com.android.volley:volley", version.ref = "android-volley" }
