@@ -21,7 +21,7 @@
     <string name="yes">כן</string>
     <string name="no">לא</string>
     <string name="microg_dialog_title">ReVanced GmsCore לא מותקן</string>
-    <string name="microg_dialog_text">ReVanced GmsCore is required to log in to your Google account on ReVanced apps. Do you want to install it now?</string>
+    <string name="microg_dialog_text">ReVanced GmsCore נדרש כדי להיכנס לחשבון Google שלך באפליקציות ReVanced. האם אתה רוצה להתקין אותו עכשיו?</string>
     <string name="bottom_bar_about">אודות</string>
     <string name="about_dialog_title">אודות יישום זה</string>
     <string name="download_button_text">הורד</string>
