@@ -5,7 +5,6 @@
     <string name="update_status">Checking for updates…</string>
     <string name="update_available">Update available!</string>
     <string name="no_update_available">No update available</string>
-    <string name="download_started">Download started. Check the notifications for details.</string>
     <string name="app_not_installed">App not installed</string>
     <string name="download_error">An error occurred while downloading. Check logs for more details.</string>
     <string name="open_github">See on GitHub</string>
