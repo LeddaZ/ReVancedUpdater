@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="installed_app_version">Installed: %1$s</string>
+    <string name="installed_app_version">הותקן: %1$s</string>
     <string name="latest_app_version">Latest: %1$s</string>
     <string name="update_status">מחפש עדכונים…</string>
     <string name="update_available">עדכון זמין!</string>
@@ -8,24 +8,24 @@
     <string name="download_started">ההורדה החלה. בדוק את ההתראות לפרטים.</string>
     <string name="app_not_installed">היישום לא הותקן</string>
     <string name="download_error">An error occurred while downloading. Check logs for more details.</string>
-    <string name="open_github">See on GitHub</string>
-    <string name="about_dialog_text">ReVanced Updater is an app made by LeddaZ to update his ReVanced builds.</string>
-    <string name="revanced_download_button_description">Download ReVanced</string>
+    <string name="open_github">ראה ב-GitHub</string>
+    <string name="about_dialog_text">ReVanced Updater היא אפליקציה שנוצרה על ידי LeddaZ כדי לעדכן את הReVanced שלו.</string>
+    <string name="revanced_download_button_description">הורד ReVanced</string>
     <string name="bottom_bar_refresh">רענן</string>
     <string name="none">ללא</string>
-    <string name="music_download_button_description">Download ReVanced Music</string>
-    <string name="microg_download_button_description">Download ReVanced GmsCore</string>
-    <string name="updater_download_button_description">Download ReVanced Updater</string>
-    <string name="invalid">invalid</string>
+    <string name="music_download_button_description">הורד ReVanced Music</string>
+    <string name="microg_download_button_description">הורד ReVanced GmsCore</string>
+    <string name="updater_download_button_description">הורד ReVanced Updater</string>
+    <string name="invalid">לא בתוקף</string>
     <string name="invalid_version_detected">Invalid version detected. Uninstall existing apps.</string>
     <string name="yes">כן</string>
     <string name="no">לא</string>
-    <string name="microg_dialog_title">ReVanced GmsCore not installed</string>
-    <string name="microg_dialog_text">ReVanced GmsCore is required to log in to your Google account on ReVanced apps. Do you want to install it now?</string>
+    <string name="microg_dialog_title">ReVanced GmsCore לא מותקן</string>
+    <string name="microg_dialog_text">ReVanced GmsCore נדרש כדי להיכנס לחשבון Google שלך באפליקציות ReVanced. האם אתה רוצה להתקין אותו עכשיו?</string>
     <string name="bottom_bar_about">אודות</string>
-    <string name="about_dialog_title">About this app</string>
+    <string name="about_dialog_title">אודות יישום זה</string>
     <string name="download_button_text">הורד</string>
     <string name="hold_app_card">Hold an app\'s card to open its changelog.</string>
-    <string name="x_download_button_description">Download X</string>
-    <string name="disclaimer">LeddaZ is only responsible for ReVanced Updater, app issues are not under his control.</string>
+    <string name="x_download_button_description">הורד X</string>
+    <string name="disclaimer">LeddaZ אחראי רק על ReVanced Updater, בעיות באפליקציות אינן בשליטתו.</string>
 </resources>
