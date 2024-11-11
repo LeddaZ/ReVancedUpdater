@@ -71,6 +71,12 @@ class AppInstaller() {
 
                     withContext(Dispatchers.Main) {
                         progressIndicator.setProgress(progress, true)
+                        button.text = buildString {
+                            append(getString(context, R.string.downloading))
+                            append(" ")
+                            append(progress)
+                            append("%")
+                        }
                     }
 
                     output.write(data, 0, count)
