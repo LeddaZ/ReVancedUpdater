@@ -70,7 +70,7 @@ class AppInstaller() {
                     val progress = (total * 100 / fileLength).toInt()
 
                     withContext(Dispatchers.Main) {
-                        progressIndicator.progress = progress
+                        progressIndicator.setProgress(progress, true)
                     }
 
                     output.write(data, 0, count)
