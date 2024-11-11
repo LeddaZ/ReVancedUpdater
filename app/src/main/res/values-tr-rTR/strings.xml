@@ -5,7 +5,6 @@
     <string name="update_status">Güncellemeler kontrol ediliyor…</string>
     <string name="update_available">Güncelleme mevcut!</string>
     <string name="no_update_available">Güncelleme mevcut değil</string>
-    <string name="download_started">İndirme başladı. Detaylar için bildirimleri kontrol edin.</string>
     <string name="app_not_installed">Uygulama yüklü değil</string>
     <string name="download_error">İndirirken bir hata oluştu. Detaylar için kayıtları kontrol edin.</string>
     <string name="open_github">GitHub\'da görüntüle</string>
@@ -28,4 +27,5 @@
     <string name="hold_app_card">Değişiklik günlüğünü açmak için bir uygulamanın kartını basılı tutun.</string>
     <string name="x_download_button_description">Download X</string>
     <string name="disclaimer">LeddaZ is only responsible for ReVanced Updater, app issues are not under his control.</string>
+    <string name="downloading">Downloading</string>
 </resources>
