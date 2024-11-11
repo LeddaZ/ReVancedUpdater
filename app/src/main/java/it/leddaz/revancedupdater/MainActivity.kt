@@ -31,15 +31,15 @@ import it.leddaz.revancedupdater.utils.json.UpdaterReleaseJSONObject
 import it.leddaz.revancedupdater.utils.misc.AppInstaller
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.APP_VERSION
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.GMSCORE_PACKAGE
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.GMS_PACKAGE
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.HMS_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.IS_DEBUG
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.LOG_TAG
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.MUSIC_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.REVANCED_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.UPDATER_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.X_PACKAGE
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.isGmsCoreInstalled
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.isGmsInstalled
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.isHmsInstalled
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.isAppInstalled
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.openLink
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.requestInstallPermission
 import it.leddaz.revancedupdater.utils.misc.Version
@@ -200,7 +200,7 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.x_download_button)
         )
 
-        if (isGmsCoreInstalled(this)) {
+        if (isAppInstalled(this, GMSCORE_PACKAGE)) {
             getAppVersion(
                 REVANCED_PACKAGE,
                 findViewById(R.id.installed_revanced_version),
@@ -282,7 +282,8 @@ class MainActivity : AppCompatActivity() {
             gmsCoreReply =
                 Gson().fromJson(response, object : TypeToken<GmsCoreJSONObject>() {}.type)
             latestGmsCoreVersion = Version(gmsCoreReply.latestGmsCoreVersion.substring(1))
-            gmsCoreDownloadUrl = if (isHmsInstalled(this) && !isGmsInstalled(this))
+            gmsCoreDownloadUrl =
+                if (isAppInstalled(this, HMS_PACKAGE) && !isAppInstalled(this, GMS_PACKAGE))
                 gmsCoreReply.assets[0].latestGmsCoreUrl
             else
                 gmsCoreReply.assets[1].latestGmsCoreUrl
@@ -314,7 +315,7 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.x_download_button)
         )
 
-        if (isGmsCoreInstalled(this)) {
+        if (isAppInstalled(this, GMSCORE_PACKAGE)) {
             compareAppVersion(
                 REVANCED_PACKAGE, installedReVancedVersion,
                 latestReVancedVersion, findViewById(R.id.revanced_update_status),
@@ -435,7 +436,7 @@ class MainActivity : AppCompatActivity() {
                         getString(R.string.installed_app_version, APP_VERSION)
                 }
             } else if (packageName == GMSCORE_PACKAGE) {
-                if (isHmsInstalled(this) && !isGmsInstalled(this))
+                if (isAppInstalled(this, HMS_PACKAGE) && !isAppInstalled(this, GMS_PACKAGE))
                     installedVersion.version =
                         pInfo.versionName?.substring(0, pInfo.versionName!!.length - 3)
                 else
