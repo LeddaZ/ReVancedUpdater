@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.provider.Settings
 import it.leddaz.revancedupdater.BuildConfig
 
 /**
@@ -76,6 +77,20 @@ object CommonStuff {
             return false
         }
         return true
+    }
+
+    /**
+     * Prompts the user to grant the permission to install apps.
+     * @param context The activity's context
+     */
+    fun requestInstallPermission(context: Context) {
+        val packageManager = context.packageManager
+        if (!packageManager.canRequestPackageInstalls()) {
+            val intent = Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES)
+                .setData(Uri.parse("package:" + BuildConfig.APPLICATION_ID))
+            context.startActivity(intent)
+            return
+        }
     }
 
 }

@@ -3,7 +3,6 @@ package it.leddaz.revancedupdater.utils.misc
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -14,6 +13,7 @@ import com.google.android.material.progressindicator.LinearProgressIndicator
 import it.leddaz.revancedupdater.BuildConfig
 import it.leddaz.revancedupdater.R
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.LOG_TAG
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.requestInstallPermission
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -92,13 +92,7 @@ class AppInstaller() {
     }
 
     private fun installApk(fileName: String, context: Context) {
-        val packageManager = context.packageManager
-        if (!packageManager.canRequestPackageInstalls()) {
-            val intent = Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES)
-                .setData(Uri.parse("package:" + BuildConfig.APPLICATION_ID))
-            context.startActivity(intent)
-            return
-        }
+        requestInstallPermission(context)
 
         val apkUri: Uri =
             FileProvider.getUriForFile(

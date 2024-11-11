@@ -41,6 +41,7 @@ import it.leddaz.revancedupdater.utils.misc.CommonStuff.isGmsCoreInstalled
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.isGmsInstalled
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.isHmsInstalled
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.openLink
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.requestInstallPermission
 import it.leddaz.revancedupdater.utils.misc.Version
 import it.leddaz.revancedupdater.utils.misc.VolleyCallBack
 import org.apache.commons.codec.binary.Hex
@@ -173,6 +174,8 @@ class MainActivity : AppCompatActivity() {
             }
             false
         }
+
+        requestInstallPermission(this)
     }
 
     /**
