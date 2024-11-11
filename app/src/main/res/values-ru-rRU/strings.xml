@@ -5,7 +5,6 @@
     <string name="update_status">Проверка обновлений…</string>
     <string name="update_available">Доступно обновление!</string>
     <string name="no_update_available">Нет доступных обновлений</string>
-    <string name="download_started">Загрузка началась. Проверьте уведомления для подробностей.</string>
     <string name="app_not_installed">Приложение не установлено</string>
     <string name="download_error">Произошла ошибка при загрузке. Проверьте журналы для получения более подробной информации.</string>
     <string name="open_github">Посмотреть на GitHub</string>
@@ -28,4 +27,5 @@
     <string name="hold_app_card">Удерживайте карту приложения, чтобы открыть список изменений.</string>
     <string name="x_download_button_description">Download X</string>
     <string name="disclaimer">LeddaZ is only responsible for ReVanced Updater, app issues are not under his control.</string>
+    <string name="downloading">Downloading</string>
 </resources>
