@@ -7,7 +7,6 @@
     <string name="update_status">Checking for updates…</string>
     <string name="update_available">Update available!</string>
     <string name="no_update_available">No update available</string>
-    <string name="download_started">Download started. Check the notifications for details.</string>
     <string name="app_not_installed">App not installed</string>
     <string name="download_error">An error occurred while downloading. Check logs for more details.</string>
     <string name="open_github">See on GitHub</string>
@@ -36,4 +35,5 @@
     <string name="x_download_button_description">Download X</string>
     <string name="x_info_title" translatable="false">X</string>
     <string name="disclaimer">LeddaZ is only responsible for ReVanced Updater, app issues are not under his control.</string>
+    <string name="downloading">Downloading</string>
 </resources>
