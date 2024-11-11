@@ -75,4 +75,5 @@ dependencies {
     implementation(libs.material)
     implementation(libs.gson)
     implementation(libs.commons.codec)
+    implementation(libs.kotlinx.coroutines.android)
 }

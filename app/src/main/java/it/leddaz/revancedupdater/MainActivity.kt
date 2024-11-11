@@ -1,10 +1,8 @@
 package it.leddaz.revancedupdater
 
-import android.app.DownloadManager
 import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -21,16 +19,16 @@ import com.android.volley.toolbox.Volley
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.color.DynamicColors
+import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.google.android.material.textview.MaterialTextView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import it.leddaz.revancedupdater.dialogs.AboutDialog
-import it.leddaz.revancedupdater.utils.apputils.AppInstaller
-import it.leddaz.revancedupdater.utils.apputils.Downloader
 import it.leddaz.revancedupdater.utils.json.GmsCoreJSONObject
 import it.leddaz.revancedupdater.utils.json.ReVancedJSONObject
 import it.leddaz.revancedupdater.utils.json.UpdaterDebugJSONObject
 import it.leddaz.revancedupdater.utils.json.UpdaterReleaseJSONObject
+import it.leddaz.revancedupdater.utils.misc.AppInstaller
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.APP_VERSION
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.GMSCORE_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.IS_DEBUG
@@ -77,6 +75,12 @@ class MainActivity : AppCompatActivity() {
     private var installedXVersion = Version("99.99")
     private var latestXVersion = Version("0.0")
     private var xDownloadUrl = ""
+    private lateinit var revancedIndicator: LinearProgressIndicator
+    private lateinit var musicIndicator: LinearProgressIndicator
+    private lateinit var gmsCoreIndicator: LinearProgressIndicator
+    private lateinit var xIndicator: LinearProgressIndicator
+    private lateinit var updaterIndicator: LinearProgressIndicator
+
 
     /**
      * Actions executed when the activity is created at runtime.
@@ -87,6 +91,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         DynamicColors.applyToActivityIfAvailable(this)
         setContentView(R.layout.activity_main)
+
+        revancedIndicator = findViewById(R.id.revanced_download_progress)
+        musicIndicator = findViewById(R.id.music_download_progress)
+        gmsCoreIndicator = findViewById(R.id.microg_download_progress)
+        xIndicator = findViewById(R.id.x_download_progress)
+        updaterIndicator = findViewById(R.id.updater_download_progress)
+
         val updaterCardTitle = findViewById<MaterialTextView>(R.id.updater_title)
         updaterCardTitle.text = getString(R.string.app_name)
         Log.i(LOG_TAG, "Device fingerprint: ${Build.FINGERPRINT}")
@@ -331,7 +342,13 @@ class MainActivity : AppCompatActivity() {
      */
     fun downloadReVanced(view: View) {
         view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
-        dlAndInstall("revanced-nonroot-signed.apk", reVancedDownloadUrl, this)
+        AppInstaller(
+            this,
+            reVancedDownloadUrl,
+            "revanced-nonroot-signed.apk",
+            revancedIndicator,
+            findViewById(R.id.revanced_download_button)
+        )
     }
 
     /**
@@ -340,7 +357,13 @@ class MainActivity : AppCompatActivity() {
      */
     fun downloadReVancedMusic(view: View) {
         view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
-        dlAndInstall("revanced-music-nonroot-signed.apk", musicDownloadUrl, this)
+        AppInstaller(
+            this,
+            musicDownloadUrl,
+            "revanced-music-nonroot-signed.apk",
+            musicIndicator,
+            findViewById(R.id.music_download_button)
+        )
     }
 
     /**
@@ -349,7 +372,13 @@ class MainActivity : AppCompatActivity() {
      */
     fun downloadGmsCore(view: View) {
         view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
-        dlAndInstall("microg.apk", gmsCoreDownloadUrl, this)
+        AppInstaller(
+            this,
+            gmsCoreDownloadUrl,
+            "microg.apk",
+            gmsCoreIndicator,
+            findViewById(R.id.microg_download_button)
+        )
     }
 
     /**
@@ -358,7 +387,9 @@ class MainActivity : AppCompatActivity() {
      */
     fun downloadX(view: View) {
         view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
-        dlAndInstall("x.apk", xDownloadUrl, this)
+        AppInstaller(
+            this, xDownloadUrl, "x.apk", xIndicator, findViewById(R.id.x_download_button)
+        )
     }
 
     /**
@@ -367,21 +398,13 @@ class MainActivity : AppCompatActivity() {
      */
     fun downloadUpdater(view: View) {
         view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
-        dlAndInstall("app-release.apk", updaterDownloadUrl, this)
-    }
-
-    /**
-     * Downloads and installs an app when the corresponding button is clicked.
-     * @property fileName the APK filename
-     * @property url link
-     * @property context the activity's context
-     */
-    private fun dlAndInstall(fileName: String, url: String, context: Context) {
-        Downloader(
-            context.getSystemService(DOWNLOAD_SERVICE) as DownloadManager,
-            context, Uri.parse(url), fileName
+        AppInstaller(
+            this,
+            updaterDownloadUrl,
+            "app-release.apk",
+            updaterIndicator,
+            findViewById(R.id.updater_download_button)
         )
-        AppInstaller(fileName, context)
     }
 
     /**
@@ -425,7 +448,7 @@ class MainActivity : AppCompatActivity() {
                 installedTextView.text =
                     getString(R.string.installed_app_version, installedVersion.version)
             }
-        } catch (e: PackageManager.NameNotFoundException) {
+        } catch (_: PackageManager.NameNotFoundException) {
             installedTextView.text =
                 getString(R.string.installed_app_version, getString(R.string.none))
             installedVersion.version = "99.99"

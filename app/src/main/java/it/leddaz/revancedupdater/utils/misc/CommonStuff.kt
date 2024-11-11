@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import androidx.core.content.ContextCompat.startActivity
 import it.leddaz.revancedupdater.BuildConfig
 
 /**
@@ -34,7 +33,7 @@ object CommonStuff {
      */
     fun openLink(url: String, context: Context) {
         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        startActivity(context, browserIntent, null)
+        context.startActivity(browserIntent)
     }
 
     /**

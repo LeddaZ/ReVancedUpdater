@@ -5,6 +5,7 @@ appcompat = "1.7.0"
 commons-codec = "1.17.1"
 core-ktx = "1.15.0"
 gson = "2.11.0"
+kotlinx-coroutines-android = "1.7.1"
 material = "1.12.0"
 kotlin = "2.0.21"
 
@@ -14,6 +15,7 @@ androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "a
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 commons-codec = { module = "commons-codec:commons-codec", version.ref = "commons-codec" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines-android" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 
 [plugins]

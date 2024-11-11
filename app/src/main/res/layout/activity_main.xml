@@ -100,6 +100,12 @@
                     android:onClick="downloadReVanced"
                     android:text="@string/download_button_text" />
 
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/revanced_download_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
@@ -168,6 +174,12 @@
                     android:enabled="false"
                     android:onClick="downloadReVancedMusic"
                     android:text="@string/download_button_text" />
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/music_download_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -238,6 +250,12 @@
                     android:onClick="downloadGmsCore"
                     android:text="@string/download_button_text" />
 
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/microg_download_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
@@ -307,6 +325,12 @@
                     android:onClick="downloadX"
                     android:text="@string/download_button_text" />
 
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/x_download_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
@@ -375,6 +399,12 @@
                     android:enabled="false"
                     android:onClick="downloadUpdater"
                     android:text="@string/download_button_text" />
+
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/updater_download_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
 
             </com.google.android.material.card.MaterialCardView>
 
