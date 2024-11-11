@@ -5,7 +5,6 @@
     <string name="update_status">Đang kiểm tra bản cập nhật…</string>
     <string name="update_available">Đã có bản cập nhật!</string>
     <string name="no_update_available">Không có bản cập nhật mới hơn</string>
-    <string name="download_started">Đã bắt đầu tải xuống. Kiểm tra thông báo để biết chi tiết.</string>
     <string name="app_not_installed">Ứng dụng chưa được cài đặt</string>
     <string name="download_error">Đã xảy ra lỗi khi tải xuống. Kiểm tra nhật ký để biết thêm chi tiết.</string>
     <string name="open_github">Xem trên GitHub</string>
@@ -28,4 +27,5 @@
     <string name="hold_app_card">Giữ thẻ của ứng dụng để mở nhật ký thay đổi của ứng dụng đó.</string>
     <string name="x_download_button_description">Download X</string>
     <string name="disclaimer">LeddaZ is only responsible for ReVanced Updater, app issues are not under his control.</string>
+    <string name="downloading">Downloading</string>
 </resources>
