@@ -27,5 +27,5 @@
     <string name="hold_app_card">Tieni premuta la scheda di un\'app per aprire il suo changelog.</string>
     <string name="x_download_button_description">Scarica X</string>
     <string name="disclaimer">LeddaZ è responsabile solo di ReVanced Updater, i problemi delle app non sono sotto il suo controllo.</string>
-    <string name="downloading">Downloading</string>
+    <string name="downloading">Scaricando</string>
 </resources>
