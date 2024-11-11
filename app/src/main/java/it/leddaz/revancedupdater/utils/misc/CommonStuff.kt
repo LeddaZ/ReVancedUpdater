@@ -44,7 +44,7 @@ object CommonStuff {
     fun isHmsInstalled(context: Context): Boolean {
         try {
             context.packageManager.getPackageInfo(HMS_PACKAGE, 0)
-        } catch (e: PackageManager.NameNotFoundException) {
+        } catch (_: PackageManager.NameNotFoundException) {
             return false
         }
         return true
@@ -58,7 +58,7 @@ object CommonStuff {
     fun isGmsInstalled(context: Context): Boolean {
         try {
             context.packageManager.getPackageInfo(GMS_PACKAGE, 0)
-        } catch (e: PackageManager.NameNotFoundException) {
+        } catch (_: PackageManager.NameNotFoundException) {
             return false
         }
         return true
@@ -72,7 +72,7 @@ object CommonStuff {
     fun isGmsCoreInstalled(context: Context): Boolean {
         try {
             context.packageManager.getPackageInfo(GMSCORE_PACKAGE, 0)
-        } catch (e: PackageManager.NameNotFoundException) {
+        } catch (_: PackageManager.NameNotFoundException) {
             return false
         }
         return true
