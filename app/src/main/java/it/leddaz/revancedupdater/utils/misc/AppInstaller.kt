@@ -88,6 +88,7 @@ class AppInstaller() {
                 withContext(Dispatchers.Main) {
                     progressIndicator.visibility = View.GONE
                     button.text = getString(context, R.string.download_button_text)
+                    button.isEnabled = true
                     installApk(fileName, context)
                 }
             }
