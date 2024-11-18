@@ -35,7 +35,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/revanced_info_card"
-                style="?attr/materialCardViewFilledStyle"
+                style="?attr/materialCardViewOutlinedStyle"
                 android:layout_width="350sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -110,7 +110,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/music_info_card"
-                style="?attr/materialCardViewFilledStyle"
+                style="?attr/materialCardViewOutlinedStyle"
                 android:layout_width="350sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -185,7 +185,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/microg_info_card"
-                style="?attr/materialCardViewFilledStyle"
+                style="?attr/materialCardViewOutlinedStyle"
                 android:layout_width="350sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -260,7 +260,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/x_info_card"
-                style="?attr/materialCardViewFilledStyle"
+                style="?attr/materialCardViewOutlinedStyle"
                 android:layout_width="350sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -335,7 +335,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/updater_info_card"
-                style="?attr/materialCardViewFilledStyle"
+                style="?attr/materialCardViewOutlinedStyle"
                 android:layout_width="350sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
