@@ -7,9 +7,9 @@
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:fitsSystemWindows="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
         android:paddingLeft="10sp"
         android:paddingRight="10sp">
 
@@ -81,24 +81,24 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/revanced_update_status"
-                        android:layout_width="225sp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/update_status"
                         android:textSize="18sp"
                         tools:ignore="TextSizeCheck" />
 
-                </LinearLayout>
+                    <Button
+                        android:id="@+id/revanced_download_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        android:layout_marginTop="5sp"
+                        android:contentDescription="@string/revanced_download_button_description"
+                        android:enabled="false"
+                        android:onClick="downloadReVanced"
+                        android:text="@string/download_button_text" />
 
-                <Button
-                    android:id="@+id/revanced_download_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:layout_margin="15sp"
-                    android:contentDescription="@string/revanced_download_button_description"
-                    android:enabled="false"
-                    android:onClick="downloadReVanced"
-                    android:text="@string/download_button_text" />
+                </LinearLayout>
 
                 <com.google.android.material.progressindicator.LinearProgressIndicator
                     android:id="@+id/revanced_download_progress"
@@ -156,24 +156,24 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/music_update_status"
-                        android:layout_width="225sp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/update_status"
                         android:textSize="18sp"
                         tools:ignore="TextSizeCheck" />
 
-                </LinearLayout>
+                    <Button
+                        android:id="@+id/music_download_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        android:layout_marginTop="5sp"
+                        android:contentDescription="@string/music_download_button_description"
+                        android:enabled="false"
+                        android:onClick="downloadReVancedMusic"
+                        android:text="@string/download_button_text" />
 
-                <Button
-                    android:id="@+id/music_download_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:layout_margin="16dp"
-                    android:contentDescription="@string/music_download_button_description"
-                    android:enabled="false"
-                    android:onClick="downloadReVancedMusic"
-                    android:text="@string/download_button_text" />
+                </LinearLayout>
 
                 <com.google.android.material.progressindicator.LinearProgressIndicator
                     android:id="@+id/music_download_progress"
@@ -231,24 +231,24 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/microg_update_status"
-                        android:layout_width="225sp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/update_status"
                         android:textSize="18sp"
                         tools:ignore="TextSizeCheck" />
 
-                </LinearLayout>
+                    <Button
+                        android:id="@+id/microg_download_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        android:layout_marginTop="5sp"
+                        android:contentDescription="@string/microg_download_button_description"
+                        android:enabled="false"
+                        android:onClick="downloadGmsCore"
+                        android:text="@string/download_button_text" />
 
-                <Button
-                    android:id="@+id/microg_download_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:layout_margin="16dp"
-                    android:contentDescription="@string/microg_download_button_description"
-                    android:enabled="false"
-                    android:onClick="downloadGmsCore"
-                    android:text="@string/download_button_text" />
+                </LinearLayout>
 
                 <com.google.android.material.progressindicator.LinearProgressIndicator
                     android:id="@+id/microg_download_progress"
@@ -306,24 +306,24 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/x_update_status"
-                        android:layout_width="225sp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/update_status"
                         android:textSize="18sp"
                         tools:ignore="TextSizeCheck" />
 
-                </LinearLayout>
+                    <Button
+                        android:id="@+id/x_download_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        android:layout_marginTop="5sp"
+                        android:contentDescription="@string/x_download_button_description"
+                        android:enabled="false"
+                        android:onClick="downloadX"
+                        android:text="@string/download_button_text" />
 
-                <Button
-                    android:id="@+id/x_download_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:layout_margin="16dp"
-                    android:contentDescription="@string/x_download_button_description"
-                    android:enabled="false"
-                    android:onClick="downloadX"
-                    android:text="@string/download_button_text" />
+                </LinearLayout>
 
                 <com.google.android.material.progressindicator.LinearProgressIndicator
                     android:id="@+id/x_download_progress"
@@ -381,24 +381,24 @@
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/updater_update_status"
-                        android:layout_width="225sp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="5sp"
                         android:text="@string/update_status"
                         android:textSize="18sp"
                         tools:ignore="TextSizeCheck" />
 
-                </LinearLayout>
+                    <Button
+                        android:id="@+id/updater_download_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|end"
+                        android:contentDescription="@string/updater_download_button_description"
+                        android:enabled="false"
+                        android:onClick="downloadUpdater"
+                        android:text="@string/download_button_text" />
 
-                <Button
-                    android:id="@+id/updater_download_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|end"
-                    android:layout_margin="16dp"
-                    android:contentDescription="@string/updater_download_button_description"
-                    android:enabled="false"
-                    android:onClick="downloadUpdater"
-                    android:text="@string/download_button_text" />
+                </LinearLayout>
 
                 <com.google.android.material.progressindicator.LinearProgressIndicator
                     android:id="@+id/updater_download_progress"
@@ -426,7 +426,7 @@
                 android:layout_gravity="center_horizontal"
                 android:paddingLeft="20sp"
                 android:paddingRight="20sp"
-                android:paddingBottom="40dp"
+                android:paddingBottom="80dp"
                 android:text="@string/disclaimer"
                 android:textAlignment="center"
                 android:textSize="16sp" />
