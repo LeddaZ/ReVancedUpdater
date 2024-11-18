@@ -3,6 +3,7 @@
 
     <style name="Theme.ReVancedUpdater" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="dialogCornerRadius">28dp</item>
+        <item name="android:fontFamily">@font/inter</item>
     </style>
 
 </resources>

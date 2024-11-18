@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/top_app_bar"
+            app:fontFamily="@font/inter_medium"
             app:title="@string/app_name" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -62,7 +63,8 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="20sp"
                         android:text="@string/revanced_info_title"
-                        android:textSize="24sp" />
+                        android:textSize="24sp"
+                        app:fontFamily="@font/inter_medium" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/installed_revanced_version"
@@ -95,6 +97,7 @@
                         android:layout_marginTop="5sp"
                         android:contentDescription="@string/revanced_download_button_description"
                         android:enabled="false"
+                        android:fontFamily="@font/inter_semibold"
                         android:onClick="downloadReVanced"
                         android:text="@string/download_button_text" />
 
@@ -137,7 +140,8 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="20sp"
                         android:text="@string/music_info_title"
-                        android:textSize="24sp" />
+                        android:textSize="24sp"
+                        app:fontFamily="@font/inter_medium" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/installed_music_version"
@@ -170,6 +174,7 @@
                         android:layout_marginTop="5sp"
                         android:contentDescription="@string/music_download_button_description"
                         android:enabled="false"
+                        android:fontFamily="@font/inter_semibold"
                         android:onClick="downloadReVancedMusic"
                         android:text="@string/download_button_text" />
 
@@ -212,7 +217,8 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="20sp"
                         android:text="@string/microg_info_title"
-                        android:textSize="24sp" />
+                        android:textSize="24sp"
+                        app:fontFamily="@font/inter_medium" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/installed_microg_version"
@@ -245,6 +251,7 @@
                         android:layout_marginTop="5sp"
                         android:contentDescription="@string/microg_download_button_description"
                         android:enabled="false"
+                        android:fontFamily="@font/inter_semibold"
                         android:onClick="downloadGmsCore"
                         android:text="@string/download_button_text" />
 
@@ -287,7 +294,8 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="20sp"
                         android:text="@string/x_info_title"
-                        android:textSize="24sp" />
+                        android:textSize="24sp"
+                        app:fontFamily="@font/inter_medium" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/installed_x_version"
@@ -320,6 +328,7 @@
                         android:layout_marginTop="5sp"
                         android:contentDescription="@string/x_download_button_description"
                         android:enabled="false"
+                        android:fontFamily="@font/inter_semibold"
                         android:onClick="downloadX"
                         android:text="@string/download_button_text" />
 
@@ -362,7 +371,8 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="20sp"
                         android:text="@string/app_name"
-                        android:textSize="24sp" />
+                        android:textSize="24sp"
+                        app:fontFamily="@font/inter_medium" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/installed_updater_version"
@@ -395,6 +405,7 @@
                         android:layout_gravity="bottom|end"
                         android:contentDescription="@string/updater_download_button_description"
                         android:enabled="false"
+                        android:fontFamily="@font/inter_semibold"
                         android:onClick="downloadUpdater"
                         android:text="@string/download_button_text" />
 
