@@ -3,22 +3,24 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
-fun getCommitCount(): Int {
-    val stdout = org.apache.commons.io.output.ByteArrayOutputStream()
-    project.exec {
-        commandLine = "git rev-list --count HEAD".split(" ")
-        standardOutput = stdout
-    }
-    return Integer.parseInt(String(stdout.toByteArray()).trim())
+fun execCommand(command: String): String? {
+    val cmd = command.split(" ").toTypedArray()
+    val process = ProcessBuilder(*cmd)
+        .redirectOutput(ProcessBuilder.Redirect.PIPE)
+        .start()
+    return process.inputStream.bufferedReader().readLine()?.trim()
 }
 
-fun getCommitHash(): String {
-    val stdout = org.apache.commons.io.output.ByteArrayOutputStream()
-    project.exec {
-        commandLine = "git rev-parse --short HEAD".split(" ")
-        standardOutput = stdout
-    }
-    return String(stdout.toByteArray()).trim()
+val commitCount by project.extra {
+    execCommand("git rev-list --count HEAD")?.toInt()
+        ?: throw GradleException("Unable to get number of commits. Make sure git is initialized.")
+}
+
+val commitHash by project.extra {
+    execCommand("git rev-parse --short HEAD")
+        ?: throw GradleException(
+            "Unable to get commit hash. Make sure git is initialized."
+        )
 }
 
 android {
@@ -29,8 +31,8 @@ android {
         applicationId = "it.leddaz.revancedupdater"
         minSdk = 26
         targetSdk = 35
-        versionCode = getCommitCount()
-        versionName = "3.6.0 (" + getCommitHash() + ")"
+        versionCode = commitCount
+        versionName = "3.6.0 ($commitHash)"
     }
 
     buildTypes {
