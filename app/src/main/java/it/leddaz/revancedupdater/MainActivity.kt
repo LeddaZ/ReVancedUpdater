@@ -52,6 +52,7 @@ import kotlin.concurrent.thread
 
 private var latestReVancedHash = ""
 private var latestReVancedMusicHash = ""
+private var latestXHash = ""
 
 /**
  * The app's main activity, started at launch.
@@ -257,6 +258,7 @@ class MainActivity : AppCompatActivity() {
                     "-ytm/ytm-$preferredABI-signed.apk"
             latestXVersion = Version(reVancedReply.latestXVersion)
             xDownloadUrl = urlPrefix + reVancedReply.latestXDate + "-x/x-signed.apk"
+            latestXHash = reVancedReply.latestXHash
             callback.onSuccess()
         }, {})
 
@@ -284,9 +286,9 @@ class MainActivity : AppCompatActivity() {
             latestGmsCoreVersion = Version(gmsCoreReply.latestGmsCoreVersion.substring(1))
             gmsCoreDownloadUrl =
                 if (isAppInstalled(this, HMS_PACKAGE) && !isAppInstalled(this, GMS_PACKAGE))
-                gmsCoreReply.assets[0].latestGmsCoreUrl
-            else
-                gmsCoreReply.assets[1].latestGmsCoreUrl
+                    gmsCoreReply.assets[0].latestGmsCoreUrl
+                else
+                    gmsCoreReply.assets[1].latestGmsCoreUrl
             callback.onSuccess()
         }, {})
 
@@ -493,10 +495,14 @@ class MainActivity : AppCompatActivity() {
                 updateStatusTextView.text = getString(R.string.update_available)
                 button.isEnabled = true
             } else if (installedVersion.compareTo(latestVersion) == 0) {
-                if (packageName != GMSCORE_PACKAGE && packageName != UPDATER_PACKAGE && packageName != X_PACKAGE) {
-                    var latestHash = getLatestReVancedHash()
-                    if (packageName == MUSIC_PACKAGE)
+                if (packageName != GMSCORE_PACKAGE && packageName != UPDATER_PACKAGE) {
+                    var latestHash = ""
+                    if (packageName == REVANCED_PACKAGE)
+                        latestHash = getLatestReVancedHash()
+                    else if (packageName == MUSIC_PACKAGE)
                         latestHash = getLatestReVancedMusicHash()
+                    else if (packageName == X_PACKAGE)
+                        latestHash = getLatestReVancedXHash()
                     thread {
                         compareHashes(latestHash, updateStatusTextView, packageName, button)
                     }
@@ -610,6 +616,14 @@ class MainActivity : AppCompatActivity() {
          */
         fun getLatestReVancedMusicHash(): String {
             return latestReVancedMusicHash
+        }
+
+        /**
+         * Returns the latest ReVanced X hash.
+         * @return Latest ReVanced X hash.
+         */
+        fun getLatestReVancedXHash(): String {
+            return latestXHash
         }
     }
 

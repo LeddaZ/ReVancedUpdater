@@ -34,5 +34,8 @@ data class ReVancedJSONObject(
     val latestXVersion: String,
 
     @SerializedName("latestXDate")
-    val latestXDate: String
+    val latestXDate: String,
+
+    @SerializedName("latestXHash")
+    val latestXHash: String
 )
