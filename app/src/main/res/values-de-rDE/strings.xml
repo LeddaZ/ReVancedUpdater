@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="installed_app_version">Installed: %1$s</string>
-    <string name="latest_app_version">Latest: %1$s</string>
-    <string name="update_status">Checking for updates…</string>
-    <string name="update_available">Update available!</string>
-    <string name="no_update_available">No update available</string>
-    <string name="app_not_installed">App not installed</string>
-    <string name="download_error">An error occurred while downloading. Check logs for more details.</string>
-    <string name="open_github">See on GitHub</string>
-    <string name="about_dialog_text">ReVanced Updater is an app made by LeddaZ to update his ReVanced builds.</string>
-    <string name="revanced_download_button_description">Download ReVanced</string>
-    <string name="bottom_bar_refresh">Refresh</string>
-    <string name="none">none</string>
-    <string name="music_download_button_description">Download ReVanced Music</string>
-    <string name="microg_download_button_description">Download ReVanced GmsCore</string>
-    <string name="updater_download_button_description">Download ReVanced Updater</string>
+    <string name="installed_app_version">Installiert: %1$s</string>
+    <string name="latest_app_version">Neueste Version: %1$s</string>
+    <string name="update_status">Suche nach Updates…</string>
+    <string name="update_available">Update verfügbar!</string>
+    <string name="no_update_available">Kein Update verfügbar</string>
+    <string name="app_not_installed">App nicht installiert</string>
+    <string name="download_error">Beim Herunterladen ist ein Fehler aufgetreten. Überprüfe die Protokolle für weitere Details.</string>
+    <string name="open_github">Auf Github ansehen</string>
+    <string name="about_dialog_text">ReVanced Updater ist eine App von LeddaZ zur Aktualisierung seiner ReVanced Builds.</string>
+    <string name="revanced_download_button_description">ReVanced herunterladen</string>
+    <string name="bottom_bar_refresh">Neu laden</string>
+    <string name="none">keine</string>
+    <string name="music_download_button_description">ReVanced Music herunterladen</string>
+    <string name="microg_download_button_description">ReVanced GmsCore herunterladen</string>
+    <string name="updater_download_button_description">ReVanced Updater herunterladen</string>
     <string name="invalid">invalid</string>
     <string name="invalid_version_detected">Invalid version detected. Uninstall existing apps.</string>
     <string name="yes">Yes</string>
