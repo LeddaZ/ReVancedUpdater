@@ -7,7 +7,7 @@ core-ktx = "1.15.0"
 gson = "2.11.0"
 kotlinx-coroutines-android = "1.9.0"
 material = "1.12.0"
-kotlin = "2.0.21"
+kotlin = "2.1.0"
 
 [libraries]
 android-volley = { module = "com.android.volley:volley", version.ref = "android-volley" }
