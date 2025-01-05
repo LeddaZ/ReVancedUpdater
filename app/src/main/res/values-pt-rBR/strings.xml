@@ -25,7 +25,7 @@
     <string name="about_dialog_title">Sobre este aplicativo</string>
     <string name="download_button_text">Baixar</string>
     <string name="hold_app_card">Segure o cartão de um app para abrir seu registro de mudanças.</string>
-    <string name="x_download_button_description">Download X</string>
-    <string name="disclaimer">LeddaZ is only responsible for ReVanced Updater, app issues are not under his control.</string>
-    <string name="downloading">Downloading</string>
+    <string name="x_download_button_description">Baixar X</string>
+    <string name="disclaimer">Lddaz é responsável apenas pelo ReVanced Updater, problemas dos demais aplicativos não estão sob seu controle.</string>
+    <string name="downloading">Baixando</string>
 </resources>
