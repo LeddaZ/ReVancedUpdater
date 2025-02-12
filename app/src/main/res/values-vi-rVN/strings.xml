@@ -25,7 +25,7 @@
     <string name="about_dialog_title">Thông tin về ứng dụng</string>
     <string name="download_button_text">Tải xuống</string>
     <string name="hold_app_card">Giữ thẻ của ứng dụng để mở nhật ký thay đổi của ứng dụng đó.</string>
-    <string name="x_download_button_description">Download X</string>
-    <string name="disclaimer">LeddaZ is only responsible for ReVanced Updater, app issues are not under his control.</string>
-    <string name="downloading">Downloading</string>
+    <string name="x_download_button_description">Tải xuống X</string>
+    <string name="disclaimer">LeddaZ chỉ phản hồi cho ReVanced Updater, vấn đề ứng dụng không phải là công việc của anh ấy.</string>
+    <string name="downloading">Đang tải xuống</string>
 </resources>
