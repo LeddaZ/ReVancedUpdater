@@ -41,7 +41,7 @@
                 android:paddingRight="20sp"
                 android:paddingBottom="10sp"
                 android:text="@string/settings_desc"
-                android:textSize="12sp" />
+                android:textSize="16sp" />
 
             <com.google.android.material.materialswitch.MaterialSwitch
                 android:id="@+id/yt_switch"
@@ -50,6 +50,7 @@
                 android:paddingLeft="20sp"
                 android:paddingRight="20sp"
                 android:text="@string/revanced_info_title"
+                android:textSize="18sp"
                 app:key="show_yt" />
 
             <com.google.android.material.materialswitch.MaterialSwitch
@@ -59,6 +60,7 @@
                 android:paddingLeft="20sp"
                 android:paddingRight="20sp"
                 android:text="@string/music_info_title"
+                android:textSize="18sp"
                 app:key="show_ytm" />
 
             <com.google.android.material.materialswitch.MaterialSwitch
@@ -68,6 +70,7 @@
                 android:paddingLeft="20sp"
                 android:paddingRight="20sp"
                 android:text="@string/x_info_title"
+                android:textSize="18sp"
                 app:key="show_x" />
 
         </LinearLayout>
