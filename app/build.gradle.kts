@@ -81,4 +81,5 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.preference)
     implementation(libs.androidx.swiperefreshlayout)
+    implementation(libs.markwon.core)
 }

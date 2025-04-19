@@ -4,6 +4,7 @@
     <style name="Theme.ReVancedUpdater" parent="Theme.Material3.DynamicColors.DayNight.NoActionBar">
         <item name="dialogCornerRadius">28dp</item>
         <item name="fontFamily">@font/inter</item>
+        <item name="android:fontFeatureSettings">"'ss01' 1"</item>
     </style>
 
 </resources>

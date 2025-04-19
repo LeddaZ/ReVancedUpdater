@@ -26,8 +26,10 @@ import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.google.android.material.textview.MaterialTextView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import it.leddaz.revancedupdater.dialogs.ChangelogDialog
 import it.leddaz.revancedupdater.utils.json.GmsCoreJSONObject
 import it.leddaz.revancedupdater.utils.json.ReVancedJSONObject
+import it.leddaz.revancedupdater.utils.json.UpdaterBodyJSONObject
 import it.leddaz.revancedupdater.utils.json.UpdaterDebugJSONObject
 import it.leddaz.revancedupdater.utils.json.UpdaterReleaseJSONObject
 import it.leddaz.revancedupdater.utils.misc.AppInstaller
@@ -70,19 +72,23 @@ class MainActivity : AppCompatActivity() {
     private var installedReVancedVersion = Version("99.99")
     private var latestReVancedVersion = Version("0.0")
     private var reVancedDownloadUrl = ""
+    private var reVancedCl = ""
     private var installedReVancedMusicVersion = Version("99.99")
     private var latestReVancedMusicVersion = Version("0.0")
     private var musicDownloadUrl = ""
+    private var musicCl = ""
     private var installedUpdaterVersion = Version("99.99")
     private var latestUpdaterVersion = Version("0.0")
     private var latestUpdaterCommit = ""
     private var updaterDownloadUrl = ""
+    private var updaterCl = ""
     private var installedGmsCoreVersion = Version("99.99")
     private var latestGmsCoreVersion = Version("0.0")
     private var gmsCoreDownloadUrl = ""
     private var installedXVersion = Version("99.99")
     private var latestXVersion = Version("0.0")
     private var xDownloadUrl = ""
+    private var xCl = ""
     private lateinit var revancedIndicator: LinearProgressIndicator
     private lateinit var musicIndicator: LinearProgressIndicator
     private lateinit var gmsCoreIndicator: LinearProgressIndicator
@@ -120,16 +126,15 @@ class MainActivity : AppCompatActivity() {
 
         val reVancedCard = findViewById<MaterialCardView>(R.id.revanced_info_card)
         reVancedCard.setOnLongClickListener {
-            openLink(
-                "https://github.com/LeddaZ/revanced-repo/blob/main/changelogs/revanced.md",
-                this
-            )
+            val dialogFragment = ChangelogDialog(reVancedCl, false)
+            dialogFragment.show(supportFragmentManager, "ChangelogDialog")
             true
         }
 
         val reVancedMusicCard = findViewById<MaterialCardView>(R.id.music_info_card)
         reVancedMusicCard.setOnLongClickListener {
-            openLink("https://github.com/LeddaZ/revanced-repo/blob/main/changelogs/music.md", this)
+            val dialogFragment = ChangelogDialog(musicCl, false)
+            dialogFragment.show(supportFragmentManager, "ChangelogDialog")
             true
         }
 
@@ -144,35 +149,20 @@ class MainActivity : AppCompatActivity() {
 
         val xCard = findViewById<MaterialCardView>(R.id.x_info_card)
         xCard.setOnLongClickListener {
-            openLink(
-                "https://github.com/LeddaZ/revanced-repo/blob/main/changelogs/x.md",
-                this
-            )
+            val dialogFragment = ChangelogDialog(xCl, false)
+            dialogFragment.show(supportFragmentManager, "ChangelogDialog")
             true
         }
 
         val updaterCard = findViewById<MaterialCardView>(R.id.updater_info_card)
-        if (!IS_DEBUG)
-            updaterCard.setOnLongClickListener {
-                openLink(
-                    "https://github.com/LeddaZ/ReVancedUpdater/releases/tag/${
-                        APP_VERSION.substring(
-                            0,
-                            APP_VERSION.indexOf(' ')
-                        )
-                    }",
-                    this
-                )
-                true
-            }
-        else
-            updaterCard.setOnLongClickListener {
-                openLink(
-                    "https://github.com/LeddaZ/ReVancedUpdater/releases/tag/dev",
-                    this
-                )
-                true
-            }
+        updaterCard.setOnLongClickListener {
+            val dialogFragment = ChangelogDialog(
+                updaterCl, true,
+                latestUpdaterCommit
+            )
+            dialogFragment.show(supportFragmentManager, "ChangelogDialog")
+            true
+        }
 
         val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
@@ -213,7 +203,7 @@ class MainActivity : AppCompatActivity() {
      * @property callback callback used to detect if the download was
      *                    successful
      */
-    private fun getVersions(callback: VolleyCallBack) {
+    private fun getVersionsAndChangelogs(callback: VolleyCallBack) {
         // Installed versions
         getAppVersion(
             GMSCORE_PACKAGE,
@@ -252,16 +242,25 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.updater_download_button)
         )
 
-        // Latest versions and ReVanced hashes
+        // Latest versions, hashes and changelogs
         val queue = Volley.newRequestQueue(this)
         val reVancedJSONUrl =
             "https://raw.githubusercontent.com/LeddaZ/revanced-repo/main/updater.json"
         val updaterAPIUrl = "https://api.github.com/repos/LeddaZ/ReVancedUpdater/releases/latest"
         val updaterCommitUrl = "https://api.github.com/repos/LeddaZ/ReVancedUpdater/commits/master"
+        val updaterDebugAPIUrl =
+            "https://api.github.com/repos/LeddaZ/ReVancedUpdater/releases/tags/dev"
         val gmsCoreAPIUrl = "https://api.github.com/repos/ReVanced/GmsCore/releases/latest"
+        val ytClUrl =
+            "https://raw.githubusercontent.com/LeddaZ/revanced-repo/refs/heads/main/changelogs/revanced.md"
+        val ytmClUrl =
+            "https://raw.githubusercontent.com/LeddaZ/revanced-repo/refs/heads/main/changelogs/music.md"
+        val xClUrl =
+            "https://raw.githubusercontent.com/LeddaZ/revanced-repo/refs/heads/main/changelogs/x.md"
         var reVancedReply: ReVancedJSONObject
         var updaterReleaseReply: UpdaterReleaseJSONObject
         var updaterDebugReply: UpdaterDebugJSONObject
+        var updaterBodyReply: UpdaterBodyJSONObject
         var gmsCoreReply: GmsCoreJSONObject
 
         val urlPrefix = "https://github.com/LeddaZ/revanced-repo/releases/download/"
@@ -293,7 +292,10 @@ class MainActivity : AppCompatActivity() {
         val updaterReleaseRequest = StringRequest(GET, updaterAPIUrl, { response ->
             updaterReleaseReply =
                 Gson().fromJson(response, object : TypeToken<UpdaterReleaseJSONObject>() {}.type)
+            updaterBodyReply =
+                Gson().fromJson(response, object : TypeToken<UpdaterBodyJSONObject>() {}.type)
             latestUpdaterVersion = Version(updaterReleaseReply.latestUpdaterVersion)
+            updaterCl = updaterBodyReply.latestUpdaterBody
             updaterDownloadUrl = "https://github.com/LeddaZ/ReVancedUpdater/releases/download/" +
                     latestUpdaterVersion + "/app-release.apk"
             callback.onSuccess()
@@ -303,6 +305,15 @@ class MainActivity : AppCompatActivity() {
             updaterDebugReply =
                 Gson().fromJson(response, object : TypeToken<UpdaterDebugJSONObject>() {}.type)
             latestUpdaterCommit = updaterDebugReply.latestUpdaterCommit.substring(0, 7)
+            updaterDownloadUrl =
+                "https://github.com/LeddaZ/ReVancedUpdater/releases/download/dev/app-debug-signed.apk"
+            callback.onSuccess()
+        }, {})
+
+        val updaterDebugClBodyRequest = StringRequest(GET, updaterDebugAPIUrl, { response ->
+            updaterBodyReply =
+                Gson().fromJson(response, object : TypeToken<UpdaterBodyJSONObject>() {}.type)
+            updaterCl = updaterBodyReply.latestUpdaterBody
             updaterDownloadUrl =
                 "https://github.com/LeddaZ/ReVancedUpdater/releases/download/dev/app-debug-signed.apk"
             callback.onSuccess()
@@ -320,11 +331,30 @@ class MainActivity : AppCompatActivity() {
             callback.onSuccess()
         }, {})
 
+        val reVancedClRequest = StringRequest(GET, ytClUrl, { response ->
+            reVancedCl = response
+            callback.onSuccess()
+        }, {})
+
+        val musicClRequest = StringRequest(GET, ytmClUrl, { response ->
+            musicCl = response
+            callback.onSuccess()
+        }, {})
+
+        val xClRequest = StringRequest(GET, xClUrl, { response ->
+            xCl = response
+            callback.onSuccess()
+        }, {})
+
         queue.add(reVancedRequest)
         queue.add(gmsCoreRequest)
-        if (IS_DEBUG)
+        queue.add(reVancedClRequest)
+        queue.add(musicClRequest)
+        queue.add(xClRequest)
+        if (IS_DEBUG) {
             queue.add(updaterDevRequest)
-        else
+            queue.add(updaterDebugClBodyRequest)
+        } else
             queue.add(updaterReleaseRequest)
     }
 
@@ -590,7 +620,7 @@ class MainActivity : AppCompatActivity() {
                 path.delete()
             }
         }
-        getVersions(object : VolleyCallBack {
+        getVersionsAndChangelogs(object : VolleyCallBack {
             override fun onSuccess() {
                 val latestReVancedTextView: TextView =
                     findViewById(R.id.latest_revanced_version)

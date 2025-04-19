@@ -18,7 +18,6 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/top_app_bar"
-            android:fontFeatureSettings="'ss01' 1"
             app:title="@string/app_name" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -29,435 +28,408 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/revanced_info_card"
-                style="?attr/materialCardViewOutlinedStyle"
-                android:layout_width="350sp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="8dp"
-                android:checkable="false"
-                android:clickable="true"
-                android:focusable="true"
-                app:layout_constraintBottom_toTopOf="@id/music_info_card"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/revanced_info_card"
+                    style="?attr/materialCardViewOutlinedStyle"
+                    android:layout_width="350sp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="15sp">
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="8dp"
+                    android:checkable="false"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toTopOf="@id/music_info_card"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/revanced_title"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="20sp"
-                        android:text="@string/revanced_info_title"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:textSize="24sp" />
+                        android:orientation="vertical"
+                        android:padding="15sp">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/installed_revanced_version"
-                        android:layout_width="wrap_content"
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/revanced_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="20sp"
+                            android:text="@string/revanced_info_title"
+                            android:textSize="24sp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/installed_revanced_version"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/installed_app_version"
+                            android:textSize="16sp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/latest_revanced_version"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5sp"
+                            android:text="@string/latest_app_version"
+                            android:textSize="16sp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/revanced_update_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/update_status"
+                            android:textSize="18sp" />
+
+                        <Button
+                            android:id="@+id/revanced_download_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginTop="5sp"
+                            android:contentDescription="@string/revanced_download_button_description"
+                            android:enabled="false"
+                            android:onClick="downloadReVanced"
+                            android:text="@string/download_button_text" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/revanced_download_progress"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/installed_app_version"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:textSize="16sp" />
+                        android:visibility="gone" />
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/latest_revanced_version"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5sp"
-                        android:text="@string/latest_app_version"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:textSize="16sp" />
+                </com.google.android.material.card.MaterialCardView>
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/revanced_update_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/update_status"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:textSize="18sp" />
-
-                    <Button
-                        android:id="@+id/revanced_download_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|end"
-                        android:layout_marginTop="5sp"
-                        android:contentDescription="@string/revanced_download_button_description"
-                        android:enabled="false"
-                        android:onClick="downloadReVanced"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:text="@string/download_button_text" />
-
-                </LinearLayout>
-
-                <com.google.android.material.progressindicator.LinearProgressIndicator
-                    android:id="@+id/revanced_download_progress"
-                    android:layout_width="match_parent"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/music_info_card"
+                    style="?attr/materialCardViewOutlinedStyle"
+                    android:layout_width="350sp"
                     android:layout_height="wrap_content"
-                    android:visibility="gone" />
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="8dp"
+                    android:checkable="false"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toTopOf="@id/microg_info_card"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/revanced_info_card">
 
-            </com.google.android.material.card.MaterialCardView>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="15sp">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/music_info_card"
-                style="?attr/materialCardViewOutlinedStyle"
-                android:layout_width="350sp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="8dp"
-                android:checkable="false"
-                android:clickable="true"
-                android:focusable="true"
-                app:layout_constraintBottom_toTopOf="@id/microg_info_card"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/revanced_info_card">
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/music_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="20sp"
+                            android:text="@string/music_info_title"
+                            android:textSize="24sp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/installed_music_version"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/installed_app_version"
+                            android:textSize="16sp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/latest_music_version"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5sp"
+                            android:text="@string/latest_app_version"
+                            android:textSize="16sp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/music_update_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/update_status"
+                            android:textSize="18sp" />
+
+                        <Button
+                            android:id="@+id/music_download_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginTop="5sp"
+                            android:contentDescription="@string/music_download_button_description"
+                            android:enabled="false"
+                            android:onClick="downloadReVancedMusic"
+                            android:text="@string/download_button_text" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/music_download_progress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/microg_info_card"
+                    style="?attr/materialCardViewOutlinedStyle"
+                    android:layout_width="350sp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="15sp">
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="8dp"
+                    android:checkable="false"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toTopOf="@id/x_info_card"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/music_info_card">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/music_title"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="20sp"
-                        android:text="@string/music_info_title"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:textSize="24sp" />
+                        android:orientation="vertical"
+                        android:padding="15sp">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/installed_music_version"
-                        android:layout_width="wrap_content"
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/microg_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="20sp"
+                            android:text="@string/microg_info_title"
+                            android:textSize="24sp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/installed_microg_version"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/installed_app_version"
+                            android:textSize="16sp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/latest_microg_version"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5sp"
+                            android:text="@string/latest_app_version"
+                            android:textSize="16sp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/microg_update_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/update_status"
+                            android:textSize="18sp" />
+
+                        <Button
+                            android:id="@+id/microg_download_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginTop="5sp"
+                            android:contentDescription="@string/microg_download_button_description"
+                            android:enabled="false"
+                            android:onClick="downloadGmsCore"
+                            android:text="@string/download_button_text" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/microg_download_progress"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/installed_app_version"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:textSize="16sp" />
+                        android:visibility="gone" />
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/latest_music_version"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5sp"
-                        android:text="@string/latest_app_version"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:textSize="16sp" />
+                </com.google.android.material.card.MaterialCardView>
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/music_update_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/update_status"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:textSize="18sp" />
-
-                    <Button
-                        android:id="@+id/music_download_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|end"
-                        android:layout_marginTop="5sp"
-                        android:contentDescription="@string/music_download_button_description"
-                        android:enabled="false"
-                        android:onClick="downloadReVancedMusic"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:text="@string/download_button_text" />
-
-                </LinearLayout>
-
-                <com.google.android.material.progressindicator.LinearProgressIndicator
-                    android:id="@+id/music_download_progress"
-                    android:layout_width="match_parent"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/x_info_card"
+                    style="?attr/materialCardViewOutlinedStyle"
+                    android:layout_width="350sp"
                     android:layout_height="wrap_content"
-                    android:visibility="gone" />
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="8dp"
+                    android:checkable="false"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toTopOf="@id/updater_info_card"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/microg_info_card">
 
-            </com.google.android.material.card.MaterialCardView>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="15sp">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/microg_info_card"
-                style="?attr/materialCardViewOutlinedStyle"
-                android:layout_width="350sp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="8dp"
-                android:checkable="false"
-                android:clickable="true"
-                android:focusable="true"
-                app:layout_constraintBottom_toTopOf="@id/x_info_card"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/music_info_card">
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/x_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="20sp"
+                            android:text="@string/x_info_title"
+                            android:textSize="24sp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/installed_x_version"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/installed_app_version"
+                            android:textSize="16sp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/latest_x_version"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5sp"
+                            android:text="@string/latest_app_version"
+                            android:textSize="16sp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/x_update_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/update_status"
+                            android:textSize="18sp" />
+
+                        <Button
+                            android:id="@+id/x_download_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginTop="5sp"
+                            android:contentDescription="@string/x_download_button_description"
+                            android:enabled="false"
+                            android:onClick="downloadX"
+                            android:text="@string/download_button_text" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/x_download_progress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/updater_info_card"
+                    style="?attr/materialCardViewOutlinedStyle"
+                    android:layout_width="350sp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="15sp">
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="8dp"
+                    android:checkable="false"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/x_info_card">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/microg_title"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="20sp"
-                        android:text="@string/microg_info_title"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:textSize="24sp" />
+                        android:orientation="vertical"
+                        android:padding="15sp">
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/installed_microg_version"
-                        android:layout_width="wrap_content"
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/updater_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="20sp"
+                            android:text="@string/app_name"
+                            android:textSize="24sp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/installed_updater_version"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/installed_app_version"
+                            android:textSize="16sp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/latest_updater_version"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5sp"
+                            android:text="@string/latest_app_version"
+                            android:textSize="16sp" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/updater_update_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5sp"
+                            android:text="@string/update_status"
+                            android:textSize="18sp" />
+
+                        <Button
+                            android:id="@+id/updater_download_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|end"
+                            android:contentDescription="@string/updater_download_button_description"
+                            android:enabled="false"
+                            android:onClick="downloadUpdater"
+                            android:text="@string/download_button_text" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/updater_download_progress"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/installed_app_version"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:textSize="16sp" />
+                        android:visibility="gone" />
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/latest_microg_version"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5sp"
-                        android:text="@string/latest_app_version"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:textSize="16sp" />
+                </com.google.android.material.card.MaterialCardView>
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/microg_update_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/update_status"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:textSize="18sp" />
-
-                    <Button
-                        android:id="@+id/microg_download_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|end"
-                        android:layout_marginTop="5sp"
-                        android:contentDescription="@string/microg_download_button_description"
-                        android:enabled="false"
-                        android:onClick="downloadGmsCore"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:text="@string/download_button_text" />
-
-                </LinearLayout>
-
-                <com.google.android.material.progressindicator.LinearProgressIndicator
-                    android:id="@+id/microg_download_progress"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone" />
+                    android:layout_gravity="center_horizontal"
+                    android:paddingLeft="20sp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="20sp"
+                    android:paddingBottom="20dp"
+                    android:text="@string/hold_app_card"
+                    android:textAlignment="center"
+                    android:textSize="16sp" />
 
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/x_info_card"
-                style="?attr/materialCardViewOutlinedStyle"
-                android:layout_width="350sp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="8dp"
-                android:checkable="false"
-                android:clickable="true"
-                android:focusable="true"
-                app:layout_constraintBottom_toTopOf="@id/updater_info_card"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/microg_info_card">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="15sp">
+                    android:layout_gravity="center_horizontal"
+                    android:paddingLeft="20sp"
+                    android:paddingRight="20sp"
+                    android:paddingBottom="80dp"
+                    android:text="@string/disclaimer"
+                    android:textAlignment="center"
+                    android:textSize="16sp" />
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/x_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="20sp"
-                        android:text="@string/x_info_title"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:textSize="24sp" />
+            </LinearLayout>
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/installed_x_version"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/installed_app_version"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:textSize="16sp" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/latest_x_version"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5sp"
-                        android:text="@string/latest_app_version"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:textSize="16sp" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/x_update_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/update_status"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:textSize="18sp" />
-
-                    <Button
-                        android:id="@+id/x_download_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|end"
-                        android:layout_marginTop="5sp"
-                        android:contentDescription="@string/x_download_button_description"
-                        android:enabled="false"
-                        android:onClick="downloadX"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:text="@string/download_button_text" />
-
-                </LinearLayout>
-
-                <com.google.android.material.progressindicator.LinearProgressIndicator
-                    android:id="@+id/x_download_progress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/updater_info_card"
-                style="?attr/materialCardViewOutlinedStyle"
-                android:layout_width="350sp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="8dp"
-                android:checkable="false"
-                android:clickable="true"
-                android:focusable="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/x_info_card">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="15sp">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/updater_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginBottom="20sp"
-                        android:text="@string/app_name"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:textSize="24sp" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/installed_updater_version"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/installed_app_version"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:textSize="16sp" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/latest_updater_version"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5sp"
-                        android:text="@string/latest_app_version"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:textSize="16sp" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/updater_update_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5sp"
-                        android:text="@string/update_status"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:textSize="18sp" />
-
-                    <Button
-                        android:id="@+id/updater_download_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|end"
-                        android:contentDescription="@string/updater_download_button_description"
-                        android:enabled="false"
-                        android:onClick="downloadUpdater"
-                        android:fontFeatureSettings="'ss01' 1"
-                        android:text="@string/download_button_text" />
-
-                </LinearLayout>
-
-                <com.google.android.material.progressindicator.LinearProgressIndicator
-                    android:id="@+id/updater_download_progress"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:paddingLeft="20sp"
-                android:paddingTop="20dp"
-                android:paddingRight="20sp"
-                android:paddingBottom="20dp"
-                android:text="@string/hold_app_card"
-                android:fontFeatureSettings="'ss01' 1"
-                android:textAlignment="center"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:paddingLeft="20sp"
-                android:paddingRight="20sp"
-                android:paddingBottom="80dp"
-                android:text="@string/disclaimer"
-                android:fontFeatureSettings="'ss01' 1"
-                android:textAlignment="center"
-                android:textSize="16sp" />
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
