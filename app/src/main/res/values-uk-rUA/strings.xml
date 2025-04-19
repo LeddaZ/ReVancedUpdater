@@ -23,4 +23,5 @@
     <string name="downloading">Завантаження</string>
     <string name="settings">Settings</string>
     <string name="settings_desc">Choose which apps you want to see in the main page. ReVanced GmsCore will be shown automatically if YouTube, YouTube Music or both are enabled.</string>
+    <string name="github">See on GitHub</string>
 </resources>
