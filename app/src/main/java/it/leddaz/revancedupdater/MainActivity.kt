@@ -298,7 +298,18 @@ class MainActivity : AppCompatActivity() {
             xDownloadUrl = urlPrefix + reVancedReply.latestXDate + "-x/x-signed.apk"
             latestXHash = reVancedReply.latestXHash
             callback.onSuccess()
-        }, {})
+        }, { error ->
+            when (error.networkResponse?.statusCode) {
+                403 -> {
+                    Toast.makeText(this, R.string.rate_limit, Toast.LENGTH_LONG).show()
+                    Log.e(LOG_TAG, "GitHub rate limit")
+                }
+
+                else -> {
+                    Log.e(LOG_TAG, "Volley Error: ${error.message}")
+                }
+            }
+        })
 
         val updaterReleaseRequest = StringRequest(GET, updaterAPIUrl, { response ->
             updaterReleaseReply =
@@ -310,7 +321,18 @@ class MainActivity : AppCompatActivity() {
             updaterDownloadUrl = "https://github.com/LeddaZ/ReVancedUpdater/releases/download/" +
                     latestUpdaterVersion + "/app-release.apk"
             callback.onSuccess()
-        }, {})
+        }, { error ->
+            when (error.networkResponse?.statusCode) {
+                403 -> {
+                    Toast.makeText(this, R.string.rate_limit, Toast.LENGTH_LONG).show()
+                    Log.e(LOG_TAG, "GitHub rate limit")
+                }
+
+                else -> {
+                    Log.e(LOG_TAG, "Volley Error: ${error.message}")
+                }
+            }
+        })
 
         val updaterDevRequest = StringRequest(GET, updaterCommitUrl, { response ->
             updaterDebugReply =
@@ -319,7 +341,18 @@ class MainActivity : AppCompatActivity() {
             updaterDownloadUrl =
                 "https://github.com/LeddaZ/ReVancedUpdater/releases/download/dev/app-debug-signed.apk"
             callback.onSuccess()
-        }, {})
+        }, { error ->
+            when (error.networkResponse?.statusCode) {
+                403 -> {
+                    Toast.makeText(this, R.string.rate_limit, Toast.LENGTH_LONG).show()
+                    Log.e(LOG_TAG, "GitHub rate limit")
+                }
+
+                else -> {
+                    Log.e(LOG_TAG, "Volley Error: ${error.message}")
+                }
+            }
+        })
 
         val updaterDebugClBodyRequest = StringRequest(GET, updaterDebugAPIUrl, { response ->
             updaterBodyReply =
@@ -328,7 +361,18 @@ class MainActivity : AppCompatActivity() {
             updaterDownloadUrl =
                 "https://github.com/LeddaZ/ReVancedUpdater/releases/download/dev/app-debug-signed.apk"
             callback.onSuccess()
-        }, {})
+        }, { error ->
+            when (error.networkResponse?.statusCode) {
+                403 -> {
+                    Toast.makeText(this, R.string.rate_limit, Toast.LENGTH_LONG).show()
+                    Log.e(LOG_TAG, "GitHub rate limit")
+                }
+
+                else -> {
+                    Log.e(LOG_TAG, "Volley Error: ${error.message}")
+                }
+            }
+        })
 
         val gmsCoreRequest = StringRequest(GET, gmsCoreAPIUrl, { response ->
             gmsCoreReply =
@@ -340,7 +384,18 @@ class MainActivity : AppCompatActivity() {
                 else
                     gmsCoreReply.assets[1].latestGmsCoreUrl
             callback.onSuccess()
-        }, {})
+        }, { error ->
+            when (error.networkResponse?.statusCode) {
+                403 -> {
+                    Toast.makeText(this, R.string.rate_limit, Toast.LENGTH_LONG).show()
+                    Log.e(LOG_TAG, "GitHub rate limit")
+                }
+
+                else -> {
+                    Log.e(LOG_TAG, "Volley Error: ${error.message}")
+                }
+            }
+        })
 
         val reVancedClRequest = StringRequest(GET, ytClUrl, { response ->
             reVancedCl = response
