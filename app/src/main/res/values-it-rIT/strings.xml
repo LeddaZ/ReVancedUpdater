@@ -21,7 +21,7 @@
     <string name="x_download_button_description">Scarica X</string>
     <string name="disclaimer">LeddaZ è responsabile solo di ReVanced Updater, i problemi delle app non sono sotto il suo controllo.</string>
     <string name="downloading">Scaricando</string>
-    <string name="settings">Settings</string>
-    <string name="settings_desc">Choose which apps you want to see in the main page. ReVanced GmsCore will be shown automatically if YouTube, YouTube Music or both are enabled.</string>
-    <string name="github">See on GitHub</string>
+    <string name="settings">Impostazioni</string>
+    <string name="settings_desc">Scegli quali app vuoi vedere nella pagina principale. ReVanced GmsCore verrà mostrato automaticamente se YouTube, YouTube Music o entrambi sono attivi.</string>
+    <string name="github">Vedi su GitHub</string>
 </resources>
