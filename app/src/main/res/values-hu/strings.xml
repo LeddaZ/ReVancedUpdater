@@ -14,12 +14,6 @@
     <string name="updater_download_button_description">Download ReVanced Updater</string>
     <string name="invalid">invalid</string>
     <string name="invalid_version_detected">Invalid version detected. Uninstall existing apps.</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="microg_dialog_title">ReVanced GmsCore not installed</string>
-    <string name="microg_dialog_text">ReVanced GmsCore is required to log in to your Google account on ReVanced apps. Do you want to install it now?</string>
-    <string name="bottom_bar_about">About</string>
-    <string name="about_dialog_title">About this app</string>
     <string name="download_button_text">Download</string>
     <string name="hold_app_card">Hold an app\'s card to open its changelog.</string>
 </resources>
