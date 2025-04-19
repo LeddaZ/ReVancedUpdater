@@ -38,9 +38,9 @@ class ChangelogDialog(
             val parsedMd = markwon?.toMarkdown(md)
             val builder = MaterialAlertDialogBuilder(it)
             builder.setMessage(parsedMd)
-                .setNeutralButton(R.string.ok) { _, _ -> dismiss() }
+                .setPositiveButton(R.string.ok) { _, _ -> dismiss() }
             if (fullButton) {
-                builder.setPositiveButton(R.string.github) { _, _ ->
+                builder.setNegativeButton(R.string.github) { _, _ ->
                     this.context?.let { it1 ->
                         openLink(
                             "https://github.com/LeddaZ/ReVancedUpdater",
