@@ -7,10 +7,7 @@
     <string name="no_update_available">Nu există actualizări disponibile</string>
     <string name="app_not_installed">Aplicaţia nu este instalată.</string>
     <string name="download_error">A apărut o eroare în timpul descărcării. Verificați jurnalele pentru mai multe detalii.</string>
-    <string name="open_github">Vezi pe GitHub</string>
-    <string name="about_dialog_text">ReVanced Updater este o aplicație făcută de LeddaZ pentru a-și actualiza build-urile ReVanced.</string>
     <string name="revanced_download_button_description">Descarcă ReVanced</string>
-    <string name="bottom_bar_refresh">Reîncarcă</string>
     <string name="none">nimic</string>
     <string name="music_download_button_description">Descarcă ReVanced Music</string>
     <string name="microg_download_button_description">Descarcă ReVanced GmsCore</string>

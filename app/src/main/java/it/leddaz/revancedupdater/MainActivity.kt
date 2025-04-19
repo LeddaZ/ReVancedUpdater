@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.volley.Request.Method.GET
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -87,6 +88,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var gmsCoreIndicator: LinearProgressIndicator
     private lateinit var xIndicator: LinearProgressIndicator
     private lateinit var updaterIndicator: LinearProgressIndicator
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
 
     /**
@@ -98,6 +100,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         DynamicColors.applyToActivityIfAvailable(this)
         setContentView(R.layout.activity_main)
+
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout)
+
+        swipeRefreshLayout.setOnRefreshListener {
+            refresh(this)
+        }
 
         revancedIndicator = findViewById(R.id.revanced_download_progress)
         musicIndicator = findViewById(R.id.music_download_progress)
@@ -181,10 +189,6 @@ class MainActivity : AppCompatActivity() {
                         "https://github.com/LeddaZ/RevancedUpdater",
                         this
                     )
-                }
-
-                R.id.refresh -> {
-                    refresh(this)
                 }
 
                 R.id.settings -> {
@@ -630,6 +634,8 @@ class MainActivity : AppCompatActivity() {
         reVancedMusicCard.isVisible = prefs.getBoolean(KEY_YTM, true)
         microGCard.isVisible = reVancedCard.isVisible || reVancedMusicCard.isVisible
         xCard.isVisible = prefs.getBoolean(KEY_X, true)
+
+        swipeRefreshLayout.isRefreshing = false
     }
 
     /**

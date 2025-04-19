@@ -7,10 +7,7 @@
     <string name="no_update_available">Kein Update verfügbar</string>
     <string name="app_not_installed">App nicht installiert</string>
     <string name="download_error">Beim Herunterladen ist ein Fehler aufgetreten. Überprüfe die Protokolle für weitere Details.</string>
-    <string name="open_github">Auf Github ansehen</string>
-    <string name="about_dialog_text">ReVanced Updater ist eine App von LeddaZ zur Aktualisierung seiner ReVanced Builds.</string>
     <string name="revanced_download_button_description">ReVanced herunterladen</string>
-    <string name="bottom_bar_refresh">Neu laden</string>
     <string name="none">keine</string>
     <string name="music_download_button_description">ReVanced Music herunterladen</string>
     <string name="microg_download_button_description">ReVanced GmsCore herunterladen</string>

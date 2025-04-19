@@ -7,10 +7,7 @@
     <string name="no_update_available">Nessun aggiornamento disponibile</string>
     <string name="app_not_installed">App non installata</string>
     <string name="download_error">Si è verificato un errore durante il download. Controlla i log per ulteriori informazioni.</string>
-    <string name="open_github">Vedi su GitHub</string>
-    <string name="about_dialog_text">ReVanced Updater è un\'app fatta da LeddaZ per aggiornare le sue build di ReVanced.</string>
     <string name="revanced_download_button_description">Scarica ReVanced</string>
-    <string name="bottom_bar_refresh">Aggiorna</string>
     <string name="none">nessuna</string>
     <string name="music_download_button_description">Scarica ReVanced Music</string>
     <string name="microg_download_button_description">Scarica microG</string>

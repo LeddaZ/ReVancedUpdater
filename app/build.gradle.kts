@@ -80,4 +80,5 @@ dependencies {
     implementation(libs.commons.codec)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.preference)
+    implementation(libs.androidx.swiperefreshlayout)
 }

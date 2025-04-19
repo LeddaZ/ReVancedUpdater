@@ -7,10 +7,7 @@
     <string name="no_update_available">אין עדכונים זמינים</string>
     <string name="app_not_installed">היישום לא הותקן</string>
     <string name="download_error">An error occurred while downloading. Check logs for more details.</string>
-    <string name="open_github">ראה ב-GitHub</string>
-    <string name="about_dialog_text">ReVanced Updater היא אפליקציה שנוצרה על ידי LeddaZ כדי לעדכן את הReVanced שלו.</string>
     <string name="revanced_download_button_description">הורד ReVanced</string>
-    <string name="bottom_bar_refresh">רענן</string>
     <string name="none">ללא</string>
     <string name="music_download_button_description">הורד ReVanced Music</string>
     <string name="microg_download_button_description">הורד ReVanced GmsCore</string>

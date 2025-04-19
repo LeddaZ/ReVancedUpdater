@@ -7,10 +7,7 @@
     <string name="no_update_available">Güncelleme mevcut değil</string>
     <string name="app_not_installed">Uygulama yüklü değil</string>
     <string name="download_error">İndirirken bir hata oluştu. Detaylar için kayıtları kontrol edin.</string>
-    <string name="open_github">GitHub\'da görüntüle</string>
-    <string name="about_dialog_text">ReVanced Updater, LeddaZ tarafından ReVanced yapılarını güncellemek için yapılmış bir uygulamadır.</string>
     <string name="revanced_download_button_description">ReVanced\'ı İndir</string>
-    <string name="bottom_bar_refresh">Yenile</string>
     <string name="none">hiçbiri</string>
     <string name="music_download_button_description">ReVanced Music\'i İndir</string>
     <string name="microg_download_button_description">ReVanced GmsCore\'i İndir</string>

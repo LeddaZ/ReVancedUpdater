@@ -7,10 +7,7 @@
     <string name="no_update_available">Geen update beschikbaar</string>
     <string name="app_not_installed">App niet geïnstalleerd</string>
     <string name="download_error">Een fout deed zich voor tijdens het downloaden. Zie log voor meer details.</string>
-    <string name="open_github">Zie op GitHub</string>
-    <string name="about_dialog_text">ReVanced Updater is an app made by LeddaZ to update his ReVanced builds.</string>
     <string name="revanced_download_button_description">Download ReVanced</string>
-    <string name="bottom_bar_refresh">Vernieuw</string>
     <string name="none">none</string>
     <string name="music_download_button_description">Download ReVanced Music</string>
     <string name="microg_download_button_description">Download ReVanced GmsCore</string>

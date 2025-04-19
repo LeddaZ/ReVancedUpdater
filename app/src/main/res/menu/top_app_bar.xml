@@ -7,11 +7,6 @@
         android:title="@string/bottom_bar_about"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/refresh"
-        android:icon="@drawable/ic_refresh"
-        android:title="@string/bottom_bar_refresh"
-        app:showAsAction="ifRoom" />
-    <item
         android:id="@+id/settings"
         android:icon="@drawable/ic_settings"
         android:title="@string/settings"

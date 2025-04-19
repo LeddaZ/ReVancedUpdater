@@ -7,10 +7,7 @@
     <string name="no_update_available">Aucune mise à jour disponible</string>
     <string name="app_not_installed">Application non installée</string>
     <string name="download_error">Une erreur est survenue lors du téléchargement. Vérifiez les logs pour plus de détails.</string>
-    <string name="open_github">Voir sur Github</string>
-    <string name="about_dialog_text">ReVanced Updater est une application créée par LeddaZ pour mettre à jour ses versions ReVanced .</string>
     <string name="revanced_download_button_description">Télécharger ReVanced</string>
-    <string name="bottom_bar_refresh">Actualiser</string>
     <string name="none">none</string>
     <string name="music_download_button_description">Télécharger ReVanced Music</string>
     <string name="microg_download_button_description">Télécharger ReVanced GmsCore</string>
