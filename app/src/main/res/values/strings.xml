@@ -10,8 +10,6 @@
     <string name="app_not_installed">App not installed</string>
     <string name="download_error">An error occurred while downloading. Check logs for more details.</string>
     <string name="music_info_title" translatable="false">ReVanced Music</string>
-    <string name="bottom_bar_revanced" translatable="false">ReVanced</string>
-    <string name="bottom_bar_updater" translatable="false">Updater</string>
     <string name="revanced_download_button_description">Download ReVanced</string>
     <string name="none">none</string>
     <string name="music_download_button_description">Download ReVanced Music</string>
@@ -19,12 +17,8 @@
     <string name="updater_download_button_description">Download ReVanced Updater</string>
     <string name="invalid">invalid</string>
     <string name="invalid_version_detected">Invalid version detected. Uninstall existing apps.</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
     <string name="microg_dialog_title">ReVanced GmsCore not installed</string>
-    <string name="microg_dialog_text">ReVanced GmsCore is required to log in to your Google account on ReVanced apps. Do you want to install it now?</string>
     <string name="bottom_bar_about">About</string>
-    <string name="about_dialog_title">About this app</string>
     <string name="download_button_text">Download</string>
     <string name="hold_app_card">Hold an app\'s card to open its changelog.</string>
     <string name="microg_info_title" translatable="false">ReVanced GmsCore</string>
