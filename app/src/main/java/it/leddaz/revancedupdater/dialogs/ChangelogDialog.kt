@@ -47,7 +47,7 @@ class ChangelogDialog(
                 builder.setNegativeButton(R.string.github) { _, _ ->
                     this.context?.let { it1 ->
                         openLink(
-                            "https://github.com/LeddaZ/ReVancedUpdater",
+                            "https://github.com/LeddaZ/ReVancedUpdater/releases",
                             it1
                         )
                     }

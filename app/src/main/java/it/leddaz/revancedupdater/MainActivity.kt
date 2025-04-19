@@ -155,13 +155,24 @@ class MainActivity : AppCompatActivity() {
         }
 
         val updaterCard = findViewById<MaterialCardView>(R.id.updater_info_card)
-        updaterCard.setOnLongClickListener {
-            val dialogFragment = ChangelogDialog(
-                updaterCl, true,
-                latestUpdaterCommit
-            )
-            dialogFragment.show(supportFragmentManager, "ChangelogDialog")
-            true
+        if (IS_DEBUG) {
+            updaterCard.setOnLongClickListener {
+                val dialogFragment = ChangelogDialog(
+                    updaterCl, true,
+                    latestUpdaterCommit
+                )
+                dialogFragment.show(supportFragmentManager, "ChangelogDialog")
+                true
+            }
+        } else {
+            updaterCard.setOnLongClickListener {
+                val dialogFragment = ChangelogDialog(
+                    updaterCl, true,
+                    latestUpdaterVersion.toString()
+                )
+                dialogFragment.show(supportFragmentManager, "ChangelogDialog")
+                true
+            }
         }
 
         val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
