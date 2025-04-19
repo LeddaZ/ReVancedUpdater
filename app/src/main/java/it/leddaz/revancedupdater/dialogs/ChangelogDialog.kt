@@ -8,6 +8,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.noties.markwon.Markwon
 import it.leddaz.revancedupdater.R
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.openLink
+import it.leddaz.revancedupdater.utils.plugins.CodeTypefacePlugin
+
 
 /**
  * Dialog that shows when the About button is pressed.
@@ -26,8 +28,10 @@ class ChangelogDialog(
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         this.activity?.let { DynamicColors.applyToActivityIfAvailable(it) }
         return activity?.let {
+            val codeTypeface = resources.getFont(R.font.jbmono)
             val markwon = context?.let { it1 ->
                 Markwon.builder(it1)
+                    .usePlugin(CodeTypefacePlugin(codeTypeface))
                     .build()
             }
             var md = ""
