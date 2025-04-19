@@ -7,25 +7,20 @@
     <string name="no_update_available">Nenhuma atualização disponível</string>
     <string name="app_not_installed">App não instalado</string>
     <string name="download_error">Ocorreu um erro ao baixar. Verifique os registros para mais detalhes.</string>
-    <string name="open_github">Veja no GitHub</string>
-    <string name="about_dialog_text">O ReVanced Updater é um aplicativo feito por LeddaZ para atualizar suas compilações ReVanced.</string>
     <string name="revanced_download_button_description">Baixar ReVanced</string>
-    <string name="bottom_bar_refresh">Recarregar</string>
     <string name="none">nenhum</string>
     <string name="music_download_button_description">Baixar ReVanced Music</string>
     <string name="microg_download_button_description">Baixar ReVanced GmsCore</string>
     <string name="updater_download_button_description">Baixar ReVanced Updater</string>
     <string name="invalid">inválido</string>
     <string name="invalid_version_detected">Versão inválida detectada. Desinstale os aplicativos existentes.</string>
-    <string name="yes">Sim</string>
-    <string name="no">Não</string>
     <string name="microg_dialog_title">ReVanced GmsCore não instalado</string>
-    <string name="microg_dialog_text">É necessário ReVanced GmsCore para fazer login na sua conta Google em aplicativos ReVanced. Você deseja instalá-lo agora?</string>
     <string name="bottom_bar_about">Sobre</string>
-    <string name="about_dialog_title">Sobre este aplicativo</string>
     <string name="download_button_text">Baixar</string>
     <string name="hold_app_card">Segure o cartão de um app para abrir seu registro de mudanças.</string>
     <string name="x_download_button_description">Baixar X</string>
     <string name="disclaimer">LeddaZ é responsável apenas pelo ReVanced Updater, problemas nos demais aplicativos não estão sob seu controle.</string>
     <string name="downloading">Baixando</string>
+    <string name="settings">Settings</string>
+    <string name="settings_desc">Choose which apps you want to see in the main page. ReVanced GmsCore will be shown automatically if YouTube, YouTube Music or both are enabled.</string>
 </resources>
