@@ -8,15 +8,19 @@ gson = "2.13.0"
 kotlinx-coroutines-android = "1.10.2"
 material = "1.12.0"
 kotlin = "2.1.20"
+preference-ktx = "1.2.1"
+preference = "1.2.1"
 
 [libraries]
 android-volley = { module = "com.android.volley:volley", version.ref = "android-volley" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
+androidx-preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preference-ktx" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 commons-codec = { module = "commons-codec:commons-codec", version.ref = "commons-codec" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines-android" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
+androidx-preference = { group = "androidx.preference", name = "preference", version.ref = "preference" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

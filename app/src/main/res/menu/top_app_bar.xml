@@ -11,4 +11,9 @@
         android:icon="@drawable/ic_refresh"
         android:title="@string/bottom_bar_refresh"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/settings"
+        app:showAsAction="ifRoom" />
 </menu>

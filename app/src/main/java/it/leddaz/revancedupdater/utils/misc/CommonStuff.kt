@@ -3,8 +3,8 @@ package it.leddaz.revancedupdater.utils.misc
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.provider.Settings
+import androidx.core.net.toUri
 import it.leddaz.revancedupdater.BuildConfig
 
 /**
@@ -14,6 +14,10 @@ import it.leddaz.revancedupdater.BuildConfig
 object CommonStuff {
 
     // Common variables
+    const val PREFS_NAME = "settings"
+    const val KEY_YT = "show_yt"
+    const val KEY_YTM = "show_ytm"
+    const val KEY_X = "show_x"
     const val APP_VERSION = BuildConfig.VERSION_NAME
     const val LOG_TAG = "ReVanced Updater"
     val IS_DEBUG = BuildConfig.DEBUG
@@ -33,7 +37,7 @@ object CommonStuff {
      * @property context the activity's context
      */
     fun openLink(url: String, context: Context) {
-        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        val browserIntent = Intent(Intent.ACTION_VIEW, url.toUri())
         context.startActivity(browserIntent)
     }
 
@@ -59,7 +63,7 @@ object CommonStuff {
         val packageManager = context.packageManager
         if (!packageManager.canRequestPackageInstalls()) {
             val intent = Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES)
-                .setData(Uri.parse("package:" + BuildConfig.APPLICATION_ID))
+                .setData(("package:" + BuildConfig.APPLICATION_ID).toUri())
             context.startActivity(intent)
             return
         }

@@ -1,6 +1,7 @@
 package it.leddaz.revancedupdater
 
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
@@ -13,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.android.volley.Request.Method.GET
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -33,8 +35,12 @@ import it.leddaz.revancedupdater.utils.misc.CommonStuff.GMSCORE_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.GMS_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.HMS_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.IS_DEBUG
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.KEY_X
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.KEY_YT
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.KEY_YTM
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.LOG_TAG
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.MUSIC_PACKAGE
+import it.leddaz.revancedupdater.utils.misc.CommonStuff.PREFS_NAME
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.REVANCED_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.UPDATER_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.X_PACKAGE
@@ -160,6 +166,13 @@ class MainActivity : AppCompatActivity() {
                 true
             }
 
+        val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+
+        reVancedCard.isVisible = prefs.getBoolean(KEY_YT, true)
+        reVancedMusicCard.isVisible = prefs.getBoolean(KEY_YTM, true)
+        microGCard.isVisible = reVancedCard.isVisible || reVancedMusicCard.isVisible
+        xCard.isVisible = prefs.getBoolean(KEY_X, true)
+
         val topAppBar = findViewById<MaterialToolbar>(R.id.topAppBar)
         topAppBar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
@@ -173,11 +186,21 @@ class MainActivity : AppCompatActivity() {
                 R.id.refresh -> {
                     refresh(this)
                 }
+
+                R.id.settings -> {
+                    val intent = Intent(this@MainActivity, SettingsActivity::class.java)
+                    this@MainActivity.startActivity(intent)
+                }
             }
             false
         }
 
         requestInstallPermission(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        refresh(this)
     }
 
     /**
@@ -498,12 +521,11 @@ class MainActivity : AppCompatActivity() {
             } else if (installedVersion.compareTo(latestVersion) == 0) {
                 if (packageName != GMSCORE_PACKAGE && packageName != UPDATER_PACKAGE) {
                     var latestHash = ""
-                    if (packageName == REVANCED_PACKAGE)
-                        latestHash = getLatestReVancedHash()
-                    else if (packageName == MUSIC_PACKAGE)
-                        latestHash = getLatestReVancedMusicHash()
-                    else if (packageName == X_PACKAGE)
-                        latestHash = getLatestReVancedXHash()
+                    when (packageName) {
+                        REVANCED_PACKAGE -> latestHash = getLatestReVancedHash()
+                        MUSIC_PACKAGE -> latestHash = getLatestReVancedMusicHash()
+                        X_PACKAGE -> latestHash = getLatestReVancedXHash()
+                    }
                     thread {
                         compareHashes(latestHash, updateStatusTextView, packageName, button)
                     }
@@ -596,6 +618,18 @@ class MainActivity : AppCompatActivity() {
                 compareVersions()
             }
         })
+
+        val reVancedCard = findViewById<MaterialCardView>(R.id.revanced_info_card)
+        val reVancedMusicCard = findViewById<MaterialCardView>(R.id.music_info_card)
+        val microGCard = findViewById<MaterialCardView>(R.id.microg_info_card)
+        val xCard = findViewById<MaterialCardView>(R.id.x_info_card)
+
+        val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+
+        reVancedCard.isVisible = prefs.getBoolean(KEY_YT, true)
+        reVancedMusicCard.isVisible = prefs.getBoolean(KEY_YTM, true)
+        microGCard.isVisible = reVancedCard.isVisible || reVancedMusicCard.isVisible
+        xCard.isVisible = prefs.getBoolean(KEY_X, true)
     }
 
     /**

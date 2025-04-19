@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:paddingLeft="10sp"
+        android:paddingRight="10sp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+            app:navigationIcon="@drawable/ic_back"
+            app:title="@string/settings" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                android:paddingLeft="20sp"
+                android:paddingTop="10sp"
+                android:paddingRight="20sp"
+                android:paddingBottom="10sp"
+                android:text="@string/settings_desc"
+                android:textSize="12sp" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/yt_switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                android:paddingLeft="20sp"
+                android:paddingRight="20sp"
+                android:text="@string/revanced_info_title"
+                app:key="show_yt" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/ytm_switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                android:paddingLeft="20sp"
+                android:paddingRight="20sp"
+                android:text="@string/music_info_title"
+                app:key="show_ytm" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/x_switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                android:paddingLeft="20sp"
+                android:paddingRight="20sp"
+                android:text="@string/x_info_title"
+                app:key="show_x" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

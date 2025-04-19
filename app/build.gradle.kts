@@ -73,9 +73,11 @@ android {
 dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.preference.ktx)
     implementation(libs.android.volley)
     implementation(libs.material)
     implementation(libs.gson)
     implementation(libs.commons.codec)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.preference)
 }
