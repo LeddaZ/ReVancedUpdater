@@ -7,25 +7,20 @@
     <string name="no_update_available">No update available</string>
     <string name="app_not_installed">التطبيق ليس مثبتا</string>
     <string name="download_error">خطب ما حدث أثناء التحميل. أولج لمزيد من التفاصيل.</string>
-    <string name="open_github">See on GitHub</string>
-    <string name="about_dialog_text">ReVanced Updater is an app made by LeddaZ to update his ReVanced builds.</string>
     <string name="revanced_download_button_description">Download ReVanced</string>
-    <string name="bottom_bar_refresh">Refresh</string>
     <string name="none">none</string>
     <string name="music_download_button_description">Download ReVanced Music</string>
     <string name="microg_download_button_description">Download ReVanced GmsCore</string>
     <string name="updater_download_button_description">حمّل التطبيق المحدث</string>
     <string name="invalid">invalid</string>
     <string name="invalid_version_detected">Invalid version detected. Uninstall existing apps.</string>
-    <string name="yes">نعم</string>
-    <string name="no">لا</string>
     <string name="microg_dialog_title">ReVanced GmsCore not installed</string>
-    <string name="microg_dialog_text">ReVanced GmsCore is required to log in to your Google account on ReVanced apps. Do you want to install it now?</string>
     <string name="bottom_bar_about">حول</string>
-    <string name="about_dialog_title">حول هذا التطبيق</string>
     <string name="download_button_text">تحميل</string>
     <string name="hold_app_card">Hold an app\'s card to open its changelog.</string>
     <string name="x_download_button_description">تحميل X</string>
     <string name="disclaimer">LeddaZ is only responsible for ReVanced Updater, app issues are not under his control.</string>
     <string name="downloading">Downloading</string>
+    <string name="settings">Settings</string>
+    <string name="settings_desc">Choose which apps you want to see in the main page. ReVanced GmsCore will be shown automatically if YouTube, YouTube Music or both are enabled.</string>
 </resources>
