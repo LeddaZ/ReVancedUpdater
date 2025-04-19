@@ -25,12 +25,12 @@ val commitHash by project.extra {
 
 android {
     namespace = "it.leddaz.revancedupdater"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "it.leddaz.revancedupdater"
         minSdk = 26
-        targetSdk = 35
+        targetSdk = 36
         versionCode = commitCount
         versionName = "3.6.2 ($commitHash)"
     }
