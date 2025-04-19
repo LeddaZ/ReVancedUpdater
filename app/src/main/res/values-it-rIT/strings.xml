@@ -14,15 +14,14 @@
     <string name="updater_download_button_description">Scarica ReVanced Updater</string>
     <string name="invalid">non valida</string>
     <string name="invalid_version_detected">Versione non valida rilevata. Disinstalla le app già presenti.</string>
-    <string name="yes">Sì</string>
-    <string name="no">No</string>
     <string name="microg_dialog_title">ReVanced GmsCore non è installato</string>
-    <string name="microg_dialog_text">ReVanced GmsCore è necessario per accedere al tuo account Google nelle app ReVanced. Vuoi installarlo ora?</string>
     <string name="bottom_bar_about">Informazioni</string>
-    <string name="about_dialog_title">Informazioni sull\'app</string>
     <string name="download_button_text">Scarica</string>
     <string name="hold_app_card">Tieni premuta la scheda di un\'app per aprire il suo changelog.</string>
     <string name="x_download_button_description">Scarica X</string>
     <string name="disclaimer">LeddaZ è responsabile solo di ReVanced Updater, i problemi delle app non sono sotto il suo controllo.</string>
     <string name="downloading">Scaricando</string>
+    <string name="settings">Impostazioni</string>
+    <string name="settings_desc">Scegli quali app vuoi vedere nella pagina principale. ReVanced GmsCore verrà mostrato automaticamente se YouTube, YouTube Music o entrambi sono attivi.</string>
+    <string name="github">Vedi su GitHub</string>
 </resources>

@@ -14,15 +14,14 @@
     <string name="updater_download_button_description">Завантажити ReVanced Updater</string>
     <string name="invalid">недійсний</string>
     <string name="invalid_version_detected">Виявлено недійсну версію. Видаліть встановлені застосунки.</string>
-    <string name="yes">Так</string>
-    <string name="no">Ні</string>
     <string name="microg_dialog_title">ReVanced GmsCore не встановлено</string>
-    <string name="microg_dialog_text">ReVanced GmsCore необхідний для входу в обліковий запис Google на застосунках ReVanced. Бажаєте встановити його зараз?</string>
     <string name="bottom_bar_about">Інформація</string>
-    <string name="about_dialog_title">Про додаток</string>
     <string name="download_button_text">Завантажити</string>
     <string name="hold_app_card">Утримуйте на картці застосунку, щоб відкрити список змін.</string>
     <string name="x_download_button_description">Завантажити Х</string>
     <string name="disclaimer">LeddaZ відповідає лише за ReVanced Updater, проблеми з програмою не знаходяться під його контролем.</string>
     <string name="downloading">Завантаження</string>
+    <string name="settings">Settings</string>
+    <string name="settings_desc">Choose which apps you want to see in the main page. ReVanced GmsCore will be shown automatically if YouTube, YouTube Music or both are enabled.</string>
+    <string name="github">See on GitHub</string>
 </resources>
