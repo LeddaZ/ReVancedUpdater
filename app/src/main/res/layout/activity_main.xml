@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/top_app_bar"
-            android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+            android:fontFeatureSettings="'ss01' 1"
             app:title="@string/app_name" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -68,7 +68,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="20sp"
                         android:text="@string/revanced_info_title"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:textSize="24sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -76,7 +76,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/installed_app_version"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -85,7 +85,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5sp"
                         android:text="@string/latest_app_version"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -93,7 +93,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/update_status"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:textSize="18sp" />
 
                     <Button
@@ -105,7 +105,7 @@
                         android:contentDescription="@string/revanced_download_button_description"
                         android:enabled="false"
                         android:onClick="downloadReVanced"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:text="@string/download_button_text" />
 
                 </LinearLayout>
@@ -146,7 +146,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="20sp"
                         android:text="@string/music_info_title"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:textSize="24sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -154,7 +154,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/installed_app_version"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -163,7 +163,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5sp"
                         android:text="@string/latest_app_version"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -171,7 +171,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/update_status"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:textSize="18sp" />
 
                     <Button
@@ -183,7 +183,7 @@
                         android:contentDescription="@string/music_download_button_description"
                         android:enabled="false"
                         android:onClick="downloadReVancedMusic"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:text="@string/download_button_text" />
 
                 </LinearLayout>
@@ -224,7 +224,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="20sp"
                         android:text="@string/microg_info_title"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:textSize="24sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -232,7 +232,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/installed_app_version"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -241,7 +241,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5sp"
                         android:text="@string/latest_app_version"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -249,7 +249,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/update_status"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:textSize="18sp" />
 
                     <Button
@@ -261,7 +261,7 @@
                         android:contentDescription="@string/microg_download_button_description"
                         android:enabled="false"
                         android:onClick="downloadGmsCore"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:text="@string/download_button_text" />
 
                 </LinearLayout>
@@ -302,7 +302,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="20sp"
                         android:text="@string/x_info_title"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:textSize="24sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -310,7 +310,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/installed_app_version"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -319,7 +319,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5sp"
                         android:text="@string/latest_app_version"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -327,7 +327,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/update_status"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:textSize="18sp" />
 
                     <Button
@@ -339,7 +339,7 @@
                         android:contentDescription="@string/x_download_button_description"
                         android:enabled="false"
                         android:onClick="downloadX"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:text="@string/download_button_text" />
 
                 </LinearLayout>
@@ -380,7 +380,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="20sp"
                         android:text="@string/app_name"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:textSize="24sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -388,7 +388,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/installed_app_version"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -397,7 +397,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5sp"
                         android:text="@string/latest_app_version"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -406,7 +406,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5sp"
                         android:text="@string/update_status"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:textSize="18sp" />
 
                     <Button
@@ -417,7 +417,7 @@
                         android:contentDescription="@string/updater_download_button_description"
                         android:enabled="false"
                         android:onClick="downloadUpdater"
-                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:fontFeatureSettings="'ss01' 1"
                         android:text="@string/download_button_text" />
 
                 </LinearLayout>
@@ -439,7 +439,7 @@
                 android:paddingRight="20sp"
                 android:paddingBottom="20dp"
                 android:text="@string/hold_app_card"
-                android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                android:fontFeatureSettings="'ss01' 1"
                 android:textAlignment="center"
                 android:textSize="16sp" />
 
@@ -451,7 +451,7 @@
                 android:paddingRight="20sp"
                 android:paddingBottom="80dp"
                 android:text="@string/disclaimer"
-                android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                android:fontFeatureSettings="'ss01' 1"
                 android:textAlignment="center"
                 android:textSize="16sp" />
 
