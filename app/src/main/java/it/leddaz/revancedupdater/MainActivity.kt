@@ -23,7 +23,6 @@ import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.google.android.material.textview.MaterialTextView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import it.leddaz.revancedupdater.dialogs.AboutDialog
 import it.leddaz.revancedupdater.utils.json.GmsCoreJSONObject
 import it.leddaz.revancedupdater.utils.json.ReVancedJSONObject
 import it.leddaz.revancedupdater.utils.json.UpdaterDebugJSONObject
@@ -165,8 +164,10 @@ class MainActivity : AppCompatActivity() {
         topAppBar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.about -> {
-                    val dialogFragment = AboutDialog()
-                    dialogFragment.show(supportFragmentManager, "AboutDialog")
+                    openLink(
+                        "https://github.com/LeddaZ/RevancedUpdater",
+                        this
+                    )
                 }
 
                 R.id.refresh -> {

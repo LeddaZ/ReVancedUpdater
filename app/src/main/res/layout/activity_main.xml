@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/top_app_bar"
-            app:fontFamily="@font/inter_medium"
+            android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
             app:title="@string/app_name" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -47,8 +47,7 @@
                 app:layout_constraintBottom_toTopOf="@id/music_info_card"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="TextSizeCheck">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -63,14 +62,15 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="20sp"
                         android:text="@string/revanced_info_title"
-                        android:textSize="24sp"
-                        app:fontFamily="@font/inter_medium" />
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:textSize="24sp" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/installed_revanced_version"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/installed_app_version"
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -79,6 +79,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5sp"
                         android:text="@string/latest_app_version"
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -86,8 +87,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/update_status"
-                        android:textSize="18sp"
-                        tools:ignore="TextSizeCheck" />
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:textSize="18sp" />
 
                     <Button
                         android:id="@+id/revanced_download_button"
@@ -97,8 +98,8 @@
                         android:layout_marginTop="5sp"
                         android:contentDescription="@string/revanced_download_button_description"
                         android:enabled="false"
-                        android:fontFamily="@font/inter_semibold"
                         android:onClick="downloadReVanced"
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
                         android:text="@string/download_button_text" />
 
                 </LinearLayout>
@@ -124,8 +125,7 @@
                 app:layout_constraintBottom_toTopOf="@id/microg_info_card"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/revanced_info_card"
-                tools:ignore="TextSizeCheck">
+                app:layout_constraintTop_toBottomOf="@id/revanced_info_card">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -140,14 +140,15 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="20sp"
                         android:text="@string/music_info_title"
-                        android:textSize="24sp"
-                        app:fontFamily="@font/inter_medium" />
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:textSize="24sp" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/installed_music_version"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/installed_app_version"
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -156,6 +157,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5sp"
                         android:text="@string/latest_app_version"
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -163,8 +165,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/update_status"
-                        android:textSize="18sp"
-                        tools:ignore="TextSizeCheck" />
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:textSize="18sp" />
 
                     <Button
                         android:id="@+id/music_download_button"
@@ -174,8 +176,8 @@
                         android:layout_marginTop="5sp"
                         android:contentDescription="@string/music_download_button_description"
                         android:enabled="false"
-                        android:fontFamily="@font/inter_semibold"
                         android:onClick="downloadReVancedMusic"
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
                         android:text="@string/download_button_text" />
 
                 </LinearLayout>
@@ -201,8 +203,7 @@
                 app:layout_constraintBottom_toTopOf="@id/x_info_card"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/music_info_card"
-                tools:ignore="TextSizeCheck">
+                app:layout_constraintTop_toBottomOf="@id/music_info_card">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -217,14 +218,15 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="20sp"
                         android:text="@string/microg_info_title"
-                        android:textSize="24sp"
-                        app:fontFamily="@font/inter_medium" />
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:textSize="24sp" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/installed_microg_version"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/installed_app_version"
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -233,6 +235,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5sp"
                         android:text="@string/latest_app_version"
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -240,8 +243,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/update_status"
-                        android:textSize="18sp"
-                        tools:ignore="TextSizeCheck" />
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:textSize="18sp" />
 
                     <Button
                         android:id="@+id/microg_download_button"
@@ -251,8 +254,8 @@
                         android:layout_marginTop="5sp"
                         android:contentDescription="@string/microg_download_button_description"
                         android:enabled="false"
-                        android:fontFamily="@font/inter_semibold"
                         android:onClick="downloadGmsCore"
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
                         android:text="@string/download_button_text" />
 
                 </LinearLayout>
@@ -278,8 +281,7 @@
                 app:layout_constraintBottom_toTopOf="@id/updater_info_card"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/microg_info_card"
-                tools:ignore="TextSizeCheck">
+                app:layout_constraintTop_toBottomOf="@id/microg_info_card">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -294,14 +296,15 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="20sp"
                         android:text="@string/x_info_title"
-                        android:textSize="24sp"
-                        app:fontFamily="@font/inter_medium" />
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:textSize="24sp" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/installed_x_version"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/installed_app_version"
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -310,6 +313,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5sp"
                         android:text="@string/latest_app_version"
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -317,8 +321,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/update_status"
-                        android:textSize="18sp"
-                        tools:ignore="TextSizeCheck" />
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:textSize="18sp" />
 
                     <Button
                         android:id="@+id/x_download_button"
@@ -328,8 +332,8 @@
                         android:layout_marginTop="5sp"
                         android:contentDescription="@string/x_download_button_description"
                         android:enabled="false"
-                        android:fontFamily="@font/inter_semibold"
                         android:onClick="downloadX"
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
                         android:text="@string/download_button_text" />
 
                 </LinearLayout>
@@ -355,8 +359,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/x_info_card"
-                tools:ignore="TextSizeCheck">
+                app:layout_constraintTop_toBottomOf="@id/x_info_card">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -371,14 +374,15 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginBottom="20sp"
                         android:text="@string/app_name"
-                        android:textSize="24sp"
-                        app:fontFamily="@font/inter_medium" />
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:textSize="24sp" />
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/installed_updater_version"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/installed_app_version"
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -387,6 +391,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5sp"
                         android:text="@string/latest_app_version"
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
                         android:textSize="16sp" />
 
                     <com.google.android.material.textview.MaterialTextView
@@ -395,8 +400,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5sp"
                         android:text="@string/update_status"
-                        android:textSize="18sp"
-                        tools:ignore="TextSizeCheck" />
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
+                        android:textSize="18sp" />
 
                     <Button
                         android:id="@+id/updater_download_button"
@@ -405,8 +410,8 @@
                         android:layout_gravity="bottom|end"
                         android:contentDescription="@string/updater_download_button_description"
                         android:enabled="false"
-                        android:fontFamily="@font/inter_semibold"
                         android:onClick="downloadUpdater"
+                        android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
                         android:text="@string/download_button_text" />
 
                 </LinearLayout>
@@ -428,6 +433,7 @@
                 android:paddingRight="20sp"
                 android:paddingBottom="20dp"
                 android:text="@string/hold_app_card"
+                android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
                 android:textAlignment="center"
                 android:textSize="16sp" />
 
@@ -439,6 +445,7 @@
                 android:paddingRight="20sp"
                 android:paddingBottom="80dp"
                 android:text="@string/disclaimer"
+                android:fontFeatureSettings="'ss01' 1, 'ss02' 1"
                 android:textAlignment="center"
                 android:textSize="16sp" />
 

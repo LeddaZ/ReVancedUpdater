@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/about"
-        android:icon="@drawable/ic_info"
+        android:icon="@drawable/ic_github"
         android:title="@string/bottom_bar_about"
         app:showAsAction="ifRoom" />
     <item
