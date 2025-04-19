@@ -30,4 +30,5 @@
     <string name="settings_desc">Choose which apps you want to see in the main page. ReVanced GmsCore will be shown automatically if YouTube, YouTube Music or both are enabled.</string>
     <string name="ok" translatable="false">OK</string>
     <string name="github">See on GitHub</string>
+    <string name="rate_limit">GitHub rate limit, retry in a few minutes</string>
 </resources>
