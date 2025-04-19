@@ -5,6 +5,8 @@ import android.content.Intent
 import android.net.Uri
 import android.util.Log
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.Toast
 import androidx.core.content.ContextCompat.getString
@@ -26,14 +28,17 @@ import java.net.URL
  * @author Leonardo Ledda (LeddaZ)
  */
 class AppInstaller() {
+    private lateinit var window: Window
 
     constructor(
         context: Context,
+        window: Window,
         uri: String,
         fileName: String,
         progressIndicator: LinearProgressIndicator,
         button: Button
     ) : this() {
+        this.window = window
         downloadFile(context, uri, fileName, progressIndicator, button)
     }
 
@@ -45,6 +50,7 @@ class AppInstaller() {
         button: Button
     ) {
         try {
+            window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
             progressIndicator.visibility = View.VISIBLE
             button.isEnabled = false
             button.text = getString(context, R.string.downloading)
@@ -99,6 +105,7 @@ class AppInstaller() {
     }
 
     private fun installApk(fileName: String, context: Context) {
+        window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         requestInstallPermission(context)
 
         val apkUri: Uri =

@@ -419,6 +419,7 @@ class MainActivity : AppCompatActivity() {
         view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
         AppInstaller(
             this,
+            window,
             reVancedDownloadUrl,
             "revanced-nonroot-signed.apk",
             revancedIndicator,
@@ -434,6 +435,7 @@ class MainActivity : AppCompatActivity() {
         view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
         AppInstaller(
             this,
+            window,
             musicDownloadUrl,
             "revanced-music-nonroot-signed.apk",
             musicIndicator,
@@ -449,6 +451,7 @@ class MainActivity : AppCompatActivity() {
         view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
         AppInstaller(
             this,
+            window,
             gmsCoreDownloadUrl,
             "microg.apk",
             gmsCoreIndicator,
@@ -463,7 +466,7 @@ class MainActivity : AppCompatActivity() {
     fun downloadX(view: View) {
         view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
         AppInstaller(
-            this, xDownloadUrl, "x.apk", xIndicator, findViewById(R.id.x_download_button)
+            this, window, xDownloadUrl, "x.apk", xIndicator, findViewById(R.id.x_download_button)
         )
     }
 
@@ -475,6 +478,7 @@ class MainActivity : AppCompatActivity() {
         view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
         AppInstaller(
             this,
+            window,
             updaterDownloadUrl,
             "app-release.apk",
             updaterIndicator,
