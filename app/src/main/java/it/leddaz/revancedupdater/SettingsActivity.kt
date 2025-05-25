@@ -55,6 +55,10 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Deletes downloaded APKs
+     */
+    @Suppress("UNUSED_PARAMETER")
     fun deleteAPKs(view: View) {
         val filenames = arrayOf(
             "revanced-music-nonroot-signed.apk",

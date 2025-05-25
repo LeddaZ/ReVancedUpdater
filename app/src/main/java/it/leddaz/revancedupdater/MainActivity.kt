@@ -1,6 +1,5 @@
 package it.leddaz.revancedupdater
 
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
@@ -110,7 +109,7 @@ class MainActivity : AppCompatActivity() {
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout)
 
         swipeRefreshLayout.setOnRefreshListener {
-            refresh(this)
+            refresh()
         }
 
         revancedIndicator = findViewById(R.id.revanced_download_progress)
@@ -122,7 +121,7 @@ class MainActivity : AppCompatActivity() {
         val updaterCardTitle = findViewById<MaterialTextView>(R.id.updater_title)
         updaterCardTitle.text = getString(R.string.app_name)
         Log.i(LOG_TAG, "Device fingerprint: ${Build.FINGERPRINT}")
-        refresh(this)
+        refresh()
 
         val reVancedCard = findViewById<MaterialCardView>(R.id.revanced_info_card)
         reVancedCard.setOnLongClickListener {
@@ -205,7 +204,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        refresh(this)
+        refresh()
     }
 
     /**
@@ -673,9 +672,8 @@ class MainActivity : AppCompatActivity() {
 
     /**
      * Refreshes the versions.
-     * @param context the app's context.
      */
-    private fun refresh(context: Context) {
+    private fun refresh() {
         getVersionsAndChangelogs(object : VolleyCallBack {
             override fun onSuccess() {
                 val latestReVancedTextView: TextView =
