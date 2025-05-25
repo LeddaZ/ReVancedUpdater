@@ -25,7 +25,7 @@
     <string name="settings_desc">Scegli quali app vuoi vedere nella pagina principale. ReVanced GmsCore verrà mostrato automaticamente se YouTube, YouTube Music o entrambi sono attivi.</string>
     <string name="github">Vedi su GitHub</string>
     <string name="rate_limit">Errore rate limit di GitHub, riprova fra qualche minuto</string>
-    <string name="delete_apk_button_text">Delete APKs</string>
-    <string name="apks_deleted">Downloaded APKs deleted</string>
-    <string name="json_error">Error while fetching JSON</string>
+    <string name="delete_apk_button_text">Cancella APK</string>
+    <string name="apks_deleted">Gli APK scaricati sono stati cancellati</string>
+    <string name="json_error">Errore di download dei JSON</string>
 </resources>
