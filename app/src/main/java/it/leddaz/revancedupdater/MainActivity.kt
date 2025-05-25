@@ -175,7 +175,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
 
         reVancedCard.isVisible = prefs.getBoolean(KEY_YT, true)
         reVancedMusicCard.isVisible = prefs.getBoolean(KEY_YTM, true)
@@ -672,24 +672,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Refreshes the versions and deletes existing APKs.
+     * Refreshes the versions.
      * @param context the app's context.
      */
     private fun refresh(context: Context) {
-        val filenames = arrayOf(
-            "revanced-music-nonroot-signed.apk",
-            "revanced-nonroot-signed.apk",
-            "app-release.apk",
-            "microg.apk",
-            "x.apk"
-        )
-        val appDataDir = context.getExternalFilesDir("/apks/").toString() + "/"
-        for (apk in filenames) {
-            val path = File(appDataDir + apk)
-            if (path.exists()) {
-                path.delete()
-            }
-        }
         getVersionsAndChangelogs(object : VolleyCallBack {
             override fun onSuccess() {
                 val latestReVancedTextView: TextView =
@@ -728,7 +714,7 @@ class MainActivity : AppCompatActivity() {
         val microGCard = findViewById<MaterialCardView>(R.id.microg_info_card)
         val xCard = findViewById<MaterialCardView>(R.id.x_info_card)
 
-        val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
 
         reVancedCard.isVisible = prefs.getBoolean(KEY_YT, true)
         reVancedMusicCard.isVisible = prefs.getBoolean(KEY_YTM, true)
