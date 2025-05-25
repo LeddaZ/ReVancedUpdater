@@ -31,4 +31,7 @@
     <string name="ok" translatable="false">OK</string>
     <string name="github">See on GitHub</string>
     <string name="rate_limit">GitHub rate limit, retry in a few minutes</string>
+    <string name="delete_apk_button_text">Delete APKs</string>
+    <string name="apks_deleted">Downloaded APKs deleted</string>
+    <string name="json_error">Error while fetching JSON</string>
 </resources>
