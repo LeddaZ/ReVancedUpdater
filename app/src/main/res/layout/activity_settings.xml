@@ -73,6 +73,16 @@
                 android:textSize="18sp"
                 app:key="show_x" />
 
+            <Button
+                android:id="@+id/delete_apk_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5sp"
+                android:contentDescription="@string/delete_apk_button_text"
+                android:onClick="deleteAPKs"
+                android:text="@string/delete_apk_button_text" />
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

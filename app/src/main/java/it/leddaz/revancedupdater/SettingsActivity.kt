@@ -1,7 +1,8 @@
 package it.leddaz.revancedupdater
 
-import android.content.Context
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -12,6 +13,7 @@ import it.leddaz.revancedupdater.utils.misc.CommonStuff.KEY_X
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.KEY_YT
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.KEY_YTM
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.PREFS_NAME
+import java.io.File
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -36,7 +38,7 @@ class SettingsActivity : AppCompatActivity() {
         val ytmSwitch = findViewById<MaterialSwitch>(R.id.ytm_switch)
         val xSwitch = findViewById<MaterialSwitch>(R.id.x_switch)
 
-        val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
 
         ytSwitch.isChecked = prefs.getBoolean(KEY_YT, true)
         ytmSwitch.isChecked = prefs.getBoolean(KEY_YTM, true)
@@ -51,5 +53,23 @@ class SettingsActivity : AppCompatActivity() {
         xSwitch.setOnCheckedChangeListener { _, isChecked ->
             prefs.edit { putBoolean(KEY_X, isChecked) }
         }
+    }
+
+    fun deleteAPKs(view: View) {
+        val filenames = arrayOf(
+            "revanced-music-nonroot-signed.apk",
+            "revanced-nonroot-signed.apk",
+            "app-release.apk",
+            "microg.apk",
+            "x.apk"
+        )
+        val appDataDir = this.getExternalFilesDir("/apks/").toString() + "/"
+        for (apk in filenames) {
+            val path = File(appDataDir + apk)
+            if (path.exists()) {
+                path.delete()
+            }
+        }
+        Toast.makeText(this, R.string.apks_deleted, Toast.LENGTH_SHORT).show()
     }
 }
