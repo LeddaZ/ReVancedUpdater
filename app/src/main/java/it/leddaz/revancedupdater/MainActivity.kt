@@ -24,6 +24,7 @@ import com.google.android.material.color.DynamicColors
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.google.android.material.textview.MaterialTextView
 import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
 import it.leddaz.revancedupdater.dialogs.ChangelogDialog
 import it.leddaz.revancedupdater.utils.json.GmsCoreJSONObject
@@ -276,27 +277,35 @@ class MainActivity : AppCompatActivity() {
         val urlPrefix = "https://github.com/LeddaZ/revanced-repo/releases/download/"
 
         val reVancedRequest = StringRequest(GET, reVancedJSONUrl, { response ->
-            reVancedReply =
-                Gson().fromJson(response, object : TypeToken<ReVancedJSONObject>() {}.type)
-            latestReVancedVersion = Version(reVancedReply.latestReVancedVersion)
-            latestReVancedHash = reVancedReply.latestReVancedHash
-            latestReVancedMusicVersion = Version(reVancedReply.latestReVancedMusicVersion)
-            reVancedDownloadUrl =
-                urlPrefix + reVancedReply.latestReVancedDate + "-yt/yt-signed.apk"
-            val preferredABI: String = Build.SUPPORTED_ABIS[0]
-            Log.i(LOG_TAG, "Preferred ABI: $preferredABI")
-            when (preferredABI) {
-                "armeabi-v7a" -> latestReVancedMusicHash = reVancedReply.latestReVancedMusicHashArm
-                "arm64-v8a" -> latestReVancedMusicHash = reVancedReply.latestReVancedMusicHashArm64
-                "x86" -> latestReVancedMusicHash = reVancedReply.latestReVancedMusicHashX86
-                "x86_64" -> latestReVancedMusicHash = reVancedReply.latestReVancedMusicHashX64
+            try {
+                reVancedReply =
+                    Gson().fromJson(response, object : TypeToken<ReVancedJSONObject>() {}.type)
+                latestReVancedVersion = Version(reVancedReply.latestReVancedVersion)
+                latestReVancedHash = reVancedReply.latestReVancedHash
+                latestReVancedMusicVersion = Version(reVancedReply.latestReVancedMusicVersion)
+                reVancedDownloadUrl =
+                    urlPrefix + reVancedReply.latestReVancedDate + "-yt/yt-signed.apk"
+                val preferredABI: String = Build.SUPPORTED_ABIS[0]
+                Log.i(LOG_TAG, "Preferred ABI: $preferredABI")
+                when (preferredABI) {
+                    "armeabi-v7a" -> latestReVancedMusicHash =
+                        reVancedReply.latestReVancedMusicHashArm
+
+                    "arm64-v8a" -> latestReVancedMusicHash =
+                        reVancedReply.latestReVancedMusicHashArm64
+
+                    "x86" -> latestReVancedMusicHash = reVancedReply.latestReVancedMusicHashX86
+                    "x86_64" -> latestReVancedMusicHash = reVancedReply.latestReVancedMusicHashX64
+                }
+                musicDownloadUrl = urlPrefix + reVancedReply.latestReVancedMusicDate +
+                        "-ytm/ytm-$preferredABI-signed.apk"
+                latestXVersion = Version(reVancedReply.latestXVersion)
+                xDownloadUrl = urlPrefix + reVancedReply.latestXDate + "-x/x-signed.apk"
+                latestXHash = reVancedReply.latestXHash
+                callback.onSuccess()
+            } catch (_: JsonSyntaxException) {
+                Toast.makeText(this, R.string.json_error, Toast.LENGTH_SHORT).show()
             }
-            musicDownloadUrl = urlPrefix + reVancedReply.latestReVancedMusicDate +
-                    "-ytm/ytm-$preferredABI-signed.apk"
-            latestXVersion = Version(reVancedReply.latestXVersion)
-            xDownloadUrl = urlPrefix + reVancedReply.latestXDate + "-x/x-signed.apk"
-            latestXHash = reVancedReply.latestXHash
-            callback.onSuccess()
         }, { error ->
             when (error.networkResponse?.statusCode) {
                 403 -> {
@@ -311,15 +320,23 @@ class MainActivity : AppCompatActivity() {
         })
 
         val updaterReleaseRequest = StringRequest(GET, updaterAPIUrl, { response ->
-            updaterReleaseReply =
-                Gson().fromJson(response, object : TypeToken<UpdaterReleaseJSONObject>() {}.type)
-            updaterBodyReply =
-                Gson().fromJson(response, object : TypeToken<UpdaterBodyJSONObject>() {}.type)
-            latestUpdaterVersion = Version(updaterReleaseReply.latestUpdaterVersion)
-            updaterCl = updaterBodyReply.latestUpdaterBody
-            updaterDownloadUrl = "https://github.com/LeddaZ/ReVancedUpdater/releases/download/" +
-                    latestUpdaterVersion + "/app-release.apk"
-            callback.onSuccess()
+            try {
+                updaterReleaseReply =
+                    Gson().fromJson(
+                        response,
+                        object : TypeToken<UpdaterReleaseJSONObject>() {}.type
+                    )
+                updaterBodyReply =
+                    Gson().fromJson(response, object : TypeToken<UpdaterBodyJSONObject>() {}.type)
+                latestUpdaterVersion = Version(updaterReleaseReply.latestUpdaterVersion)
+                updaterCl = updaterBodyReply.latestUpdaterBody
+                updaterDownloadUrl =
+                    "https://github.com/LeddaZ/ReVancedUpdater/releases/download/" +
+                            latestUpdaterVersion + "/app-release.apk"
+                callback.onSuccess()
+            } catch (_: JsonSyntaxException) {
+                Toast.makeText(this, R.string.json_error, Toast.LENGTH_SHORT).show()
+            }
         }, { error ->
             when (error.networkResponse?.statusCode) {
                 403 -> {
@@ -334,12 +351,16 @@ class MainActivity : AppCompatActivity() {
         })
 
         val updaterDevRequest = StringRequest(GET, updaterCommitUrl, { response ->
-            updaterDebugReply =
-                Gson().fromJson(response, object : TypeToken<UpdaterDebugJSONObject>() {}.type)
-            latestUpdaterCommit = updaterDebugReply.latestUpdaterCommit.substring(0, 7)
-            updaterDownloadUrl =
-                "https://github.com/LeddaZ/ReVancedUpdater/releases/download/dev/app-debug-signed.apk"
-            callback.onSuccess()
+            try {
+                updaterDebugReply =
+                    Gson().fromJson(response, object : TypeToken<UpdaterDebugJSONObject>() {}.type)
+                latestUpdaterCommit = updaterDebugReply.latestUpdaterCommit.substring(0, 7)
+                updaterDownloadUrl =
+                    "https://github.com/LeddaZ/ReVancedUpdater/releases/download/dev/app-debug-signed.apk"
+                callback.onSuccess()
+            } catch (_: JsonSyntaxException) {
+                Toast.makeText(this, R.string.json_error, Toast.LENGTH_SHORT).show()
+            }
         }, { error ->
             when (error.networkResponse?.statusCode) {
                 403 -> {
@@ -354,12 +375,16 @@ class MainActivity : AppCompatActivity() {
         })
 
         val updaterDebugClBodyRequest = StringRequest(GET, updaterDebugAPIUrl, { response ->
-            updaterBodyReply =
-                Gson().fromJson(response, object : TypeToken<UpdaterBodyJSONObject>() {}.type)
-            updaterCl = updaterBodyReply.latestUpdaterBody
-            updaterDownloadUrl =
-                "https://github.com/LeddaZ/ReVancedUpdater/releases/download/dev/app-debug-signed.apk"
-            callback.onSuccess()
+            try {
+                updaterBodyReply =
+                    Gson().fromJson(response, object : TypeToken<UpdaterBodyJSONObject>() {}.type)
+                updaterCl = updaterBodyReply.latestUpdaterBody
+                updaterDownloadUrl =
+                    "https://github.com/LeddaZ/ReVancedUpdater/releases/download/dev/app-debug-signed.apk"
+                callback.onSuccess()
+            } catch (_: JsonSyntaxException) {
+                Toast.makeText(this, R.string.json_error, Toast.LENGTH_SHORT).show()
+            }
         }, { error ->
             when (error.networkResponse?.statusCode) {
                 403 -> {
@@ -374,15 +399,19 @@ class MainActivity : AppCompatActivity() {
         })
 
         val gmsCoreRequest = StringRequest(GET, gmsCoreAPIUrl, { response ->
-            gmsCoreReply =
-                Gson().fromJson(response, object : TypeToken<GmsCoreJSONObject>() {}.type)
-            latestGmsCoreVersion = Version(gmsCoreReply.latestGmsCoreVersion.substring(1))
-            gmsCoreDownloadUrl =
-                if (isAppInstalled(this, HMS_PACKAGE) && !isAppInstalled(this, GMS_PACKAGE))
-                    gmsCoreReply.assets[0].latestGmsCoreUrl
-                else
-                    gmsCoreReply.assets[1].latestGmsCoreUrl
-            callback.onSuccess()
+            try {
+                gmsCoreReply =
+                    Gson().fromJson(response, object : TypeToken<GmsCoreJSONObject>() {}.type)
+                latestGmsCoreVersion = Version(gmsCoreReply.latestGmsCoreVersion.substring(1))
+                gmsCoreDownloadUrl =
+                    if (isAppInstalled(this, HMS_PACKAGE) && !isAppInstalled(this, GMS_PACKAGE))
+                        gmsCoreReply.assets[0].latestGmsCoreUrl
+                    else
+                        gmsCoreReply.assets[1].latestGmsCoreUrl
+                callback.onSuccess()
+            } catch (_: JsonSyntaxException) {
+                Toast.makeText(this, R.string.json_error, Toast.LENGTH_SHORT).show()
+            }
         }, { error ->
             when (error.networkResponse?.statusCode) {
                 403 -> {
@@ -397,18 +426,30 @@ class MainActivity : AppCompatActivity() {
         })
 
         val reVancedClRequest = StringRequest(GET, ytClUrl, { response ->
-            reVancedCl = response
-            callback.onSuccess()
+            try {
+                reVancedCl = response
+                callback.onSuccess()
+            } catch (_: JsonSyntaxException) {
+                Toast.makeText(this, R.string.json_error, Toast.LENGTH_SHORT).show()
+            }
         }, {})
 
         val musicClRequest = StringRequest(GET, ytmClUrl, { response ->
-            musicCl = response
-            callback.onSuccess()
+            try {
+                musicCl = response
+                callback.onSuccess()
+            } catch (_: JsonSyntaxException) {
+                Toast.makeText(this, R.string.json_error, Toast.LENGTH_SHORT).show()
+            }
         }, {})
 
         val xClRequest = StringRequest(GET, xClUrl, { response ->
-            xCl = response
-            callback.onSuccess()
+            try {
+                xCl = response
+                callback.onSuccess()
+            } catch (_: JsonSyntaxException) {
+                Toast.makeText(this, R.string.json_error, Toast.LENGTH_SHORT).show()
+            }
         }, {})
 
         queue.add(reVancedRequest)
