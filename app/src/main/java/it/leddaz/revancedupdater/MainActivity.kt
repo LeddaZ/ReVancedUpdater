@@ -68,7 +68,6 @@ private var latestXHash = ""
  * @author Leonardo Ledda (LeddaZ)
  */
 class MainActivity : AppCompatActivity() {
-
     private var installedReVancedVersion = Version("99.99")
     private var latestReVancedVersion = Version("0.0")
     private var reVancedDownloadUrl = ""
@@ -95,7 +94,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var xIndicator: LinearProgressIndicator
     private lateinit var updaterIndicator: LinearProgressIndicator
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
-
 
     /**
      * Actions executed when the activity is created at runtime.
@@ -464,7 +462,6 @@ class MainActivity : AppCompatActivity() {
             queue.add(updaterReleaseRequest)
     }
 
-
     /**
      * Compares versions.
      */
@@ -767,7 +764,6 @@ class MainActivity : AppCompatActivity() {
      * Companion object
      */
     companion object {
-
         /**
          * Returns the latest ReVanced hash.
          * @return Latest ReVanced hash.
@@ -792,5 +788,4 @@ class MainActivity : AppCompatActivity() {
             return latestXHash
         }
     }
-
 }

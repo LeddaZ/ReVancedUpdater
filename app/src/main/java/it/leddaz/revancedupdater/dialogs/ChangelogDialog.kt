@@ -10,7 +10,6 @@ import it.leddaz.revancedupdater.R
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.openLink
 import it.leddaz.revancedupdater.utils.plugins.CodeTypefacePlugin
 
-
 /**
  * Dialog that shows when the About button is pressed.
  * @author Leonardo Ledda (LeddaZ)

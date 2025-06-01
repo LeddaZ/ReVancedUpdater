@@ -12,7 +12,6 @@ import it.leddaz.revancedupdater.BuildConfig
  * @author Leonardo Ledda (LeddaZ)
  */
 object CommonStuff {
-
     // Common variables
     const val PREFS_NAME = "settings"
     const val KEY_YT = "show_yt"
@@ -68,5 +67,4 @@ object CommonStuff {
             return
         }
     }
-
 }

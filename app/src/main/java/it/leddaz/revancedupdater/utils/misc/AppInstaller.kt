@@ -121,5 +121,4 @@ class AppInstaller() {
         }
         context.startActivity(intent)
     }
-
 }

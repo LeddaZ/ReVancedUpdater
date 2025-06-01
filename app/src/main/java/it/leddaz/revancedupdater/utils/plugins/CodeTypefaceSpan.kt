@@ -4,7 +4,6 @@ import android.graphics.Typeface
 import android.text.TextPaint
 import android.text.style.MetricAffectingSpan
 
-
 class CodeTypefaceSpan(private val typeface: Typeface) : MetricAffectingSpan() {
     override fun updateMeasureState(textPaint: TextPaint) {
         applyTypeface(textPaint)

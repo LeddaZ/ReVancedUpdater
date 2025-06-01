@@ -16,7 +16,6 @@ import it.leddaz.revancedupdater.utils.misc.CommonStuff.PREFS_NAME
 import java.io.File
 
 class SettingsActivity : AppCompatActivity() {
-
     /**
      * Actions executed when the activity is created at runtime.
      * @property savedInstanceState
