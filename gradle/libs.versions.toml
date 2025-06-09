@@ -1,7 +1,7 @@
 [versions]
 agp = "8.10.1"
 android-volley = "1.2.1"
-appcompat = "1.7.0"
+appcompat = "1.7.1"
 commons-codec = "1.18.0"
 markwon-core = "4.6.2"
 core-ktx = "1.16.0"
