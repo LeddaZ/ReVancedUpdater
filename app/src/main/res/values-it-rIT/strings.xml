@@ -28,4 +28,10 @@
     <string name="delete_apk_button_text">Cancella APK</string>
     <string name="apks_deleted">Gli APK scaricati sono stati cancellati</string>
     <string name="json_error">Errore di download dei JSON</string>
+    <string name="newer_version_installed">Newer version installed</string>
+    <string name="revanced_uninstall_button_description">Uninstall ReVanced</string>
+    <string name="uninstall_button_text">Uninstall</string>
+    <string name="music_uninstall_button_description">Uninstall ReVanced Music</string>
+    <string name="microg_uninstall_button_description">Uninstall ReVanced GmsCore</string>
+    <string name="x_uninstall_button_description">Uninstall ReVanced X</string>
 </resources>
