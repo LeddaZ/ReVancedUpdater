@@ -95,7 +95,7 @@ class AppInstaller() {
                     progressIndicator.visibility = View.GONE
                     button.text = getString(context, R.string.download_button_text)
                     button.isEnabled = true
-                    installApk(fileName, context)
+                    installApp(fileName, context)
                 }
             }
         } catch (e: Exception) {
@@ -104,7 +104,7 @@ class AppInstaller() {
         }
     }
 
-    private fun installApk(fileName: String, context: Context) {
+    private fun installApp(fileName: String, context: Context) {
         window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         requestInstallPermission(context)
 

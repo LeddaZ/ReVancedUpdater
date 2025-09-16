@@ -3,6 +3,7 @@ package it.leddaz.revancedupdater
 import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -469,26 +470,30 @@ class MainActivity : AppCompatActivity() {
         compareAppVersion(
             GMSCORE_PACKAGE, installedGmsCoreVersion,
             latestGmsCoreVersion, findViewById(R.id.microg_update_status),
-            findViewById(R.id.microg_download_button)
+            findViewById(R.id.microg_download_button),
+            findViewById(R.id.microg_uninstall_button)
         )
 
         compareAppVersion(
             X_PACKAGE, installedXVersion,
             latestXVersion, findViewById(R.id.x_update_status),
-            findViewById(R.id.x_download_button)
+            findViewById(R.id.x_download_button),
+            findViewById(R.id.x_uninstall_button)
         )
 
         if (isAppInstalled(this, GMSCORE_PACKAGE)) {
             compareAppVersion(
                 REVANCED_PACKAGE, installedReVancedVersion,
                 latestReVancedVersion, findViewById(R.id.revanced_update_status),
-                findViewById(R.id.revanced_download_button)
+                findViewById(R.id.revanced_download_button),
+                findViewById(R.id.revanced_uninstall_button)
             )
 
             compareAppVersion(
                 MUSIC_PACKAGE, installedReVancedMusicVersion,
                 latestReVancedMusicVersion, findViewById(R.id.music_update_status),
-                findViewById(R.id.music_download_button)
+                findViewById(R.id.music_download_button),
+                findViewById(R.id.music_uninstall_button)
             )
         } else {
             val reVancedTextView = findViewById<TextView>(R.id.revanced_update_status)
@@ -499,7 +504,8 @@ class MainActivity : AppCompatActivity() {
         compareAppVersion(
             BuildConfig.APPLICATION_ID, installedUpdaterVersion,
             latestUpdaterVersion, findViewById(R.id.updater_update_status),
-            findViewById(R.id.updater_download_button)
+            findViewById(R.id.updater_download_button),
+            null
         )
     }
 
@@ -579,6 +585,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
+     * Shows the uninstall prompt for an app.
+     * @property packageName the app to uninstall
+     */
+    private fun showUninstallPrompt(packageName: String) {
+        val intent = Intent(Intent.ACTION_DELETE)
+        intent.data = Uri.fromParts("package", packageName, null)
+        startActivity(intent)
+    }
+
+    /**
      * Gets an app's installed version.
      * @property packageName package name
      * @property installedTextView the TextView with the currently installed version
@@ -639,26 +655,36 @@ class MainActivity : AppCompatActivity() {
      * @property installedVersion the installed app's version
      * @property latestVersion the app's latest version
      * @property updateStatusTextView the TextView with the app update status
-     * @property button the app's install/update button
+     * @property installButton the app's install/update button
+     * @property uninstallButton the app's uninstall button (if present)
      */
     private fun compareAppVersion(
         packageName: String, installedVersion: Version,
         latestVersion: Version, updateStatusTextView: TextView,
-        button: Button
+        installButton: Button, uninstallButton: Button?
     ) {
         if (packageName == "$UPDATER_PACKAGE.dev") {
             val currentCommit = APP_VERSION.substring(7, 14)
             if (currentCommit == latestUpdaterCommit) {
                 updateStatusTextView.text = getString(R.string.no_update_available)
-                button.isEnabled = false
+                installButton.isEnabled = false
+                installButton.visibility = View.VISIBLE
+                uninstallButton?.isEnabled = false
+                uninstallButton?.visibility = View.GONE
             } else {
                 updateStatusTextView.text = getString(R.string.update_available)
-                button.isEnabled = true
+                installButton.isEnabled = true
+                installButton.visibility = View.VISIBLE
+                uninstallButton?.isEnabled = false
+                uninstallButton?.visibility = View.GONE
             }
         } else {
             if (installedVersion.compareTo(latestVersion) == -1) {
                 updateStatusTextView.text = getString(R.string.update_available)
-                button.isEnabled = true
+                installButton.isEnabled = true
+                installButton.visibility = View.VISIBLE
+                uninstallButton?.isEnabled = false
+                uninstallButton?.visibility = View.GONE
             } else if (installedVersion.compareTo(latestVersion) == 0) {
                 if (packageName != GMSCORE_PACKAGE && packageName != UPDATER_PACKAGE) {
                     var latestHash = ""
@@ -668,16 +694,37 @@ class MainActivity : AppCompatActivity() {
                         X_PACKAGE -> latestHash = getLatestReVancedXHash()
                     }
                     thread {
-                        compareHashes(latestHash, updateStatusTextView, packageName, button)
+                        compareHashes(
+                            latestHash,
+                            updateStatusTextView,
+                            packageName,
+                            installButton,
+                            uninstallButton
+                        )
                     }
                 } else {
                     updateStatusTextView.text = getString(R.string.no_update_available)
-                    button.isEnabled = false
+                    installButton.isEnabled = false
+                    installButton.visibility = View.VISIBLE
+                    uninstallButton?.isEnabled = false
+                    uninstallButton?.visibility = View.GONE
                 }
+            } else if (installedVersion.version != "99.99") {
+                updateStatusTextView.text = getString(R.string.newer_version_installed)
+                installButton.isEnabled = false
+                installButton.visibility = View.GONE
+                uninstallButton?.isEnabled = true
+                uninstallButton?.visibility = View.VISIBLE
             } else {
                 updateStatusTextView.text = getString(R.string.app_not_installed)
-                button.isEnabled = true
+                installButton.isEnabled = true
+                installButton.visibility = View.VISIBLE
+                uninstallButton?.isEnabled = false
+                uninstallButton?.visibility = View.GONE
             }
+        }
+        uninstallButton?.setOnClickListener {
+            showUninstallPrompt(packageName)
         }
     }
 
@@ -686,11 +733,12 @@ class MainActivity : AppCompatActivity() {
      * @property latestHash the latest app version's hash
      * @property updateStatusTextView the TextView with the app update status
      * @property packageName package name
-     * @property button the app's install/update button
+     * @property installButton the app's install/update button
+     * @property uninstallButton the app's uninstall button (if present)
      */
     private fun compareHashes(
         latestHash: String, updateStatusTextView: TextView, packageName: String,
-        button: Button
+        installButton: Button, uninstallButton: Button?
     ) {
         val pInfo: PackageInfo = packageManager.getPackageInfo(packageName, 0)
         val file = pInfo.applicationInfo?.sourceDir?.let { File(it) }
@@ -698,12 +746,18 @@ class MainActivity : AppCompatActivity() {
         if (installedAppHash == latestHash) {
             runOnUiThread {
                 updateStatusTextView.text = getString(R.string.no_update_available)
-                button.isEnabled = false
+                installButton.isEnabled = false
+                installButton.visibility = View.VISIBLE
+                uninstallButton?.isEnabled = false
+                uninstallButton?.visibility = View.GONE
             }
         } else {
             runOnUiThread {
                 updateStatusTextView.text = getString(R.string.update_available)
-                button.isEnabled = true
+                installButton.isEnabled = true
+                installButton.visibility = View.VISIBLE
+                uninstallButton?.isEnabled = false
+                uninstallButton?.visibility = View.GONE
             }
         }
     }

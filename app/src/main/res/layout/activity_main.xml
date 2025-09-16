@@ -92,6 +92,17 @@
                             android:textSize="18sp" />
 
                         <Button
+                            android:id="@+id/revanced_uninstall_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginTop="5sp"
+                            android:contentDescription="@string/revanced_uninstall_button_description"
+                            android:enabled="false"
+                            android:text="@string/uninstall_button_text"
+                            android:visibility="gone" />
+
+                        <Button
                             android:id="@+id/revanced_download_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -99,6 +110,7 @@
                             android:layout_marginTop="5sp"
                             android:contentDescription="@string/revanced_download_button_description"
                             android:enabled="false"
+                            android:visibility="visible"
                             android:onClick="downloadReVanced"
                             android:text="@string/download_button_text" />
 
@@ -165,6 +177,17 @@
                             android:textSize="18sp" />
 
                         <Button
+                            android:id="@+id/music_uninstall_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginTop="5sp"
+                            android:contentDescription="@string/music_uninstall_button_description"
+                            android:enabled="false"
+                            android:text="@string/uninstall_button_text"
+                            android:visibility="gone" />
+
+                        <Button
                             android:id="@+id/music_download_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -172,6 +195,7 @@
                             android:layout_marginTop="5sp"
                             android:contentDescription="@string/music_download_button_description"
                             android:enabled="false"
+                            android:visibility="visible"
                             android:onClick="downloadReVancedMusic"
                             android:text="@string/download_button_text" />
 
@@ -238,6 +262,17 @@
                             android:textSize="18sp" />
 
                         <Button
+                            android:id="@+id/microg_uninstall_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginTop="5sp"
+                            android:contentDescription="@string/microg_uninstall_button_description"
+                            android:enabled="false"
+                            android:text="@string/uninstall_button_text"
+                            android:visibility="gone" />
+
+                        <Button
                             android:id="@+id/microg_download_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -245,6 +280,7 @@
                             android:layout_marginTop="5sp"
                             android:contentDescription="@string/microg_download_button_description"
                             android:enabled="false"
+                            android:visibility="visible"
                             android:onClick="downloadGmsCore"
                             android:text="@string/download_button_text" />
 
@@ -311,6 +347,17 @@
                             android:textSize="18sp" />
 
                         <Button
+                            android:id="@+id/x_uninstall_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginTop="5sp"
+                            android:contentDescription="@string/x_uninstall_button_description"
+                            android:enabled="false"
+                            android:text="@string/uninstall_button_text"
+                            android:visibility="gone" />
+
+                        <Button
                             android:id="@+id/x_download_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -318,6 +365,7 @@
                             android:layout_marginTop="5sp"
                             android:contentDescription="@string/x_download_button_description"
                             android:enabled="false"
+                            android:visibility="visible"
                             android:onClick="downloadX"
                             android:text="@string/download_button_text" />
 
