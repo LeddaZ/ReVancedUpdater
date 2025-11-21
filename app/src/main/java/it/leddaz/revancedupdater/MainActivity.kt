@@ -353,7 +353,7 @@ class MainActivity : AppCompatActivity() {
             try {
                 updaterDebugReply =
                     Gson().fromJson(response, object : TypeToken<UpdaterDebugJSONObject>() {}.type)
-                latestUpdaterCommit = updaterDebugReply.latestUpdaterCommit.substring(0, 7)
+                latestUpdaterCommit = updaterDebugReply.latestUpdaterCommit.take(7)
                 updaterDownloadUrl =
                     "https://github.com/LeddaZ/ReVancedUpdater/releases/download/dev/app-debug-signed.apk"
                 callback.onSuccess()
@@ -431,7 +431,18 @@ class MainActivity : AppCompatActivity() {
             } catch (_: JsonSyntaxException) {
                 Toast.makeText(this, R.string.json_error, Toast.LENGTH_SHORT).show()
             }
-        }, {})
+        }, { error ->
+            when (error.networkResponse?.statusCode) {
+                403 -> {
+                    Toast.makeText(this, R.string.rate_limit, Toast.LENGTH_LONG).show()
+                    Log.e(LOG_TAG, "GitHub rate limit")
+                }
+
+                else -> {
+                    Log.e(LOG_TAG, "Volley Error: ${error.message}")
+                }
+            }
+        })
 
         val musicClRequest = StringRequest(GET, ytmClUrl, { response ->
             try {
@@ -440,7 +451,18 @@ class MainActivity : AppCompatActivity() {
             } catch (_: JsonSyntaxException) {
                 Toast.makeText(this, R.string.json_error, Toast.LENGTH_SHORT).show()
             }
-        }, {})
+        }, { error ->
+            when (error.networkResponse?.statusCode) {
+                403 -> {
+                    Toast.makeText(this, R.string.rate_limit, Toast.LENGTH_LONG).show()
+                    Log.e(LOG_TAG, "GitHub rate limit")
+                }
+
+                else -> {
+                    Log.e(LOG_TAG, "Volley Error: ${error.message}")
+                }
+            }
+        })
 
         val xClRequest = StringRequest(GET, xClUrl, { response ->
             try {
@@ -449,7 +471,18 @@ class MainActivity : AppCompatActivity() {
             } catch (_: JsonSyntaxException) {
                 Toast.makeText(this, R.string.json_error, Toast.LENGTH_SHORT).show()
             }
-        }, {})
+        }, { error ->
+            when (error.networkResponse?.statusCode) {
+                403 -> {
+                    Toast.makeText(this, R.string.rate_limit, Toast.LENGTH_LONG).show()
+                    Log.e(LOG_TAG, "GitHub rate limit")
+                }
+
+                else -> {
+                    Log.e(LOG_TAG, "Volley Error: ${error.message}")
+                }
+            }
+        })
 
         queue.add(reVancedRequest)
         queue.add(gmsCoreRequest)
@@ -611,7 +644,7 @@ class MainActivity : AppCompatActivity() {
             if (packageName.startsWith(UPDATER_PACKAGE)) {
                 if (!IS_DEBUG) {
                     installedVersion.version =
-                        APP_VERSION.substring(0, APP_VERSION.indexOf(' '))
+                        APP_VERSION.substringBefore(' ')
                     installedTextView.text =
                         getString(R.string.installed_app_version, installedVersion.version)
                 } else {
