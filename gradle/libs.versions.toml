@@ -11,7 +11,7 @@ material = "1.13.0"
 kotlin = "2.2.21"
 preference-ktx = "1.2.1"
 preference = "1.2.1"
-swiperefreshlayout = "1.1.0"
+swiperefreshlayout = "1.2.0"
 
 [libraries]
 android-volley = { module = "com.android.volley:volley", version.ref = "android-volley" }
