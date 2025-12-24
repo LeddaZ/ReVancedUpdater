@@ -34,7 +34,7 @@ android {
         minSdk = 26
         targetSdk = 36
         versionCode = commitCount
-        versionName = "4.0.2 ($commitHash)"
+        versionName = "4.1.0 ($commitHash)"
     }
 
     buildTypes {
