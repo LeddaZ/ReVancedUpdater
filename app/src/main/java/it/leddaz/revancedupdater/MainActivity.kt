@@ -23,7 +23,6 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.progressindicator.LinearProgressIndicator
-import com.google.android.material.textview.MaterialTextView
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
@@ -118,7 +117,7 @@ class MainActivity : AppCompatActivity() {
         xIndicator = findViewById(R.id.x_download_progress)
         updaterIndicator = findViewById(R.id.updater_download_progress)
 
-        val updaterCardTitle = findViewById<MaterialTextView>(R.id.updater_title)
+        val updaterCardTitle = findViewById<TextView>(R.id.updater_title)
         updaterCardTitle.text = getString(R.string.app_name)
         Log.i(LOG_TAG, "Device fingerprint: ${Build.FINGERPRINT}")
         refresh()
