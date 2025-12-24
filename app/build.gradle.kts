@@ -42,15 +42,12 @@ android {
             applicationIdSuffix = ".dev"
         }
         release {
+            isMinifyEnabled = true
             setProguardFiles(
                 listOf(
                     getDefaultProguardFile("proguard-android-optimize.txt")
                 )
             )
-        }
-        create("minifiedRelease") {
-            initWith(getByName("release"))
-            isMinifyEnabled = true
         }
     }
 
