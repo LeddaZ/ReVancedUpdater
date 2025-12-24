@@ -38,17 +38,19 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
-            // Includes the default ProGuard rules files.
+        debug {
+            applicationIdSuffix = ".dev"
+        }
+        release {
             setProguardFiles(
                 listOf(
-                    getDefaultProguardFile("proguard-android-optimize.txt"),
-                    "proguard-rules.pro"
+                    getDefaultProguardFile("proguard-android-optimize.txt")
                 )
             )
         }
-        getByName("debug") {
-            applicationIdSuffix = ".dev"
+        create("minifiedRelease") {
+            initWith(getByName("release"))
+            isMinifyEnabled = true
         }
     }
 
