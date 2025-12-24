@@ -27,7 +27,7 @@ class ChangelogDialog(
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         this.activity?.let { DynamicColors.applyToActivityIfAvailable(it) }
         return activity?.let {
-            val codeTypeface = resources.getFont(R.font.jbmono)
+            val codeTypeface = resources.getFont(R.font.gsanscode)
             val markwon = context?.let { it1 ->
                 Markwon.builder(it1)
                     .usePlugin(CodeTypefacePlugin(codeTypeface))

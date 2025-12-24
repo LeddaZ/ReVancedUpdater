@@ -60,7 +60,7 @@
                         android:orientation="vertical"
                         android:padding="15sp">
 
-                        <com.google.android.material.textview.MaterialTextView
+                        <TextView
                             android:id="@+id/revanced_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -69,14 +69,14 @@
                             android:text="@string/revanced_info_title"
                             android:textSize="24sp" />
 
-                        <com.google.android.material.textview.MaterialTextView
+                        <TextView
                             android:id="@+id/installed_revanced_version"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/installed_app_version"
                             android:textSize="16sp" />
 
-                        <com.google.android.material.textview.MaterialTextView
+                        <TextView
                             android:id="@+id/latest_revanced_version"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
                             android:text="@string/latest_app_version"
                             android:textSize="16sp" />
 
-                        <com.google.android.material.textview.MaterialTextView
+                        <TextView
                             android:id="@+id/revanced_update_status"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -145,7 +145,7 @@
                         android:orientation="vertical"
                         android:padding="15sp">
 
-                        <com.google.android.material.textview.MaterialTextView
+                        <TextView
                             android:id="@+id/music_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -154,14 +154,14 @@
                             android:text="@string/music_info_title"
                             android:textSize="24sp" />
 
-                        <com.google.android.material.textview.MaterialTextView
+                        <TextView
                             android:id="@+id/installed_music_version"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/installed_app_version"
                             android:textSize="16sp" />
 
-                        <com.google.android.material.textview.MaterialTextView
+                        <TextView
                             android:id="@+id/latest_music_version"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -169,7 +169,7 @@
                             android:text="@string/latest_app_version"
                             android:textSize="16sp" />
 
-                        <com.google.android.material.textview.MaterialTextView
+                        <TextView
                             android:id="@+id/music_update_status"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -230,7 +230,7 @@
                         android:orientation="vertical"
                         android:padding="15sp">
 
-                        <com.google.android.material.textview.MaterialTextView
+                        <TextView
                             android:id="@+id/microg_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -239,14 +239,14 @@
                             android:text="@string/microg_info_title"
                             android:textSize="24sp" />
 
-                        <com.google.android.material.textview.MaterialTextView
+                        <TextView
                             android:id="@+id/installed_microg_version"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/installed_app_version"
                             android:textSize="16sp" />
 
-                        <com.google.android.material.textview.MaterialTextView
+                        <TextView
                             android:id="@+id/latest_microg_version"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -254,7 +254,7 @@
                             android:text="@string/latest_app_version"
                             android:textSize="16sp" />
 
-                        <com.google.android.material.textview.MaterialTextView
+                        <TextView
                             android:id="@+id/microg_update_status"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -315,7 +315,7 @@
                         android:orientation="vertical"
                         android:padding="15sp">
 
-                        <com.google.android.material.textview.MaterialTextView
+                        <TextView
                             android:id="@+id/x_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -324,14 +324,14 @@
                             android:text="@string/x_info_title"
                             android:textSize="24sp" />
 
-                        <com.google.android.material.textview.MaterialTextView
+                        <TextView
                             android:id="@+id/installed_x_version"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/installed_app_version"
                             android:textSize="16sp" />
 
-                        <com.google.android.material.textview.MaterialTextView
+                        <TextView
                             android:id="@+id/latest_x_version"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -339,7 +339,7 @@
                             android:text="@string/latest_app_version"
                             android:textSize="16sp" />
 
-                        <com.google.android.material.textview.MaterialTextView
+                        <TextView
                             android:id="@+id/x_update_status"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -400,7 +400,7 @@
                         android:orientation="vertical"
                         android:padding="15sp">
 
-                        <com.google.android.material.textview.MaterialTextView
+                        <TextView
                             android:id="@+id/updater_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -409,14 +409,14 @@
                             android:text="@string/app_name"
                             android:textSize="24sp" />
 
-                        <com.google.android.material.textview.MaterialTextView
+                        <TextView
                             android:id="@+id/installed_updater_version"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/installed_app_version"
                             android:textSize="16sp" />
 
-                        <com.google.android.material.textview.MaterialTextView
+                        <TextView
                             android:id="@+id/latest_updater_version"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -424,7 +424,7 @@
                             android:text="@string/latest_app_version"
                             android:textSize="16sp" />
 
-                        <com.google.android.material.textview.MaterialTextView
+                        <TextView
                             android:id="@+id/updater_update_status"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
