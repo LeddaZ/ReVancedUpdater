@@ -75,7 +75,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:text="@string/installed_app_version"
-                            android:textSize="14sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/latest_revanced_version"
@@ -84,7 +84,7 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_marginBottom="5sp"
                             android:text="@string/latest_app_version"
-                            android:textSize="14sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/revanced_update_status"
@@ -163,7 +163,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:text="@string/installed_app_version"
-                            android:textSize="14sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/latest_music_version"
@@ -172,7 +172,7 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_marginBottom="5sp"
                             android:text="@string/latest_app_version"
-                            android:textSize="14sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/music_update_status"
@@ -251,7 +251,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:text="@string/installed_app_version"
-                            android:textSize="14sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/latest_microg_version"
@@ -260,7 +260,7 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_marginBottom="5sp"
                             android:text="@string/latest_app_version"
-                            android:textSize="14sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/microg_update_status"
@@ -339,7 +339,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:text="@string/installed_app_version"
-                            android:textSize="14sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/latest_x_version"
@@ -348,7 +348,7 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_marginBottom="5sp"
                             android:text="@string/latest_app_version"
-                            android:textSize="14sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/x_update_status"
@@ -427,7 +427,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:text="@string/installed_app_version"
-                            android:textSize="14sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/latest_updater_version"
@@ -436,7 +436,7 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_marginBottom="5sp"
                             android:text="@string/latest_app_version"
-                            android:textSize="14sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/updater_update_status"
