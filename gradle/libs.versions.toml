@@ -2,7 +2,7 @@
 agp = "8.13.2"
 android-volley = "1.2.1"
 appcompat = "1.7.1"
-commons-codec = "1.20.0"
+commons-codec = "1.21.0"
 markwon-core = "4.6.2"
 core-ktx = "1.17.0"
 gson = "2.13.2"
