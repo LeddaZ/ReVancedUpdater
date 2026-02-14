@@ -1,14 +1,13 @@
 [versions]
-agp = "8.13.2"
+agp = "9.0.1"
 android-volley = "1.2.1"
 appcompat = "1.7.1"
-commons-codec = "1.20.0"
+commons-codec = "1.21.0"
 markwon-core = "4.6.2"
 core-ktx = "1.17.0"
 gson = "2.13.2"
 kotlinx-coroutines-android = "1.10.2"
 material = "1.13.0"
-kotlin = "2.3.0"
 preference-ktx = "1.2.1"
 preference = "1.2.1"
 swiperefreshlayout = "1.2.0"
@@ -29,4 +28,3 @@ androidx-preference = { group = "androidx.preference", name = "preference", vers
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
