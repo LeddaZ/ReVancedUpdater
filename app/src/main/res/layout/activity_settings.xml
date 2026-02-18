@@ -63,16 +63,6 @@
                 android:textSize="18sp"
                 app:key="show_ytm" />
 
-            <com.google.android.material.materialswitch.MaterialSwitch
-                android:id="@+id/x_switch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20sp"
-                android:paddingRight="20sp"
-                android:text="@string/x_info_title"
-                android:textSize="18sp"
-                app:key="show_x" />
-
             <Button
                 android:id="@+id/delete_apk_button"
                 android:layout_width="wrap_content"

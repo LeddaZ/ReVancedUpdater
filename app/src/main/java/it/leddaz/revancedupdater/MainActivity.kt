@@ -38,7 +38,6 @@ import it.leddaz.revancedupdater.utils.misc.CommonStuff.GMSCORE_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.GMS_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.HMS_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.IS_DEBUG
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.KEY_X
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.KEY_YT
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.KEY_YTM
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.LOG_TAG
@@ -46,7 +45,6 @@ import it.leddaz.revancedupdater.utils.misc.CommonStuff.MUSIC_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.PREFS_NAME
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.REVANCED_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.UPDATER_PACKAGE
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.X_PACKAGE
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.isAppInstalled
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.openLink
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.requestInstallPermission
@@ -60,7 +58,6 @@ import kotlin.concurrent.thread
 
 private var latestReVancedHash = ""
 private var latestReVancedMusicHash = ""
-private var latestXHash = ""
 
 /**
  * The app's main activity, started at launch.
@@ -84,14 +81,9 @@ class MainActivity : AppCompatActivity() {
     private var installedGmsCoreVersion = Version("99.99")
     private var latestGmsCoreVersion = Version("0.0")
     private var gmsCoreDownloadUrl = ""
-    private var installedXVersion = Version("99.99")
-    private var latestXVersion = Version("0.0")
-    private var xDownloadUrl = ""
-    private var xCl = ""
     private lateinit var revancedIndicator: LinearProgressIndicator
     private lateinit var musicIndicator: LinearProgressIndicator
     private lateinit var gmsCoreIndicator: LinearProgressIndicator
-    private lateinit var xIndicator: LinearProgressIndicator
     private lateinit var updaterIndicator: LinearProgressIndicator
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
@@ -114,7 +106,6 @@ class MainActivity : AppCompatActivity() {
         revancedIndicator = findViewById(R.id.revanced_download_progress)
         musicIndicator = findViewById(R.id.music_download_progress)
         gmsCoreIndicator = findViewById(R.id.microg_download_progress)
-        xIndicator = findViewById(R.id.x_download_progress)
         updaterIndicator = findViewById(R.id.updater_download_progress)
 
         val updaterCardTitle = findViewById<TextView>(R.id.updater_title)
@@ -145,13 +136,6 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        val xCard = findViewById<MaterialCardView>(R.id.x_info_card)
-        xCard.setOnLongClickListener {
-            val dialogFragment = ChangelogDialog(xCl, false)
-            dialogFragment.show(supportFragmentManager, "ChangelogDialog")
-            true
-        }
-
         val updaterCard = findViewById<MaterialCardView>(R.id.updater_info_card)
         if (IS_DEBUG) {
             updaterCard.setOnLongClickListener {
@@ -178,7 +162,6 @@ class MainActivity : AppCompatActivity() {
         reVancedCard.isVisible = prefs.getBoolean(KEY_YT, true)
         reVancedMusicCard.isVisible = prefs.getBoolean(KEY_YTM, true)
         microGCard.isVisible = reVancedCard.isVisible || reVancedMusicCard.isVisible
-        xCard.isVisible = prefs.getBoolean(KEY_X, true)
 
         val topAppBar = findViewById<MaterialToolbar>(R.id.topAppBar)
         topAppBar.setOnMenuItemClickListener { item ->
@@ -221,13 +204,6 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.microg_download_button)
         )
 
-        getAppVersion(
-            X_PACKAGE,
-            findViewById(R.id.installed_x_version),
-            installedXVersion,
-            findViewById(R.id.x_download_button)
-        )
-
         if (isAppInstalled(this, GMSCORE_PACKAGE)) {
             getAppVersion(
                 REVANCED_PACKAGE,
@@ -264,8 +240,6 @@ class MainActivity : AppCompatActivity() {
             "https://raw.githubusercontent.com/LeddaZ/revanced-repo/refs/heads/main/changelogs/revanced.md"
         val ytmClUrl =
             "https://raw.githubusercontent.com/LeddaZ/revanced-repo/refs/heads/main/changelogs/music.md"
-        val xClUrl =
-            "https://raw.githubusercontent.com/LeddaZ/revanced-repo/refs/heads/main/changelogs/x.md"
         var reVancedReply: ReVancedJSONObject
         var updaterReleaseReply: UpdaterReleaseJSONObject
         var updaterDebugReply: UpdaterDebugJSONObject
@@ -297,9 +271,6 @@ class MainActivity : AppCompatActivity() {
                 }
                 musicDownloadUrl = urlPrefix + reVancedReply.latestReVancedMusicDate +
                         "-ytm/ytm-$preferredABI-signed.apk"
-                latestXVersion = Version(reVancedReply.latestXVersion)
-                xDownloadUrl = urlPrefix + reVancedReply.latestXDate + "-x/x-signed.apk"
-                latestXHash = reVancedReply.latestXHash
                 callback.onSuccess()
             } catch (_: JsonSyntaxException) {
                 Toast.makeText(this, R.string.json_error, Toast.LENGTH_SHORT).show()
@@ -463,31 +434,10 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        val xClRequest = StringRequest(GET, xClUrl, { response ->
-            try {
-                xCl = response
-                callback.onSuccess()
-            } catch (_: JsonSyntaxException) {
-                Toast.makeText(this, R.string.json_error, Toast.LENGTH_SHORT).show()
-            }
-        }, { error ->
-            when (error.networkResponse?.statusCode) {
-                403 -> {
-                    Toast.makeText(this, R.string.rate_limit, Toast.LENGTH_LONG).show()
-                    Log.e(LOG_TAG, "GitHub rate limit")
-                }
-
-                else -> {
-                    Log.e(LOG_TAG, "Volley Error: ${error.message}")
-                }
-            }
-        })
-
         queue.add(reVancedRequest)
         queue.add(gmsCoreRequest)
         queue.add(reVancedClRequest)
         queue.add(musicClRequest)
-        queue.add(xClRequest)
         if (IS_DEBUG) {
             queue.add(updaterDevRequest)
             queue.add(updaterDebugClBodyRequest)
@@ -504,13 +454,6 @@ class MainActivity : AppCompatActivity() {
             latestGmsCoreVersion, findViewById(R.id.microg_update_status),
             findViewById(R.id.microg_download_button),
             findViewById(R.id.microg_uninstall_button)
-        )
-
-        compareAppVersion(
-            X_PACKAGE, installedXVersion,
-            latestXVersion, findViewById(R.id.x_update_status),
-            findViewById(R.id.x_download_button),
-            findViewById(R.id.x_uninstall_button)
         )
 
         if (isAppInstalled(this, GMSCORE_PACKAGE)) {
@@ -590,17 +533,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Downloads ReVanced GmsCore when the button is clicked.
-     * @property view the view which contains the button.
-     */
-    fun downloadX(view: View) {
-        view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
-        AppInstaller(
-            this, window, xDownloadUrl, "x.apk", xIndicator, findViewById(R.id.x_download_button)
-        )
-    }
-
-    /**
      * Downloads ReVanced Updater when the button is clicked.
      * @property view the view which contains the button.
      */
@@ -656,10 +588,6 @@ class MainActivity : AppCompatActivity() {
                         pInfo.versionName?.substring(0, pInfo.versionName!!.length - 3)
                 else
                     installedVersion.version = pInfo.versionName
-                installedTextView.text =
-                    getString(R.string.installed_app_version, installedVersion.version)
-            } else if (packageName == X_PACKAGE) {
-                installedVersion.version = pInfo.versionName?.substringBefore('-')
                 installedTextView.text =
                     getString(R.string.installed_app_version, installedVersion.version)
             } else {
@@ -723,7 +651,6 @@ class MainActivity : AppCompatActivity() {
                     when (packageName) {
                         REVANCED_PACKAGE -> latestHash = getLatestReVancedHash()
                         MUSIC_PACKAGE -> latestHash = getLatestReVancedMusicHash()
-                        X_PACKAGE -> latestHash = getLatestReVancedXHash()
                     }
                     thread {
                         compareHashes(
@@ -815,11 +742,6 @@ class MainActivity : AppCompatActivity() {
                 latestGmsCoreTextView.text =
                     getString(R.string.latest_app_version, latestGmsCoreVersion)
 
-                val latestXTextView: TextView =
-                    findViewById(R.id.latest_x_version)
-                latestXTextView.text =
-                    getString(R.string.latest_app_version, latestXVersion)
-
                 val latestAppTextView: TextView = findViewById(R.id.latest_updater_version)
                 if (!IS_DEBUG)
                     latestAppTextView.text =
@@ -834,14 +756,12 @@ class MainActivity : AppCompatActivity() {
         val reVancedCard = findViewById<MaterialCardView>(R.id.revanced_info_card)
         val reVancedMusicCard = findViewById<MaterialCardView>(R.id.music_info_card)
         val microGCard = findViewById<MaterialCardView>(R.id.microg_info_card)
-        val xCard = findViewById<MaterialCardView>(R.id.x_info_card)
 
         val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
 
         reVancedCard.isVisible = prefs.getBoolean(KEY_YT, true)
         reVancedMusicCard.isVisible = prefs.getBoolean(KEY_YTM, true)
         microGCard.isVisible = reVancedCard.isVisible || reVancedMusicCard.isVisible
-        xCard.isVisible = prefs.getBoolean(KEY_X, true)
 
         swipeRefreshLayout.isRefreshing = false
     }
@@ -864,14 +784,6 @@ class MainActivity : AppCompatActivity() {
          */
         fun getLatestReVancedMusicHash(): String {
             return latestReVancedMusicHash
-        }
-
-        /**
-         * Returns the latest ReVanced X hash.
-         * @return Latest ReVanced X hash.
-         */
-        fun getLatestReVancedXHash(): String {
-            return latestXHash
         }
     }
 }

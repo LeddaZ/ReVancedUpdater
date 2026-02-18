@@ -18,7 +18,6 @@
     <string name="bottom_bar_about">Hakkında</string>
     <string name="download_button_text">İndir</string>
     <string name="hold_app_card">Değişiklik günlüğünü açmak için bir uygulamanın kartını basılı tutun.</string>
-    <string name="x_download_button_description">X indir</string>
     <string name="disclaimer">LeddaZ yalnızca ReVanced Updater\'dan sorumludur, uygulama sorunları onun kontrolü altında değildir.</string>
     <string name="downloading">İndiriliyor</string>
     <string name="settings">Ayarlar</string>
@@ -33,5 +32,4 @@
     <string name="uninstall_button_text">Kaldır</string>
     <string name="music_uninstall_button_description">ReVanced Music\'i Kaldır</string>
     <string name="microg_uninstall_button_description">ReVanced GmsCore\'u Kaldır</string>
-    <string name="x_uninstall_button_description">ReVanced X\'i Kaldır</string>
 </resources>

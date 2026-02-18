@@ -9,7 +9,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.edit
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.materialswitch.MaterialSwitch
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.KEY_X
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.KEY_YT
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.KEY_YTM
 import it.leddaz.revancedupdater.utils.misc.CommonStuff.PREFS_NAME
@@ -35,22 +34,17 @@ class SettingsActivity : AppCompatActivity() {
 
         val ytSwitch = findViewById<MaterialSwitch>(R.id.yt_switch)
         val ytmSwitch = findViewById<MaterialSwitch>(R.id.ytm_switch)
-        val xSwitch = findViewById<MaterialSwitch>(R.id.x_switch)
 
         val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
 
         ytSwitch.isChecked = prefs.getBoolean(KEY_YT, true)
         ytmSwitch.isChecked = prefs.getBoolean(KEY_YTM, true)
-        xSwitch.isChecked = prefs.getBoolean(KEY_X, true)
 
         ytSwitch.setOnCheckedChangeListener { _, isChecked ->
             prefs.edit { putBoolean(KEY_YT, isChecked) }
         }
         ytmSwitch.setOnCheckedChangeListener { _, isChecked ->
             prefs.edit { putBoolean(KEY_YTM, isChecked) }
-        }
-        xSwitch.setOnCheckedChangeListener { _, isChecked ->
-            prefs.edit { putBoolean(KEY_X, isChecked) }
         }
     }
 

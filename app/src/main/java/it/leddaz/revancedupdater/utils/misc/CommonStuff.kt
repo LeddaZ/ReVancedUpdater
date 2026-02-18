@@ -16,7 +16,6 @@ object CommonStuff {
     const val PREFS_NAME = "settings"
     const val KEY_YT = "show_yt"
     const val KEY_YTM = "show_ytm"
-    const val KEY_X = "show_x"
     const val APP_VERSION = BuildConfig.VERSION_NAME
     const val LOG_TAG = "ReVanced Updater"
     val IS_DEBUG = BuildConfig.DEBUG
@@ -28,7 +27,6 @@ object CommonStuff {
     const val UPDATER_PACKAGE = "it.leddaz.revancedupdater"
     const val HMS_PACKAGE = "com.huawei.hwid"
     const val GMS_PACKAGE = "com.google.android.gms"
-    const val X_PACKAGE = "com.twitter.android"
 
     /**
      * Opens a link using the default browser.

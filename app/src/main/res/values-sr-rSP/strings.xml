@@ -18,7 +18,6 @@
     <string name="bottom_bar_about">About</string>
     <string name="download_button_text">Download</string>
     <string name="hold_app_card">Hold an app\'s card to open its changelog.</string>
-    <string name="x_download_button_description">Download X</string>
     <string name="disclaimer">LeddaZ is only responsible for ReVanced Updater, app issues are not under his control.</string>
     <string name="downloading">Downloading</string>
     <string name="settings">Settings</string>
@@ -33,5 +32,4 @@
     <string name="uninstall_button_text">Uninstall</string>
     <string name="music_uninstall_button_description">Uninstall ReVanced Music</string>
     <string name="microg_uninstall_button_description">Uninstall ReVanced GmsCore</string>
-    <string name="x_uninstall_button_description">Uninstall ReVanced X</string>
 </resources>
