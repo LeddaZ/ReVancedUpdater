@@ -1,13 +1,13 @@
 # Morphe Updater
 
-Updater for my ReVanced builds, you can find more
-info [here](https://github.com/LeddaZ/revanced-repo).
+Updater for my Morphe builds, you can find more
+info [here](https://github.com/LeddaZ/morphe-repo).
 
-### Download ![downloadCount](https://img.shields.io/github/downloads/LeddaZ/ReVancedUpdater/total?color=blue&label=Downloads)
+### Download ![downloadCount](https://img.shields.io/github/downloads/LeddaZ/MorpheUpdater/total?color=blue&label=Downloads)
 
-#### [Latest release](https://github.com/LeddaZ/ReVancedUpdater/releases/latest)
+#### [Latest release](https://github.com/LeddaZ/MorpheUpdater/releases/latest)
 
-#### [Latest development build](https://github.com/LeddaZ/ReVancedUpdater/releases/tag/dev)
+#### [Latest development build](https://github.com/LeddaZ/MorpheUpdater/releases/tag/dev)
 
 ### Translations
 
