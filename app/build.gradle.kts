@@ -24,12 +24,12 @@ val commitHash by project.extra {
 
 android {
     namespace = "it.leddaz.morpheupdater"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "it.leddaz.revancedupdater"
         minSdk = 28
-        targetSdk = 36
+        targetSdk = 37
         versionCode = commitCount
         versionName = "4.2.0 ($commitHash)"
     }
