@@ -28,7 +28,7 @@ android {
 
     defaultConfig {
         applicationId = "it.leddaz.revancedupdater"
-        minSdk = 26
+        minSdk = 28
         targetSdk = 36
         versionCode = commitCount
         versionName = "4.2.0 ($commitHash)"
