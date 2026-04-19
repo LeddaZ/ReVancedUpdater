@@ -9,11 +9,9 @@
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
 
     <queries>
-        <package android:name="app.revanced.android.youtube" />
-        <package android:name="app.revanced.android.apps.youtube.music" />
+        <package android:name="app.morphe.android.youtube" />
+        <package android:name="app.morphe.android.apps.youtube.music" />
         <package android:name="app.revanced.android.gms" />
-        <package android:name="com.huawei.hwid" />
-        <package android:name="com.google.android.gms" />
     </queries>
 
     <application
@@ -23,7 +21,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ReVancedUpdater"
+        android:theme="@style/Theme.MorpheUpdater"
         tools:targetApi="tiramisu">
         <activity
             android:name=".MainActivity"

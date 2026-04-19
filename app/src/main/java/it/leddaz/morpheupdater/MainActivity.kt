@@ -1,4 +1,4 @@
-package it.leddaz.revancedupdater
+package it.leddaz.morpheupdater
 
 import android.content.Intent
 import android.content.pm.PackageInfo
@@ -26,38 +26,38 @@ import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
-import it.leddaz.revancedupdater.dialogs.ChangelogDialog
-import it.leddaz.revancedupdater.utils.json.GmsCoreJSONObject
-import it.leddaz.revancedupdater.utils.json.ReVancedJSONObject
-import it.leddaz.revancedupdater.utils.json.UpdaterBodyJSONObject
-import it.leddaz.revancedupdater.utils.json.UpdaterDebugJSONObject
-import it.leddaz.revancedupdater.utils.json.UpdaterReleaseJSONObject
-import it.leddaz.revancedupdater.utils.misc.AppInstaller
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.APP_VERSION
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.GMSCORE_PACKAGE
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.GMS_PACKAGE
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.HMS_PACKAGE
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.IS_DEBUG
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.KEY_YT
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.KEY_YTM
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.LOG_TAG
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.MUSIC_PACKAGE
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.PREFS_NAME
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.REVANCED_PACKAGE
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.UPDATER_PACKAGE
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.isAppInstalled
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.openLink
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.requestInstallPermission
-import it.leddaz.revancedupdater.utils.misc.Version
-import it.leddaz.revancedupdater.utils.misc.VolleyCallBack
+import it.leddaz.morpheupdater.dialogs.ChangelogDialog
+import it.leddaz.morpheupdater.utils.json.GmsCoreJSONObject
+import it.leddaz.morpheupdater.utils.json.MorpheJsonObject
+import it.leddaz.morpheupdater.utils.json.UpdaterBodyJSONObject
+import it.leddaz.morpheupdater.utils.json.UpdaterDebugJSONObject
+import it.leddaz.morpheupdater.utils.json.UpdaterReleaseJSONObject
+import it.leddaz.morpheupdater.utils.misc.AppInstaller
+import it.leddaz.morpheupdater.utils.misc.CommonStuff.APK_REPO
+import it.leddaz.morpheupdater.utils.misc.CommonStuff.APP_REPO
+import it.leddaz.morpheupdater.utils.misc.CommonStuff.APP_VERSION
+import it.leddaz.morpheupdater.utils.misc.CommonStuff.IS_DEBUG
+import it.leddaz.morpheupdater.utils.misc.CommonStuff.KEY_YT
+import it.leddaz.morpheupdater.utils.misc.CommonStuff.KEY_YTM
+import it.leddaz.morpheupdater.utils.misc.CommonStuff.LOG_TAG
+import it.leddaz.morpheupdater.utils.misc.CommonStuff.MICROG_PACKAGE
+import it.leddaz.morpheupdater.utils.misc.CommonStuff.PREFS_NAME
+import it.leddaz.morpheupdater.utils.misc.CommonStuff.UPDATER_PACKAGE
+import it.leddaz.morpheupdater.utils.misc.CommonStuff.YTM_PACKAGE
+import it.leddaz.morpheupdater.utils.misc.CommonStuff.YT_PACKAGE
+import it.leddaz.morpheupdater.utils.misc.CommonStuff.isAppInstalled
+import it.leddaz.morpheupdater.utils.misc.CommonStuff.openLink
+import it.leddaz.morpheupdater.utils.misc.CommonStuff.requestInstallPermission
+import it.leddaz.morpheupdater.utils.misc.Version
+import it.leddaz.morpheupdater.utils.misc.VolleyCallBack
 import org.apache.commons.codec.binary.Hex
 import org.apache.commons.codec.digest.DigestUtils
 import java.io.File
 import java.io.FileInputStream
 import kotlin.concurrent.thread
 
-private var latestReVancedHash = ""
-private var latestReVancedMusicHash = ""
+private var latestYtHash = ""
+private var latestYtmHash = ""
 
 /**
  * The app's main activity, started at launch.
@@ -65,26 +65,26 @@ private var latestReVancedMusicHash = ""
  * @author Leonardo Ledda (LeddaZ)
  */
 class MainActivity : AppCompatActivity() {
-    private var installedReVancedVersion = Version("99.99")
-    private var latestReVancedVersion = Version("0.0")
-    private var reVancedDownloadUrl = ""
-    private var reVancedCl = ""
-    private var installedReVancedMusicVersion = Version("99.99")
-    private var latestReVancedMusicVersion = Version("0.0")
-    private var musicDownloadUrl = ""
-    private var musicCl = ""
+    private var installedYtVersion = Version("99.99")
+    private var latestYtVersion = Version("0.0")
+    private var ytDownloadUrl = ""
+    private var ytChangelog = ""
+    private var installedYtmVersion = Version("99.99")
+    private var latestYtmVersion = Version("0.0")
+    private var ytmDownloadUrl = ""
+    private var ytmChangelog = ""
     private var installedUpdaterVersion = Version("99.99")
     private var latestUpdaterVersion = Version("0.0")
     private var latestUpdaterCommit = ""
     private var updaterDownloadUrl = ""
-    private var updaterCl = ""
-    private var installedGmsCoreVersion = Version("99.99")
-    private var latestGmsCoreVersion = Version("0.0")
-    private var gmsCoreDownloadUrl = ""
-    private lateinit var revancedIndicator: LinearProgressIndicator
-    private lateinit var musicIndicator: LinearProgressIndicator
-    private lateinit var gmsCoreIndicator: LinearProgressIndicator
-    private lateinit var updaterIndicator: LinearProgressIndicator
+    private var updaterChangelog = ""
+    private var installedMicroGVersion = Version("99.99")
+    private var latestMicroGVersion = Version("0.0")
+    private var microGDownloadUrl = ""
+    private lateinit var ytDownloadProgress: LinearProgressIndicator
+    private lateinit var ytmDownloadProgress: LinearProgressIndicator
+    private lateinit var microGDownloadProgress: LinearProgressIndicator
+    private lateinit var updaterDownloadProgress: LinearProgressIndicator
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     /**
@@ -103,26 +103,26 @@ class MainActivity : AppCompatActivity() {
             refresh()
         }
 
-        revancedIndicator = findViewById(R.id.revanced_download_progress)
-        musicIndicator = findViewById(R.id.music_download_progress)
-        gmsCoreIndicator = findViewById(R.id.microg_download_progress)
-        updaterIndicator = findViewById(R.id.updater_download_progress)
+        ytDownloadProgress = findViewById(R.id.yt_download_progress)
+        ytmDownloadProgress = findViewById(R.id.ytm_download_progress)
+        microGDownloadProgress = findViewById(R.id.microg_download_progress)
+        updaterDownloadProgress = findViewById(R.id.updater_download_progress)
 
         val updaterCardTitle = findViewById<TextView>(R.id.updater_title)
         updaterCardTitle.text = getString(R.string.app_name)
         Log.i(LOG_TAG, "Device fingerprint: ${Build.FINGERPRINT}")
         refresh()
 
-        val reVancedCard = findViewById<MaterialCardView>(R.id.revanced_info_card)
-        reVancedCard.setOnLongClickListener {
-            val dialogFragment = ChangelogDialog(reVancedCl, false)
+        val ytCard = findViewById<MaterialCardView>(R.id.yt_info_card)
+        ytCard.setOnLongClickListener {
+            val dialogFragment = ChangelogDialog(ytChangelog, false)
             dialogFragment.show(supportFragmentManager, "ChangelogDialog")
             true
         }
 
-        val reVancedMusicCard = findViewById<MaterialCardView>(R.id.music_info_card)
-        reVancedMusicCard.setOnLongClickListener {
-            val dialogFragment = ChangelogDialog(musicCl, false)
+        val ytmCard = findViewById<MaterialCardView>(R.id.ytm_info_card)
+        ytmCard.setOnLongClickListener {
+            val dialogFragment = ChangelogDialog(ytmChangelog, false)
             dialogFragment.show(supportFragmentManager, "ChangelogDialog")
             true
         }
@@ -130,7 +130,7 @@ class MainActivity : AppCompatActivity() {
         val microGCard = findViewById<MaterialCardView>(R.id.microg_info_card)
         microGCard.setOnLongClickListener {
             openLink(
-                "https://github.com/ReVanced/GmsCore/releases/tag/v${latestGmsCoreVersion}",
+                "https://github.com/MorpheApp/MicroG-RE/releases/tag/${latestMicroGVersion}",
                 this
             )
             true
@@ -140,7 +140,7 @@ class MainActivity : AppCompatActivity() {
         if (IS_DEBUG) {
             updaterCard.setOnLongClickListener {
                 val dialogFragment = ChangelogDialog(
-                    updaterCl, true,
+                    updaterChangelog, true,
                     latestUpdaterCommit
                 )
                 dialogFragment.show(supportFragmentManager, "ChangelogDialog")
@@ -149,7 +149,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             updaterCard.setOnLongClickListener {
                 val dialogFragment = ChangelogDialog(
-                    updaterCl, true,
+                    updaterChangelog, true,
                     latestUpdaterVersion.toString()
                 )
                 dialogFragment.show(supportFragmentManager, "ChangelogDialog")
@@ -159,16 +159,16 @@ class MainActivity : AppCompatActivity() {
 
         val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
 
-        reVancedCard.isVisible = prefs.getBoolean(KEY_YT, true)
-        reVancedMusicCard.isVisible = prefs.getBoolean(KEY_YTM, true)
-        microGCard.isVisible = reVancedCard.isVisible || reVancedMusicCard.isVisible
+        ytCard.isVisible = prefs.getBoolean(KEY_YT, true)
+        ytmCard.isVisible = prefs.getBoolean(KEY_YTM, true)
+        microGCard.isVisible = ytCard.isVisible || ytmCard.isVisible
 
         val topAppBar = findViewById<MaterialToolbar>(R.id.topAppBar)
         topAppBar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.about -> {
                     openLink(
-                        "https://github.com/LeddaZ/RevancedUpdater",
+                        "https://github.com/$APP_REPO",
                         this
                     )
                 }
@@ -190,33 +190,33 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Gets the installed and latest versions of YouTube ReVanced,
-     * ReVanced Music, ReVanced GmsCore and ReVanced Updater.
+     * Gets the installed and latest versions of Morphe YouTube,
+     * YouTube Music, MicroG-RE and Morphe Updater.
      * @property callback callback used to detect if the download was
      *                    successful
      */
     private fun getVersionsAndChangelogs(callback: VolleyCallBack) {
         // Installed versions
         getAppVersion(
-            GMSCORE_PACKAGE,
+            MICROG_PACKAGE,
             findViewById(R.id.installed_microg_version),
-            installedGmsCoreVersion,
+            installedMicroGVersion,
             findViewById(R.id.microg_download_button)
         )
 
-        if (isAppInstalled(this, GMSCORE_PACKAGE)) {
+        if (isAppInstalled(this, MICROG_PACKAGE)) {
             getAppVersion(
-                REVANCED_PACKAGE,
-                findViewById(R.id.installed_revanced_version),
-                installedReVancedVersion,
-                findViewById(R.id.revanced_download_button)
+                YT_PACKAGE,
+                findViewById(R.id.installed_yt_version),
+                installedYtVersion,
+                findViewById(R.id.yt_download_button)
             )
 
             getAppVersion(
-                MUSIC_PACKAGE,
-                findViewById(R.id.installed_music_version),
-                installedReVancedMusicVersion,
-                findViewById(R.id.music_download_button)
+                YTM_PACKAGE,
+                findViewById(R.id.installed_ytm_version),
+                installedYtmVersion,
+                findViewById(R.id.ytm_download_button)
             )
         }
 
@@ -229,47 +229,47 @@ class MainActivity : AppCompatActivity() {
 
         // Latest versions, hashes and changelogs
         val queue = Volley.newRequestQueue(this)
-        val reVancedJSONUrl =
-            "https://raw.githubusercontent.com/LeddaZ/revanced-repo/main/updater.json"
-        val updaterAPIUrl = "https://api.github.com/repos/LeddaZ/ReVancedUpdater/releases/latest"
-        val updaterCommitUrl = "https://api.github.com/repos/LeddaZ/ReVancedUpdater/commits/master"
-        val updaterDebugAPIUrl =
-            "https://api.github.com/repos/LeddaZ/ReVancedUpdater/releases/tags/dev"
-        val gmsCoreAPIUrl = "https://api.github.com/repos/ReVanced/GmsCore/releases/latest"
-        val ytClUrl =
-            "https://raw.githubusercontent.com/LeddaZ/revanced-repo/refs/heads/main/changelogs/revanced.md"
-        val ytmClUrl =
-            "https://raw.githubusercontent.com/LeddaZ/revanced-repo/refs/heads/main/changelogs/music.md"
-        var reVancedReply: ReVancedJSONObject
+        val morpheJsonUrl =
+            "https://raw.githubusercontent.com/$APK_REPO/main/updater.json"
+        val updaterApiUrl = "https://api.github.com/repos/$APP_REPO/releases/latest"
+        val updaterCommitUrl = "https://api.github.com/repos/$APP_REPO/commits/master"
+        val updaterDebugApiUrl =
+            "https://api.github.com/repos/$APP_REPO/releases/tags/dev"
+        val microGApiUrl = "https://api.github.com/repos/MorpheApp/MicroG-RE/releases/latest"
+        val ytChangelogUrl =
+            "https://raw.githubusercontent.com/$APK_REPO/refs/heads/main/changelogs/yt.md"
+        val ytmChangelogUrl =
+            "https://raw.githubusercontent.com/$APK_REPO/refs/heads/main/changelogs/ytm.md"
+        var morpheReply: MorpheJsonObject
         var updaterReleaseReply: UpdaterReleaseJSONObject
         var updaterDebugReply: UpdaterDebugJSONObject
         var updaterBodyReply: UpdaterBodyJSONObject
-        var gmsCoreReply: GmsCoreJSONObject
+        var microGReply: GmsCoreJSONObject
 
-        val urlPrefix = "https://github.com/LeddaZ/revanced-repo/releases/download/"
+        val urlPrefix = "https://github.com/$APK_REPO/releases/download/"
 
-        val reVancedRequest = StringRequest(GET, reVancedJSONUrl, { response ->
+        val morpheRequest = StringRequest(GET, morpheJsonUrl, { response ->
             try {
-                reVancedReply =
-                    Gson().fromJson(response, object : TypeToken<ReVancedJSONObject>() {}.type)
-                latestReVancedVersion = Version(reVancedReply.latestReVancedVersion)
-                latestReVancedHash = reVancedReply.latestReVancedHash
-                latestReVancedMusicVersion = Version(reVancedReply.latestReVancedMusicVersion)
-                reVancedDownloadUrl =
-                    urlPrefix + reVancedReply.latestReVancedDate + "-yt/yt-signed.apk"
+                morpheReply =
+                    Gson().fromJson(response, object : TypeToken<MorpheJsonObject>() {}.type)
+                latestYtVersion = Version(morpheReply.latestYtVersion)
+                latestYtHash = morpheReply.latestYtHash
+                latestYtmVersion = Version(morpheReply.latestYtmVersion)
+                ytDownloadUrl =
+                    urlPrefix + morpheReply.latestYtDate + "-yt/yt-signed.apk"
                 val preferredABI: String = Build.SUPPORTED_ABIS[0]
                 Log.i(LOG_TAG, "Preferred ABI: $preferredABI")
                 when (preferredABI) {
-                    "armeabi-v7a" -> latestReVancedMusicHash =
-                        reVancedReply.latestReVancedMusicHashArm
+                    "armeabi-v7a" -> latestYtmHash =
+                        morpheReply.latestYtmHashArm
 
-                    "arm64-v8a" -> latestReVancedMusicHash =
-                        reVancedReply.latestReVancedMusicHashArm64
+                    "arm64-v8a" -> latestYtmHash =
+                        morpheReply.latestYtmHashArm64
 
-                    "x86" -> latestReVancedMusicHash = reVancedReply.latestReVancedMusicHashX86
-                    "x86_64" -> latestReVancedMusicHash = reVancedReply.latestReVancedMusicHashX64
+                    "x86" -> latestYtmHash = morpheReply.latestYtmHashX86
+                    "x86_64" -> latestYtmHash = morpheReply.latestYtmHashX64
                 }
-                musicDownloadUrl = urlPrefix + reVancedReply.latestReVancedMusicDate +
+                ytmDownloadUrl = urlPrefix + morpheReply.latestYtmDate +
                         "-ytm/ytm-$preferredABI-signed.apk"
                 callback.onSuccess()
             } catch (_: JsonSyntaxException) {
@@ -288,7 +288,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        val updaterReleaseRequest = StringRequest(GET, updaterAPIUrl, { response ->
+        val updaterReleaseRequest = StringRequest(GET, updaterApiUrl, { response ->
             try {
                 updaterReleaseReply =
                     Gson().fromJson(
@@ -298,9 +298,9 @@ class MainActivity : AppCompatActivity() {
                 updaterBodyReply =
                     Gson().fromJson(response, object : TypeToken<UpdaterBodyJSONObject>() {}.type)
                 latestUpdaterVersion = Version(updaterReleaseReply.latestUpdaterVersion)
-                updaterCl = updaterBodyReply.latestUpdaterBody
+                updaterChangelog = updaterBodyReply.latestUpdaterBody
                 updaterDownloadUrl =
-                    "https://github.com/LeddaZ/ReVancedUpdater/releases/download/" +
+                    "https://github.com/$APP_REPO/releases/download/" +
                             latestUpdaterVersion + "/app-release.apk"
                 callback.onSuccess()
             } catch (_: JsonSyntaxException) {
@@ -325,7 +325,7 @@ class MainActivity : AppCompatActivity() {
                     Gson().fromJson(response, object : TypeToken<UpdaterDebugJSONObject>() {}.type)
                 latestUpdaterCommit = updaterDebugReply.latestUpdaterCommit.take(7)
                 updaterDownloadUrl =
-                    "https://github.com/LeddaZ/ReVancedUpdater/releases/download/dev/app-debug-signed.apk"
+                    "https://github.com/$APP_REPO/releases/download/dev/app-debug-signed.apk"
                 callback.onSuccess()
             } catch (_: JsonSyntaxException) {
                 Toast.makeText(this, R.string.json_error, Toast.LENGTH_SHORT).show()
@@ -343,13 +343,11 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        val updaterDebugClBodyRequest = StringRequest(GET, updaterDebugAPIUrl, { response ->
+        val updaterDevChangelogRequest = StringRequest(GET, updaterDebugApiUrl, { response ->
             try {
                 updaterBodyReply =
                     Gson().fromJson(response, object : TypeToken<UpdaterBodyJSONObject>() {}.type)
-                updaterCl = updaterBodyReply.latestUpdaterBody
-                updaterDownloadUrl =
-                    "https://github.com/LeddaZ/ReVancedUpdater/releases/download/dev/app-debug-signed.apk"
+                updaterChangelog = updaterBodyReply.latestUpdaterBody
                 callback.onSuccess()
             } catch (_: JsonSyntaxException) {
                 Toast.makeText(this, R.string.json_error, Toast.LENGTH_SHORT).show()
@@ -367,16 +365,12 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        val gmsCoreRequest = StringRequest(GET, gmsCoreAPIUrl, { response ->
+        val microGRequest = StringRequest(GET, microGApiUrl, { response ->
             try {
-                gmsCoreReply =
+                microGReply =
                     Gson().fromJson(response, object : TypeToken<GmsCoreJSONObject>() {}.type)
-                latestGmsCoreVersion = Version(gmsCoreReply.latestGmsCoreVersion.substring(1))
-                gmsCoreDownloadUrl =
-                    if (isAppInstalled(this, HMS_PACKAGE) && !isAppInstalled(this, GMS_PACKAGE))
-                        gmsCoreReply.assets[0].latestGmsCoreUrl
-                    else
-                        gmsCoreReply.assets[1].latestGmsCoreUrl
+                latestMicroGVersion = Version(microGReply.latestGmsCoreVersion)
+                microGDownloadUrl = microGReply.assets[0].latestGmsCoreUrl
                 callback.onSuccess()
             } catch (_: JsonSyntaxException) {
                 Toast.makeText(this, R.string.json_error, Toast.LENGTH_SHORT).show()
@@ -394,9 +388,9 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        val reVancedClRequest = StringRequest(GET, ytClUrl, { response ->
+        val ytChangelogRequest = StringRequest(GET, ytChangelogUrl, { response ->
             try {
-                reVancedCl = response
+                ytChangelog = response
                 callback.onSuccess()
             } catch (_: JsonSyntaxException) {
                 Toast.makeText(this, R.string.json_error, Toast.LENGTH_SHORT).show()
@@ -414,9 +408,9 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        val musicClRequest = StringRequest(GET, ytmClUrl, { response ->
+        val ytmChangelogRequest = StringRequest(GET, ytmChangelogUrl, { response ->
             try {
-                musicCl = response
+                ytmChangelog = response
                 callback.onSuccess()
             } catch (_: JsonSyntaxException) {
                 Toast.makeText(this, R.string.json_error, Toast.LENGTH_SHORT).show()
@@ -434,13 +428,13 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        queue.add(reVancedRequest)
-        queue.add(gmsCoreRequest)
-        queue.add(reVancedClRequest)
-        queue.add(musicClRequest)
+        queue.add(morpheRequest)
+        queue.add(microGRequest)
+        queue.add(ytChangelogRequest)
+        queue.add(ytmChangelogRequest)
         if (IS_DEBUG) {
             queue.add(updaterDevRequest)
-            queue.add(updaterDebugClBodyRequest)
+            queue.add(updaterDevChangelogRequest)
         } else
             queue.add(updaterReleaseRequest)
     }
@@ -450,30 +444,30 @@ class MainActivity : AppCompatActivity() {
      */
     private fun compareVersions() {
         compareAppVersion(
-            GMSCORE_PACKAGE, installedGmsCoreVersion,
-            latestGmsCoreVersion, findViewById(R.id.microg_update_status),
+            MICROG_PACKAGE, installedMicroGVersion,
+            latestMicroGVersion, findViewById(R.id.microg_update_status),
             findViewById(R.id.microg_download_button),
             findViewById(R.id.microg_uninstall_button)
         )
 
-        if (isAppInstalled(this, GMSCORE_PACKAGE)) {
+        if (isAppInstalled(this, MICROG_PACKAGE)) {
             compareAppVersion(
-                REVANCED_PACKAGE, installedReVancedVersion,
-                latestReVancedVersion, findViewById(R.id.revanced_update_status),
-                findViewById(R.id.revanced_download_button),
-                findViewById(R.id.revanced_uninstall_button)
+                YT_PACKAGE, installedYtVersion,
+                latestYtVersion, findViewById(R.id.yt_update_status),
+                findViewById(R.id.yt_download_button),
+                findViewById(R.id.yt_uninstall_button)
             )
 
             compareAppVersion(
-                MUSIC_PACKAGE, installedReVancedMusicVersion,
-                latestReVancedMusicVersion, findViewById(R.id.music_update_status),
-                findViewById(R.id.music_download_button),
-                findViewById(R.id.music_uninstall_button)
+                YTM_PACKAGE, installedYtmVersion,
+                latestYtmVersion, findViewById(R.id.ytm_update_status),
+                findViewById(R.id.ytm_download_button),
+                findViewById(R.id.ytm_uninstall_button)
             )
         } else {
-            val reVancedTextView = findViewById<TextView>(R.id.revanced_update_status)
+            val reVancedTextView = findViewById<TextView>(R.id.yt_update_status)
             reVancedTextView.text = getString(R.string.microg_dialog_title)
-            val reVancedMusicTextView = findViewById<TextView>(R.id.music_update_status)
+            val reVancedMusicTextView = findViewById<TextView>(R.id.ytm_update_status)
             reVancedMusicTextView.text = getString(R.string.microg_dialog_title)
         }
         compareAppVersion(
@@ -485,55 +479,55 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Downloads YouTube ReVanced when the button is clicked.
+     * Downloads Morphe YT when the button is clicked.
      * @property view the view which contains the button.
      */
-    fun downloadReVanced(view: View) {
+    fun downloadYt(view: View) {
         view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
         AppInstaller(
             this,
             window,
-            reVancedDownloadUrl,
+            ytDownloadUrl,
             "revanced-nonroot-signed.apk",
-            revancedIndicator,
-            findViewById(R.id.revanced_download_button)
+            ytDownloadProgress,
+            findViewById(R.id.yt_download_button)
         )
     }
 
     /**
-     * Downloads ReVanced Music when the button is clicked.
+     * Downloads Morphe YTM when the button is clicked.
      * @property view the view which contains the button.
      */
-    fun downloadReVancedMusic(view: View) {
+    fun downloadYtm(view: View) {
         view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
         AppInstaller(
             this,
             window,
-            musicDownloadUrl,
+            ytmDownloadUrl,
             "revanced-music-nonroot-signed.apk",
-            musicIndicator,
-            findViewById(R.id.music_download_button)
+            ytmDownloadProgress,
+            findViewById(R.id.ytm_download_button)
         )
     }
 
     /**
-     * Downloads ReVanced GmsCore when the button is clicked.
+     * Downloads MicroG-RE when the button is clicked.
      * @property view the view which contains the button.
      */
-    fun downloadGmsCore(view: View) {
+    fun downloadMicroG(view: View) {
         view.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK)
         AppInstaller(
             this,
             window,
-            gmsCoreDownloadUrl,
+            microGDownloadUrl,
             "microg.apk",
-            gmsCoreIndicator,
+            microGDownloadProgress,
             findViewById(R.id.microg_download_button)
         )
     }
 
     /**
-     * Downloads ReVanced Updater when the button is clicked.
+     * Downloads Morphe Updater when the button is clicked.
      * @property view the view which contains the button.
      */
     fun downloadUpdater(view: View) {
@@ -543,7 +537,7 @@ class MainActivity : AppCompatActivity() {
             window,
             updaterDownloadUrl,
             "app-release.apk",
-            updaterIndicator,
+            updaterDownloadProgress,
             findViewById(R.id.updater_download_button)
         )
     }
@@ -582,14 +576,6 @@ class MainActivity : AppCompatActivity() {
                     installedTextView.text =
                         getString(R.string.installed_app_version, APP_VERSION)
                 }
-            } else if (packageName == GMSCORE_PACKAGE) {
-                if (isAppInstalled(this, HMS_PACKAGE) && !isAppInstalled(this, GMS_PACKAGE))
-                    installedVersion.version =
-                        pInfo.versionName?.substring(0, pInfo.versionName!!.length - 3)
-                else
-                    installedVersion.version = pInfo.versionName
-                installedTextView.text =
-                    getString(R.string.installed_app_version, installedVersion.version)
             } else {
                 installedVersion.version = pInfo.versionName
                 installedTextView.text =
@@ -646,11 +632,11 @@ class MainActivity : AppCompatActivity() {
                 uninstallButton?.isEnabled = false
                 uninstallButton?.visibility = View.GONE
             } else if (installedVersion.compareTo(latestVersion) == 0) {
-                if (packageName != GMSCORE_PACKAGE && packageName != UPDATER_PACKAGE) {
+                if (packageName != MICROG_PACKAGE && packageName != UPDATER_PACKAGE) {
                     var latestHash = ""
                     when (packageName) {
-                        REVANCED_PACKAGE -> latestHash = getLatestReVancedHash()
-                        MUSIC_PACKAGE -> latestHash = getLatestReVancedMusicHash()
+                        YT_PACKAGE -> latestHash = getLatestYtHash()
+                        YTM_PACKAGE -> latestHash = getLatestYtmHash()
                     }
                     thread {
                         compareHashes(
@@ -727,20 +713,20 @@ class MainActivity : AppCompatActivity() {
     private fun refresh() {
         getVersionsAndChangelogs(object : VolleyCallBack {
             override fun onSuccess() {
-                val latestReVancedTextView: TextView =
-                    findViewById(R.id.latest_revanced_version)
-                latestReVancedTextView.text =
-                    getString(R.string.latest_app_version, latestReVancedVersion)
+                val latestYtTextView: TextView =
+                    findViewById(R.id.latest_yt_version)
+                latestYtTextView.text =
+                    getString(R.string.latest_app_version, latestYtVersion)
 
-                val latestReVancedMusicTextView: TextView =
-                    findViewById(R.id.latest_music_version)
-                latestReVancedMusicTextView.text =
-                    getString(R.string.latest_app_version, latestReVancedMusicVersion)
+                val latestYtmTextView: TextView =
+                    findViewById(R.id.latest_ytm_version)
+                latestYtmTextView.text =
+                    getString(R.string.latest_app_version, latestYtmVersion)
 
-                val latestGmsCoreTextView: TextView =
+                val latestMicroGTextView: TextView =
                     findViewById(R.id.latest_microg_version)
-                latestGmsCoreTextView.text =
-                    getString(R.string.latest_app_version, latestGmsCoreVersion)
+                latestMicroGTextView.text =
+                    getString(R.string.latest_app_version, latestMicroGVersion)
 
                 val latestAppTextView: TextView = findViewById(R.id.latest_updater_version)
                 if (!IS_DEBUG)
@@ -753,15 +739,15 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        val reVancedCard = findViewById<MaterialCardView>(R.id.revanced_info_card)
-        val reVancedMusicCard = findViewById<MaterialCardView>(R.id.music_info_card)
+        val ytCard = findViewById<MaterialCardView>(R.id.yt_info_card)
+        val ytmCard = findViewById<MaterialCardView>(R.id.ytm_info_card)
         val microGCard = findViewById<MaterialCardView>(R.id.microg_info_card)
 
         val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
 
-        reVancedCard.isVisible = prefs.getBoolean(KEY_YT, true)
-        reVancedMusicCard.isVisible = prefs.getBoolean(KEY_YTM, true)
-        microGCard.isVisible = reVancedCard.isVisible || reVancedMusicCard.isVisible
+        ytCard.isVisible = prefs.getBoolean(KEY_YT, true)
+        ytmCard.isVisible = prefs.getBoolean(KEY_YTM, true)
+        microGCard.isVisible = ytCard.isVisible || ytmCard.isVisible
 
         swipeRefreshLayout.isRefreshing = false
     }
@@ -774,16 +760,16 @@ class MainActivity : AppCompatActivity() {
          * Returns the latest ReVanced hash.
          * @return Latest ReVanced hash.
          */
-        fun getLatestReVancedHash(): String {
-            return latestReVancedHash
+        fun getLatestYtHash(): String {
+            return latestYtHash
         }
 
         /**
-         * Returns the latest ReVanced Music hash.
-         * @return Latest ReVanced Music hash.
+         * Returns the latest YouTube Music hash.
+         * @return Latest YouTube Music hash.
          */
-        fun getLatestReVancedMusicHash(): String {
-            return latestReVancedMusicHash
+        fun getLatestYtmHash(): String {
+            return latestYtmHash
         }
     }
 }

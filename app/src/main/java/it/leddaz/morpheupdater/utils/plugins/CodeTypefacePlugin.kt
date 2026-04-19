@@ -1,4 +1,4 @@
-package it.leddaz.revancedupdater.utils.plugins
+package it.leddaz.morpheupdater.utils.plugins
 
 import android.graphics.Typeface
 import io.noties.markwon.AbstractMarkwonPlugin

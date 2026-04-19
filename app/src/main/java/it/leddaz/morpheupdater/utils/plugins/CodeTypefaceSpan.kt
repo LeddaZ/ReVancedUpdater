@@ -1,4 +1,4 @@
-package it.leddaz.revancedupdater.utils.plugins
+package it.leddaz.morpheupdater.utils.plugins
 
 import android.graphics.Typeface
 import android.text.TextPaint
@@ -25,6 +25,6 @@ class CodeTypefaceSpan(private val typeface: Typeface) : MetricAffectingSpan() {
             paint.textSkewX = -0.25f
         }
 
-        paint.setTypeface(typeface)
+        paint.typeface = typeface
     }
 }

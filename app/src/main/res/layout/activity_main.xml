@@ -40,7 +40,7 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/revanced_info_card"
+                    android:id="@+id/yt_info_card"
                     style="?attr/materialCardViewOutlinedStyle"
                     android:layout_width="350sp"
                     android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
                     android:checkable="false"
                     android:clickable="true"
                     android:focusable="true"
-                    app:layout_constraintBottom_toTopOf="@id/music_info_card"
+                    app:layout_constraintBottom_toTopOf="@id/ytm_info_card"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -61,16 +61,16 @@
                         android:padding="15sp">
 
                         <TextView
-                            android:id="@+id/revanced_title"
+                            android:id="@+id/yt_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginBottom="20sp"
-                            android:text="@string/revanced_info_title"
+                            android:text="@string/yt_info_title"
                             android:textSize="24sp" />
 
                         <TextView
-                            android:id="@+id/installed_revanced_version"
+                            android:id="@+id/installed_yt_version"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -78,7 +78,7 @@
                             android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/latest_revanced_version"
+                            android:id="@+id/latest_yt_version"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -87,7 +87,7 @@
                             android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/revanced_update_status"
+                            android:id="@+id/yt_update_status"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/update_status"
@@ -95,32 +95,32 @@
                             android:textSize="18sp" />
 
                         <Button
-                            android:id="@+id/revanced_uninstall_button"
+                            android:id="@+id/yt_uninstall_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom|end"
                             android:layout_marginTop="5sp"
-                            android:contentDescription="@string/revanced_uninstall_button_description"
+                            android:contentDescription="@string/yt_uninstall_button_description"
                             android:enabled="false"
                             android:text="@string/uninstall_button_text"
                             android:visibility="gone" />
 
                         <Button
-                            android:id="@+id/revanced_download_button"
+                            android:id="@+id/yt_download_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom|end"
                             android:layout_marginTop="5sp"
-                            android:contentDescription="@string/revanced_download_button_description"
+                            android:contentDescription="@string/yt_download_button_description"
                             android:enabled="false"
                             android:visibility="visible"
-                            android:onClick="downloadReVanced"
+                            android:onClick="downloadYt"
                             android:text="@string/download_button_text" />
 
                     </LinearLayout>
 
                     <com.google.android.material.progressindicator.LinearProgressIndicator
-                        android:id="@+id/revanced_download_progress"
+                        android:id="@+id/yt_download_progress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:visibility="gone" />
@@ -128,7 +128,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/music_info_card"
+                    android:id="@+id/ytm_info_card"
                     style="?attr/materialCardViewOutlinedStyle"
                     android:layout_width="350sp"
                     android:layout_height="wrap_content"
@@ -140,7 +140,7 @@
                     app:layout_constraintBottom_toTopOf="@id/microg_info_card"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/revanced_info_card">
+                    app:layout_constraintTop_toBottomOf="@id/yt_info_card">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -149,16 +149,16 @@
                         android:padding="15sp">
 
                         <TextView
-                            android:id="@+id/music_title"
+                            android:id="@+id/ytm_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginBottom="20sp"
-                            android:text="@string/music_info_title"
+                            android:text="@string/ytm_info_title"
                             android:textSize="24sp" />
 
                         <TextView
-                            android:id="@+id/installed_music_version"
+                            android:id="@+id/installed_ytm_version"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -166,7 +166,7 @@
                             android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/latest_music_version"
+                            android:id="@+id/latest_ytm_version"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
@@ -175,7 +175,7 @@
                             android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/music_update_status"
+                            android:id="@+id/ytm_update_status"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/update_status"
@@ -183,32 +183,32 @@
                             android:textSize="18sp" />
 
                         <Button
-                            android:id="@+id/music_uninstall_button"
+                            android:id="@+id/ytm_uninstall_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom|end"
                             android:layout_marginTop="5sp"
-                            android:contentDescription="@string/music_uninstall_button_description"
+                            android:contentDescription="@string/ytm_uninstall_button_description"
                             android:enabled="false"
                             android:text="@string/uninstall_button_text"
                             android:visibility="gone" />
 
                         <Button
-                            android:id="@+id/music_download_button"
+                            android:id="@+id/ytm_download_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom|end"
                             android:layout_marginTop="5sp"
-                            android:contentDescription="@string/music_download_button_description"
+                            android:contentDescription="@string/ytm_download_button_description"
                             android:enabled="false"
                             android:visibility="visible"
-                            android:onClick="downloadReVancedMusic"
+                            android:onClick="downloadYtm"
                             android:text="@string/download_button_text" />
 
                     </LinearLayout>
 
                     <com.google.android.material.progressindicator.LinearProgressIndicator
-                        android:id="@+id/music_download_progress"
+                        android:id="@+id/ytm_download_progress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:visibility="gone" />
@@ -228,7 +228,7 @@
                     app:layout_constraintBottom_toTopOf="@id/updater_info_card"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/music_info_card">
+                    app:layout_constraintTop_toBottomOf="@id/ytm_info_card">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -290,7 +290,7 @@
                             android:contentDescription="@string/microg_download_button_description"
                             android:enabled="false"
                             android:visibility="visible"
-                            android:onClick="downloadGmsCore"
+                            android:onClick="downloadMicroG"
                             android:text="@string/download_button_text" />
 
                     </LinearLayout>

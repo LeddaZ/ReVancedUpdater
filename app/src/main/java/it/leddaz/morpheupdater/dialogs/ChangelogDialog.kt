@@ -1,4 +1,4 @@
-package it.leddaz.revancedupdater.dialogs
+package it.leddaz.morpheupdater.dialogs
 
 import android.app.Dialog
 import android.os.Bundle
@@ -6,12 +6,13 @@ import androidx.fragment.app.DialogFragment
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.noties.markwon.Markwon
-import it.leddaz.revancedupdater.R
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.openLink
-import it.leddaz.revancedupdater.utils.plugins.CodeTypefacePlugin
+import it.leddaz.morpheupdater.R
+import it.leddaz.morpheupdater.utils.misc.CommonStuff.APP_REPO
+import it.leddaz.morpheupdater.utils.misc.CommonStuff.openLink
+import it.leddaz.morpheupdater.utils.plugins.CodeTypefacePlugin
 
 /**
- * Dialog that shows when the About button is pressed.
+ * Dialog that shows when an app card is held.
  * @author Leonardo Ledda (LeddaZ)
  */
 class ChangelogDialog(
@@ -46,7 +47,7 @@ class ChangelogDialog(
                 builder.setNegativeButton(R.string.github) { _, _ ->
                     this.context?.let { it1 ->
                         openLink(
-                            "https://github.com/LeddaZ/ReVancedUpdater/releases",
+                            "https://github.com/$APP_REPO/releases",
                             it1
                         )
                     }

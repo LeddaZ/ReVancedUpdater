@@ -18,5 +18,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ReVanced Updater"
+rootProject.name = "Morphe Updater"
 include(":app")

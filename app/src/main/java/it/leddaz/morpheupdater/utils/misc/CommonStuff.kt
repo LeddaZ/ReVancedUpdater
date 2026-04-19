@@ -1,11 +1,11 @@
-package it.leddaz.revancedupdater.utils.misc
+package it.leddaz.morpheupdater.utils.misc
 
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.provider.Settings
 import androidx.core.net.toUri
-import it.leddaz.revancedupdater.BuildConfig
+import it.leddaz.morpheupdater.BuildConfig
 
 /**
  * Constants and functions used in multiple occasions.
@@ -17,16 +17,18 @@ object CommonStuff {
     const val KEY_YT = "show_yt"
     const val KEY_YTM = "show_ytm"
     const val APP_VERSION = BuildConfig.VERSION_NAME
-    const val LOG_TAG = "ReVanced Updater"
+    const val LOG_TAG = "Morphe Updater"
     val IS_DEBUG = BuildConfig.DEBUG
 
     // Package names
-    const val REVANCED_PACKAGE = "app.revanced.android.youtube"
-    const val MUSIC_PACKAGE = "app.revanced.android.apps.youtube.music"
-    const val GMSCORE_PACKAGE = "app.revanced.android.gms"
+    const val YT_PACKAGE = "app.morphe.android.youtube"
+    const val YTM_PACKAGE = "app.morphe.android.apps.youtube.music"
+    const val MICROG_PACKAGE = "app.revanced.android.gms"
     const val UPDATER_PACKAGE = "it.leddaz.revancedupdater"
-    const val HMS_PACKAGE = "com.huawei.hwid"
-    const val GMS_PACKAGE = "com.google.android.gms"
+
+    // URLs
+    const val APP_REPO = "LeddaZ/MorpheUpdater"
+    const val APK_REPO = "LeddaZ/morphe-repo"
 
     /**
      * Opens a link using the default browser.

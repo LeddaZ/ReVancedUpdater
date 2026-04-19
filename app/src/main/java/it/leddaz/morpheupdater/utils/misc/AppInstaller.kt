@@ -1,4 +1,4 @@
-package it.leddaz.revancedupdater.utils.misc
+package it.leddaz.morpheupdater.utils.misc
 
 import android.content.Context
 import android.content.Intent
@@ -12,10 +12,10 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.getString
 import androidx.core.content.FileProvider
 import com.google.android.material.progressindicator.LinearProgressIndicator
-import it.leddaz.revancedupdater.BuildConfig
-import it.leddaz.revancedupdater.R
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.LOG_TAG
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.requestInstallPermission
+import it.leddaz.morpheupdater.BuildConfig
+import it.leddaz.morpheupdater.R
+import it.leddaz.morpheupdater.utils.misc.CommonStuff.LOG_TAG
+import it.leddaz.morpheupdater.utils.misc.CommonStuff.requestInstallPermission
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

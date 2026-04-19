@@ -23,7 +23,7 @@ val commitHash by project.extra {
 }
 
 android {
-    namespace = "it.leddaz.revancedupdater"
+    namespace = "it.leddaz.morpheupdater"
     compileSdk = 36
 
     defaultConfig {

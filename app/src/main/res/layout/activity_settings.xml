@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="20sp"
                 android:paddingRight="20sp"
-                android:text="@string/revanced_info_title"
+                android:text="@string/yt_info_title"
                 android:textSize="18sp"
                 app:key="show_yt" />
 
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="20sp"
                 android:paddingRight="20sp"
-                android:text="@string/music_info_title"
+                android:text="@string/ytm_info_title"
                 android:textSize="18sp"
                 app:key="show_ytm" />
 

@@ -1,4 +1,4 @@
-# ReVanced Updater
+# Morphe Updater
 
 Updater for my ReVanced builds, you can find more
 info [here](https://github.com/LeddaZ/revanced-repo).

@@ -1,4 +1,4 @@
-package it.leddaz.revancedupdater.utils.json
+package it.leddaz.morpheupdater.utils.json
 
 import com.google.gson.annotations.SerializedName
 

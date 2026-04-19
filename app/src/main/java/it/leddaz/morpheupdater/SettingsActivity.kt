@@ -1,4 +1,4 @@
-package it.leddaz.revancedupdater
+package it.leddaz.morpheupdater
 
 import android.os.Bundle
 import android.view.View
@@ -9,9 +9,9 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.edit
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.materialswitch.MaterialSwitch
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.KEY_YT
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.KEY_YTM
-import it.leddaz.revancedupdater.utils.misc.CommonStuff.PREFS_NAME
+import it.leddaz.morpheupdater.utils.misc.CommonStuff.KEY_YT
+import it.leddaz.morpheupdater.utils.misc.CommonStuff.KEY_YTM
+import it.leddaz.morpheupdater.utils.misc.CommonStuff.PREFS_NAME
 import java.io.File
 
 class SettingsActivity : AppCompatActivity() {

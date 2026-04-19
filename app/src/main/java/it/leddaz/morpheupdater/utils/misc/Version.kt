@@ -1,4 +1,4 @@
-package it.leddaz.revancedupdater.utils.misc
+package it.leddaz.morpheupdater.utils.misc
 
 import kotlin.math.max
 
